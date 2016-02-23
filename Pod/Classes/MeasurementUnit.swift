@@ -76,6 +76,33 @@ public enum MeasurementUnit: Int {
         }
     }
     
+    public init?(stringValue: String) {
+        for unit in MeasurementUnit.allMeasurementUnits() {
+            if unit.name == stringValue {
+                self = unit
+                return
+            }
+        }
+        
+        switch stringValue {
+        case "Quanity":
+            self = .Each
+            return
+        case "FluidOunce":
+            self = .FluidOunce
+            return
+        case "Mililitre":
+            self = .Milliliter
+            return
+        case "Litre":
+            self = .Liter
+            return
+        default:
+            return nil
+        }
+
+    }
+    
     public var name: String {
         switch self {
         case .AsNeeded: return "As Needed"
