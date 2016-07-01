@@ -37,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E12682221D26F699006B4887 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		E12682241D26F70E006B4887 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E12682261D26F714006B4887 /* MiseEnPlace.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MiseEnPlace.podspec; sourceTree = "<group>"; };
 		E1A418121C77E40E0025D094 /* Convertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convertable.swift; sourceTree = "<group>"; };
 		E1A418131C77E40E0025D094 /* Converter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		E1A418141C77E40E0025D094 /* Float.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Float.swift; sourceTree = "<group>"; };
@@ -93,7 +96,7 @@
 			name = Swift;
 			sourceTree = "<group>";
 		};
-		E1A4180F1C77E40E0025D094 /* Classes */ = {
+		E1A4180F1C77E40E0025D094 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				E1A418121C77E40E0025D094 /* Convertable.swift */,
@@ -105,13 +108,16 @@
 				E1A418181C77E40E0025D094 /* MeasurementSystemMethod.swift */,
 				E1A418191C77E40E0025D094 /* MeasurementUnit.swift */,
 			);
-			name = Classes;
-			path = ../../Pod/Classes;
+			name = Sources;
+			path = ../Sources;
 			sourceTree = "<group>";
 		};
 		E1E02C6F1B6F200A00FEDC95 = {
 			isa = PBXGroup;
 			children = (
+				E12682261D26F714006B4887 /* MiseEnPlace.podspec */,
+				E12682241D26F70E006B4887 /* README.md */,
+				E12682221D26F699006B4887 /* Package.swift */,
 				E1E02C7B1B6F200A00FEDC95 /* MiseEnPlace */,
 				E1E02C881B6F200A00FEDC95 /* MiseEnPlaceTests */,
 				E1E02C7A1B6F200A00FEDC95 /* Products */,
@@ -131,7 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				E1E02C7C1B6F200A00FEDC95 /* Supporting Files */,
-				E1A4180F1C77E40E0025D094 /* Classes */,
+				E1A4180F1C77E40E0025D094 /* Sources */,
 			);
 			path = MiseEnPlace;
 			sourceTree = "<group>";
@@ -344,7 +350,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -387,7 +393,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
