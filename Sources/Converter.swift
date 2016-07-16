@@ -32,6 +32,7 @@ public let PreciseOunceGramRatio: Float = 28.349523
 public let LooseFluidOunceMilliliterRatio: Float = 30.0
 public let PreciseFluidOunceMilliliterRatio: Float = 29.573529
 public typealias ScaleMeasure = (amount: Float, unit: MeasurementUnit)
+public typealias ScaleOptions = (multiplier: Float, measurementSystem: MeasurementSystem?, measurementMethod: MeasurementMethod?)
 public typealias Ratio = (volume: Float, mass: Float)
 
 /// ## Converter
@@ -94,6 +95,11 @@ public class Converter {
         }
         
         return 1
+    }
+    
+    /// Conveince methods that bundles parameters into the typealias `ScaleOptions`
+    public static func scale(convertable: Convertable, withOptions scaleOptions: ScaleOptions) -> ScaleMeasure {
+        return scale(convertable, multiplier: scaleOptions.multiplier, measurementSystem: scaleOptions.measurementSystem, measurementMethod: scaleOptions.measurementMethod)
     }
     
     /// Wrapper function for determining the correct `MeasurementSystemMethod`, 
