@@ -63,17 +63,23 @@ public let OneEighthSymbol: String = "⅛"
 public let OneSixteenth: Float = 0.0625
 public let OneThousandth: Float = 0.001
 
+/// ## Interpreter
+/// Provides functions needed to produce human-readable measurements.
 public class Interpreter {
+    
     /// Forces an abbreviated form of each `MeasurementUnit`
     public static var useAbbreviation: Bool = false
     
-    /// Uses the `Componentize` and `Translate` functions to present a human readable format of a `ScaleMeasure`
+    /// Uses the `Componentize` and `Translate` functions to present a 
+    /// human readable format of a `ScaleMeasure`
     public static func interpret(scaleMeasure: ScaleMeasure) -> String {
         return self.interpret(scaleMeasure, abbreviate: Interpreter.useAbbreviation)
     }
     
-    /// Uses the `Componentize` and `Translate` functions to present a human readable format of a `ScaleMeasure`
-    /// Passing a value for the abbreviate: parameter overrides default behavior of the MeasurementUnit Configuration.
+    /// Uses the `Componentize` and `Translate` functions to present a 
+    /// human readable format of a `ScaleMeasure`.
+    /// Passing a value for the abbreviate: parameter overrides default behavior 
+    /// of the MeasurementUnit Configuration.
     public static func interpret(scaleMeasure: ScaleMeasure, abbreviate:Bool) -> String {
         let measurementUnit = scaleMeasure.unit
         
@@ -102,7 +108,8 @@ public class Interpreter {
     }
     
     /// Returns a human readable string from a `ScaleMeasure` amount and unit.
-    /// Passing a value for the abbreviate: parameter overrides default behavior of the MeasurementUnit Configuration.
+    /// Passing a value for the abbreviate: parameter overrides default behavior 
+    /// of the MeasurementUnit Configuration.
     public static func translate(scaleMeasure: ScaleMeasure, abbreviate:Bool) -> String {
         let measurementUnit = scaleMeasure.unit
         
@@ -172,7 +179,8 @@ public class Interpreter {
         }
     }
     
-    /// Returns a `[ScaleMeasure]` of up to size 2 with the passed `ScaleMeasure` unit and the next smallest unit if needed.
+    /// Returns a `[ScaleMeasure]` of up to size 2 with the passed `ScaleMeasure` 
+    /// unit and the next smallest unit if needed.
     public static func componentize(scaleMeasure: ScaleMeasure) -> [ScaleMeasure] {
         let measurementUnit = scaleMeasure.unit
         

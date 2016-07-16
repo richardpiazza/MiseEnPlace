@@ -34,10 +34,11 @@ public let PreciseFluidOunceMilliliterRatio: Float = 29.573529
 public typealias ScaleMeasure = (amount: Float, unit: MeasurementUnit)
 public typealias Ratio = (volume: Float, mass: Float)
 
-/// Converter
-/// =========
-/// Provides functions needed for the conversion of amounts from one system of measurement to another system of measurement.
+/// ## Converter
+/// Provides functions needed for the conversion of amounts from 
+/// one system of measurement to another system of measurement.
 public class Converter {
+    
     /// Replaces precise oz->g / floz->ml conversions with 30g/30ml respectively.
     public static var allowLooseConversion: Bool = false
     
@@ -95,7 +96,8 @@ public class Converter {
         return 1
     }
     
-    /// Wrapper function for determining the correct `MeasurementSystemMethod`, passing the result to `Scale(:Convertable,:Float,:MeasurementSystemMethod)`
+    /// Wrapper function for determining the correct `MeasurementSystemMethod`, 
+    /// passing the result to `Scale(:Convertable,:Float,:MeasurementSystemMethod)`
     public static func scale(convertable: Convertable, multiplier: Float, measurementSystem: MeasurementSystem?, measurementMethod: MeasurementMethod?) -> ScaleMeasure {
         
         let measurementUnit = convertable.measurementUnit
@@ -153,7 +155,8 @@ public class Converter {
         return (convertable.measurementAmount, convertable.measurementUnit)
     }
     
-    /// Returns a `ScaleMeasure` that best fits a `Convertable` measurementAmount * the multipler within the specified `MeasurementSystemMethod`
+    /// Returns a `ScaleMeasure` that best fits a `Convertable` measurementAmount * the multipler 
+    /// within the specified `MeasurementSystemMethod`
     public static func scale(convertable: Convertable, multiplier: Float, measurementSystemMethod: MeasurementSystemMethod) -> ScaleMeasure {
         let measurementUnit = convertable.measurementUnit
         
@@ -264,7 +267,8 @@ public class Converter {
         return 0
     }
     
-    /// Converts a specified measurementAmount from one `MeasurementUnit` to another `MeasurementUnit` within the same `MeasurementSystemMethod`
+    /// Converts a specified measurementAmount from one `MeasurementUnit` to another `MeasurementUnit` 
+    /// within the same `MeasurementSystemMethod`
     public static func convert(measurementAmount: Float, fromMeasurementUnit: MeasurementUnit, toMeasurementUnit: MeasurementUnit) -> Float {
         guard let _ = fromMeasurementUnit.measurementSystemMethod else {
             return 0
@@ -279,8 +283,8 @@ public class Converter {
             return 0
         }
         
-        var currentIndex: Int = -1
-        var goalIndex: Int = -1
+        var currentIndex = -1
+        var goalIndex = -1
         
         for (index, item) in measurementUnits.enumerate() {
             if item == fromMeasurementUnit {
@@ -295,7 +299,7 @@ public class Converter {
             return measurementAmount
         }
         
-        var stepDirection: Int = 0
+        var stepDirection = 0
         var nextMeasurementAmount: Float = measurementAmount
         if goalIndex - currentIndex > 0 {
             stepDirection = 1

@@ -27,6 +27,8 @@
 
 import Foundation
 
+/// ## Convertable
+/// Protocol specifying properties needing to be supplied for conversion.
 public protocol Convertable {
     var measurementAmount: Float { get }
     var measurementUnit: MeasurementUnit { get }

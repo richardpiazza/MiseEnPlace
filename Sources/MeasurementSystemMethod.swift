@@ -27,6 +27,9 @@
 
 import Foundation
 
+/// ## MeasurementSystemMethod
+/// The `MeasurementSystemMethod` represents the ways `MeasurementMethod`s and 
+/// `MeasurementSystem`s can be combined.
 public enum MeasurementSystemMethod: Int {
     case USVolume = 11
     case USMass = 12

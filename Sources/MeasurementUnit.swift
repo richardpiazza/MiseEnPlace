@@ -27,6 +27,12 @@
 
 import Foundation
 
+/// ## MeasurementUnit
+/// The `MeasurementUnit` enum is the heart of the MiseEnPlace framework. This enum 
+/// represents some unit of measure, along with `MeasurementSystem` and `MeasurementMethod`
+/// that it belongs to.
+/// All of the logic for how and when to convert to other units and amounts is 
+/// contained within the enum.
 public enum MeasurementUnit: Int {
     
     case AsNeeded = 9000
@@ -100,7 +106,6 @@ public enum MeasurementUnit: Int {
         default:
             return nil
         }
-
     }
     
     public var name: String {
