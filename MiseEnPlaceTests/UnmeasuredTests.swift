@@ -40,8 +40,8 @@ class UnmeasuredTests: XCTestCase {
         ingredient.measurementUnit = .Each
         ingredient.measurementAmount = 3
         
-        let scale = Converter.scale(ingredient, multiplier: OneThird, measurementSystemMethod: .MetricMass)
-        XCTAssertTrue(scale.amount == 3.0 * OneThird)
+        let scale = Converter.scale(ingredient, multiplier: Constants.OneThird, measurementSystemMethod: .MetricMass)
+        XCTAssertTrue(scale.amount == 3.0 * Constants.OneThird)
         XCTAssertTrue(scale.unit == .Each)
         
         let interpret = Interpreter.interpret(scale)
@@ -57,6 +57,6 @@ class UnmeasuredTests: XCTestCase {
         XCTAssertTrue(scale.unit == .Each)
         
         let interpret = Interpreter.interpret(scale)
-        XCTAssertTrue(interpret == "1" + OneThirdSymbol + " Each")
+        XCTAssertTrue(interpret == "1" + Constants.OneThirdSymbol + " Each")
     }
 }

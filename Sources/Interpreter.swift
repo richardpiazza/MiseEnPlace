@@ -27,41 +27,7 @@
 
 import Foundation
 
-public let SevenEighths: Float = 0.875
-public let SevenEighthsSymbol: String = "⅞"
 
-public let ThreeFourths: Float = 0.75
-public let ThreeFourthsDecimalBoundary: Float = 0.708333
-public let ThreeFourthsSymbol: String = "¾"
-
-public let TwoThirds: Float = 0.666666
-public let TwoThirdsDecimalBoundary: Float = 0.645833
-public let TwoThirdsSymbol: String = "⅔"
-
-public let FiveEighths: Float = 0.625
-public let FiveEighthsDecimalBoundary: Float = 0.5625
-public let FiveEighthsSymbol: String = "⅝"
-
-public let OneHalf: Float = 0.5
-public let OneHalfDecimalBoundary: Float = 0.416666
-public let OneHalfSymbol: String = "½"
-
-public let OneThird: Float = 0.3333333
-public let OneThirdDecimalBoundary: Float = 0.291666
-public let OneThirdSymbol: String = "⅓"
-
-public let OneFourth: Float = 0.25
-public let OneFourthDecimalBoundary: Float = 0.208333
-public let OneFourthSymbol: String = "¼"
-
-public let OneSixth: Float = 0.166666
-public let OneSixthSymbol: String = "⅙"
-
-public let OneEighth: Float = 0.125
-public let OneEighthSymbol: String = "⅛"
-
-public let OneSixteenth: Float = 0.0625
-public let OneThousandth: Float = 0.001
 
 /// ## Interpreter
 /// Provides functions needed to produce human-readable measurements.
@@ -88,9 +54,11 @@ public class Interpreter {
         }
         
         var interpretation: String = ""
-        
+        var units: [MeasurementUnit] = []
         let components = self.componentize(scaleMeasure)
         for component in components {
+            units.append(component.unit)
+            
             if interpretation.isEmpty == true {
                 interpretation = self.translate(component, abbreviate:abbreviate)
             } else {
@@ -99,7 +67,22 @@ public class Interpreter {
             }
         }
         
-        return interpretation
+        guard units.count > 1 else {
+            return interpretation
+        }
+        
+        let uniques = Array(Set(units))
+        guard uniques.count == 1 else {
+            return interpretation
+        }
+        
+        guard let unit = uniques.first else {
+            return interpretation
+        }
+        
+        let unitValue = (abbreviate) ? unit.abbreviation : unit.name
+        
+        return interpretation.replacingOccurrencesExceptLast(" \(unitValue)", with: "")
     }
     
     /// Returns a human readable string from a `ScaleMeasure` amount and unit.
@@ -198,62 +181,20 @@ public class Interpreter {
         var components: [ScaleMeasure] = [ScaleMeasure]()
         
         switch measurementUnit {
-        case .Kilogram:
+        case .Kilogram, .Liter, .Pound, .Tablespoon, .Teaspoon, .FluidOunce, .Cup, .Pint, .Quart, .Gallon:
             if amountComponents.0 != 0 {
-                components.append((amountComponents.0, measurementUnit))
+                components.append(ScaleMeasure(amount: amountComponents.0, unit: measurementUnit))
             }
-            let gram = Converter.convert(amountComponents.1, fromMeasurementUnit: .Kilogram, toMeasurementUnit: .Gram)
-            components.append((gram, .Gram))
-        case .Liter:
-            if amountComponents.0 != 0 {
-                components.append((amountComponents.0, measurementUnit))
+            
+            if let stepDownUnit = measurementUnit.stepDownUnit where amountComponents.1 < measurementUnit.stepDownThreshold {
+                let stepDownMeasure = Converter.convert(amountComponents.1, fromMeasurementUnit: measurementUnit, toMeasurementUnit: stepDownUnit)
+                components.append(ScaleMeasure(amount: stepDownMeasure, unit: stepDownUnit))
+            } else {
+                components.append(ScaleMeasure(amount: amountComponents.1, unit: measurementUnit))
             }
-            let milliliter = Converter.convert(amountComponents.1, fromMeasurementUnit: .Liter, toMeasurementUnit: .Milliliter)
-            components.append((milliliter, .Milliliter))
-        case .Pound:
-            if amountComponents.0 != 0 {
-                components.append((amountComponents.0, measurementUnit))
-            }
-            let ounce = Converter.convert(amountComponents.1, fromMeasurementUnit: .Pound, toMeasurementUnit: .Ounce)
-            components.append((ounce, .Ounce))
-        case .Tablespoon:
-            if amountComponents.0 != 0 {
-                components.append((amountComponents.0, measurementUnit))
-            }
-            let teaspoon = Converter.convert(amountComponents.1, fromMeasurementUnit: .Tablespoon, toMeasurementUnit: .Teaspoon)
-            components.append((teaspoon, .Teaspoon))
-        case .FluidOunce:
-            if amountComponents.0 != 0 {
-                components.append((amountComponents.0, measurementUnit))
-            }
-            let tablespoon = Converter.convert(amountComponents.1, fromMeasurementUnit: .FluidOunce, toMeasurementUnit: .Tablespoon)
-            components.append((tablespoon, .Tablespoon))
-        case .Cup:
-            if amountComponents.0 != 0 {
-                components.append((amountComponents.0, measurementUnit))
-            }
-            let fluidOunce = Converter.convert(amountComponents.1, fromMeasurementUnit: .Cup, toMeasurementUnit: .FluidOunce)
-            components.append((fluidOunce, .FluidOunce))
-        case .Pint:
-            if amountComponents.0 != 0 {
-                components.append((amountComponents.0, measurementUnit))
-            }
-            let cup = Converter.convert(amountComponents.1, fromMeasurementUnit: .Pint, toMeasurementUnit: .Cup)
-            components.append((cup, .Cup))
-        case .Quart:
-            if amountComponents.0 != 0 {
-                components.append((amountComponents.0, measurementUnit))
-            }
-            let pint = Converter.convert(amountComponents.1, fromMeasurementUnit: .Quart, toMeasurementUnit: .Pint)
-            components.append((pint, .Pint))
-        case .Gallon:
-            if amountComponents.0 != 0 {
-                components.append((amountComponents.0, measurementUnit))
-            }
-            let quart = Converter.convert(amountComponents.1, fromMeasurementUnit: .Gallon, toMeasurementUnit: .Quart)
-            components.append((quart, .Quart))
+            
         default:
-            components.append((scaleMeasure.amount, measurementUnit))
+            components.append(ScaleMeasure(amount: scaleMeasure.amount, unit: measurementUnit))
         }
         
         return components
@@ -262,20 +203,20 @@ public class Interpreter {
     /// Rounds a provided fraction to a more common fraction
     public static func nearestKnownFraction(decimal: Float) -> Float {
         
-        if decimal >= SevenEighths {
+        if decimal >= Constants.SevenEighths {
             return 1.0
-        } else if decimal >= ThreeFourthsDecimalBoundary {
-            return ThreeFourths
-        } else if decimal >= TwoThirdsDecimalBoundary {
-            return TwoThirds
-        } else if decimal >= FiveEighthsDecimalBoundary {
-            return FiveEighths
-        } else if decimal >= OneHalfDecimalBoundary {
-            return OneHalf
-        } else if decimal >= OneThirdDecimalBoundary {
-            return OneThird
-        } else if decimal >= OneFourthDecimalBoundary {
-            return OneFourth
+        } else if decimal >= Constants.ThreeFourthsDecimalBoundary {
+            return Constants.ThreeFourths
+        } else if decimal >= Constants.TwoThirdsDecimalBoundary {
+            return Constants.TwoThirds
+        } else if decimal >= Constants.FiveEighthsDecimalBoundary {
+            return Constants.FiveEighths
+        } else if decimal >= Constants.OneHalfDecimalBoundary {
+            return Constants.OneHalf
+        } else if decimal >= Constants.OneThirdDecimalBoundary {
+            return Constants.OneThird
+        } else if decimal >= Constants.OneFourthDecimalBoundary {
+            return Constants.OneFourth
         }
         
         return 0.0
@@ -283,20 +224,20 @@ public class Interpreter {
     
     /// Returns the unicode symbol as a `String` for a common fraction.
     public static func symbolForFraction(fraction: Float) -> String {
-        if fraction == SevenEighths || fraction.twoDecimalValue == SevenEighths.twoDecimalValue {
-            return SevenEighthsSymbol
-        } else if fraction == ThreeFourths || fraction.twoDecimalValue == ThreeFourths.twoDecimalValue {
-            return ThreeFourthsSymbol
-        } else if fraction == TwoThirds || fraction.twoDecimalValue == TwoThirds.twoDecimalValue {
-            return TwoThirdsSymbol
-        } else if fraction == FiveEighths || fraction.twoDecimalValue == FiveEighths.twoDecimalValue {
-            return FiveEighthsSymbol
-        } else if fraction == OneHalf || fraction.twoDecimalValue == OneHalf.twoDecimalValue {
-            return OneHalfSymbol
-        } else if fraction == OneThird || fraction.twoDecimalValue == OneThird.twoDecimalValue {
-            return OneThirdSymbol
-        } else if fraction == OneFourth || fraction.twoDecimalValue == OneFourth.twoDecimalValue {
-            return OneFourthSymbol
+        if fraction == Constants.SevenEighths || fraction.twoDecimalValue == Constants.SevenEighths.twoDecimalValue {
+            return Constants.SevenEighthsSymbol
+        } else if fraction == Constants.ThreeFourths || fraction.twoDecimalValue == Constants.ThreeFourths.twoDecimalValue {
+            return Constants.ThreeFourthsSymbol
+        } else if fraction == Constants.TwoThirds || fraction.twoDecimalValue == Constants.TwoThirds.twoDecimalValue {
+            return Constants.TwoThirdsSymbol
+        } else if fraction == Constants.FiveEighths || fraction.twoDecimalValue == Constants.FiveEighths.twoDecimalValue {
+            return Constants.FiveEighthsSymbol
+        } else if fraction == Constants.OneHalf || fraction.twoDecimalValue == Constants.OneHalf.twoDecimalValue {
+            return Constants.OneHalfSymbol
+        } else if fraction == Constants.OneThird || fraction.twoDecimalValue == Constants.OneThird.twoDecimalValue {
+            return Constants.OneThirdSymbol
+        } else if fraction == Constants.OneFourth || fraction.twoDecimalValue == Constants.OneFourth.twoDecimalValue {
+            return Constants.OneFourthSymbol
         }
         
         return ""

@@ -221,7 +221,7 @@ public enum MeasurementUnit: Int {
         case .Teaspoon: return 0.5
         case .Tablespoon: return 1
         case .FluidOunce: return 1
-        case .Cup: return 1
+        case .Cup: return 0.5
         case .Pint: return 1
         case .Quart: return 1
         case .Gallon: return 1
@@ -239,7 +239,7 @@ public enum MeasurementUnit: Int {
         case .Teaspoon: return 4.5
         case .Tablespoon: return 3.5
         case .FluidOunce: return 9.5
-        case .Cup: return 2.5
+        case .Cup: return 3.0
         case .Pint: return 2.5
         case .Quart: return 4.5
         case .Ounce: return 16
@@ -251,35 +251,69 @@ public enum MeasurementUnit: Int {
     
     public var stepDownMultiplier: Float {
         switch self {
-        case .Dash: return OneHalf
-        case .Teaspoon: return OneEighth
-        case .Tablespoon: return OneThird
-        case .FluidOunce: return OneHalf
-        case .Cup: return OneEighth
-        case .Pint: return OneHalf
-        case .Quart: return OneHalf
-        case .Gallon: return OneFourth
-        case .Pound: return OneSixteenth
-        case .Liter: return OneThousandth
-        case .Kilogram: return OneThousandth
+        case .Dash: return Constants.OneHalf
+        case .Teaspoon: return Constants.OneEighth
+        case .Tablespoon: return Constants.OneThird
+        case .FluidOunce: return Constants.OneHalf
+        case .Cup: return Constants.OneEighth
+        case .Pint: return Constants.OneHalf
+        case .Quart: return Constants.OneHalf
+        case .Gallon: return Constants.OneFourth
+        case .Pound: return Constants.OneSixteenth
+        case .Liter: return Constants.OneThousandth
+        case .Kilogram: return Constants.OneThousandth
         default: return 0
         }
     }
     
     public var stepUpMultiplier: Float {
         switch self {
-        case .Pinch: return OneHalf
-        case .Dash: return OneEighth
-        case .Teaspoon: return OneThird
-        case .Tablespoon: return OneHalf
-        case .FluidOunce: return OneEighth
-        case .Cup: return OneHalf
-        case .Pint: return OneHalf
-        case .Quart: return OneFourth
-        case .Ounce: return OneSixteenth
-        case .Milliliter: return OneThousandth
-        case .Gram: return OneThousandth
+        case .Pinch: return Constants.OneHalf
+        case .Dash: return Constants.OneEighth
+        case .Teaspoon: return Constants.OneThird
+        case .Tablespoon: return Constants.OneHalf
+        case .FluidOunce: return Constants.OneEighth
+        case .Cup: return Constants.OneHalf
+        case .Pint: return Constants.OneHalf
+        case .Quart: return Constants.OneFourth
+        case .Ounce: return Constants.OneSixteenth
+        case .Milliliter: return Constants.OneThousandth
+        case .Gram: return Constants.OneThousandth
         default: return 0
+        }
+    }
+    
+    public var stepDownUnit: MeasurementUnit? {
+        switch self {
+        case .Dash: return .Pinch
+        case .Teaspoon: return .Dash
+        case .Tablespoon: return .Teaspoon
+        case .FluidOunce: return .Tablespoon
+        case .Cup: return .FluidOunce
+        case .Pint: return .Cup
+        case .Quart: return .Pint
+        case .Gallon: return .Quart
+        case .Pound: return .Ounce
+        case .Liter: return .Milliliter
+        case .Kilogram: return .Gram
+        default: return nil
+        }
+    }
+    
+    public var stepUpUnit: MeasurementUnit? {
+        switch self {
+        case .Pinch: return .Dash
+        case .Dash: return .Teaspoon
+        case .Teaspoon: return .Tablespoon
+        case .Tablespoon: return .FluidOunce
+        case .FluidOunce: return .Cup
+        case .Cup: return .Pint
+        case .Pint: return .Quart
+        case .Quart: return .Gallon
+        case .Ounce: return .Pound
+        case .Milliliter: return .Liter
+        case .Gram: return .Kilogram
+        default: return nil
         }
     }
     

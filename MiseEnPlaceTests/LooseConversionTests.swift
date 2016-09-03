@@ -127,7 +127,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurementAmount = 28
         ingredient.measurementUnit = .Quart
         
-        let scaleMeasure = Converter.scale(ingredient, multiplier: OneSixteenth, measurementSystemMethod: .USVolume)
+        let scaleMeasure = Converter.scale(ingredient, multiplier: Constants.OneSixteenth, measurementSystemMethod: .USVolume)
         XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 1.75)
         XCTAssertTrue(scaleMeasure.unit == .Quart)
     }
@@ -154,7 +154,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurementAmount = 250
         ingredient.measurementUnit = .Gram
         
-        let scaleMeasure = Converter.scale(ingredient, multiplier: OneHalf, measurementSystemMethod: .USMass)
+        let scaleMeasure = Converter.scale(ingredient, multiplier: Constants.OneHalf, measurementSystemMethod: .USMass)
         XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 4.17)
         XCTAssertTrue(scaleMeasure.unit == .Ounce)
     }
@@ -172,7 +172,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurementAmount = 22
         ingredient.measurementUnit = .Kilogram
         
-        let scaleMeasure = Converter.scale(ingredient, multiplier: OneThird, measurementSystemMethod: .MetricMass)
+        let scaleMeasure = Converter.scale(ingredient, multiplier: Constants.OneThird, measurementSystemMethod: .MetricMass)
         XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 7.33)
         XCTAssertTrue(scaleMeasure.unit == .Kilogram)
     }
@@ -181,7 +181,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurementAmount = 888.888
         ingredient.measurementUnit = .Gram
         
-        let scaleMeasure = Converter.scale(ingredient, multiplier: TwoThirds, measurementSystemMethod: .MetricVolume)
+        let scaleMeasure = Converter.scale(ingredient, multiplier: Constants.TwoThirds, measurementSystemMethod: .MetricVolume)
         XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 592.59)
         XCTAssertTrue(scaleMeasure.unit == .Milliliter)
     }
@@ -199,7 +199,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurementAmount = 2.99
         ingredient.measurementUnit = .Liter
         
-        let scaleMeasure = Converter.scale(ingredient, multiplier: OneSixth, measurementSystemMethod: .USVolume)
+        let scaleMeasure = Converter.scale(ingredient, multiplier: Constants.OneSixth, measurementSystemMethod: .USVolume)
         XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 1.04)
         XCTAssertTrue(scaleMeasure.unit == .Pint)
     }
@@ -217,7 +217,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurementAmount = 45000
         ingredient.measurementUnit = .Milliliter
         
-        let scaleMeasure = Converter.scale(ingredient, multiplier: OneThousandth, measurementSystemMethod: .MetricVolume)
+        let scaleMeasure = Converter.scale(ingredient, multiplier: Constants.OneThousandth, measurementSystemMethod: .MetricVolume)
         XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 45)
         XCTAssertTrue(scaleMeasure.unit == .Milliliter)
     }

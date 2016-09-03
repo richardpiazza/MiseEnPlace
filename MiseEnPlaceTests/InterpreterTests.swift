@@ -23,97 +23,102 @@ class InterpreterTests: XCTestCase {
     }
 
     func testMetricMass() {
-        let smallGramMass: ScaleMeasure = (7.542, .Gram)
+        let smallGramMass = ScaleMeasure(amount: 7.542, unit: .Gram)
         let smallGramMassInterpretation = Interpreter.interpret(smallGramMass)
         XCTAssertTrue(smallGramMassInterpretation == "7.5 Gram")
         
-        let mediumGramMass: ScaleMeasure = (68.843, .Gram)
+        let mediumGramMass = ScaleMeasure(amount: 68.843, unit: .Gram)
         let mediumGramMassInterpretation = Interpreter.interpret(mediumGramMass)
         XCTAssertTrue(mediumGramMassInterpretation == "69 Gram")
         
-        let largeGramMass: ScaleMeasure = (212.43, .Gram)
+        let largeGramMass = ScaleMeasure(amount: 212.43, unit: .Gram)
         let largeGramMassInterpretation = Interpreter.interpret(largeGramMass)
         XCTAssertTrue(largeGramMassInterpretation == "210 Gram")
         
-        let smallKilogramMass: ScaleMeasure = (1.24, .Kilogram)
+        let smallKilogramMass = ScaleMeasure(amount: 1.24, unit: .Kilogram)
         let smallKilogramMassInterpretation = Interpreter.interpret(smallKilogramMass)
         XCTAssertTrue(smallKilogramMassInterpretation == "1 Kilogram 240 Gram")
         
-        let mediumKilogramMass: ScaleMeasure = (60.685, .Kilogram)
+        let mediumKilogramMass = ScaleMeasure(amount: 60.685, unit: .Kilogram)
         let mediumKilogramMassInterpretation = Interpreter.interpret(mediumKilogramMass)
         XCTAssertTrue(mediumKilogramMassInterpretation == "60 Kilogram 685 Gram")
         
-        let largeKilogramMass: ScaleMeasure = (252, .Kilogram)
+        let largeKilogramMass = ScaleMeasure(amount: 252, unit: .Kilogram)
         let largeKilogramMassInterpretation = Interpreter.interpret(largeKilogramMass)
         XCTAssertTrue(largeKilogramMassInterpretation == "252 Kilogram")
     }
     
     func testMetricVolume() {
-        let smLVolume = Interpreter.interpret((1.25, .Milliliter))
+        let smLVolume = Interpreter.interpret(ScaleMeasure(amount: 1.25, unit: .Milliliter))
         XCTAssertTrue(smLVolume == "1.2 Milliliter")
         
-        let mmLVolume = Interpreter.interpret((76.666, .Milliliter))
+        let mmLVolume = Interpreter.interpret(ScaleMeasure(amount: 76.666, unit: .Milliliter))
         XCTAssertTrue(mmLVolume == "77 Milliliter")
         
-        let lmLVolume = Interpreter.interpret((901.01, .Milliliter))
+        let lmLVolume = Interpreter.interpret(ScaleMeasure(amount: 901.01, unit: .Milliliter))
         XCTAssertTrue(lmLVolume == "900 Milliliter")
         
-        let sLVolume = Interpreter.interpret((3.75, .Liter))
+        let sLVolume = Interpreter.interpret(ScaleMeasure(amount: 3.75, unit: .Liter))
         XCTAssertTrue(sLVolume == "3 Liter 750 Milliliter")
         
-        let mLVolume = Interpreter.interpret((99.999, .Liter))
+        let mLVolume = Interpreter.interpret(ScaleMeasure(amount: 99.999, unit: .Liter))
         XCTAssertTrue(mLVolume == "99 Liter 1000 Milliliter")
         
-        let lLVolume = Interpreter.interpret((624.83, .Liter))
+        let lLVolume = Interpreter.interpret(ScaleMeasure(amount: 624.83, unit: .Liter))
         XCTAssertTrue(lLVolume == "624 Liter 830 Milliliter")
     }
     
     func testUSMass() {
-        let sOzMass = Interpreter.interpret((2.675, .Ounce))
-        XCTAssertTrue(sOzMass == "2" + TwoThirdsSymbol + " Ounce")
+        let sOzMass = Interpreter.interpret(ScaleMeasure(amount: 2.675, unit: .Ounce))
+        XCTAssertTrue(sOzMass == "2" + Constants.TwoThirdsSymbol + " Ounce")
         
-        let mOzMass = Interpreter.interpret((6.90, .Ounce))
+        let mOzMass = Interpreter.interpret(ScaleMeasure(amount: 6.90, unit: .Ounce))
         XCTAssertTrue(mOzMass == "7 Ounce")
         
-        let lOzMass = Interpreter.interpret((8.5, .Ounce))
-        XCTAssertTrue(lOzMass == "8" + OneHalfSymbol + " Ounce")
+        let lOzMass = Interpreter.interpret(ScaleMeasure(amount: 8.5, unit: .Ounce))
+        XCTAssertTrue(lOzMass == "8" + Constants.OneHalfSymbol + " Ounce")
         
-        let lb1 = Interpreter.interpret((1.32, .Pound))
+        let lb1 = Interpreter.interpret(ScaleMeasure(amount: 1.32, unit: .Pound))
         XCTAssertTrue(lb1 == "1 Pound 5 Ounce")
         
-        let lb2 = Interpreter.interpret((2.55, .Pound))
-        XCTAssertTrue(lb2 == "2 Pound 8" + ThreeFourthsSymbol + " Ounce")
+        let lb2 = Interpreter.interpret(ScaleMeasure(amount: 2.55, unit: .Pound))
+        XCTAssertTrue(lb2 == "2 Pound 8" + Constants.ThreeFourthsSymbol + " Ounce")
         
-        let lb3 = Interpreter.interpret((250.0, .Pound))
+        let lb3 = Interpreter.interpret(ScaleMeasure(amount: 250.0, unit: .Pound))
         XCTAssertTrue(lb3 == "250 Pound")
     }
     
     func testUSVolume() {
-        let pinchTest = Interpreter.interpret((1.5, .Pinch))
-        XCTAssertTrue(pinchTest == "1" + OneHalfSymbol + " Pinch")
+        let pinchTest = Interpreter.interpret(ScaleMeasure(amount: 1.5, unit: .Pinch))
+        XCTAssertTrue(pinchTest == "1" + Constants.OneHalfSymbol + " Pinch")
         
-        let dashTest = Interpreter.interpret((0.75, .Dash))
-        XCTAssertTrue(dashTest == ThreeFourthsSymbol + " Dash")
+        let dashTest = Interpreter.interpret(ScaleMeasure(amount: 0.75, unit: .Dash))
+        XCTAssertTrue(dashTest == Constants.ThreeFourthsSymbol + " Dash")
         
-        let teaspoonTest = Interpreter.interpret((2.66, .Teaspoon))
-        XCTAssertTrue(teaspoonTest == "2" + TwoThirdsSymbol + " Teaspoon")
+        let teaspoonTest = Interpreter.interpret(ScaleMeasure(amount: 2.66, unit: .Teaspoon))
+        XCTAssertTrue(teaspoonTest == "2 " + Constants.TwoThirdsSymbol + " Teaspoon")
         
-        let tableSpoonTest = Interpreter.interpret((3.5, .Tablespoon))
-        XCTAssertTrue(tableSpoonTest == "3 Tablespoon 1" + OneHalfSymbol + " Teaspoon")
+        let tableSpoonTest = Interpreter.interpret(ScaleMeasure(amount: 3.5, unit: .Tablespoon))
+        XCTAssertTrue(tableSpoonTest == "3 Tablespoon 1" + Constants.OneHalfSymbol + " Teaspoon")
         
-        let fluidOunceTest = Interpreter.interpret((8.111, .FluidOunce))
-        XCTAssertTrue(fluidOunceTest == "8 Fluid Ounce " + OneFourthSymbol + " Tablespoon")
+        let fluidOunceTest = Interpreter.interpret(ScaleMeasure(amount: 8.111, unit: .FluidOunce))
+        XCTAssertTrue(fluidOunceTest == "8 Fluid Ounce " + Constants.OneFourthSymbol + " Tablespoon")
         
-        let cupTest = Interpreter.interpret((4.625, .Cup))
-        XCTAssertTrue(cupTest == "4 Cup 5 Fluid Ounce")
+        let cupTest = Interpreter.interpret(ScaleMeasure(amount: 4.625, unit: .Cup))
+        XCTAssertTrue(cupTest == "4 " + Constants.FiveEighthsSymbol + " Cup")
         
-        let pintTest = Interpreter.interpret((2.778, .Pint))
-        XCTAssertTrue(pintTest == "2 Pint 1" + OneHalfSymbol + " Cup")
+        let pintTest = Interpreter.interpret(ScaleMeasure(amount: 2.778, unit: .Pint))
+        XCTAssertTrue(pintTest == "2 Pint 1" + Constants.OneHalfSymbol + " Cup")
         
-        let quartTest = Interpreter.interpret((3.333, .Quart))
-        XCTAssertTrue(quartTest == "3 Quart " + TwoThirdsSymbol + " Pint")
+        let quartTest = Interpreter.interpret(ScaleMeasure(amount: 3.333, unit: .Quart))
+        XCTAssertTrue(quartTest == "3 Quart " + Constants.TwoThirdsSymbol + " Pint")
         
-        let gallonTest = Interpreter.interpret((1.789, .Gallon))
+        let gallonTest = Interpreter.interpret(ScaleMeasure(amount: 1.789, unit: .Gallon))
         XCTAssertTrue(gallonTest == "1 Gallon 3 Quart")
+    }
+    
+    func testEdgeConditions() {
+        let cupTest = Interpreter.interpret(ScaleMeasure(amount: 2.5, unit: .Cup))
+        XCTAssertTrue(cupTest == "2 " + Constants.OneHalfSymbol + " Cup")
     }
 }

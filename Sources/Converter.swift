@@ -27,14 +27,6 @@
 
 import Foundation
 
-public let LooseOunceGramRatio: Float = 30.0
-public let PreciseOunceGramRatio: Float = 28.349523
-public let LooseFluidOunceMilliliterRatio: Float = 30.0
-public let PreciseFluidOunceMilliliterRatio: Float = 29.573529
-public typealias ScaleMeasure = (amount: Float, unit: MeasurementUnit)
-public typealias ScaleOptions = (multiplier: Float, measurementSystem: MeasurementSystem?, measurementMethod: MeasurementMethod?)
-public typealias Ratio = (volume: Float, mass: Float)
-
 /// ## Converter
 /// Provides functions needed for the conversion of amounts from 
 /// one system of measurement to another system of measurement.
@@ -45,13 +37,13 @@ public class Converter {
     
     public static var fluidOunceMilliliterRatio: Float {
         get {
-            return (self.allowLooseConversion) ? LooseFluidOunceMilliliterRatio : PreciseFluidOunceMilliliterRatio
+            return (self.allowLooseConversion) ? Constants.LooseFluidOunceMilliliterRatio : Constants.PreciseFluidOunceMilliliterRatio
         }
     }
     
     public static var ounceGramRatio: Float {
         get {
-            return (self.allowLooseConversion) ? LooseOunceGramRatio : PreciseOunceGramRatio
+            return (self.allowLooseConversion) ? Constants.LooseOunceGramRatio : Constants.PreciseOunceGramRatio
         }
     }
     
@@ -61,7 +53,7 @@ public class Converter {
         let mass = self.measurementAmountFor(massConvertable, measurementUnit: .Ounce)
         
         guard volume != 0 && mass != 0 else {
-            return (0, 0)
+            return Ratio(volume: 0.0, mass: 0.0)
         }
         
         var ratioVolume: Float = volume
@@ -75,7 +67,7 @@ public class Converter {
             ratioVolume = ratioVolume / ratioVolume
         }
         
-        return (ratioVolume, ratioMass)
+        return Ratio(volume: ratioVolume, mass: ratioMass)
     }
     
     /// Calculates the conversion ratio for a given `Convertable`.
@@ -109,16 +101,16 @@ public class Converter {
         let measurementUnit = convertable.measurementUnit
         
         if measurementUnit == .AsNeeded {
-            return (convertable.measurementAmount, .AsNeeded)
+            return ScaleMeasure(amount: convertable.measurementAmount, unit: .AsNeeded)
         } else if measurementUnit == .Each {
-            return (convertable.measurementAmount * multiplier, .Each)
+            return ScaleMeasure(amount: convertable.measurementAmount * multiplier, unit: .Each)
         }
         
         let measurementSystemMethod = measurementUnit.measurementSystemMethod!
         
         if measurementSystem == nil {
             if measurementMethod == nil {
-                return (convertable.measurementAmount, convertable.measurementUnit)
+                return ScaleMeasure(amount: convertable.measurementAmount, unit: convertable.measurementUnit)
             } else if measurementMethod! == .Volume {
                 if measurementSystemMethod == .USVolume || measurementSystemMethod == .USMass {
                     return self.scale(convertable, multiplier: multiplier, measurementSystemMethod: .USVolume)
@@ -158,7 +150,7 @@ public class Converter {
             }
         }
         
-        return (convertable.measurementAmount, convertable.measurementUnit)
+        return ScaleMeasure(amount: convertable.measurementAmount, unit: convertable.measurementUnit)
     }
     
     /// Returns a `ScaleMeasure` that best fits a `Convertable` measurementAmount * the multipler 
@@ -167,9 +159,9 @@ public class Converter {
         let measurementUnit = convertable.measurementUnit
         
         if measurementUnit == .AsNeeded {
-            return (convertable.measurementAmount, .AsNeeded)
+            return ScaleMeasure(amount: convertable.measurementAmount, unit: .AsNeeded)
         } else if measurementUnit == .Each {
-            return (convertable.measurementAmount * multiplier, .Each)
+            return ScaleMeasure(amount: convertable.measurementAmount * multiplier, unit: .Each)
         }
         
         let measurementUnits = Array(MeasurementUnit.measurementUnits(forMeasurementSystemMethod: measurementSystemMethod).reverse())
@@ -178,11 +170,11 @@ public class Converter {
             let total = measurementAmount * multiplier
             
             if total >= unit.stepDownThreshold {
-                return (total, unit)
+                return ScaleMeasure(amount: total, unit: unit)
             }
         }
         
-        return (convertable.measurementAmount, convertable.measurementUnit)
+        return ScaleMeasure(amount: convertable.measurementAmount, unit: convertable.measurementUnit)
     }
     
     /// Calculates the measurementAmount of a specific `MeasurementUnit` for a `Convertable`
