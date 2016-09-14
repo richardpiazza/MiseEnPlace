@@ -26,37 +26,37 @@ class UnmeasuredTests: XCTestCase {
     }
 
     func testAsNeededConvertAndInterpret() {
-        ingredient.measurementUnit = .AsNeeded
+        ingredient.measurement.unit = .asNeeded
         
-        let scale = Converter.scale(ingredient, multiplier: 1.0, measurementSystemMethod: .USVolume)
-        XCTAssertTrue(scale.amount == 0)
-        XCTAssertTrue(scale.unit == .AsNeeded)
+        let scaleMeasure = ingredient.scale(by: 1.0, measurementSystemMethod: .usVolume)
+        XCTAssertTrue(scaleMeasure.amount == 0)
+        XCTAssertTrue(scaleMeasure.unit == .asNeeded)
         
-        let interpret = Interpreter.interpret(scale)
+        let interpret = Interpreter.interpret(scaleMeasure)
         XCTAssertTrue(interpret == "As Needed")
     }
     
     func testEachConvertAndInterpret() {
-        ingredient.measurementUnit = .Each
-        ingredient.measurementAmount = 3
+        ingredient.measurement.unit = .each
+        ingredient.measurement.amount = 3
         
-        let scale = Converter.scale(ingredient, multiplier: Constants.OneThird, measurementSystemMethod: .MetricMass)
-        XCTAssertTrue(scale.amount == 3.0 * Constants.OneThird)
-        XCTAssertTrue(scale.unit == .Each)
+        let scaleMeasure = ingredient.scale(by: Constants.OneThird, measurementSystemMethod: .metricMass)
+        XCTAssertTrue(scaleMeasure.amount == 3.0 * Constants.OneThird)
+        XCTAssertTrue(scaleMeasure.unit == .each)
         
-        let interpret = Interpreter.interpret(scale)
+        let interpret = Interpreter.interpret(scaleMeasure)
         XCTAssertTrue(interpret == "1 Each")
     }
     
     func testEachFractional() {
-        ingredient.measurementUnit = .Each
-        ingredient.measurementAmount = 1
+        ingredient.measurement.unit = .each
+        ingredient.measurement.amount = 1
         
-        let scale = Converter.scale(ingredient, multiplier: 1.35, measurementSystemMethod: .MetricMass)
-        XCTAssertTrue(scale.amount == 1.35)
-        XCTAssertTrue(scale.unit == .Each)
+        let scaleMeasure = ingredient.scale(by: 1.35, measurementSystemMethod: .metricMass)
+        XCTAssertTrue(scaleMeasure.amount == 1.35)
+        XCTAssertTrue(scaleMeasure.unit == .each)
         
-        let interpret = Interpreter.interpret(scale)
+        let interpret = Interpreter.interpret(scaleMeasure)
         XCTAssertTrue(interpret == "1" + Constants.OneThirdSymbol + " Each")
     }
 }

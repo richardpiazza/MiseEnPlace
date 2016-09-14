@@ -35,50 +35,50 @@ import Foundation
 /// contained within the enum.
 public enum MeasurementUnit: Int {
     
-    case AsNeeded = 9000
-    case Each = 9001
+    case asNeeded = 9000
+    case each = 9001
     
-    case Pinch = 1100
-    case Dash = 1101
-    case Teaspoon = 1102
-    case Tablespoon = 1103
-    case FluidOunce = 1104
-    case Cup = 1105
-    case Pint = 1106
-    case Quart = 1107
-    case Gallon = 1108
+    case pinch = 1100
+    case dash = 1101
+    case teaspoon = 1102
+    case tablespoon = 1103
+    case fluidOunce = 1104
+    case cup = 1105
+    case pint = 1106
+    case quart = 1107
+    case gallon = 1108
     
-    case Ounce = 1200
-    case Pound = 1201
+    case ounce = 1200
+    case pound = 1201
     
-    case Milliliter = 2100
-    case Liter = 2101
+    case milliliter = 2100
+    case liter = 2101
     
-    case Gram = 2200
-    case Kilogram = 2201
+    case gram = 2200
+    case kilogram = 2201
     
     public static func allMeasurementUnits() -> [MeasurementUnit] {
-        return [.AsNeeded, .Each, .Pinch, .Dash, .Teaspoon, .Tablespoon, .FluidOunce, .Cup, .Pint, .Quart, .Gallon, .Ounce, .Pound, .Milliliter, .Liter, .Gram, .Kilogram]
+        return [.asNeeded, .each, .pinch, .dash, .teaspoon, .tablespoon, .fluidOunce, .cup, .pint, .quart, .gallon, .ounce, .pound, .milliliter, .liter, .gram, .kilogram]
     }
     
     public static func quantifiableMeasurementUnits() -> [MeasurementUnit] {
-        return [.Pinch, .Dash, .Teaspoon, .Tablespoon, .FluidOunce, .Cup, .Pint, .Quart, .Gallon, .Ounce, .Pound, .Milliliter, .Liter, .Gram, .Kilogram]
+        return [.pinch, .dash, .teaspoon, .tablespoon, .fluidOunce, .cup, .pint, .quart, .gallon, .ounce, .pound, .milliliter, .liter, .gram, .kilogram]
     }
     
     /// Provides an array of `MeasurementUnit` enums that correspond to the provided `MeasurementSystemMethod` enum
     public static func measurementUnits(forMeasurementSystemMethod measurementSystemMethod: MeasurementSystemMethod) -> [MeasurementUnit] {
         switch measurementSystemMethod {
-        case .USVolume: return [.Pinch, .Dash, .Teaspoon, .Tablespoon, .FluidOunce, .Cup, .Pint, .Quart, .Gallon]
-        case .USMass: return [.Ounce, .Pound]
-        case .MetricVolume: return [.Milliliter, .Liter]
-        case .MetricMass: return [.Gram, .Kilogram]
+        case .usVolume: return [.pinch, .dash, .teaspoon, .tablespoon, .fluidOunce, .cup, .pint, .quart, .gallon]
+        case .usMass: return [.ounce, .pound]
+        case .metricVolume: return [.milliliter, .liter]
+        case .metricMass: return [.gram, .kilogram]
         }
     }
     
     public static func measurementUnits(forMeasurementMethod measurementMethod: MeasurementMethod) -> [MeasurementUnit] {
         switch measurementMethod {
-        case .Volume: return [.Pinch, .Dash, .Teaspoon, .Tablespoon, .FluidOunce, .Cup, .Pint, .Quart, .Gallon, .Milliliter, .Liter]
-        case .Mass: return [.Ounce, .Pound, .Gram, .Kilogram]
+        case .volume: return [.pinch, .dash, .teaspoon, .tablespoon, .fluidOunce, .cup, .pint, .quart, .gallon, .milliliter, .liter]
+        case .mass: return [.ounce, .pound, .gram, .kilogram]
         }
     }
     
@@ -92,16 +92,16 @@ public enum MeasurementUnit: Int {
         
         switch stringValue {
         case "Quanity":
-            self = .Each
+            self = .each
             return
         case "FluidOunce":
-            self = .FluidOunce
+            self = .fluidOunce
             return
         case "Mililitre":
-            self = .Milliliter
+            self = .milliliter
             return
         case "Litre":
-            self = .Liter
+            self = .liter
             return
         default:
             return nil
@@ -110,217 +110,217 @@ public enum MeasurementUnit: Int {
     
     public var name: String {
         switch self {
-        case .AsNeeded: return "As Needed"
-        case .Each: return "Each"
-        case .Pinch: return "Pinch"
-        case .Dash: return "Dash"
-        case .Teaspoon: return "Teaspoon"
-        case .Tablespoon: return "Tablespoon"
-        case .FluidOunce: return "Fluid Ounce"
-        case .Cup: return "Cup"
-        case .Pint: return "Pint"
-        case .Quart: return "Quart"
-        case .Gallon: return "Gallon"
-        case .Ounce: return "Ounce"
-        case .Pound: return "Pound"
-        case .Milliliter: return "Milliliter"
-        case .Liter: return "Liter"
-        case .Gram: return "Gram"
-        case .Kilogram: return "Kilogram"
+        case .asNeeded: return "As Needed"
+        case .each: return "Each"
+        case .pinch: return "Pinch"
+        case .dash: return "Dash"
+        case .teaspoon: return "Teaspoon"
+        case .tablespoon: return "Tablespoon"
+        case .fluidOunce: return "Fluid Ounce"
+        case .cup: return "Cup"
+        case .pint: return "Pint"
+        case .quart: return "Quart"
+        case .gallon: return "Gallon"
+        case .ounce: return "Ounce"
+        case .pound: return "Pound"
+        case .milliliter: return "Milliliter"
+        case .liter: return "Liter"
+        case .gram: return "Gram"
+        case .kilogram: return "Kilogram"
         }
     }
     
     public var abbreviation: String {
         switch self {
-        case .AsNeeded: return "…"
-        case .Each: return "№"
-        case .Pinch: return "pn"
-        case .Dash: return "ds"
-        case .Teaspoon: return "tsp"
-        case .Tablespoon: return "tbsp"
-        case .FluidOunce: return "fl oz"
-        case .Cup: return "c"
-        case .Pint: return "pt"
-        case .Quart: return "qt"
-        case .Gallon: return "gal"
-        case .Ounce: return "oz"
-        case .Pound: return "lb"
-        case .Milliliter: return "mL"
-        case .Liter: return "L"
-        case .Gram: return "g"
-        case .Kilogram: return "kg"
+        case .asNeeded: return "…"
+        case .each: return "№"
+        case .pinch: return "pn"
+        case .dash: return "ds"
+        case .teaspoon: return "tsp"
+        case .tablespoon: return "tbsp"
+        case .fluidOunce: return "fl oz"
+        case .cup: return "c"
+        case .pint: return "pt"
+        case .quart: return "qt"
+        case .gallon: return "gal"
+        case .ounce: return "oz"
+        case .pound: return "lb"
+        case .milliliter: return "mL"
+        case .liter: return "L"
+        case .gram: return "g"
+        case .kilogram: return "kg"
         }
     }
     
     public var measurementSystem: MeasurementSystem? {
         switch self {
-        case .Pinch: return .US
-        case .Dash: return .US
-        case .Teaspoon: return .US
-        case .Tablespoon: return .US
-        case .FluidOunce: return .US
-        case .Cup: return .US
-        case .Pint: return .US
-        case .Quart: return .US
-        case .Gallon: return .US
-        case .Ounce: return .US
-        case .Pound: return .US
-        case .Milliliter: return .Metric
-        case .Liter: return .Metric
-        case .Gram: return .Metric
-        case .Kilogram: return .Metric
+        case .pinch: return .us
+        case .dash: return .us
+        case .teaspoon: return .us
+        case .tablespoon: return .us
+        case .fluidOunce: return .us
+        case .cup: return .us
+        case .pint: return .us
+        case .quart: return .us
+        case .gallon: return .us
+        case .ounce: return .us
+        case .pound: return .us
+        case .milliliter: return .metric
+        case .liter: return .metric
+        case .gram: return .metric
+        case .kilogram: return .metric
         default: return nil
         }
     }
     
     public var measurementMethod: MeasurementMethod? {
         switch self {
-        case .Pinch: return .Volume
-        case .Dash: return .Volume
-        case .Teaspoon: return .Volume
-        case .Tablespoon: return .Volume
-        case .FluidOunce: return .Volume
-        case .Cup: return .Volume
-        case .Pint: return .Volume
-        case .Quart: return .Volume
-        case .Gallon: return .Volume
-        case .Ounce: return .Mass
-        case .Pound: return .Mass
-        case .Milliliter: return .Volume
-        case .Liter: return .Volume
-        case .Gram: return .Mass
-        case .Kilogram: return .Mass
+        case .pinch: return .volume
+        case .dash: return .volume
+        case .teaspoon: return .volume
+        case .tablespoon: return .volume
+        case .fluidOunce: return .volume
+        case .cup: return .volume
+        case .pint: return .volume
+        case .quart: return .volume
+        case .gallon: return .volume
+        case .ounce: return .mass
+        case .pound: return .mass
+        case .milliliter: return .volume
+        case .liter: return .volume
+        case .gram: return .mass
+        case .kilogram: return .mass
         default: return nil
         }
     }
     
     public var measurementSystemMethod: MeasurementSystemMethod? {
         switch self {
-        case .Pinch: return .USVolume
-        case .Dash: return .USVolume
-        case .Teaspoon: return .USVolume
-        case .Tablespoon: return .USVolume
-        case .FluidOunce: return .USVolume
-        case .Cup: return .USVolume
-        case .Pint: return .USVolume
-        case .Quart: return .USVolume
-        case .Gallon: return .USVolume
-        case .Ounce: return .USMass
-        case .Pound: return .USMass
-        case .Milliliter: return .MetricVolume
-        case .Liter: return .MetricVolume
-        case .Gram: return .MetricMass
-        case .Kilogram: return .MetricMass
+        case .pinch: return .usVolume
+        case .dash: return .usVolume
+        case .teaspoon: return .usVolume
+        case .tablespoon: return .usVolume
+        case .fluidOunce: return .usVolume
+        case .cup: return .usVolume
+        case .pint: return .usVolume
+        case .quart: return .usVolume
+        case .gallon: return .usVolume
+        case .ounce: return .usMass
+        case .pound: return .usMass
+        case .milliliter: return .metricVolume
+        case .liter: return .metricVolume
+        case .gram: return .metricMass
+        case .kilogram: return .metricMass
         default: return nil
         }
     }
     
     public var stepDownThreshold: Float {
         switch self {
-        case .Dash: return 0.5
-        case .Teaspoon: return 0.5
-        case .Tablespoon: return 1
-        case .FluidOunce: return 1
-        case .Cup: return 0.5
-        case .Pint: return 1
-        case .Quart: return 1
-        case .Gallon: return 1
-        case .Pound: return 1
-        case .Liter: return 1
-        case .Kilogram: return 1
+        case .dash: return 0.5
+        case .teaspoon: return 0.5
+        case .tablespoon: return 1
+        case .fluidOunce: return 1
+        case .cup: return 0.5
+        case .pint: return 1
+        case .quart: return 1
+        case .gallon: return 1
+        case .pound: return 1
+        case .liter: return 1
+        case .kilogram: return 1
         default: return 0
         }
     }
     
     public var stepUpThreshold: Float {
         switch self {
-        case .Pinch: return 2.0
-        case .Dash: return 2.0
-        case .Teaspoon: return 4.5
-        case .Tablespoon: return 3.5
-        case .FluidOunce: return 9.5
-        case .Cup: return 3.0
-        case .Pint: return 2.5
-        case .Quart: return 4.5
-        case .Ounce: return 16
-        case .Milliliter: return 1250
-        case .Gram: return 1250
+        case .pinch: return 2.0
+        case .dash: return 2.0
+        case .teaspoon: return 4.5
+        case .tablespoon: return 3.5
+        case .fluidOunce: return 9.5
+        case .cup: return 3.0
+        case .pint: return 2.5
+        case .quart: return 4.5
+        case .ounce: return 16
+        case .milliliter: return 1250
+        case .gram: return 1250
         default: return 0
         }
     }
     
     public var stepDownMultiplier: Float {
         switch self {
-        case .Dash: return Constants.OneHalf
-        case .Teaspoon: return Constants.OneEighth
-        case .Tablespoon: return Constants.OneThird
-        case .FluidOunce: return Constants.OneHalf
-        case .Cup: return Constants.OneEighth
-        case .Pint: return Constants.OneHalf
-        case .Quart: return Constants.OneHalf
-        case .Gallon: return Constants.OneFourth
-        case .Pound: return Constants.OneSixteenth
-        case .Liter: return Constants.OneThousandth
-        case .Kilogram: return Constants.OneThousandth
+        case .dash: return Constants.OneHalf
+        case .teaspoon: return Constants.OneEighth
+        case .tablespoon: return Constants.OneThird
+        case .fluidOunce: return Constants.OneHalf
+        case .cup: return Constants.OneEighth
+        case .pint: return Constants.OneHalf
+        case .quart: return Constants.OneHalf
+        case .gallon: return Constants.OneFourth
+        case .pound: return Constants.OneSixteenth
+        case .liter: return Constants.OneThousandth
+        case .kilogram: return Constants.OneThousandth
         default: return 0
         }
     }
     
     public var stepUpMultiplier: Float {
         switch self {
-        case .Pinch: return Constants.OneHalf
-        case .Dash: return Constants.OneEighth
-        case .Teaspoon: return Constants.OneThird
-        case .Tablespoon: return Constants.OneHalf
-        case .FluidOunce: return Constants.OneEighth
-        case .Cup: return Constants.OneHalf
-        case .Pint: return Constants.OneHalf
-        case .Quart: return Constants.OneFourth
-        case .Ounce: return Constants.OneSixteenth
-        case .Milliliter: return Constants.OneThousandth
-        case .Gram: return Constants.OneThousandth
+        case .pinch: return Constants.OneHalf
+        case .dash: return Constants.OneEighth
+        case .teaspoon: return Constants.OneThird
+        case .tablespoon: return Constants.OneHalf
+        case .fluidOunce: return Constants.OneEighth
+        case .cup: return Constants.OneHalf
+        case .pint: return Constants.OneHalf
+        case .quart: return Constants.OneFourth
+        case .ounce: return Constants.OneSixteenth
+        case .milliliter: return Constants.OneThousandth
+        case .gram: return Constants.OneThousandth
         default: return 0
         }
     }
     
     public var stepDownUnit: MeasurementUnit? {
         switch self {
-        case .Dash: return .Pinch
-        case .Teaspoon: return .Dash
-        case .Tablespoon: return .Teaspoon
-        case .FluidOunce: return .Tablespoon
-        case .Cup: return .FluidOunce
-        case .Pint: return .Cup
-        case .Quart: return .Pint
-        case .Gallon: return .Quart
-        case .Pound: return .Ounce
-        case .Liter: return .Milliliter
-        case .Kilogram: return .Gram
+        case .dash: return .pinch
+        case .teaspoon: return .dash
+        case .tablespoon: return .teaspoon
+        case .fluidOunce: return .tablespoon
+        case .cup: return .fluidOunce
+        case .pint: return .cup
+        case .quart: return .pint
+        case .gallon: return .quart
+        case .pound: return .ounce
+        case .liter: return .milliliter
+        case .kilogram: return .gram
         default: return nil
         }
     }
     
     public var stepUpUnit: MeasurementUnit? {
         switch self {
-        case .Pinch: return .Dash
-        case .Dash: return .Teaspoon
-        case .Teaspoon: return .Tablespoon
-        case .Tablespoon: return .FluidOunce
-        case .FluidOunce: return .Cup
-        case .Cup: return .Pint
-        case .Pint: return .Quart
-        case .Quart: return .Gallon
-        case .Ounce: return .Pound
-        case .Milliliter: return .Liter
-        case .Gram: return .Kilogram
+        case .pinch: return .dash
+        case .dash: return .teaspoon
+        case .teaspoon: return .tablespoon
+        case .tablespoon: return .fluidOunce
+        case .fluidOunce: return .cup
+        case .cup: return .pint
+        case .pint: return .quart
+        case .quart: return .gallon
+        case .ounce: return .pound
+        case .milliliter: return .liter
+        case .gram: return .kilogram
         default: return nil
         }
     }
     
     public var shouldRoundWhenInterpreted: Bool {
         switch self {
-        case .Liter: return false
-        case .Kilogram: return false
+        case .liter: return false
+        case .kilogram: return false
         default: return true
         }
     }

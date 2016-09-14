@@ -38,7 +38,7 @@ public class Interpreter {
     
     /// Uses the `Componentize` and `Translate` functions to present a 
     /// human readable format of a `ScaleMeasure`
-    public static func interpret(scaleMeasure: ScaleMeasure) -> String {
+    public static func interpret(_ scaleMeasure: ScaleMeasure) -> String {
         return self.interpret(scaleMeasure, abbreviate: Interpreter.useAbbreviation)
     }
     
@@ -46,10 +46,10 @@ public class Interpreter {
     /// human readable format of a `ScaleMeasure`.
     /// Passing a value for the abbreviate: parameter overrides default behavior 
     /// of the MeasurementUnit Configuration.
-    public static func interpret(scaleMeasure: ScaleMeasure, abbreviate:Bool) -> String {
+    public static func interpret(_ scaleMeasure: ScaleMeasure, abbreviate:Bool) -> String {
         let measurementUnit = scaleMeasure.unit
         
-        if measurementUnit == .AsNeeded || measurementUnit == .Each {
+        if measurementUnit == .asNeeded || measurementUnit == .each {
             return self.translate(scaleMeasure, abbreviate:abbreviate)
         }
         
@@ -86,27 +86,27 @@ public class Interpreter {
     }
     
     /// Returns a human readable string from a `ScaleMeasure` amount and unit.
-    public static func translate(scaleMeasure: ScaleMeasure) -> String {
+    public static func translate(_ scaleMeasure: ScaleMeasure) -> String {
         return self.translate(scaleMeasure, abbreviate: Interpreter.useAbbreviation)
     }
     
     /// Returns a human readable string from a `ScaleMeasure` amount and unit.
     /// Passing a value for the abbreviate: parameter overrides default behavior 
     /// of the MeasurementUnit Configuration.
-    public static func translate(scaleMeasure: ScaleMeasure, abbreviate:Bool) -> String {
+    public static func translate(_ scaleMeasure: ScaleMeasure, abbreviate:Bool) -> String {
         let measurementUnit = scaleMeasure.unit
         
         switch measurementUnit {
-        case .AsNeeded:
+        case .asNeeded:
             return abbreviate ? measurementUnit.abbreviation : measurementUnit.name
-        case .Gram, .Kilogram, .Milliliter, .Liter:
+        case .gram, .kilogram, .milliliter, .liter:
             return self.translateMetric(scaleMeasure, abbreviate:abbreviate)
         default:
             return self.translateFractional(scaleMeasure, abbreviate:abbreviate)
         }
     }
     
-    private static func translateMetric(scaleMeasure: ScaleMeasure, abbreviate:Bool) -> String {
+    fileprivate static func translateMetric(_ scaleMeasure: ScaleMeasure, abbreviate:Bool) -> String {
         let measurementUnit = scaleMeasure.unit
         let measurementAmount = scaleMeasure.amount
         let amountComponents = modf(measurementAmount)
@@ -132,7 +132,7 @@ public class Interpreter {
         }
     }
     
-    private static func translateFractional(scaleMeasure: ScaleMeasure, abbreviate:Bool) -> String {
+    fileprivate static func translateFractional(_ scaleMeasure: ScaleMeasure, abbreviate:Bool) -> String {
         let measurementUnit = scaleMeasure.unit
         let measurementAmount = scaleMeasure.amount
         let amountComponents = modf(measurementAmount)
@@ -164,12 +164,12 @@ public class Interpreter {
     
     /// Returns a `[ScaleMeasure]` of up to size 2 with the passed `ScaleMeasure` 
     /// unit and the next smallest unit if needed.
-    public static func componentize(scaleMeasure: ScaleMeasure) -> [ScaleMeasure] {
+    public static func componentize(_ scaleMeasure: ScaleMeasure) -> [ScaleMeasure] {
         let measurementUnit = scaleMeasure.unit
         
-        if measurementUnit == .AsNeeded {
+        if measurementUnit == .asNeeded {
             return [scaleMeasure]
-        } else if measurementUnit == .Each {
+        } else if measurementUnit == .each {
             return [scaleMeasure]
         }
         
@@ -181,12 +181,12 @@ public class Interpreter {
         var components: [ScaleMeasure] = [ScaleMeasure]()
         
         switch measurementUnit {
-        case .Kilogram, .Liter, .Pound, .Tablespoon, .Teaspoon, .FluidOunce, .Cup, .Pint, .Quart, .Gallon:
+        case .kilogram, .liter, .pound, .tablespoon, .teaspoon, .fluidOunce, .cup, .pint, .quart, .gallon:
             if amountComponents.0 != 0 {
                 components.append(ScaleMeasure(amount: amountComponents.0, unit: measurementUnit))
             }
             
-            if let stepDownUnit = measurementUnit.stepDownUnit where amountComponents.1 < measurementUnit.stepDownThreshold {
+            if let stepDownUnit = measurementUnit.stepDownUnit , amountComponents.1 < measurementUnit.stepDownThreshold {
                 let stepDownMeasure = Converter.convert(amountComponents.1, fromMeasurementUnit: measurementUnit, toMeasurementUnit: stepDownUnit)
                 components.append(ScaleMeasure(amount: stepDownMeasure, unit: stepDownUnit))
             } else {
@@ -201,7 +201,7 @@ public class Interpreter {
     }
     
     /// Rounds a provided fraction to a more common fraction
-    public static func nearestKnownFraction(decimal: Float) -> Float {
+    public static func nearestKnownFraction(_ decimal: Float) -> Float {
         
         if decimal >= Constants.SevenEighths {
             return 1.0
@@ -223,7 +223,7 @@ public class Interpreter {
     }
     
     /// Returns the unicode symbol as a `String` for a common fraction.
-    public static func symbolForFraction(fraction: Float) -> String {
+    public static func symbolForFraction(_ fraction: Float) -> String {
         if fraction == Constants.SevenEighths || fraction.twoDecimalValue == Constants.SevenEighths.twoDecimalValue {
             return Constants.SevenEighthsSymbol
         } else if fraction == Constants.ThreeFourths || fraction.twoDecimalValue == Constants.ThreeFourths.twoDecimalValue {

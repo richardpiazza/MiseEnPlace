@@ -31,6 +31,6 @@ import Foundation
 /// Similar to the `MeasurementMethod` the `MeasurementSystem` enum represents the 
 /// types of unit systems that can be used. Currently only `US` and `Metric` are supported.
 public enum MeasurementSystem: Int {
-    case US = 1
-    case Metric = 2
+    case us = 1
+    case metric = 2
 }

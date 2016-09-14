@@ -28,31 +28,31 @@
 import Foundation
 
 public extension Float {
-    var integerValue: Int {
+    public var integerValue: Int {
         get {
             return Int(roundf(self))
         }
     }
     
-    var oneDecimalValue: Float {
+    public var oneDecimalValue: Float {
         get {
             return NSString(format: "%.1f", self).floatValue
         }
     }
     
-    var twoDecimalValue: Float {
+    public var twoDecimalValue: Float {
         get {
             return NSString(format: "%.2f", self).floatValue
         }
     }
     
-    var threeDecimalValue: Float {
+    public var threeDecimalValue: Float {
         get {
             return NSString(format: "%.3f", self).floatValue
         }
     }
     
-    func isEqualToFloat(value: Float, precision: Int) -> Bool {
+    public func isEqualToFloat(_ value: Float, precision: Int) -> Bool {
         if self == value {
             return true;
         }

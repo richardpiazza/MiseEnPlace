@@ -31,7 +31,7 @@ import Foundation
 /// An amount/unit pairing
 public struct ScaleMeasure {
     public var amount: Float = 0.0
-    public var unit: MeasurementUnit = .Each
+    public var unit: MeasurementUnit = .each
     
     public init(amount: Float, unit: MeasurementUnit) {
         self.amount = amount

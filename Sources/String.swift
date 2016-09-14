@@ -28,7 +28,7 @@
 import Foundation
 
 internal extension String {
-    func ranges(of of: String, options: NSStringCompareOptions, range: Range<Index>?, locale: NSLocale?) -> [Range<Index>] {
+    func ranges(of: String, options: NSString.CompareOptions, range: Range<Index>?, locale: Locale?) -> [Range<Index>] {
         var ranges: [Range<Index>] = []
         
         var currentIndex = self.startIndex
@@ -36,46 +36,46 @@ internal extension String {
         while currentIndex < self.endIndex {
             let searchRange = currentIndex..<self.endIndex
             
-            guard let range = self.rangeOfString(of, options: options, range: searchRange, locale: locale) else {
+            guard let range = self.range(of: of, options: options, range: searchRange, locale: locale) else {
                 currentIndex = self.endIndex
                 continue
             }
             
             ranges.append(range)
-            currentIndex = range.endIndex
+            currentIndex = range.upperBound
         }
         
         return ranges
     }
     
-    func replacingOccurrencesExceptFirst(of: String, with: String) -> String {
-        let ranges = self.ranges(of: of, options: NSStringCompareOptions(), range: nil, locale: nil)
+    func replacingOccurrencesExceptFirst(_ of: String, with: String) -> String {
+        let ranges = self.ranges(of: of, options: NSString.CompareOptions(), range: nil, locale: nil)
         guard ranges.count > 1 else {
             return self
         }
         
         var replacement = self
         
-        for (index, range) in ranges.reverse().enumerate() {
+        for (index, range) in ranges.reversed().enumerated() {
             if index < ranges.count - 1 {
-                replacement.replaceRange(range, with: with)
+                replacement.replaceSubrange(range, with: with)
             }
         }
         
         return replacement
     }
     
-    func replacingOccurrencesExceptLast(of: String, with: String) -> String {
-        let ranges = self.ranges(of: of, options: NSStringCompareOptions(), range: nil, locale: nil)
+    func replacingOccurrencesExceptLast(_ of: String, with: String) -> String {
+        let ranges = self.ranges(of: of, options: NSString.CompareOptions(), range: nil, locale: nil)
         guard ranges.count > 1 else {
             return self
         }
         
         var replacement = self
         
-        for (index, range) in ranges.enumerate() {
+        for (index, range) in ranges.enumerated() {
             if index < ranges.count - 1 {
-                replacement.replaceRange(range, with: with)
+                replacement.replaceSubrange(range, with: with)
             }
         }
         

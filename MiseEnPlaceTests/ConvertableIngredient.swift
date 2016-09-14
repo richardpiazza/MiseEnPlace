@@ -9,13 +9,7 @@
 import Foundation
 import MiseEnPlace
 
-public class ConvertableIngredient : Convertable {
-    public var measurementAmount: Float
-    public var measurementUnit: MeasurementUnit
-    public var ratio: Ratio = Ratio(volume: 1, mass: 1)
-    
-    init() {
-        self.measurementAmount = 0
-        self.measurementUnit = .AsNeeded
-    }
+open class ConvertableIngredient : Convertable {
+    open var measurement: ScaleMeasure = ScaleMeasure(amount: 0.0, unit: .asNeeded)
+    open var ratio: Ratio = Ratio(volume: 1, mass: 1)
 }
