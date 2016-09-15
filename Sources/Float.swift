@@ -28,6 +28,7 @@
 import Foundation
 
 internal extension Float {
+    
     internal var integerValue: Int {
         return Int(roundf(self))
     }

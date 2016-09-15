@@ -47,7 +47,6 @@ public struct Measurement {
         
         let decomposedAmount = modf(amount)
         if decomposedAmount.1 == 0.0 {
-            // TODO: Check stepUp/Down?
             return [self]
         }
         
@@ -146,13 +145,13 @@ public struct Measurement {
                 return "\(amount.oneDecimalValue) \(unitName)"
             }
         } else if decomposedAmount.0 < 100.0 {
-            if unit.shouldRoundWhenInterpreted {
+            if unit.shouldRoundWhenTranslated {
                 return "\(Int(roundf(amount))) \(unitName)"
             } else {
                 return "\(Int(amount)) \(unitName)"
             }
         } else {
-            if unit.shouldRoundWhenInterpreted {
+            if unit.shouldRoundWhenTranslated {
                 return "\(Int(roundf(amount / 5) * 5)) \(unitName)"
             } else {
                 return "\(Int(amount)) \(unitName)"

@@ -11,7 +11,6 @@
 		E1215CA91D7B618400C9B55C /* MiseEnPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CA81D7B618400C9B55C /* MiseEnPlace.swift */; };
 		E1215CAB1D7B61C000C9B55C /* Ratio.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CAA1D7B61C000C9B55C /* Ratio.swift */; };
 		E1215CAD1D7B61C800C9B55C /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CAC1D7B61C800C9B55C /* Measurement.swift */; };
-		E1215CAF1D7B61CF00C9B55C /* ScaleOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CAE1D7B61CF00C9B55C /* ScaleOptions.swift */; };
 		E1A4181D1C77E40E0025D094 /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418121C77E40E0025D094 /* Convertable.swift */; };
 		E1A4181F1C77E40E0025D094 /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418141C77E40E0025D094 /* Float.swift */; };
 		E1A418211C77E40E0025D094 /* MeasurementMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418161C77E40E0025D094 /* MeasurementMethod.swift */; };
@@ -44,7 +43,6 @@
 		E1215CA81D7B618400C9B55C /* MiseEnPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiseEnPlace.swift; sourceTree = "<group>"; };
 		E1215CAA1D7B61C000C9B55C /* Ratio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ratio.swift; sourceTree = "<group>"; };
 		E1215CAC1D7B61C800C9B55C /* Measurement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
-		E1215CAE1D7B61CF00C9B55C /* ScaleOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleOptions.swift; sourceTree = "<group>"; };
 		E12682221D26F699006B4887 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		E12682241D26F70E006B4887 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E12682261D26F714006B4887 /* MiseEnPlace.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MiseEnPlace.podspec; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 				E1A418191C77E40E0025D094 /* MeasurementUnit.swift */,
 				E1215CA81D7B618400C9B55C /* MiseEnPlace.swift */,
 				E1215CAA1D7B61C000C9B55C /* Ratio.swift */,
-				E1215CAE1D7B61CF00C9B55C /* ScaleOptions.swift */,
 				E1215CA61D7B5F0200C9B55C /* String.swift */,
 			);
 			name = Sources;
@@ -294,7 +291,6 @@
 				E1215CAD1D7B61C800C9B55C /* Measurement.swift in Sources */,
 				E1215CAB1D7B61C000C9B55C /* Ratio.swift in Sources */,
 				E1A418221C77E40E0025D094 /* MeasurementSystem.swift in Sources */,
-				E1215CAF1D7B61CF00C9B55C /* ScaleOptions.swift in Sources */,
 				E1A4181D1C77E40E0025D094 /* Convertable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

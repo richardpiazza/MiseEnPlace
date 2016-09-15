@@ -273,7 +273,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 28
         ingredient.measurement.unit = .quart
         
-        let scaleMeasure = ingredient.scale(by: Constants.OneSixteenth, measurementSystemMethod: .usVolume)
+        let scaleMeasure = ingredient.scale(by: MiseEnPlace.Fractions.oneSixteenth, measurementSystemMethod: .usVolume)
         XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 1.75)
         XCTAssertTrue(scaleMeasure.unit == .quart)
     }
@@ -300,7 +300,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 250
         ingredient.measurement.unit = .gram
         
-        let scaleMeasure = ingredient.scale(by: Constants.OneHalf, measurementSystemMethod: .usMass)
+        let scaleMeasure = ingredient.scale(by: MiseEnPlace.Fractions.oneHalf, measurementSystemMethod: .usMass)
         XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 4.41)
         XCTAssertTrue(scaleMeasure.unit == .ounce)
     }
@@ -318,7 +318,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 22
         ingredient.measurement.unit = .kilogram
         
-        let scaleMeasure = ingredient.scale(by: Constants.OneThird, measurementSystemMethod: .metricMass)
+        let scaleMeasure = ingredient.scale(by: MiseEnPlace.Fractions.oneThird, measurementSystemMethod: .metricMass)
         XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 7.33)
         XCTAssertTrue(scaleMeasure.unit == .kilogram)
     }
@@ -327,7 +327,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 888.888
         ingredient.measurement.unit = .gram
         
-        let scaleMeasure = ingredient.scale(by: Constants.TwoThirds, measurementSystemMethod: .metricVolume)
+        let scaleMeasure = ingredient.scale(by: MiseEnPlace.Fractions.twoThirds, measurementSystemMethod: .metricVolume)
         XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 675.55)
         XCTAssertTrue(scaleMeasure.unit == .milliliter)
     }
@@ -345,7 +345,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 2.99
         ingredient.measurement.unit = .liter
         
-        let scaleMeasure = ingredient.scale(by: Constants.OneSixth, measurementSystemMethod: .usVolume)
+        let scaleMeasure = ingredient.scale(by: MiseEnPlace.Fractions.oneSixth, measurementSystemMethod: .usVolume)
         XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 1.05)
         XCTAssertTrue(scaleMeasure.unit == .pint)
     }
@@ -363,7 +363,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 45000
         ingredient.measurement.unit = .milliliter
         
-        let scaleMeasure = ingredient.scale(by: Constants.OneThousandth, measurementSystemMethod: .metricVolume)
+        let scaleMeasure = ingredient.scale(by: MiseEnPlace.Fractions.oneThousandth, measurementSystemMethod: .metricVolume)
         XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 45)
         XCTAssertTrue(scaleMeasure.unit == .milliliter)
     }

@@ -226,9 +226,4 @@ public extension Convertable {
         
         return measurement
     }
-    
-    /// Wrapper for scale(by:measurementSystem:measurementMethod:)
-    public func scale(by multiplier: Float, options: ScaleOptions) -> Measurement {
-        return scale(by: multiplier, measurementSystem: options.measurementSystem, measurementMethod: options.measurementMethod)
-    }
 }
