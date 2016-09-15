@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "MiseEnPlace"
-  s.version          = "1.1.0"
+  s.version          = "2.0.0"
   s.summary          = "A Framework for converting and interpreting common measurements used in cooking."
   s.description      = <<-DESC
   MiseEnPlace provides powerfull conversion and interpretation for any cooking application.
@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
 
   s.source = { :git => "https://github.com/richardpiazza/MiseEnPlace.git", :tag => s.version.to_s }
   s.source_files = 'Sources/*'
-  s.platform = :ios, '9.1'
+  s.platform = :ios, '10.0'
   s.frameworks = 'Foundation'
   s.requires_arc = true
 

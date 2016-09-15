@@ -24,17 +24,17 @@ The `MeasurementSystemMethod` represents the ways `MeasurementMethod`s and `Meas
 
 #### Convertable.swift
 
-The `Convertable` protocol defines the properties needed to be able to perform conversion and interpretation.
+The `Convertable` protocol defines the properties needed to be able to perform conversion and translation.
+An extension to the protocol offers many important methods for scaling a measurement based on it's ratio.
 
-#### Converter.swift
+#### Float.swift
 
-The `Converter` class provides functions needed for the conversion of amounts from one system of measurement to another system of measurement.
+An internal extension offering fraction support and recursive calculations.
 
-This class is primarily used for the functions
+#### Measurement.swift
 
-    scale()
-    convert()
+Represents a amount and unit pairing. A `Measurement` has several key properties and functions for tranlating human-readable strings.
 
-#### Interpreter.swift
+#### Ratio.swift
 
-The `Interpreter` class produces human-readable output from `ScaleMeasure`.
+A defined relationship between volume and mass.

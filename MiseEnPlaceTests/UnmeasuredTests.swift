@@ -32,7 +32,7 @@ class UnmeasuredTests: XCTestCase {
         XCTAssertTrue(scaleMeasure.amount == 0)
         XCTAssertTrue(scaleMeasure.unit == .asNeeded)
         
-        let interpret = Interpreter.interpret(scaleMeasure)
+        let interpret = scaleMeasure.componentsTranslation
         XCTAssertTrue(interpret == "As Needed")
     }
     
@@ -44,7 +44,7 @@ class UnmeasuredTests: XCTestCase {
         XCTAssertTrue(scaleMeasure.amount == 3.0 * Constants.OneThird)
         XCTAssertTrue(scaleMeasure.unit == .each)
         
-        let interpret = Interpreter.interpret(scaleMeasure)
+        let interpret = scaleMeasure.componentsTranslation
         XCTAssertTrue(interpret == "1 Each")
     }
     
@@ -56,7 +56,7 @@ class UnmeasuredTests: XCTestCase {
         XCTAssertTrue(scaleMeasure.amount == 1.35)
         XCTAssertTrue(scaleMeasure.unit == .each)
         
-        let interpret = Interpreter.interpret(scaleMeasure)
+        let interpret = scaleMeasure.componentsTranslation
         XCTAssertTrue(interpret == "1" + Constants.OneThirdSymbol + " Each")
     }
 }

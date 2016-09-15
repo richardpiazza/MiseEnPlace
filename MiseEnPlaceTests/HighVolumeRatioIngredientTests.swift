@@ -8,7 +8,7 @@
 
 import UIKit
 import XCTest
-import MiseEnPlace
+@testable import MiseEnPlace
 
 class HighVolumeRatioIngredientTests: XCTestCase {
     var ingredient: ConvertableIngredient = ConvertableIngredient()

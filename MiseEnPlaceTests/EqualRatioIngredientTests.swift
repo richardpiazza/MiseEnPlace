@@ -8,7 +8,7 @@
 
 import Foundation
 import XCTest
-import MiseEnPlace
+@testable import MiseEnPlace
 
 class EqualRatioIngredientTests: XCTestCase {
     let ingredient: ConvertableIngredient = ConvertableIngredient()
@@ -48,7 +48,7 @@ class EqualRatioIngredientTests: XCTestCase {
         XCTAssertTrue(tableSpoon == 256)
         
         let teaspoon = ingredient.amount(for: .teaspoon)
-        XCTAssertTrue(teaspoon.isEqualToFloat(768, precision: 2))
+        XCTAssertTrue(teaspoon.equals(value: 768, precision: 2))
         
         let dash = ingredient.amount(for: .dash)
         XCTAssertTrue(dash.integerValue == 6144)

@@ -152,6 +152,10 @@ public enum MeasurementUnit: Int {
         }
     }
     
+    public func name(abbreviated: Bool) -> String {
+        return (abbreviated) ? abbreviation : name
+    }
+    
     public var measurementSystem: MeasurementSystem? {
         switch self {
         case .pinch: return .us

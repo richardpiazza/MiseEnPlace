@@ -30,7 +30,7 @@ import Foundation
 /// ## Convertable
 /// Protocol specifying properties needing to be supplied for conversion.
 public protocol Convertable {
-    var measurement: ScaleMeasure { get }
+    var measurement: Measurement { get }
     var ratio: Ratio { get }
 }
 
@@ -40,7 +40,7 @@ public extension Convertable {
     ///
     /// If the `MeasurementMethod` is .volume, a Mass/Volume calculation is made.
     /// If the `MeasurementMethod` is .mass, a Volume/Mass calculation is made.
-    var conversionMultiplier: Float {
+    public var conversionMultiplier: Float {
         guard ratio.volume > 0.0 && ratio.mass > 0.0 else {
             return 1.0
         }
@@ -58,7 +58,7 @@ public extension Convertable {
     }
     
     /// Calculates the amount for a given unit.
-    func amount(for unit: MeasurementUnit) -> Float {
+    public func amount(for unit: MeasurementUnit) -> Float {
         guard measurement.amount > 0.0 else {
             return 0.0
         }
@@ -74,71 +74,71 @@ public extension Convertable {
         switch fromMeasurementSystemMethod {
         case .usVolume:
             if toMeasurementSystemMethod == .usVolume {
-                return Converter.convert(measurement.amount, fromMeasurementUnit: measurement.unit, toMeasurementUnit: unit)
+                return measurement.amount.convert(from: measurement.unit, to: unit)
             }
             
             let fluidOunce = amount(for: .fluidOunce)
             let ounce = conversionMultiplier * fluidOunce
-            let milliliter = Converter.fluidOunceMilliliterRatio * fluidOunce
-            let gram: Float = Converter.ounceGramRatio * ounce
+            let milliliter = MiseEnPlace.Multipliers.fluidOunceMilliliter * fluidOunce
+            let gram: Float = MiseEnPlace.Multipliers.ounceGram * ounce
             
             if toMeasurementSystemMethod == .usMass {
-                return Converter.convert(ounce, fromMeasurementUnit: .ounce, toMeasurementUnit: unit)
+                return ounce.convert(from: .ounce, to: unit)
             } else if toMeasurementSystemMethod == .metricVolume {
-                return Converter.convert(milliliter, fromMeasurementUnit: .milliliter, toMeasurementUnit: unit)
+                return milliliter.convert(from: .milliliter, to: unit)
             } else if toMeasurementSystemMethod == .metricMass {
-                return Converter.convert(gram, fromMeasurementUnit: .gram, toMeasurementUnit: unit)
+                return gram.convert(from: .gram, to: unit)
             }
         case .usMass:
             if toMeasurementSystemMethod == .usMass {
-                return Converter.convert(measurement.amount, fromMeasurementUnit: measurement.unit, toMeasurementUnit: unit)
+                return measurement.amount.convert(from: measurement.unit, to: unit)
             }
             
             let ounce = amount(for: .ounce)
             let fluidOunce = conversionMultiplier * ounce
-            let milliliter = Converter.fluidOunceMilliliterRatio * fluidOunce
-            let gram = Converter.ounceGramRatio * ounce
+            let milliliter = MiseEnPlace.Multipliers.fluidOunceMilliliter * fluidOunce
+            let gram = MiseEnPlace.Multipliers.ounceGram * ounce
             
             if toMeasurementSystemMethod == .usVolume {
-                return Converter.convert(fluidOunce, fromMeasurementUnit: .fluidOunce, toMeasurementUnit: unit)
+                return fluidOunce.convert(from: .fluidOunce, to: unit)
             } else if toMeasurementSystemMethod == .metricVolume {
-                return Converter.convert(milliliter, fromMeasurementUnit: .milliliter, toMeasurementUnit: unit)
+                return milliliter.convert(from: .milliliter, to: unit)
             } else if toMeasurementSystemMethod == .metricMass {
-                return Converter.convert(gram, fromMeasurementUnit: .gram, toMeasurementUnit: unit)
+                return gram.convert(from: .gram, to: unit)
             }
         case .metricVolume:
             if toMeasurementSystemMethod == .metricVolume {
-                return Converter.convert(measurement.amount, fromMeasurementUnit: measurement.unit, toMeasurementUnit: unit)
+                return measurement.amount.convert(from: measurement.unit, to: unit)
             }
             
             let milliliter = amount(for: .milliliter)
             let gram = conversionMultiplier * milliliter
-            let fluidOunce = milliliter / Converter.fluidOunceMilliliterRatio
-            let ounce = gram / Converter.ounceGramRatio
+            let fluidOunce = milliliter / MiseEnPlace.Multipliers.fluidOunceMilliliter
+            let ounce = gram / MiseEnPlace.Multipliers.ounceGram
             
             if toMeasurementSystemMethod == .metricMass {
-                return Converter.convert(gram, fromMeasurementUnit: .gram, toMeasurementUnit: unit)
+                return gram.convert(from: .gram, to: unit)
             } else if toMeasurementSystemMethod == .usVolume {
-                return Converter.convert(fluidOunce, fromMeasurementUnit: .fluidOunce, toMeasurementUnit: unit)
+                return fluidOunce.convert(from: .fluidOunce, to: unit)
             } else if toMeasurementSystemMethod == .usMass {
-                return Converter.convert(ounce, fromMeasurementUnit: .ounce, toMeasurementUnit: unit)
+                return ounce.convert(from: .ounce, to: unit)
             }
         case .metricMass:
             if toMeasurementSystemMethod == .metricMass {
-                return Converter.convert(measurement.amount, fromMeasurementUnit: measurement.unit, toMeasurementUnit: unit)
+                return measurement.amount.convert(from: measurement.unit, to: unit)
             }
             
             let gram = amount(for: .gram)
             let milliliter = conversionMultiplier * gram
-            let fluidOunce = milliliter / Converter.fluidOunceMilliliterRatio
-            let ounce = gram / Converter.ounceGramRatio
+            let fluidOunce = milliliter / MiseEnPlace.Multipliers.fluidOunceMilliliter
+            let ounce = gram / MiseEnPlace.Multipliers.ounceGram
             
             if toMeasurementSystemMethod == .metricVolume {
-                return Converter.convert(milliliter, fromMeasurementUnit: .milliliter, toMeasurementUnit: unit)
+                return milliliter.convert(from: .milliliter, to: unit)
             } else if toMeasurementSystemMethod == .usVolume {
-                return Converter.convert(fluidOunce, fromMeasurementUnit: .fluidOunce, toMeasurementUnit: unit)
+                return fluidOunce.convert(from: .fluidOunce, to: unit)
             } else if toMeasurementSystemMethod == .usMass {
-                return Converter.convert(ounce, fromMeasurementUnit: .ounce, toMeasurementUnit: unit)
+                return ounce.convert(from: .ounce, to: unit)
             }
         }
         
@@ -150,18 +150,18 @@ public extension Convertable {
     ///
     /// All `MeasurementUnit`s of a given system are tested, and the unit having
     /// the multiplied total within its stepUp and stepDown range will be returned.
-    func scale(by multiplier: Float, measurementSystemMethod: MeasurementSystemMethod) -> ScaleMeasure {
+    public func scale(by multiplier: Float, measurementSystemMethod: MeasurementSystemMethod) -> Measurement {
         if measurement.unit == .asNeeded {
             return measurement
         } else if measurement.unit == .each {
-            return ScaleMeasure(amount: measurement.amount * multiplier, unit: measurement.unit)
+            return Measurement(amount: measurement.amount * multiplier, unit: measurement.unit)
         }
         
         let measurementUnits = Array(MeasurementUnit.measurementUnits(forMeasurementSystemMethod: measurementSystemMethod).reversed())
         for unit in measurementUnits {
             let total = amount(for: unit) * multiplier
             if total >= unit.stepDownThreshold {
-                return ScaleMeasure(amount: total, unit: unit)
+                return Measurement(amount: total, unit: unit)
             }
         }
         
@@ -171,11 +171,11 @@ public extension Convertable {
     /// Wrapper for scale(by:measurementSystemMethod:)
     /// Determines the `MeasurementSystemMethod` based on the `MeasurementSystem` and
     /// `MeasurementMethod` provided.
-    func scale(by multiplier: Float, measurementSystem: MeasurementSystem?, measurementMethod: MeasurementMethod?) -> ScaleMeasure {
+    public func scale(by multiplier: Float, measurementSystem: MeasurementSystem?, measurementMethod: MeasurementMethod?) -> Measurement {
         if measurement.unit == .asNeeded {
             return measurement
         } else if measurement.unit == .each {
-            return ScaleMeasure(amount: measurement.amount * multiplier, unit: measurement.unit)
+            return Measurement(amount: measurement.amount * multiplier, unit: measurement.unit)
         }
         
         guard let measurementSystemMethod = measurement.unit.measurementSystemMethod else {
@@ -184,7 +184,7 @@ public extension Convertable {
         
         if measurementSystem == nil {
             if measurementMethod == nil {
-                return ScaleMeasure(amount: measurement.amount, unit: measurement.unit)
+                return Measurement(amount: measurement.amount, unit: measurement.unit)
             } else if measurementMethod! == .volume {
                 if measurementSystemMethod == .usVolume || measurementSystemMethod == .usMass {
                     return scale(by: multiplier, measurementSystemMethod: .usVolume)
@@ -228,7 +228,7 @@ public extension Convertable {
     }
     
     /// Wrapper for scale(by:measurementSystem:measurementMethod:)
-    func scale(by multiplier: Float, options: ScaleOptions) -> ScaleMeasure {
+    public func scale(by multiplier: Float, options: ScaleOptions) -> Measurement {
         return scale(by: multiplier, measurementSystem: options.measurementSystem, measurementMethod: options.measurementMethod)
     }
 }

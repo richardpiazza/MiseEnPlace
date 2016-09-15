@@ -8,7 +8,7 @@
 
 import Foundation
 import XCTest
-import MiseEnPlace
+@testable import MiseEnPlace
 
 class LooseConversionTests: XCTestCase {
     var ingredient: ConvertableIngredient = ConvertableIngredient()
@@ -19,11 +19,11 @@ class LooseConversionTests: XCTestCase {
         ingredient.ratio.mass = 1
         ingredient.ratio.volume = 1
         
-        Converter.allowLooseConversion = true
+        MiseEnPlace.useLooseConversions = true
     }
     
     override func tearDown() {
-        Converter.allowLooseConversion = false
+        MiseEnPlace.useLooseConversions = false
         
         super.tearDown()
     }

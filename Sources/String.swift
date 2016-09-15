@@ -28,7 +28,7 @@
 import Foundation
 
 internal extension String {
-    func ranges(of: String, options: NSString.CompareOptions, range: Range<Index>?, locale: Locale?) -> [Range<Index>] {
+    internal func ranges(of: String, options: NSString.CompareOptions, range: Range<Index>?, locale: Locale?) -> [Range<Index>] {
         var ranges: [Range<Index>] = []
         
         var currentIndex = self.startIndex
@@ -48,7 +48,7 @@ internal extension String {
         return ranges
     }
     
-    func replacingOccurrencesExceptFirst(_ of: String, with: String) -> String {
+    internal func replacingOccurrencesExceptFirst(_ of: String, with: String) -> String {
         let ranges = self.ranges(of: of, options: NSString.CompareOptions(), range: nil, locale: nil)
         guard ranges.count > 1 else {
             return self
@@ -65,7 +65,7 @@ internal extension String {
         return replacement
     }
     
-    func replacingOccurrencesExceptLast(_ of: String, with: String) -> String {
+    internal func replacingOccurrencesExceptLast(_ of: String, with: String) -> String {
         let ranges = self.ranges(of: of, options: NSString.CompareOptions(), range: nil, locale: nil)
         guard ranges.count > 1 else {
             return self

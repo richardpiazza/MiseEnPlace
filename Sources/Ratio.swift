@@ -37,4 +37,26 @@ public struct Ratio {
         self.volume = volume
         self.mass = mass
     }
+    
+    public static func makeRatio(volumeConvertable: Convertable, massConvertable: Convertable) -> Ratio {
+        let volume = volumeConvertable.amount(for: .fluidOunce)
+        let mass = massConvertable.amount(for: .ounce)
+        
+        guard volume != 0.0 && mass != 0.0 else {
+            return Ratio(volume: volume, mass: mass)
+        }
+        
+        var ratioVolume = volume
+        var ratioMass = mass
+        
+        if volume >= mass {
+            ratioVolume = ratioVolume / ratioMass
+            ratioMass = ratioMass / ratioMass
+        } else {
+            ratioMass = ratioMass / ratioVolume
+            ratioVolume = ratioVolume / ratioVolume
+        }
+        
+        return Ratio(volume: ratioVolume, mass: ratioMass)
+    }
 }

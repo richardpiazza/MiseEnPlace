@@ -10,6 +10,6 @@ import Foundation
 import MiseEnPlace
 
 open class ConvertableIngredient : Convertable {
-    open var measurement: ScaleMeasure = ScaleMeasure(amount: 0.0, unit: .asNeeded)
+    open var measurement = Measurement(amount: 0.0, unit: .asNeeded)
     open var ratio: Ratio = Ratio(volume: 1, mass: 1)
 }
