@@ -30,6 +30,9 @@ import Foundation
 /// ## Measurement
 /// An amount/unit pairing
 public struct Measurement {
+    /// Changes the default behavior of the `Measurement` translation functions.
+    public static var abbreviateTranslations: Bool = false
+    
     public var amount: Float = 0.0
     public var unit: MeasurementUnit = .each
     
@@ -73,7 +76,7 @@ public struct Measurement {
     
     /// Returns a "human-readable" form of this `Measurement`.
     public var translation: String {
-        return translation(abbreviated: MiseEnPlace.abbreviateTranslations)
+        return translation(abbreviated: Measurement.abbreviateTranslations)
     }
     
     /// Returns a "human-readable" form of this `Measurement` with the option to 
@@ -91,7 +94,7 @@ public struct Measurement {
     
     /// Returns a "human-readable" form of the componentized `Measurement`.
     public var componentsTranslation: String {
-        return componentsTranslation(abbreviated: MiseEnPlace.abbreviateTranslations)
+        return componentsTranslation(abbreviated: Measurement.abbreviateTranslations)
     }
     
     /// Returns a "human-readable" form of the componentized `Measurement` with the

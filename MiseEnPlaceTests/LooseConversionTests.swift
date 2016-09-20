@@ -19,11 +19,11 @@ class LooseConversionTests: XCTestCase {
         ingredient.ratio.mass = 1
         ingredient.ratio.volume = 1
         
-        MiseEnPlace.useLooseConversions = true
+        Multipliers.useLooseConversions = true
     }
     
     override func tearDown() {
-        MiseEnPlace.useLooseConversions = false
+        Multipliers.useLooseConversions = false
         
         super.tearDown()
     }
