@@ -30,10 +30,10 @@ import Foundation
 /// ## Ratio
 /// Holds the relation between volume and mass
 public struct Ratio {
-    public var volume: Float = 1.0
-    public var mass: Float = 1.0
+    public var volume: Double = 1.0
+    public var mass: Double = 1.0
     
-    public init(volume: Float, mass: Float) {
+    public init(volume: Double, mass: Double) {
         self.volume = volume
         self.mass = mass
     }

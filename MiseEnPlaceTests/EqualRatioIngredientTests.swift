@@ -48,13 +48,13 @@ class EqualRatioIngredientTests: XCTestCase {
         XCTAssertTrue(tableSpoon == 256)
         
         let teaspoon = ingredient.amount(for: .teaspoon)
-        XCTAssertTrue(teaspoon.equals(value: 768, precision: 2))
+        XCTAssertTrue(teaspoon.equals(768, precision: 2))
         
         let dash = ingredient.amount(for: .dash)
-        XCTAssertTrue(dash.integerValue == 6144)
+        XCTAssertTrue(dash.equals(6144, precision: 0))
         
         let pinch = ingredient.amount(for: .pinch)
-        XCTAssertTrue(pinch.integerValue == 12288)
+        XCTAssertTrue(pinch.equals(12288, precision: 0))
         
         let ounce = ingredient.amount(for: .ounce)
         XCTAssertTrue(ounce == 128)
@@ -63,16 +63,16 @@ class EqualRatioIngredientTests: XCTestCase {
         XCTAssertTrue(pound == 8)
         
         let milliliter = ingredient.amount(for: .milliliter)
-        XCTAssertTrue(milliliter.twoDecimalValue == 3785.41)
+        XCTAssertTrue(milliliter.equals(3785.41, precision: 2))
         
         let liter = ingredient.amount(for: .liter)
-        XCTAssertTrue(liter.twoDecimalValue == 3.79)
+        XCTAssertTrue(liter.equals(3.79, precision: 2))
         
         let gram = ingredient.amount(for: .gram)
-        XCTAssertTrue(gram.twoDecimalValue == 3628.74)
+        XCTAssertTrue(gram.equals(3628.74, precision: 2))
         
         let kilogram = ingredient.amount(for: .kilogram)
-        XCTAssertTrue(kilogram.twoDecimalValue == 3.63)
+        XCTAssertTrue(kilogram.equals(3.63, precision: 2))
     }
     
     func testMeasurementAmountForUSMass() {
@@ -80,49 +80,49 @@ class EqualRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .pound
         
         let gallon = ingredient.amount(for: .gallon)
-        XCTAssertTrue(gallon.twoDecimalValue == 0.62)
+        XCTAssertTrue(gallon.equals(0.62, precision: 2))
         
         let quart = ingredient.amount(for: .quart)
-        XCTAssertTrue(quart.twoDecimalValue == 2.5)
+        XCTAssertTrue(quart.equals(2.5, precision: 1))
         
         let pint = ingredient.amount(for: .pint)
-        XCTAssertTrue(pint.twoDecimalValue == 5)
+        XCTAssertTrue(pint.equals(5, precision: 0))
         
         let cup = ingredient.amount(for: .cup)
-        XCTAssertTrue(cup.twoDecimalValue == 10)
+        XCTAssertTrue(cup.equals(10, precision: 0))
         
         let fluidOunce = ingredient.amount(for: .fluidOunce)
-        XCTAssertTrue(fluidOunce.twoDecimalValue == 80)
+        XCTAssertTrue(fluidOunce.equals(80, precision: 0))
         
         let tableSpoon = ingredient.amount(for: .tablespoon)
-        XCTAssertTrue(tableSpoon.twoDecimalValue == 160)
+        XCTAssertTrue(tableSpoon.equals(160, precision: 0))
         
         let teaspoon = ingredient.amount(for: .teaspoon)
-        XCTAssertTrue(teaspoon.twoDecimalValue == 480)
+        XCTAssertTrue(teaspoon.equals(480, precision: 0))
         
         let dash = ingredient.amount(for: .dash)
-        XCTAssertTrue(dash.twoDecimalValue == 3840)
+        XCTAssertTrue(dash.equals(3840, precision: 0))
         
         let pinch = ingredient.amount(for: .pinch)
-        XCTAssertTrue(pinch.twoDecimalValue == 7680)
+        XCTAssertTrue(pinch.equals(7680, precision: 0))
         
         let ounce = ingredient.amount(for: .ounce)
-        XCTAssertTrue(ounce.twoDecimalValue == 80)
+        XCTAssertTrue(ounce.equals(80, precision: 0))
         
         let pound = ingredient.amount(for: .pound)
-        XCTAssertTrue(pound.twoDecimalValue == 5)
+        XCTAssertTrue(pound.equals(5, precision: 0))
         
         let milliliter = ingredient.amount(for: .milliliter)
-        XCTAssertTrue(milliliter.twoDecimalValue == 2365.88)
+        XCTAssertTrue(milliliter.equals(2365.88, precision: 2))
         
         let liter = ingredient.amount(for: .liter)
-        XCTAssertTrue(liter.twoDecimalValue == 2.37)
+        XCTAssertTrue(liter.equals(2.37, precision: 2))
         
         let gram = ingredient.amount(for: .gram)
-        XCTAssertTrue(gram.twoDecimalValue == 2267.96)
+        XCTAssertTrue(gram.equals(2267.96, precision: 2))
         
         let kilogram = ingredient.amount(for: .kilogram)
-        XCTAssertTrue(kilogram.twoDecimalValue == 2.27)
+        XCTAssertTrue(kilogram.equals(2.27, precision: 2))
     }
     
     func testMeasurementAmountForMetricVolume() {
@@ -130,49 +130,49 @@ class EqualRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .milliliter
         
         let gallon = ingredient.amount(for: .gallon)
-        XCTAssertTrue(gallon.twoDecimalValue == 0.20)
+        XCTAssertTrue(gallon.equals(0.20, precision: 2))
         
         let quart = ingredient.amount(for: .quart)
-        XCTAssertTrue(quart.twoDecimalValue == 0.79)
+        XCTAssertTrue(quart.equals(0.79, precision: 2))
         
         let pint = ingredient.amount(for: .pint)
-        XCTAssertTrue(pint.twoDecimalValue == 1.59)
+        XCTAssertTrue(pint.equals(1.59, precision: 2))
         
         let cup = ingredient.amount(for: .cup)
-        XCTAssertTrue(cup.twoDecimalValue == 3.17)
+        XCTAssertTrue(cup.equals(3.17, precision: 2))
         
         let fluidOunce = ingredient.amount(for: .fluidOunce)
-        XCTAssertTrue(fluidOunce.twoDecimalValue == 25.36)
+        XCTAssertTrue(fluidOunce.equals(25.36, precision: 2))
         
         let tableSpoon = ingredient.amount(for: .tablespoon)
-        XCTAssertTrue(tableSpoon.twoDecimalValue == 50.72)
+        XCTAssertTrue(tableSpoon.equals(50.72, precision: 2))
         
         let teaspoon = ingredient.amount(for: .teaspoon)
-        XCTAssertTrue(teaspoon.twoDecimalValue == 152.16)
+        XCTAssertTrue(teaspoon.equals(152.16, precision: 2))
         
         let dash = ingredient.amount(for: .dash)
-        XCTAssertTrue(dash.twoDecimalValue == 1217.30)
+        XCTAssertTrue(dash.equals(1217.30, precision: 2))
         
         let pinch = ingredient.amount(for: .pinch)
-        XCTAssertTrue(pinch.twoDecimalValue == 2434.61)
+        XCTAssertTrue(pinch.equals(2434.61, precision: 2))
         
         let ounce = ingredient.amount(for: .ounce)
-        XCTAssertTrue(ounce.twoDecimalValue == 26.46)
+        XCTAssertTrue(ounce.equals(26.46, precision: 2))
         
         let pound = ingredient.amount(for: .pound)
-        XCTAssertTrue(pound.twoDecimalValue == 1.65)
+        XCTAssertTrue(pound.equals(1.65, precision: 2))
         
         let milliliter = ingredient.amount(for: .milliliter)
-        XCTAssertTrue(milliliter.twoDecimalValue == 750)
+        XCTAssertTrue(milliliter.equals(750, precision: 0))
         
         let liter = ingredient.amount(for: .liter)
-        XCTAssertTrue(liter.twoDecimalValue == 0.75)
+        XCTAssertTrue(liter.equals(0.75, precision: 2))
         
         let gram = ingredient.amount(for: .gram)
-        XCTAssertTrue(gram.twoDecimalValue == 750)
+        XCTAssertTrue(gram.equals(750, precision: 0))
         
         let kilogram = ingredient.amount(for: .kilogram)
-        XCTAssertTrue(kilogram.twoDecimalValue == 0.75)
+        XCTAssertTrue(kilogram.equals(0.75, precision: 2))
     }
     
     func testMeasurementAmountForMetricMass() {
@@ -180,49 +180,49 @@ class EqualRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .kilogram
         
         let gallon = ingredient.amount(for: .gallon)
-        XCTAssertTrue(gallon.twoDecimalValue == 0.66)
+        XCTAssertTrue(gallon.equals(0.66, precision: 2))
         
         let quart = ingredient.amount(for: .quart)
-        XCTAssertTrue(quart.twoDecimalValue == 2.64)
+        XCTAssertTrue(quart.equals(2.64, precision: 2))
         
         let pint = ingredient.amount(for: .pint)
-        XCTAssertTrue(pint.twoDecimalValue == 5.28)
+        XCTAssertTrue(pint.equals(5.28, precision: 2))
         
         let cup = ingredient.amount(for: .cup)
-        XCTAssertTrue(cup.twoDecimalValue == 10.57)
+        XCTAssertTrue(cup.equals(10.57, precision: 2))
         
         let fluidOunce = ingredient.amount(for: .fluidOunce)
-        XCTAssertTrue(fluidOunce.twoDecimalValue == 84.54)
+        XCTAssertTrue(fluidOunce.equals(84.54, precision: 2))
         
         let tableSpoon = ingredient.amount(for: .tablespoon)
-        XCTAssertTrue(tableSpoon.twoDecimalValue == 169.07)
+        XCTAssertTrue(tableSpoon.equals(169.07, precision: 2))
         
         let teaspoon = ingredient.amount(for: .teaspoon)
-        XCTAssertTrue(teaspoon.twoDecimalValue == 507.21)
+        XCTAssertTrue(teaspoon.equals(507.21, precision: 2))
         
         let dash = ingredient.amount(for: .dash)
-        XCTAssertTrue(dash.twoDecimalValue == 4057.68)
+        XCTAssertTrue(dash.equals(4057.68, precision: 2))
         
         let pinch = ingredient.amount(for: .pinch)
-        XCTAssertTrue(pinch.twoDecimalValue == 8115.37)
+        XCTAssertTrue(pinch.equals(8115.37, precision: 2))
         
         let ounce = ingredient.amount(for: .ounce)
-        XCTAssertTrue(ounce.twoDecimalValue == 88.18)
+        XCTAssertTrue(ounce.equals(88.18, precision: 2))
         
         let pound = ingredient.amount(for: .pound)
-        XCTAssertTrue(pound.twoDecimalValue == 5.51)
+        XCTAssertTrue(pound.equals(5.51, precision: 2))
         
         let milliliter = ingredient.amount(for: .milliliter)
-        XCTAssertTrue(milliliter.twoDecimalValue == 2500)
+        XCTAssertTrue(milliliter.equals(2500, precision: 0))
         
         let liter = ingredient.amount(for: .liter)
-        XCTAssertTrue(liter.twoDecimalValue == 2.5)
+        XCTAssertTrue(liter.equals(2.5, precision: 1))
         
         let gram = ingredient.amount(for: .gram)
-        XCTAssertTrue(gram.twoDecimalValue == 2500)
+        XCTAssertTrue(gram.equals(2500, precision: 0))
         
         let kilogram = ingredient.amount(for: .kilogram)
-        XCTAssertTrue(kilogram.twoDecimalValue == 2.5)
+        XCTAssertTrue(kilogram.equals(2.5, precision: 1))
     }
     
     func testScaleUSMassToUSMass() {
@@ -239,7 +239,7 @@ class EqualRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .pound
         
         let scaleMeasure = ingredient.scale(by: 1.25, measurementSystemMethod: .usVolume)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 1.25)
+        XCTAssertTrue(scaleMeasure.amount.equals(1.25, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .cup)
     }
     
@@ -248,7 +248,7 @@ class EqualRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .ounce
         
         let scaleMeasure = ingredient.scale(by: 1.0, measurementSystemMethod: .metricMass)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 283.50)
+        XCTAssertTrue(scaleMeasure.amount.equals(283.50, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .gram)
     }
     
@@ -257,7 +257,7 @@ class EqualRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .ounce
         
         let scaleMeasure = ingredient.scale(by: 2.0, measurementSystemMethod: .metricVolume)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 236.59)
+        XCTAssertTrue(scaleMeasure.amount.equals(236.59, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .milliliter)
     }
     
@@ -266,7 +266,7 @@ class EqualRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .tablespoon
         
         let scaleMeasure = ingredient.scale(by: 3.5, measurementSystemMethod: .usMass)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 7)
+        XCTAssertTrue(scaleMeasure.amount.equals(7, precision: 0))
         XCTAssertTrue(scaleMeasure.unit == .ounce)
     }
     
@@ -274,8 +274,8 @@ class EqualRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 28
         ingredient.measurement.unit = .quart
         
-        let scaleMeasure = ingredient.scale(by: MiseEnPlace.Fractions.oneSixteenth, measurementSystemMethod: .usVolume)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 1.75)
+        let scaleMeasure = ingredient.scale(by: Fractions.oneSixteenth, measurementSystemMethod: .usVolume)
+        XCTAssertTrue(scaleMeasure.amount.equals(1.75, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .quart)
     }
     
@@ -284,7 +284,7 @@ class EqualRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .gallon
         
         let scaleMeasure = ingredient.scale(by: 1.75, measurementSystemMethod: .metricMass)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 6.35)
+        XCTAssertTrue(scaleMeasure.amount.equals(6.35, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .kilogram)
     }
     
@@ -293,7 +293,7 @@ class EqualRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .ounce
         
         let scaleMeasure = ingredient.scale(by: 3.0, measurementSystemMethod: .metricVolume)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 115.34)
+        XCTAssertTrue(scaleMeasure.amount.equals(115.34, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .milliliter)
     }
     
@@ -301,8 +301,8 @@ class EqualRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 250
         ingredient.measurement.unit = .gram
         
-        let scaleMeasure = ingredient.scale(by: MiseEnPlace.Fractions.oneHalf, measurementSystemMethod: .usMass)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 4.41)
+        let scaleMeasure = ingredient.scale(by: Fractions.oneHalf, measurementSystemMethod: .usMass)
+        XCTAssertTrue(scaleMeasure.amount.equals(4.41, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .ounce)
     }
     
@@ -311,7 +311,7 @@ class EqualRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .kilogram
         
         let scaleMeasure = ingredient.scale(by: 1.0, measurementSystemMethod: .usVolume)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 1.78)
+        XCTAssertTrue(scaleMeasure.amount.equals(1.78, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .quart)
     }
     
@@ -319,8 +319,8 @@ class EqualRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 22
         ingredient.measurement.unit = .kilogram
         
-        let scaleMeasure = ingredient.scale(by: MiseEnPlace.Fractions.oneThird, measurementSystemMethod: .metricMass)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 7.33)
+        let scaleMeasure = ingredient.scale(by: Fractions.oneThird, measurementSystemMethod: .metricMass)
+        XCTAssertTrue(scaleMeasure.amount.equals(7.33, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .kilogram)
     }
     
@@ -328,8 +328,8 @@ class EqualRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 888.888
         ingredient.measurement.unit = .gram
         
-        let scaleMeasure = ingredient.scale(by: MiseEnPlace.Fractions.twoThirds, measurementSystemMethod: .metricVolume)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 592.59)
+        let scaleMeasure = ingredient.scale(by: Fractions.twoThirds, measurementSystemMethod: .metricVolume)
+        XCTAssertTrue(scaleMeasure.amount.equals(592.59, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .milliliter)
     }
     
@@ -338,7 +338,7 @@ class EqualRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .milliliter
         
         let scaleMeasure = ingredient.scale(by: 1.01, measurementSystemMethod: .usMass)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 4.63)
+        XCTAssertTrue(scaleMeasure.amount.equals(4.63, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .ounce)
     }
     
@@ -346,8 +346,8 @@ class EqualRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 2.99
         ingredient.measurement.unit = .liter
         
-        let scaleMeasure = ingredient.scale(by: MiseEnPlace.Fractions.oneSixth, measurementSystemMethod: .usVolume)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 1.05)
+        let scaleMeasure = ingredient.scale(by: Fractions.oneSixth, measurementSystemMethod: .usVolume)
+        XCTAssertTrue(scaleMeasure.amount.equals(1.05, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .pint)
     }
     
@@ -356,7 +356,7 @@ class EqualRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .liter
         
         let scaleMeasure = ingredient.scale(by: 1.0, measurementSystemMethod: .metricMass)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 45)
+        XCTAssertTrue(scaleMeasure.amount.equals(45, precision: 0))
         XCTAssertTrue(scaleMeasure.unit == .kilogram)
     }
     
@@ -364,8 +364,8 @@ class EqualRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 45000
         ingredient.measurement.unit = .milliliter
         
-        let scaleMeasure = ingredient.scale(by: MiseEnPlace.Fractions.oneThousandth, measurementSystemMethod: .metricVolume)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 45)
+        let scaleMeasure = ingredient.scale(by: Fractions.oneThousandth, measurementSystemMethod: .metricVolume)
+        XCTAssertTrue(scaleMeasure.amount.equals(45, precision: 0))
         XCTAssertTrue(scaleMeasure.unit == .milliliter)
     }
 }

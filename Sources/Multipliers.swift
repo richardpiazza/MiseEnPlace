@@ -31,16 +31,16 @@ public struct Multipliers {
     /// Replaces precise oz->g / floz->ml conversions with 30g/30ml respectively.
     public static var useLooseConversions: Bool = false
     
-    public static let looseOunceGram: Float = 30.0
-    public static let preciseOunceGram: Float = 28.349523
-    public static let looseFluidOunceMilliliter: Float = 30.0
-    public static let preciseFluidOunceMilliliter: Float = 29.573529
+    public static let looseOunceGram: Double = 30.0
+    public static let preciseOunceGram: Double = 28.349523
+    public static let looseFluidOunceMilliliter: Double = 30.0
+    public static let preciseFluidOunceMilliliter: Double = 29.573529
     
-    public static var fluidOunceMilliliter: Float {
+    public static var fluidOunceMilliliter: Double {
         return (useLooseConversions) ? looseFluidOunceMilliliter : preciseFluidOunceMilliliter
     }
     
-    public static var ounceGram: Float {
+    public static var ounceGram: Double {
         return (useLooseConversions) ? looseOunceGram : preciseOunceGram
     }
 }

@@ -27,40 +27,40 @@
 import Foundation
 
 public struct Fractions {
-    public static let sevenEighths: Float = 0.875
+    public static let sevenEighths: Double = 0.875
     public static let sevenEighthsSymbol = "⅞"
     
-    public static let threeFourths: Float = 0.75
-    public static let threeFourthsDecimalBoundary: Float = 0.708333
+    public static let threeFourths: Double = 0.75
+    public static let threeFourthsDecimalBoundary: Double = 0.708333
     public static let threeFourthsSymbol = "¾"
     
-    public static let twoThirds: Float = 0.666666
-    public static let twoThirdsDecimalBoundary: Float = 0.645833
+    public static let twoThirds: Double = 0.666666
+    public static let twoThirdsDecimalBoundary: Double = 0.645833
     public static let twoThirdsSymbol = "⅔"
     
-    public static let fiveEighths: Float = 0.625
-    public static let fiveEighthsDecimalBoundary: Float = 0.5625
+    public static let fiveEighths: Double = 0.625
+    public static let fiveEighthsDecimalBoundary: Double = 0.5625
     public static let fiveEighthsSymbol = "⅝"
     
-    public static let oneHalf: Float = 0.5
-    public static let oneHalfDecimalBoundary: Float = 0.416666
+    public static let oneHalf: Double = 0.5
+    public static let oneHalfDecimalBoundary: Double = 0.416666
     public static let oneHalfSymbol = "½"
     
-    public static let oneThird: Float = 0.3333333
-    public static let oneThirdDecimalBoundary: Float = 0.291666
+    public static let oneThird: Double = 0.3333333
+    public static let oneThirdDecimalBoundary: Double = 0.291666
     public static let oneThirdSymbol = "⅓"
     
-    public static let oneFourth: Float = 0.25
-    public static let oneFourthDecimalBoundary: Float = 0.208333
+    public static let oneFourth: Double = 0.25
+    public static let oneFourthDecimalBoundary: Double = 0.208333
     public static let oneFourthSymbol = "¼"
     
-    public static let oneSixth: Float = 0.166666
+    public static let oneSixth: Double = 0.166666
     public static let oneSixthSymbol = "⅙"
     
-    public static let oneEighth: Float = 0.125
+    public static let oneEighth: Double = 0.125
     public static let oneEighthSymbol = "⅛"
     
-    public static let oneSixteenth: Float = 0.0625
+    public static let oneSixteenth: Double = 0.0625
     
-    public static let oneThousandth: Float = 0.001
+    public static let oneThousandth: Double = 0.001
 }

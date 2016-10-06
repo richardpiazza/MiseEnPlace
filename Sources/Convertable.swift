@@ -40,7 +40,7 @@ public extension Convertable {
     ///
     /// If the `MeasurementMethod` is .volume, a Mass/Volume calculation is made.
     /// If the `MeasurementMethod` is .mass, a Volume/Mass calculation is made.
-    public var conversionMultiplier: Float {
+    public var conversionMultiplier: Double {
         guard ratio.volume > 0.0 && ratio.mass > 0.0 else {
             return 1.0
         }
@@ -58,7 +58,7 @@ public extension Convertable {
     }
     
     /// Calculates the amount for a given unit.
-    public func amount(for unit: MeasurementUnit) -> Float {
+    public func amount(for unit: MeasurementUnit) -> Double {
         guard measurement.amount > 0.0 else {
             return 0.0
         }
@@ -80,7 +80,7 @@ public extension Convertable {
             let fluidOunce = amount(for: .fluidOunce)
             let ounce = conversionMultiplier * fluidOunce
             let milliliter = MiseEnPlace.Multipliers.fluidOunceMilliliter * fluidOunce
-            let gram: Float = MiseEnPlace.Multipliers.ounceGram * ounce
+            let gram: Double = MiseEnPlace.Multipliers.ounceGram * ounce
             
             if toMeasurementSystemMethod == .usMass {
                 return ounce.convert(from: .ounce, to: unit)
@@ -150,7 +150,7 @@ public extension Convertable {
     ///
     /// All `MeasurementUnit`s of a given system are tested, and the unit having
     /// the multiplied total within its stepUp and stepDown range will be returned.
-    public func scale(by multiplier: Float, measurementSystemMethod: MeasurementSystemMethod) -> Measurement {
+    public func scale(by multiplier: Double, measurementSystemMethod: MeasurementSystemMethod) -> Measurement {
         if measurement.unit == .asNeeded {
             return measurement
         } else if measurement.unit == .each {
@@ -171,7 +171,7 @@ public extension Convertable {
     /// Wrapper for scale(by:measurementSystemMethod:)
     /// Determines the `MeasurementSystemMethod` based on the `MeasurementSystem` and
     /// `MeasurementMethod` provided.
-    public func scale(by multiplier: Float, measurementSystem: MeasurementSystem?, measurementMethod: MeasurementMethod?) -> Measurement {
+    public func scale(by multiplier: Double, measurementSystem: MeasurementSystem?, measurementMethod: MeasurementMethod?) -> Measurement {
         if measurement.unit == .asNeeded {
             return measurement
         } else if measurement.unit == .each {

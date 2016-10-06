@@ -47,31 +47,31 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         XCTAssertTrue(tableSpoon == 256)
         
         let teaspoon = ingredient.amount(for: .teaspoon)
-        XCTAssertTrue(teaspoon.integerValue == 768)
+        XCTAssertTrue(teaspoon.equals(768, precision: 0))
         
         let dash = ingredient.amount(for: .dash)
-        XCTAssertTrue(dash.integerValue == 6144)
+        XCTAssertTrue(dash.equals(6144, precision: 0))
         
         let pinch = ingredient.amount(for: .pinch)
-        XCTAssertTrue(pinch.integerValue == 12288)
+        XCTAssertTrue(pinch.equals(12288, precision: 0))
         
         let ounce = ingredient.amount(for: .ounce)
-        XCTAssertTrue(ounce.twoDecimalValue == 112.28)
+        XCTAssertTrue(ounce.equals(112.28, precision: 2))
         
         let pound = ingredient.amount(for: .pound)
-        XCTAssertTrue(pound.twoDecimalValue == 7.02)
+        XCTAssertTrue(pound.equals(7.02, precision: 2))
         
         let milliliter = ingredient.amount(for: .milliliter)
-        XCTAssertTrue(milliliter.twoDecimalValue == 3785.41)
+        XCTAssertTrue(milliliter.equals(3785.41, precision: 2))
         
         let liter = ingredient.amount(for: .liter)
-        XCTAssertTrue(liter.twoDecimalValue == 3.79)
+        XCTAssertTrue(liter.equals(3.79, precision: 2))
         
         let gram = ingredient.amount(for: .gram)
-        XCTAssertTrue(gram.twoDecimalValue == 3183.10)
+        XCTAssertTrue(gram.equals(3183.10, precision: 2))
         
         let kilogram = ingredient.amount(for: .kilogram)
-        XCTAssertTrue(kilogram.twoDecimalValue == 3.18)
+        XCTAssertTrue(kilogram.equals(3.18, precision: 2))
     }
     
     func testMeasurementAmountForUSMass() {
@@ -79,49 +79,49 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .pound
         
         let gallon = ingredient.amount(for: .gallon)
-        XCTAssertTrue(gallon.twoDecimalValue == 0.71)
+        XCTAssertTrue(gallon.equals(0.71, precision: 2))
         
         let quart = ingredient.amount(for: .quart)
-        XCTAssertTrue(quart.twoDecimalValue == 2.85)
+        XCTAssertTrue(quart.equals(2.85, precision: 2))
         
         let pint = ingredient.amount(for: .pint)
-        XCTAssertTrue(pint.twoDecimalValue == 5.70)
+        XCTAssertTrue(pint.equals(5.70, precision: 2))
         
         let cup = ingredient.amount(for: .cup)
-        XCTAssertTrue(cup.twoDecimalValue == 11.40)
+        XCTAssertTrue(cup.equals(11.40, precision: 2))
         
         let fluidOunce = ingredient.amount(for: .fluidOunce)
-        XCTAssertTrue(fluidOunce.twoDecimalValue == 91.20)
+        XCTAssertTrue(fluidOunce.equals(91.20, precision: 2))
         
         let tableSpoon = ingredient.amount(for: .tablespoon)
-        XCTAssertTrue(tableSpoon.twoDecimalValue == 182.40)
+        XCTAssertTrue(tableSpoon.equals(182.40, precision: 2))
         
         let teaspoon = ingredient.amount(for: .teaspoon)
-        XCTAssertTrue(teaspoon.twoDecimalValue == 547.20)
+        XCTAssertTrue(teaspoon.equals(547.20, precision: 2))
         
         let dash = ingredient.amount(for: .dash)
-        XCTAssertTrue(dash.twoDecimalValue == 4377.60)
+        XCTAssertTrue(dash.equals(4377.60, precision: 2))
         
         let pinch = ingredient.amount(for: .pinch)
-        XCTAssertTrue(pinch.twoDecimalValue == 8755.20)
+        XCTAssertTrue(pinch.equals(8755.20, precision: 2))
         
         let ounce = ingredient.amount(for: .ounce)
-        XCTAssertTrue(ounce.twoDecimalValue == 80)
+        XCTAssertTrue(ounce.equals(80, precision: 0))
         
         let pound = ingredient.amount(for: .pound)
-        XCTAssertTrue(pound.twoDecimalValue == 5)
+        XCTAssertTrue(pound.equals(5, precision: 0))
         
         let milliliter = ingredient.amount(for: .milliliter)
-        XCTAssertTrue(milliliter.twoDecimalValue == 2697.11)
+        XCTAssertTrue(milliliter.equals(2697.11, precision: 2))
         
         let liter = ingredient.amount(for: .liter)
-        XCTAssertTrue(liter.twoDecimalValue == 2.70)
+        XCTAssertTrue(liter.equals(2.70, precision: 2))
         
         let gram = ingredient.amount(for: .gram)
-        XCTAssertTrue(gram.twoDecimalValue == 2267.96)
+        XCTAssertTrue(gram.equals(2267.96, precision: 2))
         
         let kilogram = ingredient.amount(for: .kilogram)
-        XCTAssertTrue(kilogram.twoDecimalValue == 2.27)
+        XCTAssertTrue(kilogram.equals(2.27, precision: 2))
     }
     
     func testMeasurementAmountForMetricVolume() {
@@ -129,49 +129,49 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .milliliter
         
         let gallon = ingredient.amount(for: .gallon)
-        XCTAssertTrue(gallon.twoDecimalValue == 0.20)
+        XCTAssertTrue(gallon.equals(0.20, precision: 2))
         
         let quart = ingredient.amount(for: .quart)
-        XCTAssertTrue(quart.twoDecimalValue == 0.79)
+        XCTAssertTrue(quart.equals(0.79, precision: 2))
         
         let pint = ingredient.amount(for: .pint)
-        XCTAssertTrue(pint.twoDecimalValue == 1.59)
+        XCTAssertTrue(pint.equals(1.59, precision: 2))
         
         let cup = ingredient.amount(for: .cup)
-        XCTAssertTrue(cup.twoDecimalValue == 3.17)
+        XCTAssertTrue(cup.equals(3.17, precision: 2))
         
         let fluidOunce = ingredient.amount(for: .fluidOunce)
-        XCTAssertTrue(fluidOunce.twoDecimalValue == 25.36)
+        XCTAssertTrue(fluidOunce.equals(25.36, precision: 2))
         
         let tableSpoon = ingredient.amount(for: .tablespoon)
-        XCTAssertTrue(tableSpoon.twoDecimalValue == 50.72)
+        XCTAssertTrue(tableSpoon.equals(50.72, precision: 2))
         
         let teaspoon = ingredient.amount(for: .teaspoon)
-        XCTAssertTrue(teaspoon.twoDecimalValue == 152.16)
+        XCTAssertTrue(teaspoon.equals(152.16, precision: 2))
         
         let dash = ingredient.amount(for: .dash)
-        XCTAssertTrue(dash.twoDecimalValue == 1217.30)
+        XCTAssertTrue(dash.equals(1217.30, precision: 2))
         
         let pinch = ingredient.amount(for: .pinch)
-        XCTAssertTrue(pinch.twoDecimalValue == 2434.61)
+        XCTAssertTrue(pinch.equals(2434.61, precision: 2))
         
         let ounce = ingredient.amount(for: .ounce)
-        XCTAssertTrue(ounce.twoDecimalValue == 23.21)
+        XCTAssertTrue(ounce.equals(23.21, precision: 2))
         
         let pound = ingredient.amount(for: .pound)
-        XCTAssertTrue(pound.twoDecimalValue == 1.45)
+        XCTAssertTrue(pound.equals(1.45, precision: 2))
         
         let milliliter = ingredient.amount(for: .milliliter)
-        XCTAssertTrue(milliliter.twoDecimalValue == 750)
+        XCTAssertTrue(milliliter.equals(750, precision: 0))
         
         let liter = ingredient.amount(for: .liter)
-        XCTAssertTrue(liter.twoDecimalValue == 0.75)
+        XCTAssertTrue(liter.equals(0.75, precision: 2))
         
         let gram = ingredient.amount(for: .gram)
-        XCTAssertTrue(gram.twoDecimalValue == 657.89)
+        XCTAssertTrue(gram.equals(657.89, precision: 2))
         
         let kilogram = ingredient.amount(for: .kilogram)
-        XCTAssertTrue(kilogram.twoDecimalValue == 0.66)
+        XCTAssertTrue(kilogram.equals(0.66, precision: 2))
     }
     
     func testMeasurementAmountForMetricMass() {
@@ -179,49 +179,49 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .kilogram
         
         let gallon = ingredient.amount(for: .gallon)
-        XCTAssertTrue(gallon.twoDecimalValue == 0.75)
+        XCTAssertTrue(gallon.equals(0.75, precision: 2))
         
         let quart = ingredient.amount(for: .quart)
-        XCTAssertTrue(quart.twoDecimalValue == 3.01)
+        XCTAssertTrue(quart.equals(3.01, precision: 2))
         
         let pint = ingredient.amount(for: .pint)
-        XCTAssertTrue(pint.twoDecimalValue == 6.02)
+        XCTAssertTrue(pint.equals(6.02, precision: 2))
         
         let cup = ingredient.amount(for: .cup)
-        XCTAssertTrue(cup.twoDecimalValue == 12.05)
+        XCTAssertTrue(cup.equals(12.05, precision: 2))
         
         let fluidOunce = ingredient.amount(for: .fluidOunce)
-        XCTAssertTrue(fluidOunce.twoDecimalValue == 96.37)
+        XCTAssertTrue(fluidOunce.equals(96.37, precision: 2))
         
         let tableSpoon = ingredient.amount(for: .tablespoon)
-        XCTAssertTrue(tableSpoon.twoDecimalValue == 192.74)
+        XCTAssertTrue(tableSpoon.equals(192.74, precision: 2))
         
         let teaspoon = ingredient.amount(for: .teaspoon)
-        XCTAssertTrue(teaspoon.twoDecimalValue == 578.22)
+        XCTAssertTrue(teaspoon.equals(578.22, precision: 2))
         
         let dash = ingredient.amount(for: .dash)
-        XCTAssertTrue(dash.twoDecimalValue == 4625.76)
+        XCTAssertTrue(dash.equals(4625.76, precision: 2))
         
         let pinch = ingredient.amount(for: .pinch)
-        XCTAssertTrue(pinch.twoDecimalValue == 9251.52)
+        XCTAssertTrue(pinch.equals(9251.52, precision: 2))
         
         let ounce = ingredient.amount(for: .ounce)
-        XCTAssertTrue(ounce.twoDecimalValue == 88.18)
+        XCTAssertTrue(ounce.equals(88.18, precision: 2))
         
         let pound = ingredient.amount(for: .pound)
-        XCTAssertTrue(pound.twoDecimalValue == 5.51)
+        XCTAssertTrue(pound.equals(5.51, precision: 2))
         
         let milliliter = ingredient.amount(for: .milliliter)
-        XCTAssertTrue(milliliter.twoDecimalValue == 2850)
+        XCTAssertTrue(milliliter.equals(2850, precision: 2))
         
         let liter = ingredient.amount(for: .liter)
-        XCTAssertTrue(liter.twoDecimalValue == 2.85)
+        XCTAssertTrue(liter.equals(2.85, precision: 2))
         
         let gram = ingredient.amount(for: .gram)
-        XCTAssertTrue(gram.twoDecimalValue == 2500)
+        XCTAssertTrue(gram.equals(2500, precision: 0))
         
         let kilogram = ingredient.amount(for: .kilogram)
-        XCTAssertTrue(kilogram.twoDecimalValue == 2.5)
+        XCTAssertTrue(kilogram.equals(2.5, precision: 1))
     }
 
     func testScaleUSMassToUSMass() {
@@ -238,7 +238,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .pound
         
         let scaleMeasure = ingredient.scale(by: 1.25, measurementSystemMethod: .usVolume)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 1.42)
+        XCTAssertTrue(scaleMeasure.amount.equals(1.42, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .cup)
     }
     
@@ -247,7 +247,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .ounce
         
         let scaleMeasure = ingredient.scale(by: 1.0, measurementSystemMethod: .metricMass)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 283.50)
+        XCTAssertTrue(scaleMeasure.amount.equals(283.50, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .gram)
     }
     
@@ -256,7 +256,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .ounce
         
         let scaleMeasure = ingredient.scale(by: 2.0, measurementSystemMethod: .metricVolume)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 269.71)
+        XCTAssertTrue(scaleMeasure.amount.equals(269.71, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .milliliter)
     }
 
@@ -265,7 +265,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .tablespoon
         
         let scaleMeasure = ingredient.scale(by: 3.5, measurementSystemMethod: .usMass)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 6.14)
+        XCTAssertTrue(scaleMeasure.amount.equals(6.14, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .ounce)
     }
     
@@ -273,8 +273,8 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 28
         ingredient.measurement.unit = .quart
         
-        let scaleMeasure = ingredient.scale(by: MiseEnPlace.Fractions.oneSixteenth, measurementSystemMethod: .usVolume)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 1.75)
+        let scaleMeasure = ingredient.scale(by: Fractions.oneSixteenth, measurementSystemMethod: .usVolume)
+        XCTAssertTrue(scaleMeasure.amount.equals(1.75, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .quart)
     }
     
@@ -283,7 +283,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .gallon
         
         let scaleMeasure = ingredient.scale(by: 1.75, measurementSystemMethod: .metricMass)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 5.57)
+        XCTAssertTrue(scaleMeasure.amount.equals(5.57, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .kilogram)
     }
     
@@ -292,7 +292,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .ounce
         
         let scaleMeasure = ingredient.scale(by: 3.0, measurementSystemMethod: .metricVolume)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 131.48)
+        XCTAssertTrue(scaleMeasure.amount.equals(131.48, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .milliliter)
     }
     
@@ -300,8 +300,8 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 250
         ingredient.measurement.unit = .gram
         
-        let scaleMeasure = ingredient.scale(by: MiseEnPlace.Fractions.oneHalf, measurementSystemMethod: .usMass)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 4.41)
+        let scaleMeasure = ingredient.scale(by: Fractions.oneHalf, measurementSystemMethod: .usMass)
+        XCTAssertTrue(scaleMeasure.amount.equals(4.41, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .ounce)
     }
     
@@ -310,7 +310,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .kilogram
         
         let scaleMeasure = ingredient.scale(by: 1.0, measurementSystemMethod: .usVolume)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 2.02)
+        XCTAssertTrue(scaleMeasure.amount.equals(2.02, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .quart)
     }
     
@@ -318,8 +318,8 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 22
         ingredient.measurement.unit = .kilogram
         
-        let scaleMeasure = ingredient.scale(by: MiseEnPlace.Fractions.oneThird, measurementSystemMethod: .metricMass)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 7.33)
+        let scaleMeasure = ingredient.scale(by: Fractions.oneThird, measurementSystemMethod: .metricMass)
+        XCTAssertTrue(scaleMeasure.amount.equals(7.33, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .kilogram)
     }
     
@@ -327,8 +327,8 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 888.888
         ingredient.measurement.unit = .gram
         
-        let scaleMeasure = ingredient.scale(by: MiseEnPlace.Fractions.twoThirds, measurementSystemMethod: .metricVolume)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 675.55)
+        let scaleMeasure = ingredient.scale(by: Fractions.twoThirds, measurementSystemMethod: .metricVolume)
+        XCTAssertTrue(scaleMeasure.amount.equals(675.55, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .milliliter)
     }
     
@@ -337,7 +337,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .milliliter
         
         let scaleMeasure = ingredient.scale(by: 1.01, measurementSystemMethod: .usMass)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 4.06)
+        XCTAssertTrue(scaleMeasure.amount.equals(4.06, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .ounce)
     }
     
@@ -345,8 +345,8 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 2.99
         ingredient.measurement.unit = .liter
         
-        let scaleMeasure = ingredient.scale(by: MiseEnPlace.Fractions.oneSixth, measurementSystemMethod: .usVolume)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 1.05)
+        let scaleMeasure = ingredient.scale(by: Fractions.oneSixth, measurementSystemMethod: .usVolume)
+        XCTAssertTrue(scaleMeasure.amount.equals(1.05, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .pint)
     }
     
@@ -355,7 +355,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.unit = .liter
         
         let scaleMeasure = ingredient.scale(by: 1.0, measurementSystemMethod: .metricMass)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 39.47)
+        XCTAssertTrue(scaleMeasure.amount.equals(39.47, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .kilogram)
     }
     
@@ -363,8 +363,8 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 45000
         ingredient.measurement.unit = .milliliter
         
-        let scaleMeasure = ingredient.scale(by: MiseEnPlace.Fractions.oneThousandth, measurementSystemMethod: .metricVolume)
-        XCTAssertTrue(scaleMeasure.amount.twoDecimalValue == 45)
+        let scaleMeasure = ingredient.scale(by: Fractions.oneThousandth, measurementSystemMethod: .metricVolume)
+        XCTAssertTrue(scaleMeasure.amount.equals(45, precision: 0))
         XCTAssertTrue(scaleMeasure.unit == .milliliter)
     }
 }

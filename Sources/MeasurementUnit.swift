@@ -193,7 +193,7 @@ public enum MeasurementUnit: Int {
         }
     }
     
-    public var stepDownThreshold: Float {
+    public var stepDownThreshold: Double {
         switch self {
         case .dash: return 0.5
         case .teaspoon: return 0.5
@@ -210,7 +210,7 @@ public enum MeasurementUnit: Int {
         }
     }
     
-    public var stepUpThreshold: Float {
+    public var stepUpThreshold: Double {
         switch self {
         case .pinch: return 2.0
         case .dash: return 2.0
@@ -227,36 +227,36 @@ public enum MeasurementUnit: Int {
         }
     }
     
-    public var stepDownMultiplier: Float {
+    public var stepDownMultiplier: Double {
         switch self {
-        case .dash: return MiseEnPlace.Fractions.oneHalf
-        case .teaspoon: return MiseEnPlace.Fractions.oneEighth
-        case .tablespoon: return MiseEnPlace.Fractions.oneThird
-        case .fluidOunce: return MiseEnPlace.Fractions.oneHalf
-        case .cup: return MiseEnPlace.Fractions.oneEighth
-        case .pint: return MiseEnPlace.Fractions.oneHalf
-        case .quart: return MiseEnPlace.Fractions.oneHalf
-        case .gallon: return MiseEnPlace.Fractions.oneFourth
-        case .pound: return MiseEnPlace.Fractions.oneSixteenth
-        case .liter: return MiseEnPlace.Fractions.oneThousandth
-        case .kilogram: return MiseEnPlace.Fractions.oneThousandth
+        case .dash: return Fractions.oneHalf
+        case .teaspoon: return Fractions.oneEighth
+        case .tablespoon: return Fractions.oneThird
+        case .fluidOunce: return Fractions.oneHalf
+        case .cup: return Fractions.oneEighth
+        case .pint: return Fractions.oneHalf
+        case .quart: return Fractions.oneHalf
+        case .gallon: return Fractions.oneFourth
+        case .pound: return Fractions.oneSixteenth
+        case .liter: return Fractions.oneThousandth
+        case .kilogram: return Fractions.oneThousandth
         default: return 0
         }
     }
     
-    public var stepUpMultiplier: Float {
+    public var stepUpMultiplier: Double {
         switch self {
-        case .pinch: return MiseEnPlace.Fractions.oneHalf
-        case .dash: return MiseEnPlace.Fractions.oneEighth
-        case .teaspoon: return MiseEnPlace.Fractions.oneThird
-        case .tablespoon: return MiseEnPlace.Fractions.oneHalf
-        case .fluidOunce: return MiseEnPlace.Fractions.oneEighth
-        case .cup: return MiseEnPlace.Fractions.oneHalf
-        case .pint: return MiseEnPlace.Fractions.oneHalf
-        case .quart: return MiseEnPlace.Fractions.oneFourth
-        case .ounce: return MiseEnPlace.Fractions.oneSixteenth
-        case .milliliter: return MiseEnPlace.Fractions.oneThousandth
-        case .gram: return MiseEnPlace.Fractions.oneThousandth
+        case .pinch: return Fractions.oneHalf
+        case .dash: return Fractions.oneEighth
+        case .teaspoon: return Fractions.oneThird
+        case .tablespoon: return Fractions.oneHalf
+        case .fluidOunce: return Fractions.oneEighth
+        case .cup: return Fractions.oneHalf
+        case .pint: return Fractions.oneHalf
+        case .quart: return Fractions.oneFourth
+        case .ounce: return Fractions.oneSixteenth
+        case .milliliter: return Fractions.oneThousandth
+        case .gram: return Fractions.oneThousandth
         default: return 0
         }
     }

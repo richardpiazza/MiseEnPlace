@@ -10,10 +10,10 @@
 		E1215CA71D7B5F0200C9B55C /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CA61D7B5F0200C9B55C /* String.swift */; };
 		E1215CAB1D7B61C000C9B55C /* Ratio.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CAA1D7B61C000C9B55C /* Ratio.swift */; };
 		E1215CAD1D7B61C800C9B55C /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CAC1D7B61C800C9B55C /* Measurement.swift */; };
+		E162249D1DA6C73800AAA98A /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = E162249C1DA6C73800AAA98A /* Double.swift */; };
 		E19EA2DC1D91CAC60068A3E6 /* Multipliers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19EA2DB1D91CAC60068A3E6 /* Multipliers.swift */; };
 		E19EA2DE1D91CAF50068A3E6 /* Fractions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19EA2DD1D91CAF50068A3E6 /* Fractions.swift */; };
 		E1A4181D1C77E40E0025D094 /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418121C77E40E0025D094 /* Convertable.swift */; };
-		E1A4181F1C77E40E0025D094 /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418141C77E40E0025D094 /* Float.swift */; };
 		E1A418211C77E40E0025D094 /* MeasurementMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418161C77E40E0025D094 /* MeasurementMethod.swift */; };
 		E1A418221C77E40E0025D094 /* MeasurementSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418171C77E40E0025D094 /* MeasurementSystem.swift */; };
 		E1A418231C77E40E0025D094 /* MeasurementSystemMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418181C77E40E0025D094 /* MeasurementSystemMethod.swift */; };
@@ -46,10 +46,10 @@
 		E12682221D26F699006B4887 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		E12682241D26F70E006B4887 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E12682261D26F714006B4887 /* MiseEnPlace.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MiseEnPlace.podspec; sourceTree = "<group>"; };
+		E162249C1DA6C73800AAA98A /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		E19EA2DB1D91CAC60068A3E6 /* Multipliers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Multipliers.swift; sourceTree = "<group>"; };
 		E19EA2DD1D91CAF50068A3E6 /* Fractions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fractions.swift; sourceTree = "<group>"; };
 		E1A418121C77E40E0025D094 /* Convertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convertable.swift; sourceTree = "<group>"; };
-		E1A418141C77E40E0025D094 /* Float.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Float.swift; sourceTree = "<group>"; };
 		E1A418161C77E40E0025D094 /* MeasurementMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementMethod.swift; sourceTree = "<group>"; };
 		E1A418171C77E40E0025D094 /* MeasurementSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementSystem.swift; sourceTree = "<group>"; };
 		E1A418181C77E40E0025D094 /* MeasurementSystemMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementSystemMethod.swift; sourceTree = "<group>"; };
@@ -106,7 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				E1A418121C77E40E0025D094 /* Convertable.swift */,
-				E1A418141C77E40E0025D094 /* Float.swift */,
+				E162249C1DA6C73800AAA98A /* Double.swift */,
 				E19EA2DD1D91CAF50068A3E6 /* Fractions.swift */,
 				E1215CAC1D7B61C800C9B55C /* Measurement.swift */,
 				E1A418161C77E40E0025D094 /* MeasurementMethod.swift */,
@@ -286,7 +286,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1A418211C77E40E0025D094 /* MeasurementMethod.swift in Sources */,
-				E1A4181F1C77E40E0025D094 /* Float.swift in Sources */,
 				E1215CA71D7B5F0200C9B55C /* String.swift in Sources */,
 				E1A418241C77E40E0025D094 /* MeasurementUnit.swift in Sources */,
 				E19EA2DC1D91CAC60068A3E6 /* Multipliers.swift in Sources */,
@@ -295,6 +294,7 @@
 				E1215CAD1D7B61C800C9B55C /* Measurement.swift in Sources */,
 				E1215CAB1D7B61C000C9B55C /* Ratio.swift in Sources */,
 				E1A418221C77E40E0025D094 /* MeasurementSystem.swift in Sources */,
+				E162249D1DA6C73800AAA98A /* Double.swift in Sources */,
 				E1A4181D1C77E40E0025D094 /* Convertable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -40,8 +40,8 @@ class UnmeasuredTests: XCTestCase {
         ingredient.measurement.unit = .each
         ingredient.measurement.amount = 3
         
-        let scaleMeasure = ingredient.scale(by: MiseEnPlace.Fractions.oneThird, measurementSystemMethod: .metricMass)
-        XCTAssertTrue(scaleMeasure.amount == 3.0 * MiseEnPlace.Fractions.oneThird)
+        let scaleMeasure = ingredient.scale(by: Fractions.oneThird, measurementSystemMethod: .metricMass)
+        XCTAssertTrue(scaleMeasure.amount == 3.0 * Fractions.oneThird)
         XCTAssertTrue(scaleMeasure.unit == .each)
         
         let interpret = scaleMeasure.componentsTranslation
@@ -57,6 +57,6 @@ class UnmeasuredTests: XCTestCase {
         XCTAssertTrue(scaleMeasure.unit == .each)
         
         let interpret = scaleMeasure.componentsTranslation
-        XCTAssertTrue(interpret == "1" + MiseEnPlace.Fractions.oneThirdSymbol + " Each")
+        XCTAssertTrue(interpret == "1" + Fractions.oneThirdSymbol + " Each")
     }
 }

@@ -33,10 +33,16 @@ public struct Measurement {
     /// Changes the default behavior of the `Measurement` translation functions.
     public static var abbreviateTranslations: Bool = false
     
-    public var amount: Float = 0.0
+    fileprivate static var singleDecimalFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 1
+        return formatter
+    }
+    
+    public var amount: Double = 0.0
     public var unit: MeasurementUnit = .each
     
-    public init(amount: Float, unit: MeasurementUnit) {
+    public init(amount: Double, unit: MeasurementUnit) {
         self.amount = amount
         self.unit = unit
     }
@@ -145,17 +151,21 @@ public struct Measurement {
             if decomposedAmount.1 == 0.0 {
                 return "\(Int(amount)) \(unitName)"
             } else {
-                return "\(amount.oneDecimalValue) \(unitName)"
+                guard let singleDecimal = type(of: self).singleDecimalFormatter.string(from: NSNumber(value: amount)) else {
+                    return "\(amount) \(unitName)"
+                }
+                
+                return "\(singleDecimal) \(unitName)"
             }
         } else if decomposedAmount.0 < 100.0 {
             if unit.shouldRoundWhenTranslated {
-                return "\(Int(roundf(amount))) \(unitName)"
+                return "\(Int(round(amount))) \(unitName)"
             } else {
                 return "\(Int(amount)) \(unitName)"
             }
         } else {
             if unit.shouldRoundWhenTranslated {
-                return "\(Int(roundf(amount / 5) * 5)) \(unitName)"
+                return "\(Int(round(amount / 5) * 5)) \(unitName)"
             } else {
                 return "\(Int(amount)) \(unitName)"
             }

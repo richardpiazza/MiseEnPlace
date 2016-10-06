@@ -1,6 +1,6 @@
 //===----------------------------------------------------------------------===//
 //
-// Float.swift
+// Double.swift
 //
 // Copyright (c) 2015 Richard Piazza
 // https://github.com/richardpiazza/MiseEnPlace
@@ -27,27 +27,11 @@
 
 import Foundation
 
-internal extension Float {
+public extension Double {
     
-    internal var integerValue: Int {
-        return Int(roundf(self))
-    }
-    
-    internal var oneDecimalValue: Float {
-        return NSString(format: "%.1f", self).floatValue
-    }
-    
-    internal var twoDecimalValue: Float {
-        return NSString(format: "%.2f", self).floatValue
-    }
-    
-    internal var threeDecimalValue: Float {
-        return NSString(format: "%.3f", self).floatValue
-    }
-    
-    internal func equals(value: Float, precision: Int) -> Bool {
+    public func equals(_ value: Double, precision: Int) -> Bool {
         if self == value {
-            return true;
+            return true
         }
         
         switch (precision) {
@@ -67,51 +51,51 @@ internal extension Float {
     /// Value less than 1/4 (0.25) rounds to 0.0.
     ///
     /// Smaller fractional values are not relevent to MiseEnPlace.
-    internal var nearestKnownFraction: Float {
-        if self >= MiseEnPlace.Fractions.sevenEighths {
+    public var nearestKnownFraction: Double {
+        if self >= Fractions.sevenEighths {
             return 1.0
-        } else if self >= MiseEnPlace.Fractions.threeFourthsDecimalBoundary {
-            return MiseEnPlace.Fractions.threeFourths
-        } else if self >= MiseEnPlace.Fractions.twoThirdsDecimalBoundary {
-            return MiseEnPlace.Fractions.twoThirds
-        } else if self >= MiseEnPlace.Fractions.fiveEighthsDecimalBoundary {
-            return MiseEnPlace.Fractions.fiveEighths
-        } else if self >= MiseEnPlace.Fractions.oneHalfDecimalBoundary {
-            return MiseEnPlace.Fractions.oneHalf
-        } else if self >= MiseEnPlace.Fractions.oneThirdDecimalBoundary {
-            return MiseEnPlace.Fractions.oneThird
-        } else if self >= MiseEnPlace.Fractions.oneFourthDecimalBoundary {
-            return MiseEnPlace.Fractions.oneFourth
+        } else if self >= Fractions.threeFourthsDecimalBoundary {
+            return Fractions.threeFourths
+        } else if self >= Fractions.twoThirdsDecimalBoundary {
+            return Fractions.twoThirds
+        } else if self >= Fractions.fiveEighthsDecimalBoundary {
+            return Fractions.fiveEighths
+        } else if self >= Fractions.oneHalfDecimalBoundary {
+            return Fractions.oneHalf
+        } else if self >= Fractions.oneThirdDecimalBoundary {
+            return Fractions.oneThird
+        } else if self >= Fractions.oneFourthDecimalBoundary {
+            return Fractions.oneFourth
         }
         
         return 0.0
     }
-
+    
     
     /// Returns the unicode symbol (or empty string) for known fraction values.
-    internal var fractionSymbol: String {
-        if self == MiseEnPlace.Fractions.sevenEighths || twoDecimalValue == MiseEnPlace.Fractions.sevenEighths.twoDecimalValue {
-            return MiseEnPlace.Fractions.sevenEighthsSymbol
-        } else if self == MiseEnPlace.Fractions.threeFourths || twoDecimalValue == MiseEnPlace.Fractions.threeFourths.twoDecimalValue {
-            return MiseEnPlace.Fractions.threeFourthsSymbol
-        } else if self == MiseEnPlace.Fractions.twoThirds || twoDecimalValue == MiseEnPlace.Fractions.twoThirds.twoDecimalValue {
-            return MiseEnPlace.Fractions.twoThirdsSymbol
-        } else if self == MiseEnPlace.Fractions.fiveEighths || twoDecimalValue == MiseEnPlace.Fractions.fiveEighths.twoDecimalValue {
-            return MiseEnPlace.Fractions.fiveEighthsSymbol
-        } else if self == MiseEnPlace.Fractions.oneHalf || twoDecimalValue == MiseEnPlace.Fractions.oneHalf.twoDecimalValue {
-            return MiseEnPlace.Fractions.oneHalfSymbol
-        } else if self == MiseEnPlace.Fractions.oneThird || twoDecimalValue == MiseEnPlace.Fractions.oneThird.twoDecimalValue {
-            return MiseEnPlace.Fractions.oneThirdSymbol
-        } else if self == MiseEnPlace.Fractions.oneFourth || twoDecimalValue == MiseEnPlace.Fractions.oneFourth.twoDecimalValue {
-            return MiseEnPlace.Fractions.oneFourthSymbol
+    public var fractionSymbol: String {
+        if self == Fractions.sevenEighths || self.equals(Fractions.sevenEighths, precision: 2) {
+            return Fractions.sevenEighthsSymbol
+        } else if self == Fractions.threeFourths || self.equals(Fractions.threeFourths, precision: 2) {
+            return Fractions.threeFourthsSymbol
+        } else if self == Fractions.twoThirds || self.equals(Fractions.twoThirds, precision: 2) {
+            return Fractions.twoThirdsSymbol
+        } else if self == Fractions.fiveEighths || self.equals(Fractions.fiveEighths, precision: 2) {
+            return Fractions.fiveEighthsSymbol
+        } else if self == Fractions.oneHalf || self.equals(Fractions.oneHalf, precision: 2) {
+            return Fractions.oneHalfSymbol
+        } else if self == Fractions.oneThird || self.equals(Fractions.oneThird, precision: 2) {
+            return Fractions.oneThirdSymbol
+        } else if self == Fractions.oneFourth || self.equals(Fractions.oneFourth, precision: 2) {
+            return Fractions.oneFourthSymbol
         }
         
         return ""
     }
     
-    /// Converts an amoutn from one `MeasurementUnit` to another `MeasurementUnit`
+    /// Converts an amount from one `MeasurementUnit` to another `MeasurementUnit`
     /// within the same `MeasurementSystemMethod`
-    internal func convert(from fromUnit: MeasurementUnit, to toUnit: MeasurementUnit) -> Float {
+    public func convert(from fromUnit: MeasurementUnit, to toUnit: MeasurementUnit) -> Double {
         guard let _ = fromUnit.measurementSystemMethod else {
             return 0.0
         }
