@@ -33,6 +33,10 @@ public struct Ratio {
     public var volume: Double = 1.0
     public var mass: Double = 1.0
     
+    public init() {
+        
+    }
+    
     public init(volume: Double, mass: Double) {
         self.volume = volume
         self.mass = mass

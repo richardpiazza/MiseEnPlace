@@ -42,6 +42,10 @@ public struct Measurement {
     public var amount: Double = 0.0
     public var unit: MeasurementUnit = .each
     
+    public init() {
+        
+    }
+    
     public init(amount: Double, unit: MeasurementUnit) {
         self.amount = amount
         self.unit = unit
