@@ -29,9 +29,9 @@ import Foundation
 
 /// A single structure that represents all parameters needed for a scaling operation.
 public struct ScaleParameters {
-    var multiplier: Double = 1.0
-    var measurementSystem: MeasurementSystem?
-    var measurementMethod: MeasurementMethod?
+    public var multiplier: Double = 1.0
+    public var measurementSystem: MeasurementSystem?
+    public var measurementMethod: MeasurementMethod?
     
     public init() {
         
