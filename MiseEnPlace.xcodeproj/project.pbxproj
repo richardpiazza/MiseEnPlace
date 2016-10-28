@@ -13,7 +13,7 @@
 		E1375E611DA949C800AA6B8F /* ScaleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1375E601DA949C800AA6B8F /* ScaleParameters.swift */; };
 		E162249D1DA6C73800AAA98A /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = E162249C1DA6C73800AAA98A /* Double.swift */; };
 		E19EA2DC1D91CAC60068A3E6 /* Multipliers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19EA2DB1D91CAC60068A3E6 /* Multipliers.swift */; };
-		E19EA2DE1D91CAF50068A3E6 /* Fractions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19EA2DD1D91CAF50068A3E6 /* Fractions.swift */; };
+		E19EA2DE1D91CAF50068A3E6 /* Fraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19EA2DD1D91CAF50068A3E6 /* Fraction.swift */; };
 		E1A4181D1C77E40E0025D094 /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418121C77E40E0025D094 /* Convertable.swift */; };
 		E1A418211C77E40E0025D094 /* MeasurementMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418161C77E40E0025D094 /* MeasurementMethod.swift */; };
 		E1A418221C77E40E0025D094 /* MeasurementSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418171C77E40E0025D094 /* MeasurementSystem.swift */; };
@@ -50,7 +50,7 @@
 		E1375E601DA949C800AA6B8F /* ScaleParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleParameters.swift; sourceTree = "<group>"; };
 		E162249C1DA6C73800AAA98A /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		E19EA2DB1D91CAC60068A3E6 /* Multipliers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Multipliers.swift; sourceTree = "<group>"; };
-		E19EA2DD1D91CAF50068A3E6 /* Fractions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fractions.swift; sourceTree = "<group>"; };
+		E19EA2DD1D91CAF50068A3E6 /* Fraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fraction.swift; sourceTree = "<group>"; };
 		E1A418121C77E40E0025D094 /* Convertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convertable.swift; sourceTree = "<group>"; };
 		E1A418161C77E40E0025D094 /* MeasurementMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementMethod.swift; sourceTree = "<group>"; };
 		E1A418171C77E40E0025D094 /* MeasurementSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementSystem.swift; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 			children = (
 				E1A418121C77E40E0025D094 /* Convertable.swift */,
 				E162249C1DA6C73800AAA98A /* Double.swift */,
-				E19EA2DD1D91CAF50068A3E6 /* Fractions.swift */,
+				E19EA2DD1D91CAF50068A3E6 /* Fraction.swift */,
 				E1215CAC1D7B61C800C9B55C /* Measurement.swift */,
 				E1A418161C77E40E0025D094 /* MeasurementMethod.swift */,
 				E1A418171C77E40E0025D094 /* MeasurementSystem.swift */,
@@ -294,7 +294,7 @@
 				E19EA2DC1D91CAC60068A3E6 /* Multipliers.swift in Sources */,
 				E1375E611DA949C800AA6B8F /* ScaleParameters.swift in Sources */,
 				E1A418231C77E40E0025D094 /* MeasurementSystemMethod.swift in Sources */,
-				E19EA2DE1D91CAF50068A3E6 /* Fractions.swift in Sources */,
+				E19EA2DE1D91CAF50068A3E6 /* Fraction.swift in Sources */,
 				E1215CAD1D7B61C800C9B55C /* Measurement.swift in Sources */,
 				E1215CAB1D7B61C000C9B55C /* Ratio.swift in Sources */,
 				E1A418221C77E40E0025D094 /* MeasurementSystem.swift in Sources */,

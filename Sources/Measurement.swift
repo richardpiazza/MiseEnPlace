@@ -185,22 +185,22 @@ public struct Measurement {
         }
         
         let intergral = Int(decomposedAmount.0)
-        let fractional = decomposedAmount.1.nearestKnownFraction
+        let fraction = Fraction(closestValue: decomposedAmount.1)
         
-        if fractional == 1.0 {
-            //intergral = intergral + 1
+        switch fraction {
+        case .one:
             return "\(Int(intergral + 1)) \(unitName)"
-        } else if fractional == 0.0 {
+        case .zero:
             if intergral == 0 {
                 return "\(amount) \(unitName)"
             } else {
                 return "\(intergral) \(unitName)"
             }
-        } else {
+        default:
             if intergral == 0 {
-                return "\(fractional.fractionSymbol) \(unitName)"
+                return "\(fraction.symbol) \(unitName)"
             } else {
-                return "\(intergral)\(fractional.fractionSymbol) \(unitName)"
+                return "\(intergral)\(fraction.symbol) \(unitName)"
             }
         }
     }

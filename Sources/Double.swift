@@ -46,53 +46,6 @@ public extension Double {
         }
     }
     
-    /// Rounds to the nearest known fraction value.
-    /// Values greater than 7/8 (0.875) rounds to 1.0.
-    /// Value less than 1/4 (0.25) rounds to 0.0.
-    ///
-    /// Smaller fractional values are not relevent to MiseEnPlace.
-    public var nearestKnownFraction: Double {
-        if self >= Fractions.sevenEighths {
-            return 1.0
-        } else if self >= Fractions.threeFourthsDecimalBoundary {
-            return Fractions.threeFourths
-        } else if self >= Fractions.twoThirdsDecimalBoundary {
-            return Fractions.twoThirds
-        } else if self >= Fractions.fiveEighthsDecimalBoundary {
-            return Fractions.fiveEighths
-        } else if self >= Fractions.oneHalfDecimalBoundary {
-            return Fractions.oneHalf
-        } else if self >= Fractions.oneThirdDecimalBoundary {
-            return Fractions.oneThird
-        } else if self >= Fractions.oneFourthDecimalBoundary {
-            return Fractions.oneFourth
-        }
-        
-        return 0.0
-    }
-    
-    
-    /// Returns the unicode symbol (or empty string) for known fraction values.
-    public var fractionSymbol: String {
-        if self == Fractions.sevenEighths || self.equals(Fractions.sevenEighths, precision: 2) {
-            return Fractions.sevenEighthsSymbol
-        } else if self == Fractions.threeFourths || self.equals(Fractions.threeFourths, precision: 2) {
-            return Fractions.threeFourthsSymbol
-        } else if self == Fractions.twoThirds || self.equals(Fractions.twoThirds, precision: 2) {
-            return Fractions.twoThirdsSymbol
-        } else if self == Fractions.fiveEighths || self.equals(Fractions.fiveEighths, precision: 2) {
-            return Fractions.fiveEighthsSymbol
-        } else if self == Fractions.oneHalf || self.equals(Fractions.oneHalf, precision: 2) {
-            return Fractions.oneHalfSymbol
-        } else if self == Fractions.oneThird || self.equals(Fractions.oneThird, precision: 2) {
-            return Fractions.oneThirdSymbol
-        } else if self == Fractions.oneFourth || self.equals(Fractions.oneFourth, precision: 2) {
-            return Fractions.oneFourthSymbol
-        }
-        
-        return ""
-    }
-    
     /// Converts an amount from one `MeasurementUnit` to another `MeasurementUnit`
     /// within the same `MeasurementSystemMethod`
     public func convert(from fromUnit: MeasurementUnit, to toUnit: MeasurementUnit) -> Double {

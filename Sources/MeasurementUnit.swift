@@ -229,34 +229,34 @@ public enum MeasurementUnit: Int {
     
     public var stepDownMultiplier: Double {
         switch self {
-        case .dash: return Fractions.oneHalf
-        case .teaspoon: return Fractions.oneEighth
-        case .tablespoon: return Fractions.oneThird
-        case .fluidOunce: return Fractions.oneHalf
-        case .cup: return Fractions.oneEighth
-        case .pint: return Fractions.oneHalf
-        case .quart: return Fractions.oneHalf
-        case .gallon: return Fractions.oneFourth
-        case .pound: return Fractions.oneSixteenth
-        case .liter: return Fractions.oneThousandth
-        case .kilogram: return Fractions.oneThousandth
+        case .dash: return Fraction.oneHalf.rawValue
+        case .teaspoon: return Fraction.oneEighth.rawValue
+        case .tablespoon: return Fraction.oneThird.rawValue
+        case .fluidOunce: return Fraction.oneHalf.rawValue
+        case .cup: return Fraction.oneEighth.rawValue
+        case .pint: return Fraction.oneHalf.rawValue
+        case .quart: return Fraction.oneHalf.rawValue
+        case .gallon: return Fraction.oneFourth.rawValue
+        case .pound: return Fraction.oneSixteenth.rawValue
+        case .liter: return Fraction.oneThousandth.rawValue
+        case .kilogram: return Fraction.oneThousandth.rawValue
         default: return 0
         }
     }
     
     public var stepUpMultiplier: Double {
         switch self {
-        case .pinch: return Fractions.oneHalf
-        case .dash: return Fractions.oneEighth
-        case .teaspoon: return Fractions.oneThird
-        case .tablespoon: return Fractions.oneHalf
-        case .fluidOunce: return Fractions.oneEighth
-        case .cup: return Fractions.oneHalf
-        case .pint: return Fractions.oneHalf
-        case .quart: return Fractions.oneFourth
-        case .ounce: return Fractions.oneSixteenth
-        case .milliliter: return Fractions.oneThousandth
-        case .gram: return Fractions.oneThousandth
+        case .pinch: return Fraction.oneHalf.rawValue
+        case .dash: return Fraction.oneEighth.rawValue
+        case .teaspoon: return Fraction.oneThird.rawValue
+        case .tablespoon: return Fraction.oneHalf.rawValue
+        case .fluidOunce: return Fraction.oneEighth.rawValue
+        case .cup: return Fraction.oneHalf.rawValue
+        case .pint: return Fraction.oneHalf.rawValue
+        case .quart: return Fraction.oneFourth.rawValue
+        case .ounce: return Fraction.oneSixteenth.rawValue
+        case .milliliter: return Fraction.oneThousandth.rawValue
+        case .gram: return Fraction.oneThousandth.rawValue
         default: return 0
         }
     }
