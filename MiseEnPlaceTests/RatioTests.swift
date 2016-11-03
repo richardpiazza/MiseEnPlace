@@ -12,7 +12,7 @@ import MiseEnPlace
 class RatioTests: XCTestCase {
     
     fileprivate class MeasurementConvertable: NSObject, Convertable {
-        var measurement = Measurement(amount: 1.0, unit: .gram)
+        var measurement = CookingMeasurement(amount: 1.0, unit: .gram)
         var ratio = Ratio(volume: 1.0, mass: 1.0)
     }
     

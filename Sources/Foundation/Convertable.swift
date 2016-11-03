@@ -30,7 +30,7 @@ import Foundation
 /// ## Convertable
 /// Protocol specifying properties needing to be supplied for conversion.
 public protocol Convertable {
-    var measurement: Measurement { get }
+    var measurement: CookingMeasurement { get }
     var ratio: Ratio { get }
 }
 
@@ -150,18 +150,18 @@ public extension Convertable {
     ///
     /// All `MeasurementUnit`s of a given system are tested, and the unit having
     /// the multiplied total within its stepUp and stepDown range will be returned.
-    public func scale(by multiplier: Double, measurementSystemMethod: MeasurementSystemMethod) -> Measurement {
+    public func scale(by multiplier: Double, measurementSystemMethod: MeasurementSystemMethod) -> CookingMeasurement {
         if measurement.unit == .asNeeded {
             return measurement
         } else if measurement.unit == .each {
-            return Measurement(amount: measurement.amount * multiplier, unit: measurement.unit)
+            return CookingMeasurement(amount: measurement.amount * multiplier, unit: measurement.unit)
         }
         
         let measurementUnits = Array(MeasurementUnit.measurementUnits(forMeasurementSystemMethod: measurementSystemMethod).reversed())
         for unit in measurementUnits {
             let total = amount(for: unit) * multiplier
             if total >= unit.stepDownThreshold {
-                return Measurement(amount: total, unit: unit)
+                return CookingMeasurement(amount: total, unit: unit)
             }
         }
         
@@ -171,11 +171,11 @@ public extension Convertable {
     /// Wrapper for scale(by:measurementSystemMethod:)
     /// Determines the `MeasurementSystemMethod` based on the `MeasurementSystem` and
     /// `MeasurementMethod` provided.
-    public func scale(by multiplier: Double, measurementSystem: MeasurementSystem?, measurementMethod: MeasurementMethod?) -> Measurement {
+    public func scale(by multiplier: Double, measurementSystem: MeasurementSystem?, measurementMethod: MeasurementMethod?) -> CookingMeasurement {
         if measurement.unit == .asNeeded {
             return measurement
         } else if measurement.unit == .each {
-            return Measurement(amount: measurement.amount * multiplier, unit: measurement.unit)
+            return CookingMeasurement(amount: measurement.amount * multiplier, unit: measurement.unit)
         }
         
         guard let measurementSystemMethod = measurement.unit.measurementSystemMethod else {
@@ -184,7 +184,7 @@ public extension Convertable {
         
         if measurementSystem == nil {
             if measurementMethod == nil {
-                return Measurement(amount: measurement.amount, unit: measurement.unit)
+                return CookingMeasurement(amount: measurement.amount, unit: measurement.unit)
             } else if measurementMethod! == .volume {
                 if measurementSystemMethod == .usVolume || measurementSystemMethod == .usMass {
                     return scale(by: multiplier, measurementSystemMethod: .usVolume)
@@ -228,7 +228,7 @@ public extension Convertable {
     }
     
     /// Wrapper for scale(by:measurementSystem:measurementMethod)
-    public func scale(with parameters: ScaleParameters) -> Measurement {
+    public func scale(with parameters: ScaleParameters) -> CookingMeasurement {
         return scale(by: parameters.multiplier, measurementSystem: parameters.measurementSystem, measurementMethod: parameters.measurementMethod)
     }
 }

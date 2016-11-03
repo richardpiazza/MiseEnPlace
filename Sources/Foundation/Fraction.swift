@@ -26,6 +26,8 @@
 //===----------------------------------------------------------------------===//
 import Foundation
 
+/// ## Fraction
+/// Enumeration of commonly used fractions in cooking.
 public enum Fraction: Double {
     case zero = 0.0
     case oneThousandth = 0.001
@@ -63,6 +65,28 @@ public enum Fraction: Double {
         self = .zero
     }
     
+    public init?(commonValue value: Double) {
+        for fraction in Fraction.zeroBasedCommonFractions {
+            if fraction.rawValue == value {
+                self = fraction
+                return
+            }
+        }
+        
+        return nil
+    }
+    
+    public init?(symbolValue value: Double) {
+        for fraction in Fraction.zeroBasedSymbolFractions {
+            if fraction.rawValue == value {
+                self = fraction
+                return
+            }
+        }
+        
+        return nil
+    }
+    
     /// The threshold at which the next smallest fraction should be used.
     /// Values greater than 7/8 (0.875) should be considered 1.0 (.one).
     /// Values less than 1/4 (0.25) should be considered 0.0 (.zero).
@@ -82,7 +106,7 @@ public enum Fraction: Double {
     }
     
     /// The unicode symbol (or empty string) for known fraction values.
-    public var symbol: String {
+    public var stringValue: String {
         switch self {
         case .oneThousandth: return "\u{215F}1000"
         case .oneSixteenth: return "\u{215F}16"

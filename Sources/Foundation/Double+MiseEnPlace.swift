@@ -1,6 +1,6 @@
 //===----------------------------------------------------------------------===//
 //
-// Double.swift
+// Double+MiseEnPlace.swift
 //
 // Copyright (c) 2015 Richard Piazza
 // https://github.com/richardpiazza/MiseEnPlace

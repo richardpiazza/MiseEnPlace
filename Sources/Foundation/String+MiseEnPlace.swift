@@ -1,6 +1,6 @@
 //===----------------------------------------------------------------------===//
 //
-// String.swift
+// String+MiseEnPlace.swift
 //
 // Copyright (c) 2016 Richard Piazza
 // https://github.com/richardpiazza/MiseEnPlace

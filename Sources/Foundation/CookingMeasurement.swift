@@ -29,7 +29,7 @@ import Foundation
 
 /// ## Measurement
 /// An amount/unit pairing
-public struct Measurement {
+public struct CookingMeasurement {
     /// Changes the default behavior of the `Measurement` translation functions.
     public static var abbreviateTranslations: Bool = false
     
@@ -53,7 +53,7 @@ public struct Measurement {
     
     /// Returns this `Measurement` in terms of the current `MeasurementUnit` and
     /// the next smallest `MeasurementUnit` if needed.
-    public var components: [Measurement] {
+    public var components: [CookingMeasurement] {
         guard unit != .asNeeded && unit != .each else {
             return [self]
         }
@@ -63,19 +63,19 @@ public struct Measurement {
             return [self]
         }
         
-        var components = [Measurement]()
+        var components = [CookingMeasurement]()
         
         switch unit {
         case .kilogram, .liter, .pound, .tablespoon, .teaspoon, .fluidOunce, .cup, .pint, .quart, .gallon:
             if decomposedAmount.0 != 0 {
-                components.append(Measurement(amount: decomposedAmount.0, unit: unit))
+                components.append(CookingMeasurement(amount: decomposedAmount.0, unit: unit))
             }
             
             if let stepDownUnit = unit.stepDownUnit, decomposedAmount.1 < unit.stepDownThreshold {
                 let stepDownMeasurement = decomposedAmount.1.convert(from: unit, to: stepDownUnit)
-                components.append(Measurement(amount: stepDownMeasurement, unit: stepDownUnit))
+                components.append(CookingMeasurement(amount: stepDownMeasurement, unit: stepDownUnit))
             } else {
-                components.append(Measurement(amount: decomposedAmount.1, unit: unit))
+                components.append(CookingMeasurement(amount: decomposedAmount.1, unit: unit))
             }
         default:
             components.append(self)
@@ -86,7 +86,7 @@ public struct Measurement {
     
     /// Returns a "human-readable" form of this `Measurement`.
     public var translation: String {
-        return translation(abbreviated: Measurement.abbreviateTranslations)
+        return translation(abbreviated: CookingMeasurement.abbreviateTranslations)
     }
     
     /// Returns a "human-readable" form of this `Measurement` with the option to 
@@ -104,7 +104,7 @@ public struct Measurement {
     
     /// Returns a "human-readable" form of the componentized `Measurement`.
     public var componentsTranslation: String {
-        return componentsTranslation(abbreviated: Measurement.abbreviateTranslations)
+        return componentsTranslation(abbreviated: CookingMeasurement.abbreviateTranslations)
     }
     
     /// Returns a "human-readable" form of the componentized `Measurement` with the
@@ -198,9 +198,9 @@ public struct Measurement {
             }
         default:
             if intergral == 0 {
-                return "\(fraction.symbol) \(unitName)"
+                return "\(fraction.stringValue) \(unitName)"
             } else {
-                return "\(intergral)\(fraction.symbol) \(unitName)"
+                return "\(intergral)\(fraction.stringValue) \(unitName)"
             }
         }
     }

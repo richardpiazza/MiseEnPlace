@@ -57,6 +57,6 @@ class UnmeasuredTests: XCTestCase {
         XCTAssertTrue(scaleMeasure.unit == .each)
         
         let interpret = scaleMeasure.componentsTranslation
-        XCTAssertTrue(interpret == "1" + Fraction.oneThird.symbol + " Each")
+        XCTAssertTrue(interpret == "1" + Fraction.oneThird.stringValue + " Each")
     }
 }

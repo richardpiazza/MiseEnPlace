@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E1215CA71D7B5F0200C9B55C /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CA61D7B5F0200C9B55C /* String.swift */; };
+		E1215CA71D7B5F0200C9B55C /* String+MiseEnPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CA61D7B5F0200C9B55C /* String+MiseEnPlace.swift */; };
 		E1215CAB1D7B61C000C9B55C /* Ratio.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CAA1D7B61C000C9B55C /* Ratio.swift */; };
-		E1215CAD1D7B61C800C9B55C /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CAC1D7B61C800C9B55C /* Measurement.swift */; };
+		E1215CAD1D7B61C800C9B55C /* CookingMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CAC1D7B61C800C9B55C /* CookingMeasurement.swift */; };
 		E1375E611DA949C800AA6B8F /* ScaleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1375E601DA949C800AA6B8F /* ScaleParameters.swift */; };
-		E162249D1DA6C73800AAA98A /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = E162249C1DA6C73800AAA98A /* Double.swift */; };
+		E162249D1DA6C73800AAA98A /* Double+MiseEnPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E162249C1DA6C73800AAA98A /* Double+MiseEnPlace.swift */; };
 		E19EA2DC1D91CAC60068A3E6 /* Multipliers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19EA2DB1D91CAC60068A3E6 /* Multipliers.swift */; };
 		E19EA2DE1D91CAF50068A3E6 /* Fraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19EA2DD1D91CAF50068A3E6 /* Fraction.swift */; };
 		E1A4181D1C77E40E0025D094 /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418121C77E40E0025D094 /* Convertable.swift */; };
@@ -19,6 +19,9 @@
 		E1A418221C77E40E0025D094 /* MeasurementSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418171C77E40E0025D094 /* MeasurementSystem.swift */; };
 		E1A418231C77E40E0025D094 /* MeasurementSystemMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418181C77E40E0025D094 /* MeasurementSystemMethod.swift */; };
 		E1A418241C77E40E0025D094 /* MeasurementUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418191C77E40E0025D094 /* MeasurementUnit.swift */; };
+		E1C08BAD1DCBDBF200759F33 /* MeasurementInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C08BAC1DCBDBF200759F33 /* MeasurementInputView.xib */; };
+		E1C08BB21DCBDBF900759F33 /* Intergral.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C08BAF1DCBDBF900759F33 /* Intergral.swift */; };
+		E1C08BB31DCBDBF900759F33 /* MeasurementInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C08BB11DCBDBF900759F33 /* MeasurementInputView.swift */; };
 		E1D646361BE6CCDC006860FD /* ConvertableIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E02CAC1B6F573900FEDC95 /* ConvertableIngredient.swift */; };
 		E1D646371BE6CCDC006860FD /* EqualRatioIngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E02CB21B6FA0EC00FEDC95 /* EqualRatioIngredientTests.swift */; };
 		E1D646381BE6CCDC006860FD /* HighVolumeRatioIngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E02CC31B70874400FEDC95 /* HighVolumeRatioIngredientTests.swift */; };
@@ -41,14 +44,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E1215CA61D7B5F0200C9B55C /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		E1215CA61D7B5F0200C9B55C /* String+MiseEnPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MiseEnPlace.swift"; sourceTree = "<group>"; };
 		E1215CAA1D7B61C000C9B55C /* Ratio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ratio.swift; sourceTree = "<group>"; };
-		E1215CAC1D7B61C800C9B55C /* Measurement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
+		E1215CAC1D7B61C800C9B55C /* CookingMeasurement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CookingMeasurement.swift; sourceTree = "<group>"; };
 		E12682221D26F699006B4887 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		E12682241D26F70E006B4887 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E12682261D26F714006B4887 /* MiseEnPlace.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MiseEnPlace.podspec; sourceTree = "<group>"; };
 		E1375E601DA949C800AA6B8F /* ScaleParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleParameters.swift; sourceTree = "<group>"; };
-		E162249C1DA6C73800AAA98A /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		E162249C1DA6C73800AAA98A /* Double+MiseEnPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+MiseEnPlace.swift"; sourceTree = "<group>"; };
 		E19EA2DB1D91CAC60068A3E6 /* Multipliers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Multipliers.swift; sourceTree = "<group>"; };
 		E19EA2DD1D91CAF50068A3E6 /* Fraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fraction.swift; sourceTree = "<group>"; };
 		E1A418121C77E40E0025D094 /* Convertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convertable.swift; sourceTree = "<group>"; };
@@ -58,6 +61,9 @@
 		E1A418191C77E40E0025D094 /* MeasurementUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementUnit.swift; sourceTree = "<group>"; };
 		E1A98CC11B71E8F50017EFB2 /* LooseConversionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LooseConversionTests.swift; sourceTree = "<group>"; };
 		E1A98CC31B72D5B50017EFB2 /* UnmeasuredTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnmeasuredTests.swift; sourceTree = "<group>"; };
+		E1C08BAC1DCBDBF200759F33 /* MeasurementInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeasurementInputView.xib; sourceTree = "<group>"; };
+		E1C08BAF1DCBDBF900759F33 /* Intergral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Intergral.swift; sourceTree = "<group>"; };
+		E1C08BB11DCBDBF900759F33 /* MeasurementInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementInputView.swift; sourceTree = "<group>"; };
 		E1E02C791B6F200A00FEDC95 /* MiseEnPlace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MiseEnPlace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E02C7D1B6F200A00FEDC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1E02C841B6F200A00FEDC95 /* MiseEnPlaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiseEnPlaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,10 +113,37 @@
 		E1A4180F1C77E40E0025D094 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				E1C08BAE1DCBDBF900759F33 /* Foundation */,
+				E1C08BB01DCBDBF900759F33 /* iOS */,
+			);
+			name = Sources;
+			path = ../Sources;
+			sourceTree = "<group>";
+		};
+		E1C08BAA1DCBDBF200759F33 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E1C08BAB1DCBDBF200759F33 /* iOS */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E1C08BAB1DCBDBF200759F33 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				E1C08BAC1DCBDBF200759F33 /* MeasurementInputView.xib */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		E1C08BAE1DCBDBF900759F33 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
 				E1A418121C77E40E0025D094 /* Convertable.swift */,
-				E162249C1DA6C73800AAA98A /* Double.swift */,
+				E1215CAC1D7B61C800C9B55C /* CookingMeasurement.swift */,
+				E162249C1DA6C73800AAA98A /* Double+MiseEnPlace.swift */,
 				E19EA2DD1D91CAF50068A3E6 /* Fraction.swift */,
-				E1215CAC1D7B61C800C9B55C /* Measurement.swift */,
+				E1C08BAF1DCBDBF900759F33 /* Intergral.swift */,
 				E1A418161C77E40E0025D094 /* MeasurementMethod.swift */,
 				E1A418171C77E40E0025D094 /* MeasurementSystem.swift */,
 				E1A418181C77E40E0025D094 /* MeasurementSystemMethod.swift */,
@@ -118,10 +151,17 @@
 				E19EA2DB1D91CAC60068A3E6 /* Multipliers.swift */,
 				E1215CAA1D7B61C000C9B55C /* Ratio.swift */,
 				E1375E601DA949C800AA6B8F /* ScaleParameters.swift */,
-				E1215CA61D7B5F0200C9B55C /* String.swift */,
+				E1215CA61D7B5F0200C9B55C /* String+MiseEnPlace.swift */,
 			);
-			name = Sources;
-			path = ../Sources;
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		E1C08BB01DCBDBF900759F33 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				E1C08BB11DCBDBF900759F33 /* MeasurementInputView.swift */,
+			);
+			path = iOS;
 			sourceTree = "<group>";
 		};
 		E1E02C6F1B6F200A00FEDC95 = {
@@ -149,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				E1E02C7C1B6F200A00FEDC95 /* Supporting Files */,
+				E1C08BAA1DCBDBF200759F33 /* Resources */,
 				E1A4180F1C77E40E0025D094 /* Sources */,
 			);
 			path = MiseEnPlace;
@@ -271,6 +312,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1C08BAD1DCBDBF200759F33 /* MeasurementInputView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,16 +331,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1A418211C77E40E0025D094 /* MeasurementMethod.swift in Sources */,
-				E1215CA71D7B5F0200C9B55C /* String.swift in Sources */,
+				E1215CA71D7B5F0200C9B55C /* String+MiseEnPlace.swift in Sources */,
+				E1C08BB31DCBDBF900759F33 /* MeasurementInputView.swift in Sources */,
 				E1A418241C77E40E0025D094 /* MeasurementUnit.swift in Sources */,
 				E19EA2DC1D91CAC60068A3E6 /* Multipliers.swift in Sources */,
 				E1375E611DA949C800AA6B8F /* ScaleParameters.swift in Sources */,
 				E1A418231C77E40E0025D094 /* MeasurementSystemMethod.swift in Sources */,
 				E19EA2DE1D91CAF50068A3E6 /* Fraction.swift in Sources */,
-				E1215CAD1D7B61C800C9B55C /* Measurement.swift in Sources */,
+				E1215CAD1D7B61C800C9B55C /* CookingMeasurement.swift in Sources */,
 				E1215CAB1D7B61C000C9B55C /* Ratio.swift in Sources */,
+				E1C08BB21DCBDBF900759F33 /* Intergral.swift in Sources */,
 				E1A418221C77E40E0025D094 /* MeasurementSystem.swift in Sources */,
-				E162249D1DA6C73800AAA98A /* Double.swift in Sources */,
+				E162249D1DA6C73800AAA98A /* Double+MiseEnPlace.swift in Sources */,
 				E1A4181D1C77E40E0025D094 /* Convertable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

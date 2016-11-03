@@ -7,10 +7,10 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = "MiseEnPlace"
-  s.version          = "3.2.0"
-  s.summary          = "A Framework for converting and interpreting common measurements used in cooking."
-  s.description      = <<-DESC
+  s.name = "MiseEnPlace"
+  s.version = "4.0.0"
+  s.summary = "A Framework for converting and interpreting common measurements used in cooking."
+  s.description = <<-DESC
   MiseEnPlace provides powerfull conversion and interpretation for any cooking application.
   MiseEnPlace makes it easy to convert between US and Metric measurements and display the results
   in a human readable way.
@@ -21,12 +21,23 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/richardpiazza'
 
   s.source = { :git => "https://github.com/richardpiazza/MiseEnPlace.git", :tag => s.version.to_s }
-  s.source_files = 'Sources/*'
   s.frameworks = 'Foundation'
   s.requires_arc = true
 
   s.osx.deployment_target = "10.12"
+  s.osx.frameworks = 'Foundation'
+  s.osx.source_files = 'Sources/Foundation/*'
+
   s.ios.deployment_target = "10.0"
+  s.ios.frameworks = 'Foundation', 'UIKit'
+  s.ios.source_files = 'Sources/Foundation/*', 'Sources/iOS/*'
+  s.ios.resources = 'Resources/iOS/*'
+
   s.tvos.deployment_target = "10.0"
+  s.tvos.frameworks = 'Foundation'
+  s.tvos.source_files = 'Sources/Foundation/*'
+
   s.watchos.deployment_target = "3.0"
+  s.watchos.frameworks = 'Foundation'
+  s.watchos.source_files = 'Sources/Foundation/*'
 end
