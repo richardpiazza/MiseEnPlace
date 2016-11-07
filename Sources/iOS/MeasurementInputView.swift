@@ -35,10 +35,14 @@ public class MeasurementInputView: UIView, UIInputViewAudioFeedback, UIPickerVie
     
     public var enableInputClicksWhenVisible: Bool = true
     public var delegate: MeasurementInputViewDelegate?
+    public var units = MeasurementUnit.allMeasurementUnits() {
+        didSet {
+            unit = units[0]
+        }
+    }
     
     private let integrals = Integral.allIntegrals
     private let fractions = Fraction.zeroBasedCommonFractions
-    private let units = MeasurementUnit.allMeasurementUnits()
     
     private var textualValue: String = "" {
         didSet {
@@ -83,6 +87,15 @@ public class MeasurementInputView: UIView, UIInputViewAudioFeedback, UIPickerVie
         view.tintColor = UIApplication.shared.delegate?.window??.tintColor
         
         return view
+    }
+    
+    public static func makeInstance(measurementMethod: MeasurementMethod) -> MeasurementInputView? {
+        guard let instance = makeInstance() else {
+            return nil
+        }
+        
+        instance.units = MeasurementUnit.measurementUnits(forMeasurementMethod: measurementMethod)
+        return instance
     }
     
     public override func awakeFromNib() {
