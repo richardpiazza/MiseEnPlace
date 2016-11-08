@@ -39,6 +39,13 @@ public struct CookingMeasurement {
         return formatter
     }
     
+    fileprivate static var significantDigitFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.usesSignificantDigits = true
+        formatter.maximumSignificantDigits = 2
+        return formatter
+    }
+    
     public var amount: Double = 0.0
     public var unit: MeasurementUnit = .each
     
@@ -192,7 +199,11 @@ public struct CookingMeasurement {
             return "\(Int(intergral + 1)) \(unitName)"
         case .zero:
             if intergral == 0 {
-                return "\(amount) \(unitName)"
+                guard let significantAmount = type(of: self).significantDigitFormatter.string(from: NSNumber(value: amount)) else {
+                    return "\(amount) \(unitName)"
+                }
+                
+                return "\(significantAmount) \(unitName)"
             } else {
                 return "\(intergral) \(unitName)"
             }

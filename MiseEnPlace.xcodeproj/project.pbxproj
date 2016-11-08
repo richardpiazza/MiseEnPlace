@@ -11,6 +11,7 @@
 		E1215CAB1D7B61C000C9B55C /* Ratio.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CAA1D7B61C000C9B55C /* Ratio.swift */; };
 		E1215CAD1D7B61C800C9B55C /* CookingMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CAC1D7B61C800C9B55C /* CookingMeasurement.swift */; };
 		E1375E611DA949C800AA6B8F /* ScaleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1375E601DA949C800AA6B8F /* ScaleParameters.swift */; };
+		E1465A921DD2208E00C5ADAD /* SignificantDigitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1465A911DD2208E00C5ADAD /* SignificantDigitTests.swift */; };
 		E162249D1DA6C73800AAA98A /* Double+MiseEnPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E162249C1DA6C73800AAA98A /* Double+MiseEnPlace.swift */; };
 		E19EA2DC1D91CAC60068A3E6 /* Multipliers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19EA2DB1D91CAC60068A3E6 /* Multipliers.swift */; };
 		E19EA2DE1D91CAF50068A3E6 /* Fraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19EA2DD1D91CAF50068A3E6 /* Fraction.swift */; };
@@ -51,6 +52,7 @@
 		E12682241D26F70E006B4887 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E12682261D26F714006B4887 /* MiseEnPlace.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MiseEnPlace.podspec; sourceTree = "<group>"; };
 		E1375E601DA949C800AA6B8F /* ScaleParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleParameters.swift; sourceTree = "<group>"; };
+		E1465A911DD2208E00C5ADAD /* SignificantDigitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignificantDigitTests.swift; sourceTree = "<group>"; };
 		E162249C1DA6C73800AAA98A /* Double+MiseEnPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+MiseEnPlace.swift"; sourceTree = "<group>"; };
 		E19EA2DB1D91CAC60068A3E6 /* Multipliers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Multipliers.swift; sourceTree = "<group>"; };
 		E19EA2DD1D91CAF50068A3E6 /* Fraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fraction.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				E1A98CC11B71E8F50017EFB2 /* LooseConversionTests.swift */,
 				E1A98CC31B72D5B50017EFB2 /* UnmeasuredTests.swift */,
 				E1E92EA31BE99950000A8C92 /* RatioTests.swift */,
+				E1465A911DD2208E00C5ADAD /* SignificantDigitTests.swift */,
 			);
 			name = Swift;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				E1D646391BE6CCDC006860FD /* HighMassRatioIngredientTests.swift in Sources */,
 				E1D646371BE6CCDC006860FD /* EqualRatioIngredientTests.swift in Sources */,
 				E1E92EA41BE99950000A8C92 /* RatioTests.swift in Sources */,
+				E1465A921DD2208E00C5ADAD /* SignificantDigitTests.swift in Sources */,
 				E1D6463C1BE6CCDC006860FD /* UnmeasuredTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
