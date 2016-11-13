@@ -184,7 +184,7 @@ public extension Convertable {
         
         if measurementSystem == nil {
             if measurementMethod == nil {
-                return CookingMeasurement(amount: measurement.amount, unit: measurement.unit)
+                return CookingMeasurement(amount: measurement.amount * multiplier, unit: measurement.unit)
             } else if measurementMethod! == .volume {
                 if measurementSystemMethod == .usVolume || measurementSystemMethod == .usMass {
                     return scale(by: multiplier, measurementSystemMethod: .usVolume)

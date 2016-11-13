@@ -14,24 +14,24 @@ public class MeasurementInputView: UIView, UIInputViewAudioFeedback, UIPickerVie
         return formatter
     }
     
-    @IBOutlet weak var entryType: UISegmentedControl!
-    @IBOutlet weak var numberPicker: UIPickerView!
-    @IBOutlet weak var unitPicker: UIPickerView!
-    @IBOutlet weak var padContainer: UIView!
-    @IBOutlet weak var zero: UIButton!
-    @IBOutlet weak var one: UIButton!
-    @IBOutlet weak var two: UIButton!
-    @IBOutlet weak var three: UIButton!
-    @IBOutlet weak var four: UIButton!
-    @IBOutlet weak var five: UIButton!
-    @IBOutlet weak var six: UIButton!
-    @IBOutlet weak var seven: UIButton!
-    @IBOutlet weak var eight: UIButton!
-    @IBOutlet weak var nine: UIButton!
-    @IBOutlet weak var decimal: UIButton!
-    @IBOutlet weak var delete: UIButton!
-    @IBOutlet weak var done: UIButton!
-    @IBOutlet weak var output: UILabel!
+    @IBOutlet weak var entryType: UISegmentedControl?
+    @IBOutlet weak var numberPicker: UIPickerView?
+    @IBOutlet weak var unitPicker: UIPickerView?
+    @IBOutlet weak var padContainer: UIView?
+    @IBOutlet weak var zero: UIButton?
+    @IBOutlet weak var one: UIButton?
+    @IBOutlet weak var two: UIButton?
+    @IBOutlet weak var three: UIButton?
+    @IBOutlet weak var four: UIButton?
+    @IBOutlet weak var five: UIButton?
+    @IBOutlet weak var six: UIButton?
+    @IBOutlet weak var seven: UIButton?
+    @IBOutlet weak var eight: UIButton?
+    @IBOutlet weak var nine: UIButton?
+    @IBOutlet weak var decimal: UIButton?
+    @IBOutlet weak var delete: UIButton?
+    @IBOutlet weak var done: UIButton?
+    @IBOutlet weak var output: UILabel?
     
     public var enableInputClicksWhenVisible: Bool = true
     public var delegate: MeasurementInputViewDelegate?
@@ -46,7 +46,7 @@ public class MeasurementInputView: UIView, UIInputViewAudioFeedback, UIPickerVie
     
     private var textualValue: String = "" {
         didSet {
-            output.text = textualValue
+            output?.text = textualValue
         }
     }
     
@@ -101,21 +101,21 @@ public class MeasurementInputView: UIView, UIInputViewAudioFeedback, UIPickerVie
     public override func awakeFromNib() {
         super.awakeFromNib()
         
-        done.layer.cornerRadius = 4.0
-        done.layer.shadowRadius = 0.0
-        done.layer.shadowColor = UIColor(red: 138/255.0, green: 139/255.0, blue: 143/255.0, alpha: 1.0).cgColor
-        done.layer.shadowOffset = CGSize(width: 0, height: 1)
-        done.layer.shadowOpacity = 1.0
-        done.layer.masksToBounds = true
-        done.clipsToBounds = true
+        done?.layer.cornerRadius = 4.0
+        done?.layer.shadowRadius = 0.0
+        done?.layer.shadowColor = UIColor(red: 138/255.0, green: 139/255.0, blue: 143/255.0, alpha: 1.0).cgColor
+        done?.layer.shadowOffset = CGSize(width: 0, height: 1)
+        done?.layer.shadowOpacity = 1.0
+        done?.layer.masksToBounds = true
+        done?.clipsToBounds = true
         
-        output.layer.cornerRadius = 4.0
-        output.layer.shadowRadius = 0.0
-        output.layer.shadowColor = UIColor(red: 138/255.0, green: 139/255.0, blue: 143/255.0, alpha: 1.0).cgColor
-        output.layer.shadowOffset = CGSize(width: 0, height: 1)
-        output.layer.shadowOpacity = 1.0
-        output.layer.masksToBounds = true
-        output.clipsToBounds = true
+        output?.layer.cornerRadius = 4.0
+        output?.layer.shadowRadius = 0.0
+        output?.layer.shadowColor = UIColor(red: 138/255.0, green: 139/255.0, blue: 143/255.0, alpha: 1.0).cgColor
+        output?.layer.shadowOffset = CGSize(width: 0, height: 1)
+        output?.layer.shadowOpacity = 1.0
+        output?.layer.masksToBounds = true
+        output?.clipsToBounds = true
     }
     
     public func setMeasurement(_ measurement: CookingMeasurement, delegate: MeasurementInputViewDelegate) {
@@ -139,21 +139,21 @@ public class MeasurementInputView: UIView, UIInputViewAudioFeedback, UIPickerVie
         if let intergralI = Integral(rawValue: i), let fractionF = Fraction(commonValue: f) {
             integral = intergralI
             if let row = integrals.index(of: integral) {
-                numberPicker.selectRow(row, inComponent: 0, animated: true)
+                numberPicker?.selectRow(row, inComponent: 0, animated: true)
             }
             
             fraction = fractionF
             if let row = fractions.index(of: fraction) {
-                numberPicker.selectRow(row, inComponent: 1, animated: true)
+                numberPicker?.selectRow(row, inComponent: 1, animated: true)
             }
         } else {
-            entryType.selectedSegmentIndex = 1
-            numberPicker.isHidden = true
-            padContainer.isHidden = false
+            entryType?.selectedSegmentIndex = 1
+            numberPicker?.isHidden = true
+            padContainer?.isHidden = false
         }
         
         if let row = units.index(of: unit) {
-            unitPicker.selectRow(row, inComponent: 0, animated: true)
+            unitPicker?.selectRow(row, inComponent: 0, animated: true)
         }
         
         self.delegate = delegate
@@ -248,11 +248,11 @@ public class MeasurementInputView: UIView, UIInputViewAudioFeedback, UIPickerVie
     // MARK: - IBActions
     @IBAction public func didChangeEntryType(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            numberPicker.isHidden = false
-            padContainer.isHidden = true
+            numberPicker?.isHidden = false
+            padContainer?.isHidden = true
         } else {
-            numberPicker.isHidden = true
-            padContainer.isHidden = false
+            numberPicker?.isHidden = true
+            padContainer?.isHidden = false
         }
     }
     

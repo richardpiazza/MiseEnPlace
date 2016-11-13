@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name = "MiseEnPlace"
-  s.version = "4.0.2"
+  s.version = "4.0.3"
   s.summary = "A Framework for converting and interpreting common measurements used in cooking."
   s.description = <<-DESC
   MiseEnPlace provides powerfull conversion and interpretation for any cooking application.
