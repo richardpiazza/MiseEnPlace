@@ -32,6 +32,7 @@ import Foundation
 public protocol Convertable {
     var measurement: CookingMeasurement { get }
     var ratio: Ratio { get }
+    var eachMeasurement: CookingMeasurement? { get }
 }
 
 public extension Convertable {

@@ -14,6 +14,7 @@ class RatioTests: XCTestCase {
     fileprivate class MeasurementConvertable: NSObject, Convertable {
         var measurement = CookingMeasurement(amount: 1.0, unit: .gram)
         var ratio = Ratio(volume: 1.0, mass: 1.0)
+        var eachMeasurement: CookingMeasurement?
     }
     
     fileprivate var volumeConvertable: MeasurementConvertable = MeasurementConvertable()

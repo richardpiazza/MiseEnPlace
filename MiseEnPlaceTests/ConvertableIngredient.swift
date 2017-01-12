@@ -12,4 +12,5 @@ import MiseEnPlace
 open class ConvertableIngredient : Convertable {
     open var measurement = CookingMeasurement(amount: 0.0, unit: .asNeeded)
     open var ratio: Ratio = Ratio(volume: 1, mass: 1)
+    open var eachMeasurement: CookingMeasurement?
 }

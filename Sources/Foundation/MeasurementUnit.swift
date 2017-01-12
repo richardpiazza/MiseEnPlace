@@ -302,4 +302,13 @@ public enum MeasurementUnit: Int {
         default: return true
         }
     }
+    
+    public var isQuantifiable: Bool {
+        switch self {
+        case .asNeeded, .each:
+            return false
+        default:
+            return true
+        }
+    }
 }
