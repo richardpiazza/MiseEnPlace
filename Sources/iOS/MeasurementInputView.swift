@@ -35,7 +35,7 @@ public class MeasurementInputView: UIView, UIInputViewAudioFeedback, UIPickerVie
     
     public var enableInputClicksWhenVisible: Bool = true
     public var delegate: MeasurementInputViewDelegate?
-    public var units = MeasurementUnit.allMeasurementUnits() {
+    public var units: [MeasurementUnit] = MeasurementUnit.allMeasurementUnits {
         didSet {
             unit = units[0]
         }

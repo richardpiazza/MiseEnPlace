@@ -57,4 +57,15 @@ class EachMeasurementUnitTests: XCTestCase {
         XCTAssertEqual(scaleMeasure.unit, .each)
     }
     
+    func testEggWhite() {
+        eggWhite.measurement.amount = 8
+        eggWhite.measurement.unit = .fluidOunce
+        
+        let interpretation = eggWhite.measurement.componentsTranslation
+        XCTAssertEqual(interpretation, "8 Fluid Ounce")
+        
+        let scaleMeasure = eggWhite.scale(by: 1.0, measurementSystem: .numeric, measurementMethod: .quantity)
+        XCTAssertTrue(scaleMeasure.amount.equals(9.07, precision: 2))
+        XCTAssertEqual(scaleMeasure.unit, .each)
+    }
 }

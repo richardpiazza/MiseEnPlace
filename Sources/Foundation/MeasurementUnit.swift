@@ -58,11 +58,11 @@ public enum MeasurementUnit: Int {
     case gram = 2200
     case kilogram = 2201
     
-    public static func allMeasurementUnits() -> [MeasurementUnit] {
+    public static var allMeasurementUnits: [MeasurementUnit] {
         return [.asNeeded, .each, .pinch, .dash, .teaspoon, .tablespoon, .fluidOunce, .cup, .pint, .quart, .gallon, .ounce, .pound, .milliliter, .liter, .gram, .kilogram]
     }
     
-    public static func quantifiableMeasurementUnits() -> [MeasurementUnit] {
+    public static var quantifiableMeasurementUnits: [MeasurementUnit] {
         return [.pinch, .dash, .teaspoon, .tablespoon, .fluidOunce, .cup, .pint, .quart, .gallon, .ounce, .pound, .milliliter, .liter, .gram, .kilogram]
     }
     
@@ -86,7 +86,7 @@ public enum MeasurementUnit: Int {
     }
     
     public init?(stringValue: String) {
-        for unit in MeasurementUnit.allMeasurementUnits() {
+        for unit in MeasurementUnit.allMeasurementUnits {
             if unit.name == stringValue {
                 self = unit
                 return

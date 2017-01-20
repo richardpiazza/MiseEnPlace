@@ -201,6 +201,10 @@ public extension Convertable {
     /// Determines the `MeasurementSystemMethod` based on the `MeasurementSystem` and
     /// `MeasurementMethod` provided.
     public func scale(by multiplier: Double, measurementSystem: MeasurementSystem?, measurementMethod: MeasurementMethod?) -> CookingMeasurement {
+        if measurementSystem == .numeric || measurementMethod == .quantity {
+            return scale(by: multiplier, measurementSystemMethod: .numericQuantity)
+        }
+        
         if measurement.unit == .asNeeded {
             return measurement
         } else if measurement.unit == .each {
