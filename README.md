@@ -37,4 +37,4 @@ Represents a amount and unit pairing. A `Measurement` has several key properties
 
 #### Ratio.swift
 
-A defined relationship between volume and mass.
+A defined relationship between volume and weight.

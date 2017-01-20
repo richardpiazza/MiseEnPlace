@@ -13,12 +13,12 @@ class RatioTests: XCTestCase {
     
     fileprivate class MeasurementConvertable: NSObject, Convertable {
         var measurement = CookingMeasurement(amount: 1.0, unit: .gram)
-        var ratio = Ratio(volume: 1.0, mass: 1.0)
+        var ratio = Ratio(volume: 1.0, weight: 1.0)
         var eachMeasurement: CookingMeasurement?
     }
     
     fileprivate var volumeConvertable: MeasurementConvertable = MeasurementConvertable()
-    fileprivate var massConvertable: MeasurementConvertable = MeasurementConvertable()
+    fileprivate var weightConvertable: MeasurementConvertable = MeasurementConvertable()
     
     override func setUp() {
         super.setUp()
@@ -32,33 +32,33 @@ class RatioTests: XCTestCase {
     func testOneToOneRatio() {
         volumeConvertable.measurement.amount = 2
         volumeConvertable.measurement.unit = .fluidOunce
-        massConvertable.measurement.amount = 2
-        massConvertable.measurement.unit = .ounce
+        weightConvertable.measurement.amount = 2
+        weightConvertable.measurement.unit = .ounce
         
-        let ratio = Ratio.makeRatio(volumeConvertable: volumeConvertable, massConvertable: massConvertable)
+        let ratio = Ratio.makeRatio(volumeConvertable: volumeConvertable, weightConvertable: weightConvertable)
         XCTAssertTrue(ratio.volume == 1)
-        XCTAssertTrue(ratio.mass == 1)
+        XCTAssertTrue(ratio.weight == 1)
     }
     
     func testOneToTwoRatio() {
         volumeConvertable.measurement.amount = 2
         volumeConvertable.measurement.unit = .fluidOunce
-        massConvertable.measurement.amount = 4
-        massConvertable.measurement.unit = .ounce
+        weightConvertable.measurement.amount = 4
+        weightConvertable.measurement.unit = .ounce
         
-        let ratio = Ratio.makeRatio(volumeConvertable: volumeConvertable, massConvertable: massConvertable)
+        let ratio = Ratio.makeRatio(volumeConvertable: volumeConvertable, weightConvertable: weightConvertable)
         XCTAssertTrue(ratio.volume == 1)
-        XCTAssertTrue(ratio.mass == 2)
+        XCTAssertTrue(ratio.weight == 2)
     }
     
     func testTwoToOneRatio() {
         volumeConvertable.measurement.amount = 4
         volumeConvertable.measurement.unit = .fluidOunce
-        massConvertable.measurement.amount = 2
-        massConvertable.measurement.unit = .ounce
+        weightConvertable.measurement.amount = 2
+        weightConvertable.measurement.unit = .ounce
         
-        let ratio = Ratio.makeRatio(volumeConvertable: volumeConvertable, massConvertable: massConvertable)
+        let ratio = Ratio.makeRatio(volumeConvertable: volumeConvertable, weightConvertable: weightConvertable)
         XCTAssertTrue(ratio.volume == 2)
-        XCTAssertTrue(ratio.mass == 1)
+        XCTAssertTrue(ratio.weight == 1)
     }
 }

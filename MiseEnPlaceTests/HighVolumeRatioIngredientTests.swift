@@ -17,7 +17,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         super.setUp()
         
         ingredient.ratio.volume = 1.14
-        ingredient.ratio.mass = 1
+        ingredient.ratio.weight = 1
     }
     
     override func tearDown() {
@@ -228,7 +228,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 2
         ingredient.measurement.unit = .pound
         
-        let scaleMeasure = ingredient.scale(by: 0.25, measurementSystemMethod: .usMass)
+        let scaleMeasure = ingredient.scale(by: 0.25, measurementSystemMethod: .usWeight)
         XCTAssertTrue(scaleMeasure.amount == 8)
         XCTAssertTrue(scaleMeasure.unit == .ounce)
     }
@@ -246,7 +246,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 10
         ingredient.measurement.unit = .ounce
         
-        let scaleMeasure = ingredient.scale(by: 1.0, measurementSystemMethod: .metricMass)
+        let scaleMeasure = ingredient.scale(by: 1.0, measurementSystemMethod: .metricWeight)
         XCTAssertTrue(scaleMeasure.amount.equals(283.50, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .gram)
     }
@@ -264,7 +264,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 4
         ingredient.measurement.unit = .tablespoon
         
-        let scaleMeasure = ingredient.scale(by: 3.5, measurementSystemMethod: .usMass)
+        let scaleMeasure = ingredient.scale(by: 3.5, measurementSystemMethod: .usWeight)
         XCTAssertTrue(scaleMeasure.amount.equals(6.14, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .ounce)
     }
@@ -282,7 +282,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 1
         ingredient.measurement.unit = .gallon
         
-        let scaleMeasure = ingredient.scale(by: 1.75, measurementSystemMethod: .metricMass)
+        let scaleMeasure = ingredient.scale(by: 1.75, measurementSystemMethod: .metricWeight)
         XCTAssertTrue(scaleMeasure.amount.equals(5.57, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .kilogram)
     }
@@ -300,7 +300,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 250
         ingredient.measurement.unit = .gram
         
-        let scaleMeasure = ingredient.scale(by: Fraction.oneHalf.rawValue, measurementSystemMethod: .usMass)
+        let scaleMeasure = ingredient.scale(by: Fraction.oneHalf.rawValue, measurementSystemMethod: .usWeight)
         XCTAssertTrue(scaleMeasure.amount.equals(4.41, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .ounce)
     }
@@ -318,7 +318,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 22
         ingredient.measurement.unit = .kilogram
         
-        let scaleMeasure = ingredient.scale(by: Fraction.oneThird.rawValue, measurementSystemMethod: .metricMass)
+        let scaleMeasure = ingredient.scale(by: Fraction.oneThird.rawValue, measurementSystemMethod: .metricWeight)
         XCTAssertTrue(scaleMeasure.amount.equals(7.33, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .kilogram)
     }
@@ -336,7 +336,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 130
         ingredient.measurement.unit = .milliliter
         
-        let scaleMeasure = ingredient.scale(by: 1.01, measurementSystemMethod: .usMass)
+        let scaleMeasure = ingredient.scale(by: 1.01, measurementSystemMethod: .usWeight)
         XCTAssertTrue(scaleMeasure.amount.equals(4.06, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .ounce)
     }
@@ -354,7 +354,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         ingredient.measurement.amount = 45
         ingredient.measurement.unit = .liter
         
-        let scaleMeasure = ingredient.scale(by: 1.0, measurementSystemMethod: .metricMass)
+        let scaleMeasure = ingredient.scale(by: 1.0, measurementSystemMethod: .metricWeight)
         XCTAssertTrue(scaleMeasure.amount.equals(39.47, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .kilogram)
     }

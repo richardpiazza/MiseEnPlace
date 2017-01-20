@@ -16,7 +16,7 @@ class UnmeasuredTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        ingredient.ratio.mass = 1
+        ingredient.ratio.weight = 1
         ingredient.ratio.volume = 1
     }
     
@@ -40,7 +40,7 @@ class UnmeasuredTests: XCTestCase {
         ingredient.measurement.unit = .each
         ingredient.measurement.amount = 3
         
-        let scaleMeasure = ingredient.scale(by: Fraction.oneThird.rawValue, measurementSystemMethod: .metricMass)
+        let scaleMeasure = ingredient.scale(by: Fraction.oneThird.rawValue, measurementSystemMethod: .metricWeight)
         XCTAssertTrue(scaleMeasure.amount == 3.0 * Fraction.oneThird.rawValue)
         XCTAssertTrue(scaleMeasure.unit == .each)
         
@@ -52,7 +52,7 @@ class UnmeasuredTests: XCTestCase {
         ingredient.measurement.unit = .each
         ingredient.measurement.amount = 1
         
-        let scaleMeasure = ingredient.scale(by: 1.35, measurementSystemMethod: .metricMass)
+        let scaleMeasure = ingredient.scale(by: 1.35, measurementSystemMethod: .metricWeight)
         XCTAssertTrue(scaleMeasure.amount == 1.35)
         XCTAssertTrue(scaleMeasure.unit == .each)
         

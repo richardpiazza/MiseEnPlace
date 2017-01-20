@@ -33,11 +33,12 @@ import Foundation
 /// that it belongs to.
 /// All of the logic for how and when to convert to other units and amounts is 
 /// contained within the enum.
+/// - note: The rawValue is comprised of [`MeasurementSystem`][`MeasurementMethod`][##Unique]
 public enum MeasurementUnit: Int {
-    
-    case asNeeded = 9000
-    case each = 9001
-    
+    // numericQuantity
+    case asNeeded = 0
+    case each = 1
+    // usVolume
     case pinch = 1100
     case dash = 1101
     case teaspoon = 1102
@@ -47,13 +48,13 @@ public enum MeasurementUnit: Int {
     case pint = 1106
     case quart = 1107
     case gallon = 1108
-    
+    // usWeight
     case ounce = 1200
     case pound = 1201
-    
+    // metricVolume
     case milliliter = 2100
     case liter = 2101
-    
+    // metricWeight
     case gram = 2200
     case kilogram = 2201
     
@@ -68,17 +69,19 @@ public enum MeasurementUnit: Int {
     /// Provides an array of `MeasurementUnit` enums that correspond to the provided `MeasurementSystemMethod` enum
     public static func measurementUnits(forMeasurementSystemMethod measurementSystemMethod: MeasurementSystemMethod) -> [MeasurementUnit] {
         switch measurementSystemMethod {
+        case .numericQuantity: return [.asNeeded, .each]
         case .usVolume: return [.pinch, .dash, .teaspoon, .tablespoon, .fluidOunce, .cup, .pint, .quart, .gallon]
-        case .usMass: return [.ounce, .pound]
+        case .usWeight: return [.ounce, .pound]
         case .metricVolume: return [.milliliter, .liter]
-        case .metricMass: return [.gram, .kilogram]
+        case .metricWeight: return [.gram, .kilogram]
         }
     }
     
     public static func measurementUnits(forMeasurementMethod measurementMethod: MeasurementMethod) -> [MeasurementUnit] {
         switch measurementMethod {
+        case .quantity: return [.asNeeded, .each]
         case .volume: return [.pinch, .dash, .teaspoon, .tablespoon, .fluidOunce, .cup, .pint, .quart, .gallon, .milliliter, .liter]
-        case .mass: return [.ounce, .pound, .gram, .kilogram]
+        case .weight: return [.ounce, .pound, .gram, .kilogram]
         }
     }
     
@@ -103,6 +106,49 @@ public enum MeasurementUnit: Int {
         case "Litre":
             self = .liter
             return
+        default:
+            return nil
+        }
+    }
+    
+    /// The raw values for quantity measurements changes from v4.0 to v4.1.
+    /// Use this initializer when using 4.0 values.
+    public init?(legacyRawValue: Int) {
+        switch legacyRawValue {
+        case 9000:
+            self = .asNeeded
+        case 9001:
+            self = .each
+        case 1100:
+            self = .pinch
+        case 1101:
+            self = .dash
+        case 1102:
+            self = .teaspoon
+        case 1103:
+            self = .tablespoon
+        case 1104:
+            self = .fluidOunce
+        case 1105:
+            self = .cup
+        case 1106:
+            self = .pint
+        case 1107:
+            self = .quart
+        case 1108:
+            self = .gallon
+        case 1200:
+            self = .ounce
+        case 1201:
+            self = .pound
+        case 2100:
+            self = .milliliter
+        case 2101:
+            self = .liter
+        case 2200:
+            self = .gram
+        case 2201:
+            self = .kilogram
         default:
             return nil
         }
@@ -156,10 +202,10 @@ public enum MeasurementUnit: Int {
         return (abbreviated) ? abbreviation : name
     }
     
-    public var measurementSystem: MeasurementSystem? {
+    public var measurementSystem: MeasurementSystem {
         switch self {
         case .asNeeded, .each:
-            return nil
+            return .numeric
         case .pinch, .dash, .teaspoon, .tablespoon, .fluidOunce, .cup, .pint, .quart, .gallon, .ounce, .pound:
             return .us
         case .milliliter, .liter, .gram, .kilogram:
@@ -167,29 +213,29 @@ public enum MeasurementUnit: Int {
         }
     }
     
-    public var measurementMethod: MeasurementMethod? {
+    public var measurementMethod: MeasurementMethod {
         switch self {
         case .asNeeded, .each:
-            return nil
+            return .quantity
         case .pinch, .dash, .teaspoon, .tablespoon, .fluidOunce, .cup, .pint, .quart, .gallon, .milliliter, .liter:
             return .volume
         case .ounce, .pound, .gram, .kilogram:
-            return .mass
+            return .weight
         }
     }
     
-    public var measurementSystemMethod: MeasurementSystemMethod? {
+    public var measurementSystemMethod: MeasurementSystemMethod {
         switch self {
         case .asNeeded, .each:
-            return nil
+            return .numericQuantity
         case .pinch, .dash, .teaspoon, .tablespoon, .fluidOunce, .cup, .pint, .quart, .gallon:
             return .usVolume
         case .ounce, .pound:
-            return .usMass
+            return .usWeight
         case .milliliter, .liter:
             return .metricVolume
         case .gram, .kilogram:
-            return .metricMass
+            return .metricWeight
         }
     }
     

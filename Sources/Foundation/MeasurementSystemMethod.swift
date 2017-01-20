@@ -31,8 +31,9 @@ import Foundation
 /// The `MeasurementSystemMethod` represents the ways `MeasurementMethod`s and 
 /// `MeasurementSystem`s can be combined.
 public enum MeasurementSystemMethod: Int {
+    case numericQuantity = 00
     case usVolume = 11
-    case usMass = 12
+    case usWeight = 12
     case metricVolume = 21
-    case metricMass = 22
+    case metricWeight = 22
 }

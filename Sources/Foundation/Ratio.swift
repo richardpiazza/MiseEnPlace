@@ -28,39 +28,39 @@
 import Foundation
 
 /// ## Ratio
-/// Holds the relation between volume and mass
+/// Holds the relation between volume and weight
 public struct Ratio {
     public var volume: Double = 1.0
-    public var mass: Double = 1.0
+    public var weight: Double = 1.0
     
     public init() {
         
     }
     
-    public init(volume: Double, mass: Double) {
+    public init(volume: Double, weight: Double) {
         self.volume = volume
-        self.mass = mass
+        self.weight = weight
     }
     
-    public static func makeRatio(volumeConvertable: Convertable, massConvertable: Convertable) -> Ratio {
+    public static func makeRatio(volumeConvertable: Convertable, weightConvertable: Convertable) -> Ratio {
         let volume = volumeConvertable.amount(for: .fluidOunce)
-        let mass = massConvertable.amount(for: .ounce)
+        let weight = weightConvertable.amount(for: .ounce)
         
-        guard volume != 0.0 && mass != 0.0 else {
-            return Ratio(volume: volume, mass: mass)
+        guard volume != 0.0 && weight != 0.0 else {
+            return Ratio(volume: volume, weight: weight)
         }
         
         var ratioVolume = volume
-        var ratioMass = mass
+        var ratioWeight = weight
         
-        if volume >= mass {
-            ratioVolume = ratioVolume / ratioMass
-            ratioMass = ratioMass / ratioMass
+        if volume >= weight {
+            ratioVolume = ratioVolume / ratioWeight
+            ratioWeight = ratioWeight / ratioWeight
         } else {
-            ratioMass = ratioMass / ratioVolume
+            ratioWeight = ratioWeight / ratioVolume
             ratioVolume = ratioVolume / ratioVolume
         }
         
-        return Ratio(volume: ratioVolume, mass: ratioMass)
+        return Ratio(volume: ratioVolume, weight: ratioWeight)
     }
 }
