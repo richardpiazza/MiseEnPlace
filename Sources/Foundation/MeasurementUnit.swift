@@ -94,18 +94,14 @@ public enum MeasurementUnit: Int {
         }
         
         switch stringValue {
-        case "Quanity":
+        case "Quantity":
             self = .each
-            return
         case "FluidOunce":
             self = .fluidOunce
-            return
         case "Mililitre":
             self = .milliliter
-            return
         case "Litre":
             self = .liter
-            return
         default:
             return nil
         }
@@ -119,38 +115,12 @@ public enum MeasurementUnit: Int {
             self = .asNeeded
         case 9001:
             self = .each
-        case 1100:
-            self = .pinch
-        case 1101:
-            self = .dash
-        case 1102:
-            self = .teaspoon
-        case 1103:
-            self = .tablespoon
-        case 1104:
-            self = .fluidOunce
-        case 1105:
-            self = .cup
-        case 1106:
-            self = .pint
-        case 1107:
-            self = .quart
-        case 1108:
-            self = .gallon
-        case 1200:
-            self = .ounce
-        case 1201:
-            self = .pound
-        case 2100:
-            self = .milliliter
-        case 2101:
-            self = .liter
-        case 2200:
-            self = .gram
-        case 2201:
-            self = .kilogram
         default:
-            return nil
+            if let legacy = MeasurementUnit(rawValue: legacyRawValue) {
+                self = legacy
+            } else {
+                return nil
+            }
         }
     }
     
@@ -343,9 +313,10 @@ public enum MeasurementUnit: Int {
     
     public var shouldRoundWhenTranslated: Bool {
         switch self {
-        case .liter: return false
-        case .kilogram: return false
-        default: return true
+        case .liter, .kilogram:
+            return false
+        default:
+            return true
         }
     }
     

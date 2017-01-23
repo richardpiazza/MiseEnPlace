@@ -68,4 +68,17 @@ class EachMeasurementUnitTests: XCTestCase {
         XCTAssertTrue(scaleMeasure.amount.equals(9.07, precision: 2))
         XCTAssertEqual(scaleMeasure.unit, .each)
     }
+    
+    func testEggYolk() {
+        eggYolk.eachMeasurement = nil
+        eggYolk.measurement.amount = 4
+        eggYolk.measurement.unit = .each
+        
+        let interpretation = eggYolk.measurement.componentsTranslation
+        XCTAssertEqual(interpretation, "4 Each")
+        
+        let scaleMeasure = eggYolk.scale(with: ScaleParameters(multiplier: 3.0, measurementSystem: .metric, measurementMethod: .weight))
+        XCTAssertEqual(scaleMeasure.amount, 12)
+        XCTAssertEqual(scaleMeasure.unit, .each)
+    }
 }

@@ -27,14 +27,23 @@ The `MeasurementSystemMethod` represents the ways `MeasurementMethod`s and `Meas
 The `Convertable` protocol defines the properties needed to be able to perform conversion and translation.
 An extension to the protocol offers many important methods for scaling a measurement based on it's ratio.
 
-#### Float.swift
+#### CookingMeasurement.swift
 
-An internal extension offering fraction support and recursive calculations.
-
-#### Measurement.swift
-
-Represents a amount and unit pairing. A `Measurement` has several key properties and functions for tranlating human-readable strings.
+Represents a amount and unit pairing. A `CookingMeasurement` has several key properties and functions for tranlating human-readable strings.
 
 #### Ratio.swift
 
 A defined relationship between volume and weight.
+
+#### Double+MiseEnPlace.swift
+
+An extension to `Double` with functions for determining value quality and converting one amount to another within the same `MeasurementSystemMethod`.
+
+#### Fraction.swift
+
+An enum with fraction values used within the `MiseEnPlace` framework.
+
+#### Intergral.swift
+
+An enum with common intergral values. This is primarily used for the iOS MeasurementInputView.
+
