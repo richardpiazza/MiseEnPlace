@@ -205,35 +205,43 @@ public extension Convertable {
             return scale(by: multiplier, measurementSystemMethod: .numericQuantity)
         }
         
-        if measurement.unit == .asNeeded {
-            return measurement
-        } else if measurement.unit == .each {
-            return CookingMeasurement(amount: measurement.amount * multiplier, unit: measurement.unit)
-        }
-        
         let measurementSystemMethod = measurement.unit.measurementSystemMethod
         
         if measurementSystem == nil {
-            if measurementMethod == nil {
+            guard let measurementMethod = measurementMethod else {
                 return CookingMeasurement(amount: measurement.amount * multiplier, unit: measurement.unit)
-            } else if measurementMethod! == .volume {
-                if measurementSystemMethod == .usVolume || measurementSystemMethod == .usWeight {
+            }
+            
+            switch measurementMethod {
+            case .quantity:
+                return scale(by: multiplier, measurementSystemMethod: .numericQuantity)
+            case .volume:
+                switch measurementSystemMethod {
+                case .numericQuantity:
+                    return scale(by: multiplier, measurementSystemMethod: .numericQuantity)
+                case .usVolume, .usWeight:
                     return scale(by: multiplier, measurementSystemMethod: .usVolume)
-                } else if measurementSystemMethod == .metricVolume || measurementSystemMethod == .metricWeight {
+                case .metricVolume, .metricWeight:
                     return scale(by: multiplier, measurementSystemMethod: .metricVolume)
                 }
-            } else if measurementMethod! == .weight {
-                if measurementSystemMethod == .usVolume || measurementSystemMethod == .usWeight {
+            case .weight:
+                switch measurementSystemMethod {
+                case .numericQuantity:
+                    return scale(by: multiplier, measurementSystemMethod: .numericQuantity)
+                case .usVolume, .usWeight:
                     return scale(by: multiplier, measurementSystemMethod: .usWeight)
-                } else if measurementSystemMethod == .metricVolume || measurementSystemMethod == .metricWeight {
+                case .metricVolume, .metricWeight:
                     return scale(by: multiplier, measurementSystemMethod: .metricWeight)
                 }
             }
         } else if measurementSystem! == .us {
             if measurementMethod == nil {
-                if measurementSystemMethod == .usVolume || measurementSystemMethod == .metricVolume {
+                switch measurementSystemMethod {
+                case .numericQuantity:
+                    return scale(by: multiplier, measurementSystemMethod: .numericQuantity)
+                case .usVolume, .metricVolume:
                     return scale(by: multiplier, measurementSystemMethod: .usVolume)
-                } else if measurementSystemMethod == .usWeight || measurementSystemMethod == .metricWeight {
+                case .usWeight, .metricWeight:
                     return scale(by: multiplier, measurementSystemMethod: .usWeight)
                 }
             } else if measurementMethod! == .volume {
@@ -243,9 +251,12 @@ public extension Convertable {
             }
         } else if measurementSystem! == .metric {
             if measurementMethod == nil {
-                if measurementSystemMethod == .usVolume || measurementSystemMethod == .metricVolume {
+                switch measurementSystemMethod {
+                case .numericQuantity:
+                    return scale(by: multiplier, measurementSystemMethod: .numericQuantity)
+                case .usVolume, .metricVolume:
                     return scale(by: multiplier, measurementSystemMethod: .metricVolume)
-                } else if measurementSystemMethod == .usWeight || measurementSystemMethod == .metricWeight {
+                case .usWeight, .metricWeight:
                     return scale(by: multiplier, measurementSystemMethod: .metricWeight)
                 }
             } else if measurementMethod! == .volume {
