@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name = "MiseEnPlace"
-  s.version = "4.2.0"
+  s.version = "4.2.1"
   s.summary = "A Framework for converting and interpreting common measurements used in cooking."
   s.description = <<-DESC
   MiseEnPlace provides powerfull conversion and interpretation for any cooking application.
@@ -24,20 +24,20 @@ Pod::Spec.new do |s|
   s.frameworks = 'Foundation'
   s.requires_arc = true
 
-  s.osx.deployment_target = "10.12"
+  s.osx.deployment_target = "10.13"
   s.osx.frameworks = 'Foundation'
   s.osx.source_files = 'Sources/Foundation/*'
 
-  s.ios.deployment_target = "10.0"
+  s.ios.deployment_target = "11.0"
   s.ios.frameworks = 'Foundation', 'UIKit'
   s.ios.source_files = 'Sources/Foundation/*', 'Sources/iOS/*'
   s.ios.resources = 'Resources/iOS/*'
 
-  s.tvos.deployment_target = "10.0"
+  s.tvos.deployment_target = "11.0"
   s.tvos.frameworks = 'Foundation'
   s.tvos.source_files = 'Sources/Foundation/*'
 
-  s.watchos.deployment_target = "3.0"
+  s.watchos.deployment_target = "4.0"
   s.watchos.frameworks = 'Foundation'
   s.watchos.source_files = 'Sources/Foundation/*'
 end
