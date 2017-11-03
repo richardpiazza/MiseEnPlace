@@ -7,33 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E113B81A1E324BC000A03A0F /* EachMeasurementUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E113B8191E324BC000A03A0F /* EachMeasurementUnitTests.swift */; };
-		E113B81C1E364A7300A03A0F /* MeasurementUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E113B81B1E364A7300A03A0F /* MeasurementUnitTests.swift */; };
-		E1215CA71D7B5F0200C9B55C /* String+MiseEnPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CA61D7B5F0200C9B55C /* String+MiseEnPlace.swift */; };
-		E1215CAB1D7B61C000C9B55C /* Ratio.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CAA1D7B61C000C9B55C /* Ratio.swift */; };
-		E1215CAD1D7B61C800C9B55C /* CookingMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CAC1D7B61C800C9B55C /* CookingMeasurement.swift */; };
-		E1375E611DA949C800AA6B8F /* ScaleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1375E601DA949C800AA6B8F /* ScaleParameters.swift */; };
-		E1465A921DD2208E00C5ADAD /* SignificantDigitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1465A911DD2208E00C5ADAD /* SignificantDigitTests.swift */; };
-		E162249D1DA6C73800AAA98A /* Double+MiseEnPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E162249C1DA6C73800AAA98A /* Double+MiseEnPlace.swift */; };
-		E19EA2DC1D91CAC60068A3E6 /* Multipliers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19EA2DB1D91CAC60068A3E6 /* Multipliers.swift */; };
-		E19EA2DE1D91CAF50068A3E6 /* Fraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19EA2DD1D91CAF50068A3E6 /* Fraction.swift */; };
-		E1A4181D1C77E40E0025D094 /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418121C77E40E0025D094 /* Convertable.swift */; };
-		E1A418211C77E40E0025D094 /* MeasurementMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418161C77E40E0025D094 /* MeasurementMethod.swift */; };
-		E1A418221C77E40E0025D094 /* MeasurementSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418171C77E40E0025D094 /* MeasurementSystem.swift */; };
-		E1A418231C77E40E0025D094 /* MeasurementSystemMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418181C77E40E0025D094 /* MeasurementSystemMethod.swift */; };
-		E1A418241C77E40E0025D094 /* MeasurementUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A418191C77E40E0025D094 /* MeasurementUnit.swift */; };
-		E1C08BAD1DCBDBF200759F33 /* MeasurementInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C08BAC1DCBDBF200759F33 /* MeasurementInputView.xib */; };
-		E1C08BB21DCBDBF900759F33 /* Intergral.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C08BAF1DCBDBF900759F33 /* Intergral.swift */; };
-		E1C08BB31DCBDBF900759F33 /* MeasurementInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C08BB11DCBDBF900759F33 /* MeasurementInputView.swift */; };
-		E1D646361BE6CCDC006860FD /* ConvertableIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E02CAC1B6F573900FEDC95 /* ConvertableIngredient.swift */; };
-		E1D646371BE6CCDC006860FD /* EqualRatioIngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E02CB21B6FA0EC00FEDC95 /* EqualRatioIngredientTests.swift */; };
-		E1D646381BE6CCDC006860FD /* HighVolumeRatioIngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E02CC31B70874400FEDC95 /* HighVolumeRatioIngredientTests.swift */; };
-		E1D646391BE6CCDC006860FD /* HighMassRatioIngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E02CC51B708B7100FEDC95 /* HighMassRatioIngredientTests.swift */; };
-		E1D6463A1BE6CCDC006860FD /* InterpreterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E02CC91B70CB6500FEDC95 /* InterpreterTests.swift */; };
-		E1D6463B1BE6CCDC006860FD /* LooseConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A98CC11B71E8F50017EFB2 /* LooseConversionTests.swift */; };
-		E1D6463C1BE6CCDC006860FD /* AsNeededTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A98CC31B72D5B50017EFB2 /* AsNeededTests.swift */; };
 		E1E02C851B6F200A00FEDC95 /* MiseEnPlace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E02C791B6F200A00FEDC95 /* MiseEnPlace.framework */; };
-		E1E92EA41BE99950000A8C92 /* RatioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E92EA31BE99950000A8C92 /* RatioTests.swift */; };
+		E1E46A641FAD09A20046D564 /* ScaleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A561FAD09A20046D564 /* ScaleParameters.swift */; };
+		E1E46A651FAD09A20046D564 /* MeasurementMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A571FAD09A20046D564 /* MeasurementMethod.swift */; };
+		E1E46A661FAD09A20046D564 /* MeasurementSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A581FAD09A20046D564 /* MeasurementSystem.swift */; };
+		E1E46A671FAD09A20046D564 /* Ratio.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A591FAD09A20046D564 /* Ratio.swift */; };
+		E1E46A681FAD09A20046D564 /* Double+MiseEnPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A5A1FAD09A20046D564 /* Double+MiseEnPlace.swift */; };
+		E1E46A691FAD09A20046D564 /* MeasurementSystemMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A5B1FAD09A20046D564 /* MeasurementSystemMethod.swift */; };
+		E1E46A6A1FAD09A20046D564 /* Fraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A5C1FAD09A20046D564 /* Fraction.swift */; };
+		E1E46A6B1FAD09A20046D564 /* MeasurementInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A5D1FAD09A20046D564 /* MeasurementInputView.swift */; };
+		E1E46A6C1FAD09A20046D564 /* Intergral.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A5E1FAD09A20046D564 /* Intergral.swift */; };
+		E1E46A6D1FAD09A20046D564 /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A5F1FAD09A20046D564 /* Convertable.swift */; };
+		E1E46A6E1FAD09A20046D564 /* CookingMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A601FAD09A20046D564 /* CookingMeasurement.swift */; };
+		E1E46A6F1FAD09A20046D564 /* MeasurementUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A611FAD09A20046D564 /* MeasurementUnit.swift */; };
+		E1E46A701FAD09A20046D564 /* Multipliers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A621FAD09A20046D564 /* Multipliers.swift */; };
+		E1E46A711FAD09A20046D564 /* String+MiseEnPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A631FAD09A20046D564 /* String+MiseEnPlace.swift */; };
+		E1E46A891FAD09B50046D564 /* HighVolumeRatioIngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A731FAD09AB0046D564 /* HighVolumeRatioIngredientTests.swift */; };
+		E1E46A8A1FAD09B50046D564 /* ConvertableIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A741FAD09AB0046D564 /* ConvertableIngredient.swift */; };
+		E1E46A8B1FAD09B50046D564 /* LooseConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A751FAD09AB0046D564 /* LooseConversionTests.swift */; };
+		E1E46A8C1FAD09B50046D564 /* MeasurementUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A761FAD09AB0046D564 /* MeasurementUnitTests.swift */; };
+		E1E46A8D1FAD09B50046D564 /* HighMassRatioIngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A771FAD09AB0046D564 /* HighMassRatioIngredientTests.swift */; };
+		E1E46A8E1FAD09B50046D564 /* InterpreterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A781FAD09AB0046D564 /* InterpreterTests.swift */; };
+		E1E46A8F1FAD09B50046D564 /* EqualRatioIngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A791FAD09AB0046D564 /* EqualRatioIngredientTests.swift */; };
+		E1E46A901FAD09B50046D564 /* EachMeasurementUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A7A1FAD09AB0046D564 /* EachMeasurementUnitTests.swift */; };
+		E1E46A911FAD09B50046D564 /* RatioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A7B1FAD09AB0046D564 /* RatioTests.swift */; };
+		E1E46A921FAD09B50046D564 /* SignificantDigitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A7C1FAD09AB0046D564 /* SignificantDigitTests.swift */; };
+		E1E46A931FAD09B50046D564 /* AsNeededTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A7D1FAD09AB0046D564 /* AsNeededTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,39 +46,38 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E113B8191E324BC000A03A0F /* EachMeasurementUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachMeasurementUnitTests.swift; sourceTree = "<group>"; };
-		E113B81B1E364A7300A03A0F /* MeasurementUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementUnitTests.swift; sourceTree = "<group>"; };
-		E1215CA61D7B5F0200C9B55C /* String+MiseEnPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MiseEnPlace.swift"; sourceTree = "<group>"; };
-		E1215CAA1D7B61C000C9B55C /* Ratio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ratio.swift; sourceTree = "<group>"; };
-		E1215CAC1D7B61C800C9B55C /* CookingMeasurement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CookingMeasurement.swift; sourceTree = "<group>"; };
 		E12682221D26F699006B4887 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		E12682241D26F70E006B4887 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E12682261D26F714006B4887 /* MiseEnPlace.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MiseEnPlace.podspec; sourceTree = "<group>"; };
-		E1375E601DA949C800AA6B8F /* ScaleParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleParameters.swift; sourceTree = "<group>"; };
-		E1465A911DD2208E00C5ADAD /* SignificantDigitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignificantDigitTests.swift; sourceTree = "<group>"; };
-		E162249C1DA6C73800AAA98A /* Double+MiseEnPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+MiseEnPlace.swift"; sourceTree = "<group>"; };
-		E19EA2DB1D91CAC60068A3E6 /* Multipliers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Multipliers.swift; sourceTree = "<group>"; };
-		E19EA2DD1D91CAF50068A3E6 /* Fraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fraction.swift; sourceTree = "<group>"; };
-		E1A418121C77E40E0025D094 /* Convertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convertable.swift; sourceTree = "<group>"; };
-		E1A418161C77E40E0025D094 /* MeasurementMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementMethod.swift; sourceTree = "<group>"; };
-		E1A418171C77E40E0025D094 /* MeasurementSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementSystem.swift; sourceTree = "<group>"; };
-		E1A418181C77E40E0025D094 /* MeasurementSystemMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementSystemMethod.swift; sourceTree = "<group>"; };
-		E1A418191C77E40E0025D094 /* MeasurementUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementUnit.swift; sourceTree = "<group>"; };
-		E1A98CC11B71E8F50017EFB2 /* LooseConversionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LooseConversionTests.swift; sourceTree = "<group>"; };
-		E1A98CC31B72D5B50017EFB2 /* AsNeededTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsNeededTests.swift; sourceTree = "<group>"; };
-		E1C08BAC1DCBDBF200759F33 /* MeasurementInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeasurementInputView.xib; sourceTree = "<group>"; };
-		E1C08BAF1DCBDBF900759F33 /* Intergral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Intergral.swift; sourceTree = "<group>"; };
-		E1C08BB11DCBDBF900759F33 /* MeasurementInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementInputView.swift; sourceTree = "<group>"; };
 		E1E02C791B6F200A00FEDC95 /* MiseEnPlace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MiseEnPlace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E02C7D1B6F200A00FEDC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1E02C841B6F200A00FEDC95 /* MiseEnPlaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiseEnPlaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E02C8A1B6F200A00FEDC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1E02CAC1B6F573900FEDC95 /* ConvertableIngredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertableIngredient.swift; sourceTree = "<group>"; };
-		E1E02CB21B6FA0EC00FEDC95 /* EqualRatioIngredientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EqualRatioIngredientTests.swift; sourceTree = "<group>"; };
-		E1E02CC31B70874400FEDC95 /* HighVolumeRatioIngredientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighVolumeRatioIngredientTests.swift; sourceTree = "<group>"; };
-		E1E02CC51B708B7100FEDC95 /* HighMassRatioIngredientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighMassRatioIngredientTests.swift; sourceTree = "<group>"; };
-		E1E02CC91B70CB6500FEDC95 /* InterpreterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterpreterTests.swift; sourceTree = "<group>"; };
-		E1E92EA31BE99950000A8C92 /* RatioTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatioTests.swift; sourceTree = "<group>"; };
+		E1E46A561FAD09A20046D564 /* ScaleParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleParameters.swift; sourceTree = "<group>"; };
+		E1E46A571FAD09A20046D564 /* MeasurementMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementMethod.swift; sourceTree = "<group>"; };
+		E1E46A581FAD09A20046D564 /* MeasurementSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementSystem.swift; sourceTree = "<group>"; };
+		E1E46A591FAD09A20046D564 /* Ratio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ratio.swift; sourceTree = "<group>"; };
+		E1E46A5A1FAD09A20046D564 /* Double+MiseEnPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+MiseEnPlace.swift"; sourceTree = "<group>"; };
+		E1E46A5B1FAD09A20046D564 /* MeasurementSystemMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementSystemMethod.swift; sourceTree = "<group>"; };
+		E1E46A5C1FAD09A20046D564 /* Fraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fraction.swift; sourceTree = "<group>"; };
+		E1E46A5D1FAD09A20046D564 /* MeasurementInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementInputView.swift; sourceTree = "<group>"; };
+		E1E46A5E1FAD09A20046D564 /* Intergral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Intergral.swift; sourceTree = "<group>"; };
+		E1E46A5F1FAD09A20046D564 /* Convertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convertable.swift; sourceTree = "<group>"; };
+		E1E46A601FAD09A20046D564 /* CookingMeasurement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CookingMeasurement.swift; sourceTree = "<group>"; };
+		E1E46A611FAD09A20046D564 /* MeasurementUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementUnit.swift; sourceTree = "<group>"; };
+		E1E46A621FAD09A20046D564 /* Multipliers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Multipliers.swift; sourceTree = "<group>"; };
+		E1E46A631FAD09A20046D564 /* String+MiseEnPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MiseEnPlace.swift"; sourceTree = "<group>"; };
+		E1E46A731FAD09AB0046D564 /* HighVolumeRatioIngredientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighVolumeRatioIngredientTests.swift; sourceTree = "<group>"; };
+		E1E46A741FAD09AB0046D564 /* ConvertableIngredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertableIngredient.swift; sourceTree = "<group>"; };
+		E1E46A751FAD09AB0046D564 /* LooseConversionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LooseConversionTests.swift; sourceTree = "<group>"; };
+		E1E46A761FAD09AB0046D564 /* MeasurementUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementUnitTests.swift; sourceTree = "<group>"; };
+		E1E46A771FAD09AB0046D564 /* HighMassRatioIngredientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighMassRatioIngredientTests.swift; sourceTree = "<group>"; };
+		E1E46A781FAD09AB0046D564 /* InterpreterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterpreterTests.swift; sourceTree = "<group>"; };
+		E1E46A791FAD09AB0046D564 /* EqualRatioIngredientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EqualRatioIngredientTests.swift; sourceTree = "<group>"; };
+		E1E46A7A1FAD09AB0046D564 /* EachMeasurementUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachMeasurementUnitTests.swift; sourceTree = "<group>"; };
+		E1E46A7B1FAD09AB0046D564 /* RatioTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatioTests.swift; sourceTree = "<group>"; };
+		E1E46A7C1FAD09AB0046D564 /* SignificantDigitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignificantDigitTests.swift; sourceTree = "<group>"; };
+		E1E46A7D1FAD09AB0046D564 /* AsNeededTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsNeededTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,84 +99,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E1A22D811B742A06007A55C5 /* Swift */ = {
-			isa = PBXGroup;
-			children = (
-				E1A98CC31B72D5B50017EFB2 /* AsNeededTests.swift */,
-				E1E02CAC1B6F573900FEDC95 /* ConvertableIngredient.swift */,
-				E113B8191E324BC000A03A0F /* EachMeasurementUnitTests.swift */,
-				E1E02CB21B6FA0EC00FEDC95 /* EqualRatioIngredientTests.swift */,
-				E1E02CC31B70874400FEDC95 /* HighVolumeRatioIngredientTests.swift */,
-				E1E02CC51B708B7100FEDC95 /* HighMassRatioIngredientTests.swift */,
-				E1E02CC91B70CB6500FEDC95 /* InterpreterTests.swift */,
-				E1A98CC11B71E8F50017EFB2 /* LooseConversionTests.swift */,
-				E113B81B1E364A7300A03A0F /* MeasurementUnitTests.swift */,
-				E1E92EA31BE99950000A8C92 /* RatioTests.swift */,
-				E1465A911DD2208E00C5ADAD /* SignificantDigitTests.swift */,
-			);
-			name = Swift;
-			sourceTree = "<group>";
-		};
-		E1A4180F1C77E40E0025D094 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				E1C08BAE1DCBDBF900759F33 /* Foundation */,
-				E1C08BB01DCBDBF900759F33 /* iOS */,
-			);
-			name = Sources;
-			path = ../Sources;
-			sourceTree = "<group>";
-		};
-		E1C08BAA1DCBDBF200759F33 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				E1C08BAB1DCBDBF200759F33 /* iOS */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		E1C08BAB1DCBDBF200759F33 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				E1C08BAC1DCBDBF200759F33 /* MeasurementInputView.xib */,
-			);
-			path = iOS;
-			sourceTree = "<group>";
-		};
-		E1C08BAE1DCBDBF900759F33 /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-				E1A418121C77E40E0025D094 /* Convertable.swift */,
-				E1215CAC1D7B61C800C9B55C /* CookingMeasurement.swift */,
-				E162249C1DA6C73800AAA98A /* Double+MiseEnPlace.swift */,
-				E19EA2DD1D91CAF50068A3E6 /* Fraction.swift */,
-				E1C08BAF1DCBDBF900759F33 /* Intergral.swift */,
-				E1A418161C77E40E0025D094 /* MeasurementMethod.swift */,
-				E1A418171C77E40E0025D094 /* MeasurementSystem.swift */,
-				E1A418181C77E40E0025D094 /* MeasurementSystemMethod.swift */,
-				E1A418191C77E40E0025D094 /* MeasurementUnit.swift */,
-				E19EA2DB1D91CAC60068A3E6 /* Multipliers.swift */,
-				E1215CAA1D7B61C000C9B55C /* Ratio.swift */,
-				E1375E601DA949C800AA6B8F /* ScaleParameters.swift */,
-				E1215CA61D7B5F0200C9B55C /* String+MiseEnPlace.swift */,
-			);
-			path = Foundation;
-			sourceTree = "<group>";
-		};
-		E1C08BB01DCBDBF900759F33 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				E1C08BB11DCBDBF900759F33 /* MeasurementInputView.swift */,
-			);
-			path = iOS;
-			sourceTree = "<group>";
-		};
 		E1E02C6F1B6F200A00FEDC95 = {
 			isa = PBXGroup;
 			children = (
 				E12682261D26F714006B4887 /* MiseEnPlace.podspec */,
 				E12682241D26F70E006B4887 /* README.md */,
 				E12682221D26F699006B4887 /* Package.swift */,
+				E1E46A551FAD09A20046D564 /* Sources */,
+				E1E46A721FAD09AB0046D564 /* Tests */,
 				E1E02C7B1B6F200A00FEDC95 /* MiseEnPlace */,
 				E1E02C881B6F200A00FEDC95 /* MiseEnPlaceTests */,
 				E1E02C7A1B6F200A00FEDC95 /* Products */,
@@ -198,8 +126,6 @@
 			isa = PBXGroup;
 			children = (
 				E1E02C7C1B6F200A00FEDC95 /* Supporting Files */,
-				E1C08BAA1DCBDBF200759F33 /* Resources */,
-				E1A4180F1C77E40E0025D094 /* Sources */,
 			);
 			path = MiseEnPlace;
 			sourceTree = "<group>";
@@ -216,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				E1E02C891B6F200A00FEDC95 /* Supporting Files */,
-				E1A22D811B742A06007A55C5 /* Swift */,
 			);
 			path = MiseEnPlaceTests;
 			sourceTree = "<group>";
@@ -227,6 +152,45 @@
 				E1E02C8A1B6F200A00FEDC95 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E1E46A551FAD09A20046D564 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				E1E46A561FAD09A20046D564 /* ScaleParameters.swift */,
+				E1E46A571FAD09A20046D564 /* MeasurementMethod.swift */,
+				E1E46A581FAD09A20046D564 /* MeasurementSystem.swift */,
+				E1E46A591FAD09A20046D564 /* Ratio.swift */,
+				E1E46A5A1FAD09A20046D564 /* Double+MiseEnPlace.swift */,
+				E1E46A5B1FAD09A20046D564 /* MeasurementSystemMethod.swift */,
+				E1E46A5C1FAD09A20046D564 /* Fraction.swift */,
+				E1E46A5D1FAD09A20046D564 /* MeasurementInputView.swift */,
+				E1E46A5E1FAD09A20046D564 /* Intergral.swift */,
+				E1E46A5F1FAD09A20046D564 /* Convertable.swift */,
+				E1E46A601FAD09A20046D564 /* CookingMeasurement.swift */,
+				E1E46A611FAD09A20046D564 /* MeasurementUnit.swift */,
+				E1E46A621FAD09A20046D564 /* Multipliers.swift */,
+				E1E46A631FAD09A20046D564 /* String+MiseEnPlace.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		E1E46A721FAD09AB0046D564 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				E1E46A731FAD09AB0046D564 /* HighVolumeRatioIngredientTests.swift */,
+				E1E46A741FAD09AB0046D564 /* ConvertableIngredient.swift */,
+				E1E46A751FAD09AB0046D564 /* LooseConversionTests.swift */,
+				E1E46A761FAD09AB0046D564 /* MeasurementUnitTests.swift */,
+				E1E46A771FAD09AB0046D564 /* HighMassRatioIngredientTests.swift */,
+				E1E46A781FAD09AB0046D564 /* InterpreterTests.swift */,
+				E1E46A791FAD09AB0046D564 /* EqualRatioIngredientTests.swift */,
+				E1E46A7A1FAD09AB0046D564 /* EachMeasurementUnitTests.swift */,
+				E1E46A7B1FAD09AB0046D564 /* RatioTests.swift */,
+				E1E46A7C1FAD09AB0046D564 /* SignificantDigitTests.swift */,
+				E1E46A7D1FAD09AB0046D564 /* AsNeededTests.swift */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,7 +285,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1C08BAD1DCBDBF200759F33 /* MeasurementInputView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,20 +302,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1A418211C77E40E0025D094 /* MeasurementMethod.swift in Sources */,
-				E1215CA71D7B5F0200C9B55C /* String+MiseEnPlace.swift in Sources */,
-				E1C08BB31DCBDBF900759F33 /* MeasurementInputView.swift in Sources */,
-				E1A418241C77E40E0025D094 /* MeasurementUnit.swift in Sources */,
-				E19EA2DC1D91CAC60068A3E6 /* Multipliers.swift in Sources */,
-				E1375E611DA949C800AA6B8F /* ScaleParameters.swift in Sources */,
-				E1A418231C77E40E0025D094 /* MeasurementSystemMethod.swift in Sources */,
-				E19EA2DE1D91CAF50068A3E6 /* Fraction.swift in Sources */,
-				E1215CAD1D7B61C800C9B55C /* CookingMeasurement.swift in Sources */,
-				E1215CAB1D7B61C000C9B55C /* Ratio.swift in Sources */,
-				E1C08BB21DCBDBF900759F33 /* Intergral.swift in Sources */,
-				E1A418221C77E40E0025D094 /* MeasurementSystem.swift in Sources */,
-				E162249D1DA6C73800AAA98A /* Double+MiseEnPlace.swift in Sources */,
-				E1A4181D1C77E40E0025D094 /* Convertable.swift in Sources */,
+				E1E46A691FAD09A20046D564 /* MeasurementSystemMethod.swift in Sources */,
+				E1E46A6D1FAD09A20046D564 /* Convertable.swift in Sources */,
+				E1E46A641FAD09A20046D564 /* ScaleParameters.swift in Sources */,
+				E1E46A671FAD09A20046D564 /* Ratio.swift in Sources */,
+				E1E46A6A1FAD09A20046D564 /* Fraction.swift in Sources */,
+				E1E46A6E1FAD09A20046D564 /* CookingMeasurement.swift in Sources */,
+				E1E46A661FAD09A20046D564 /* MeasurementSystem.swift in Sources */,
+				E1E46A681FAD09A20046D564 /* Double+MiseEnPlace.swift in Sources */,
+				E1E46A6B1FAD09A20046D564 /* MeasurementInputView.swift in Sources */,
+				E1E46A701FAD09A20046D564 /* Multipliers.swift in Sources */,
+				E1E46A651FAD09A20046D564 /* MeasurementMethod.swift in Sources */,
+				E1E46A711FAD09A20046D564 /* String+MiseEnPlace.swift in Sources */,
+				E1E46A6F1FAD09A20046D564 /* MeasurementUnit.swift in Sources */,
+				E1E46A6C1FAD09A20046D564 /* Intergral.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,17 +323,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1D6463B1BE6CCDC006860FD /* LooseConversionTests.swift in Sources */,
-				E1D6463A1BE6CCDC006860FD /* InterpreterTests.swift in Sources */,
-				E1D646381BE6CCDC006860FD /* HighVolumeRatioIngredientTests.swift in Sources */,
-				E113B81A1E324BC000A03A0F /* EachMeasurementUnitTests.swift in Sources */,
-				E1D646361BE6CCDC006860FD /* ConvertableIngredient.swift in Sources */,
-				E1D646391BE6CCDC006860FD /* HighMassRatioIngredientTests.swift in Sources */,
-				E1D646371BE6CCDC006860FD /* EqualRatioIngredientTests.swift in Sources */,
-				E1E92EA41BE99950000A8C92 /* RatioTests.swift in Sources */,
-				E1465A921DD2208E00C5ADAD /* SignificantDigitTests.swift in Sources */,
-				E113B81C1E364A7300A03A0F /* MeasurementUnitTests.swift in Sources */,
-				E1D6463C1BE6CCDC006860FD /* AsNeededTests.swift in Sources */,
+				E1E46A931FAD09B50046D564 /* AsNeededTests.swift in Sources */,
+				E1E46A911FAD09B50046D564 /* RatioTests.swift in Sources */,
+				E1E46A8B1FAD09B50046D564 /* LooseConversionTests.swift in Sources */,
+				E1E46A8D1FAD09B50046D564 /* HighMassRatioIngredientTests.swift in Sources */,
+				E1E46A8A1FAD09B50046D564 /* ConvertableIngredient.swift in Sources */,
+				E1E46A901FAD09B50046D564 /* EachMeasurementUnitTests.swift in Sources */,
+				E1E46A921FAD09B50046D564 /* SignificantDigitTests.swift in Sources */,
+				E1E46A8C1FAD09B50046D564 /* MeasurementUnitTests.swift in Sources */,
+				E1E46A8F1FAD09B50046D564 /* EqualRatioIngredientTests.swift in Sources */,
+				E1E46A8E1FAD09B50046D564 /* InterpreterTests.swift in Sources */,
+				E1E46A891FAD09B50046D564 /* HighVolumeRatioIngredientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,14 +396,18 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos watchsimulator watchos appletvsimulator appletvos";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+				TVOS_DEPLOYMENT_TARGET = 11.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Debug;
 		};
@@ -485,14 +452,18 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos watchsimulator watchos appletvsimulator appletvos";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+				TVOS_DEPLOYMENT_TARGET = 11.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
@@ -538,6 +509,7 @@
 		E1E02C931B6F200A00FEDC95 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -555,6 +527,7 @@
 		E1E02C941B6F200A00FEDC95 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MiseEnPlaceTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

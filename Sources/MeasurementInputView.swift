@@ -1,3 +1,5 @@
+#if os(iOS)
+    
 import UIKit
 
 public protocol MeasurementInputViewDelegate {
@@ -264,7 +266,7 @@ public class MeasurementInputView: UIView, UIInputViewAudioFeedback, UIPickerVie
             
             textualValue = textualValue.appending(".")
         } else if sender == delete {
-            guard textualValue.characters.count > 0 else {
+            guard textualValue.count > 0 else {
                 return
             }
             
@@ -298,3 +300,6 @@ public class MeasurementInputView: UIView, UIInputViewAudioFeedback, UIPickerVie
         delegate = nil
     }
 }
+
+#endif
+
