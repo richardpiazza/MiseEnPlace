@@ -49,6 +49,7 @@
 		E12682221D26F699006B4887 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		E12682241D26F70E006B4887 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E12682261D26F714006B4887 /* MiseEnPlace.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MiseEnPlace.podspec; sourceTree = "<group>"; };
+		E1C1028E1FAD0FC70092C123 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E1E02C791B6F200A00FEDC95 /* MiseEnPlace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MiseEnPlace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E02C7D1B6F200A00FEDC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1E02C841B6F200A00FEDC95 /* MiseEnPlaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiseEnPlaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,9 +103,10 @@
 		E1E02C6F1B6F200A00FEDC95 = {
 			isa = PBXGroup;
 			children = (
+				E1C1028E1FAD0FC70092C123 /* LICENSE */,
 				E12682261D26F714006B4887 /* MiseEnPlace.podspec */,
-				E12682241D26F70E006B4887 /* README.md */,
 				E12682221D26F699006B4887 /* Package.swift */,
+				E12682241D26F70E006B4887 /* README.md */,
 				E1E46A551FAD09A20046D564 /* Sources */,
 				E1E46A721FAD09AB0046D564 /* Tests */,
 				E1E02C7B1B6F200A00FEDC95 /* MiseEnPlace */,
@@ -157,19 +159,19 @@
 		E1E46A551FAD09A20046D564 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				E1E46A561FAD09A20046D564 /* ScaleParameters.swift */,
-				E1E46A571FAD09A20046D564 /* MeasurementMethod.swift */,
-				E1E46A581FAD09A20046D564 /* MeasurementSystem.swift */,
-				E1E46A591FAD09A20046D564 /* Ratio.swift */,
-				E1E46A5A1FAD09A20046D564 /* Double+MiseEnPlace.swift */,
-				E1E46A5B1FAD09A20046D564 /* MeasurementSystemMethod.swift */,
-				E1E46A5C1FAD09A20046D564 /* Fraction.swift */,
-				E1E46A5D1FAD09A20046D564 /* MeasurementInputView.swift */,
-				E1E46A5E1FAD09A20046D564 /* Intergral.swift */,
 				E1E46A5F1FAD09A20046D564 /* Convertable.swift */,
 				E1E46A601FAD09A20046D564 /* CookingMeasurement.swift */,
+				E1E46A5A1FAD09A20046D564 /* Double+MiseEnPlace.swift */,
+				E1E46A5E1FAD09A20046D564 /* Intergral.swift */,
+				E1E46A5C1FAD09A20046D564 /* Fraction.swift */,
 				E1E46A611FAD09A20046D564 /* MeasurementUnit.swift */,
+				E1E46A5D1FAD09A20046D564 /* MeasurementInputView.swift */,
+				E1E46A571FAD09A20046D564 /* MeasurementMethod.swift */,
+				E1E46A581FAD09A20046D564 /* MeasurementSystem.swift */,
+				E1E46A5B1FAD09A20046D564 /* MeasurementSystemMethod.swift */,
 				E1E46A621FAD09A20046D564 /* Multipliers.swift */,
+				E1E46A591FAD09A20046D564 /* Ratio.swift */,
+				E1E46A561FAD09A20046D564 /* ScaleParameters.swift */,
 				E1E46A631FAD09A20046D564 /* String+MiseEnPlace.swift */,
 			);
 			path = Sources;
@@ -178,17 +180,17 @@
 		E1E46A721FAD09AB0046D564 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				E1E46A731FAD09AB0046D564 /* HighVolumeRatioIngredientTests.swift */,
+				E1E46A7D1FAD09AB0046D564 /* AsNeededTests.swift */,
 				E1E46A741FAD09AB0046D564 /* ConvertableIngredient.swift */,
+				E1E46A7A1FAD09AB0046D564 /* EachMeasurementUnitTests.swift */,
+				E1E46A791FAD09AB0046D564 /* EqualRatioIngredientTests.swift */,
+				E1E46A771FAD09AB0046D564 /* HighMassRatioIngredientTests.swift */,
+				E1E46A731FAD09AB0046D564 /* HighVolumeRatioIngredientTests.swift */,
+				E1E46A781FAD09AB0046D564 /* InterpreterTests.swift */,
 				E1E46A751FAD09AB0046D564 /* LooseConversionTests.swift */,
 				E1E46A761FAD09AB0046D564 /* MeasurementUnitTests.swift */,
-				E1E46A771FAD09AB0046D564 /* HighMassRatioIngredientTests.swift */,
-				E1E46A781FAD09AB0046D564 /* InterpreterTests.swift */,
-				E1E46A791FAD09AB0046D564 /* EqualRatioIngredientTests.swift */,
-				E1E46A7A1FAD09AB0046D564 /* EachMeasurementUnitTests.swift */,
 				E1E46A7B1FAD09AB0046D564 /* RatioTests.swift */,
 				E1E46A7C1FAD09AB0046D564 /* SignificantDigitTests.swift */,
-				E1E46A7D1FAD09AB0046D564 /* AsNeededTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
