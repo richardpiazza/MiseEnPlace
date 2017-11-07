@@ -27,9 +27,9 @@ The `MeasurementSystemMethod` represents the ways `MeasurementMethod`s and `Meas
 The `Convertable` protocol defines the properties needed to be able to perform conversion and translation.
 An extension to the protocol offers many important methods for scaling a measurement based on it's ratio.
 
-#### CookingMeasurement.swift
+#### MiseEnPlace.Measurement.swift
 
-Represents a amount and unit pairing. A `CookingMeasurement` has several key properties and functions for tranlating human-readable strings.
+Represents a amount and unit pairing. A `MiseEnPlace.Measurement` has several key properties and functions for tranlating human-readable strings.
 
 #### Ratio.swift
 

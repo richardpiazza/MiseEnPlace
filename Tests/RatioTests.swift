@@ -12,9 +12,9 @@ import MiseEnPlace
 class RatioTests: XCTestCase {
     
     fileprivate class MeasurementConvertable: NSObject, Convertable {
-        var measurement = CookingMeasurement(amount: 1.0, unit: .gram)
+        var measurement = MiseEnPlace.Measurement(amount: 1.0, unit: .gram)
         var ratio = Ratio(volume: 1.0, weight: 1.0)
-        var eachMeasurement: CookingMeasurement?
+        var eachMeasurement: MiseEnPlace.Measurement?
     }
     
     fileprivate var volumeConvertable: MeasurementConvertable = MeasurementConvertable()
@@ -35,7 +35,7 @@ class RatioTests: XCTestCase {
         weightConvertable.measurement.amount = 2
         weightConvertable.measurement.unit = .ounce
         
-        let ratio = Ratio.makeRatio(volumeConvertable: volumeConvertable, weightConvertable: weightConvertable)
+        let ratio = try! Ratio.makeRatio(volume: volumeConvertable.measurement, weight: weightConvertable.measurement)
         XCTAssertTrue(ratio.volume == 1)
         XCTAssertTrue(ratio.weight == 1)
     }
@@ -46,7 +46,7 @@ class RatioTests: XCTestCase {
         weightConvertable.measurement.amount = 4
         weightConvertable.measurement.unit = .ounce
         
-        let ratio = Ratio.makeRatio(volumeConvertable: volumeConvertable, weightConvertable: weightConvertable)
+        let ratio = try! Ratio.makeRatio(volume: volumeConvertable.measurement, weight: weightConvertable.measurement)
         XCTAssertTrue(ratio.volume == 1)
         XCTAssertTrue(ratio.weight == 2)
     }
@@ -57,7 +57,7 @@ class RatioTests: XCTestCase {
         weightConvertable.measurement.amount = 2
         weightConvertable.measurement.unit = .ounce
         
-        let ratio = Ratio.makeRatio(volumeConvertable: volumeConvertable, weightConvertable: weightConvertable)
+        let ratio = try! Ratio.makeRatio(volume: volumeConvertable.measurement, weight: weightConvertable.measurement)
         XCTAssertTrue(ratio.volume == 2)
         XCTAssertTrue(ratio.weight == 1)
     }

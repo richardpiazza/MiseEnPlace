@@ -3,7 +3,7 @@
 import UIKit
 
 public protocol MeasurementInputViewDelegate {
-    func measurementInputView(_ measurementInputView: MeasurementInputView, didSet measurement: CookingMeasurement)
+    func measurementInputView(_ measurementInputView: MeasurementInputView, didSet measurement: MiseEnPlace.Measurement)
     func endEditingForMeasurementInputView(_ measurementInputView: MeasurementInputView)
 }
 
@@ -67,14 +67,14 @@ public class MeasurementInputView: UIView, UIInputViewAudioFeedback, UIPickerVie
     private var unit: MeasurementUnit = .asNeeded {
         didSet {
             if let delegate = self.delegate {
-                delegate.measurementInputView(self, didSet: CookingMeasurement(amount: value, unit: unit))
+                delegate.measurementInputView(self, didSet: MiseEnPlace.Measurement(amount: value, unit: unit))
             }
         }
     }
     private var value: Double = 0.0 {
         didSet {
             if let delegate = self.delegate {
-                delegate.measurementInputView(self, didSet: CookingMeasurement(amount: value, unit: unit))
+                delegate.measurementInputView(self, didSet: MiseEnPlace.Measurement(amount: value, unit: unit))
             }
         }
     }
@@ -120,7 +120,7 @@ public class MeasurementInputView: UIView, UIInputViewAudioFeedback, UIPickerVie
         output?.clipsToBounds = true
     }
     
-    public func setMeasurement(_ measurement: CookingMeasurement, delegate: MeasurementInputViewDelegate) {
+    public func setMeasurement(_ measurement: MiseEnPlace.Measurement, delegate: MeasurementInputViewDelegate) {
         value = measurement.amount
         unit = measurement.unit
         

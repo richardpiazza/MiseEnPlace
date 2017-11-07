@@ -10,7 +10,7 @@ import Foundation
 import MiseEnPlace
 
 open class ConvertableIngredient : Convertable {
-    open var measurement = CookingMeasurement(amount: 0.0, unit: .asNeeded)
+    open var measurement = MiseEnPlace.Measurement(amount: 0.0, unit: .asNeeded)
     open var ratio: Ratio = Ratio(volume: 1, weight: 1)
-    open var eachMeasurement: CookingMeasurement?
+    open var eachMeasurement: MiseEnPlace.Measurement?
 }

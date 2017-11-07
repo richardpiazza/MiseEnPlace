@@ -18,9 +18,9 @@ class EachMeasurementUnitTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        egg.eachMeasurement = CookingMeasurement(amount: 50, unit: .gram)
-        eggWhite.eachMeasurement = CookingMeasurement(amount: 25, unit: .gram)
-        eggYolk.eachMeasurement = CookingMeasurement(amount: 25, unit: .gram)
+        egg.eachMeasurement = MiseEnPlace.Measurement(amount: 50, unit: .gram)
+        eggWhite.eachMeasurement = MiseEnPlace.Measurement(amount: 25, unit: .gram)
+        eggYolk.eachMeasurement = MiseEnPlace.Measurement(amount: 25, unit: .gram)
     }
     
     override func tearDown() {
@@ -35,14 +35,14 @@ class EachMeasurementUnitTests: XCTestCase {
         var interpretation = egg.measurement.componentsTranslation
         XCTAssertEqual(interpretation, "4 Each")
         
-        var scaleMeasure = egg.scale(by: 2.0, measurementSystemMethod: .numericQuantity)
+        var scaleMeasure = try! egg.scale(by: 2.0, measurementSystemMethod: .numericQuantity)
         XCTAssertEqual(scaleMeasure.amount, 8)
         XCTAssertEqual(scaleMeasure.unit, .each)
         
         interpretation = scaleMeasure.componentsTranslation
         XCTAssertEqual(interpretation, "8 Each")
         
-        scaleMeasure = egg.scale(by: 1.0, measurementSystemMethod: .metricWeight)
+        scaleMeasure = try! egg.scale(by: 1.0, measurementSystemMethod: .metricWeight)
         XCTAssertEqual(scaleMeasure.amount, 200)
         XCTAssertEqual(scaleMeasure.unit, .gram)
         
@@ -52,7 +52,7 @@ class EachMeasurementUnitTests: XCTestCase {
         egg.measurement.amount = 200
         egg.measurement.unit = .gram
         
-        scaleMeasure = egg.scale(by: 1.0, measurementSystemMethod: .numericQuantity)
+        scaleMeasure = try! egg.scale(by: 1.0, measurementSystemMethod: .numericQuantity)
         XCTAssertEqual(scaleMeasure.amount, 4)
         XCTAssertEqual(scaleMeasure.unit, .each)
     }
@@ -64,7 +64,7 @@ class EachMeasurementUnitTests: XCTestCase {
         let interpretation = eggWhite.measurement.componentsTranslation
         XCTAssertEqual(interpretation, "8 Fluid Ounce")
         
-        let scaleMeasure = eggWhite.scale(by: 1.0, measurementSystem: .numeric, measurementMethod: .quantity)
+        let scaleMeasure = try! eggWhite.scale(by: 1.0, measurementSystem: .numeric, measurementMethod: .quantity)
         XCTAssertTrue(scaleMeasure.amount.equals(9.07, precision: 2))
         XCTAssertEqual(scaleMeasure.unit, .each)
     }
@@ -77,7 +77,7 @@ class EachMeasurementUnitTests: XCTestCase {
         let interpretation = eggYolk.measurement.componentsTranslation
         XCTAssertEqual(interpretation, "4 Each")
         
-        let scaleMeasure = eggYolk.scale(with: ScaleParameters(multiplier: 3.0, measurementSystem: .metric, measurementMethod: .weight))
+        let scaleMeasure = try! eggYolk.scale(with: ScaleParameters(multiplier: 3.0, measurementSystem: .metric, measurementMethod: .weight))
         XCTAssertEqual(scaleMeasure.amount, 12)
         XCTAssertEqual(scaleMeasure.unit, .each)
     }

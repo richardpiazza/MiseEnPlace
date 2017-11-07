@@ -1,0 +1,335 @@
+import Foundation
+
+/// # Recipe
+///
+/// Represents a compilation of `Ingredient`s or other `Recipe`s.
+/// A `Recipe` is one of the primary protocols for interacting with an
+/// object graph utilizing the `MiseEnPlace` framework.
+///
+/// ## Requied Conformance
+///
+/// ```swift
+/// // References to the elements that make up this `Recipe`s formula.
+/// var formulaElements: [FormulaElement] { get set }
+///
+/// // References to the elements that make up this `Recipe`s procedure.
+/// var procedureElements: [ProcedureElement] { get set }
+/// ```
+///
+/// ## Protocol Conformance
+///
+/// _Unique_
+/// ```swift
+/// var uuid: String { get set }
+/// var creationDate: Date { get set }
+/// var modificationDate: Date { get set }
+/// ```
+///
+/// _Descriptive_
+/// ```swift
+/// var name: String? { get set }
+/// var commentary: String? { get set }
+/// var classification: String? { get set }
+/// ```
+///
+/// _Multimedia_
+/// ```swift
+/// var imagePath: String? { get set }
+/// ```
+///
+/// _Measured_
+/// ```swift
+/// var amount: Double { get set }
+/// var unit: MeasurementUnit { get set }
+/// ```
+///
+/// ## Notes:
+///
+/// - The `Measured` conformance on a `Recipe` will represent the
+/// _portion_ measurement. i.e. What is the equivalent measurement for one (1)
+/// portion of this `Recipe`?
+///
+public protocol Recipe: Unique, Descriptive, Multimedia, Measured {
+    var formulaElements: [FormulaElement] { get set }
+    var procedureElements: [ProcedureElement] { get set }
+}
+
+// MARK: - Amount
+
+public extension Recipe {
+    /// Calculates the total mass for this formula in a give unit.
+    public func totalAmount(for unit: MeasurementUnit) -> Double {
+        var amount: Double = 0.0
+        
+        let elements = self.formula
+        for element in elements {
+            do {
+                let a = try element.amount(for: unit)
+                amount += a
+            } catch {
+                print(error)
+            }
+        }
+        
+        return amount
+    }
+    
+    /// The total mass of this formula in the portions unit.
+    public var totalMeasurement: MiseEnPlace.Measurement {
+        let total = self.totalAmount(for: self.unit)
+        return MiseEnPlace.Measurement(amount: total, unit: self.unit)
+    }
+}
+
+// MARK: - Yield
+
+public extension Recipe {
+    /// Calculates the total number of portions (yield).
+    public var yield: Double {
+        return self.totalMeasurement.amount / self.amount
+    }
+    
+    /// A 'Fractioned String' output of the `yield`.
+    public var yieldString: String {
+        return "\(self.yield.fractionedString) portions"
+    }
+    
+    /// A combined string: Total Measurement amount, Yield
+    public var yieldTranslation: String {
+        return "\(self.totalMeasurement.componentsTranslation), \(self.yieldString)"
+    }
+}
+
+// MARK: - Formula
+
+public extension Recipe {
+    /// An ordered list of formula elements (MeasuredIngredient/MeasuredRecipe).
+    public var formula: [FormulaElement] {
+        var formula = [FormulaElement]()
+        formula.append(contentsOf: self.formulaElements)
+        formula.sort { (element1, element2) -> Bool in
+            return element1.sequence < element2.sequence
+        }
+        
+        return formula
+    }
+    
+    /// Assigns the next sequence number to the formula element.
+    public mutating func insertFormulaElement(_ element: FormulaElement) {
+        let nextSequence = formula.count
+        var formulaElement = element
+        formulaElement.sequence = nextSequence
+        self.formulaElements.append(formulaElement)
+    }
+    
+    internal func indexOfFormulaElement(_ formulaElement: FormulaElement) -> Int? {
+        for (idx, element) in self.formulaElements.enumerated() {
+            if element.uuid == formulaElement.uuid {
+                return idx
+            }
+        }
+        return nil
+    }
+    
+    internal mutating func updateSequence(_ element: FormulaElement, sequence: Int) {
+        var formulaElement = element
+        formulaElement.sequence = sequence
+        
+        guard let index = indexOfFormulaElement(formulaElement) else {
+            return
+        }
+        
+        self.formulaElements.remove(at: index)
+        self.formulaElements.insert(formulaElement, at: index)
+    }
+    
+    /// Adjusts the sequence numbers of all elements following the specified element.
+    public mutating func removeFormulaElement(_ element: FormulaElement) {
+        guard let index = formula.index(where: { (fe) -> Bool in
+            return element.uuid == fe.uuid
+        }) else {
+            return
+        }
+        
+        for (idx, element) in formula.enumerated() {
+            guard idx > index else {
+                continue
+            }
+            
+            let newSequence = idx - 1
+            
+            self.updateSequence(element, sequence: newSequence)
+        }
+    }
+    
+    /// Adjusts the sequencing of elements affected by a move operation.
+    public mutating func moveFormulaElement(_ element: FormulaElement, fromIndex: Int, toIndex: Int) {
+        guard fromIndex != toIndex else {
+            return
+        }
+        
+        let elements = self.formula
+        
+        if toIndex < fromIndex {
+            for i in toIndex..<fromIndex {
+                let formulaElement = elements[i]
+                let newSequence = i + 1
+                
+                self.updateSequence(formulaElement, sequence: newSequence)
+            }
+        } else {
+            for i in fromIndex.advanced(by: 1)...toIndex {
+                let formulaElement = elements[i]
+                let newSequence = i - 1
+                self.updateSequence(formulaElement, sequence: newSequence)
+            }
+        }
+        
+        self.updateSequence(element, sequence: toIndex)
+    }
+}
+
+// MARK: - Procedure
+
+public extension Recipe {
+    /// An ordered list of procedure elements.
+    public var procedure: [ProcedureElement] {
+        return procedureElements.sorted(by: { (element1, element2) -> Bool in
+            return element1.sequence < element2.sequence
+        })
+    }
+    
+    // Assigns the next sequence number to the formula element.
+    public mutating func insertProcedureElement(_ element: ProcedureElement) {
+        let nextSequence = procedure.count
+        
+        var procedureElement = element
+        procedureElement.sequence = nextSequence
+        
+        self.procedureElements.append(procedureElement)
+    }
+    
+    internal func indexOfProcedureElement(_ procedureElement: ProcedureElement) -> Int? {
+        for (idx, element) in self.procedureElements.enumerated() {
+            if element.uuid == procedureElement.uuid {
+                return idx
+            }
+        }
+        return nil
+    }
+    
+    internal mutating func updateSequence(_ element: ProcedureElement, sequence: Int) {
+        var e = element
+        e.sequence = sequence
+        
+        guard let index = indexOfProcedureElement(element) else {
+            return
+        }
+        
+        self.procedureElements.remove(at: index)
+        self.procedureElements.insert(e, at: index)
+    }
+    
+    /// Adjusts the sequence numbers of all elements following the specified element.
+    public mutating func removeProcedureElement(_ element: ProcedureElement) {
+        guard let index = procedure.index(where: { (e) -> Bool in
+            return element.uuid == e.uuid
+        }) else {
+            return
+        }
+        
+        for (idx, element) in procedure.enumerated() {
+            guard idx > index else {
+                continue
+            }
+            
+            let newSequence = idx - 1
+            self.updateSequence(element, sequence: newSequence)
+        }
+    }
+    
+    /// Adjusts the sequencing of elements affected by a move operation.
+    public mutating func moveProcedureElement(_ element: ProcedureElement, fromIndex: Int, toIndex: Int) {
+        guard fromIndex != toIndex else {
+            return
+        }
+        
+        let elements = self.procedure
+        
+        if toIndex < fromIndex {
+            for i in toIndex..<fromIndex {
+                let e = elements[i]
+                let newSequence = i + 1
+                self.updateSequence(e, sequence: newSequence)
+            }
+        } else {
+            for i in fromIndex.advanced(by: 1)...toIndex {
+                let e = elements[i]
+                let newSequence = i - 1
+                self.updateSequence(e, sequence: newSequence)
+            }
+        }
+        
+        self.updateSequence(element, sequence: toIndex)
+    }
+    
+    /// A concatenation of all procedure element commentaries.
+    public var procedureSummary: String {
+        var text: String = ""
+        
+        let elements = self.procedureElements
+        for element in elements {
+            guard let commentary = element.commentary else {
+                continue
+            }
+            if text == "" {
+                text = text.appending(commentary)
+            } else {
+                text = text.appendingFormat("\n%@", [commentary])
+            }
+        }
+        
+        return text
+    }
+}
+
+// MARK: - Scaling
+
+public extension Recipe {
+    public func scale(by multiplier: Double, measurementSystem: MeasurementSystem? = nil, measurementMethod: MeasurementMethod? = nil) throws -> [FormulaElement] {
+        let elements = self.formula
+        
+        if multiplier == 1.0 && measurementSystem == nil && measurementMethod == nil {
+            return elements
+        } else if multiplier == 1.0 && measurementSystem == self.unit.measurementSystem && measurementMethod == self.unit.measurementMethod {
+            return elements
+        }
+        
+        var formulaElements = [FormulaElement]()
+        
+        try elements.forEach { (element) in
+            let measurement = try element.scale(by: multiplier, measurementSystem: measurementSystem, measurementMethod: measurementMethod)
+            var formulaElement = element
+            formulaElement.amount = measurement.amount
+            formulaElement.unit = measurement.unit
+            formulaElements.append(formulaElement)
+        }
+        
+        return formulaElements
+    }
+    
+    public func scale(by multiplier: Double, measurementSystemMethod: MeasurementSystemMethod) throws -> [FormulaElement] {
+        switch measurementSystemMethod {
+        case .numericQuantity:
+            return try self.scale(by: multiplier, measurementSystem: .numeric, measurementMethod: .quantity)
+        case .usVolume:
+            return try self.scale(by: multiplier, measurementSystem: .us, measurementMethod: .volume)
+        case .usWeight:
+            return try self.scale(by: multiplier, measurementSystem: .us, measurementMethod: .weight)
+        case .metricVolume:
+            return try self.scale(by: multiplier, measurementSystem: .metric, measurementMethod: .volume)
+        case .metricWeight:
+            return try self.scale(by: multiplier, measurementSystem: .metric, measurementMethod: .weight)
+        }
+    }
+}

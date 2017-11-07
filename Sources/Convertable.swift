@@ -30,9 +30,9 @@ import Foundation
 /// ## Convertable
 /// Protocol specifying properties needing to be supplied for conversion.
 public protocol Convertable {
-    var measurement: CookingMeasurement { get }
+    var measurement: MiseEnPlace.Measurement { get }
     var ratio: Ratio { get }
-    var eachMeasurement: CookingMeasurement? { get }
+    var eachMeasurement: MiseEnPlace.Measurement? { get }
 }
 
 public extension Convertable {
@@ -64,7 +64,7 @@ public extension Convertable {
     }
     
     /// Calculates the amount for a given unit.
-    public func amount(for unit: MeasurementUnit) -> Double {
+    public func amount(for unit: MeasurementUnit) throws -> Double {
         guard measurement.amount > 0.0 else {
             return 0.0
         }
@@ -75,71 +75,71 @@ public extension Convertable {
         switch fromMeasurementSystemMethod {
         case .usVolume:
             if toMeasurementSystemMethod == .usVolume {
-                return measurement.amount.convert(from: measurement.unit, to: unit)
+                return try measurement.amount(for: unit)
             }
             
-            let fluidOunce = amount(for: .fluidOunce)
+            let fluidOunce = try self.amount(for: .fluidOunce)
             let ounce = conversionMultiplier * fluidOunce
             let milliliter = MiseEnPlace.Multipliers.fluidOunceMilliliter * fluidOunce
             let gram: Double = MiseEnPlace.Multipliers.ounceGram * ounce
             
             if toMeasurementSystemMethod == .usWeight {
-                return ounce.convert(from: .ounce, to: unit)
+                return try MiseEnPlace.Measurement(amount: ounce, unit: .ounce).amount(for: unit)
             } else if toMeasurementSystemMethod == .metricVolume {
-                return milliliter.convert(from: .milliliter, to: unit)
+                return try MiseEnPlace.Measurement(amount: milliliter, unit: .milliliter).amount(for: unit)
             } else if toMeasurementSystemMethod == .metricWeight {
-                return gram.convert(from: .gram, to: unit)
+                return try MiseEnPlace.Measurement(amount: gram, unit: .gram).amount(for: unit)
             }
         case .usWeight:
             if toMeasurementSystemMethod == .usWeight {
-                return measurement.amount.convert(from: measurement.unit, to: unit)
+                return try measurement.amount(for: unit)
             }
             
-            let ounce = amount(for: .ounce)
+            let ounce = try self.amount(for: .ounce)
             let fluidOunce = conversionMultiplier * ounce
             let milliliter = MiseEnPlace.Multipliers.fluidOunceMilliliter * fluidOunce
             let gram = MiseEnPlace.Multipliers.ounceGram * ounce
             
             if toMeasurementSystemMethod == .usVolume {
-                return fluidOunce.convert(from: .fluidOunce, to: unit)
+                return try MiseEnPlace.Measurement(amount: fluidOunce, unit: .fluidOunce).amount(for: unit)
             } else if toMeasurementSystemMethod == .metricVolume {
-                return milliliter.convert(from: .milliliter, to: unit)
+                return try MiseEnPlace.Measurement(amount: milliliter, unit: .milliliter).amount(for: unit)
             } else if toMeasurementSystemMethod == .metricWeight {
-                return gram.convert(from: .gram, to: unit)
+                return try MiseEnPlace.Measurement(amount: gram, unit: .gram).amount(for: unit)
             }
         case .metricVolume:
             if toMeasurementSystemMethod == .metricVolume {
-                return measurement.amount.convert(from: measurement.unit, to: unit)
+                return try measurement.amount(for: unit)
             }
             
-            let milliliter = amount(for: .milliliter)
+            let milliliter = try self.amount(for: .milliliter)
             let gram = conversionMultiplier * milliliter
             let fluidOunce = milliliter / MiseEnPlace.Multipliers.fluidOunceMilliliter
             let ounce = gram / MiseEnPlace.Multipliers.ounceGram
             
             if toMeasurementSystemMethod == .metricWeight {
-                return gram.convert(from: .gram, to: unit)
+                return try MiseEnPlace.Measurement(amount: gram, unit: .gram).amount(for: unit)
             } else if toMeasurementSystemMethod == .usVolume {
-                return fluidOunce.convert(from: .fluidOunce, to: unit)
+                return try MiseEnPlace.Measurement(amount: fluidOunce, unit: .fluidOunce).amount(for: unit)
             } else if toMeasurementSystemMethod == .usWeight {
-                return ounce.convert(from: .ounce, to: unit)
+                return try MiseEnPlace.Measurement(amount: ounce, unit: .ounce).amount(for: unit)
             }
         case .metricWeight:
             if toMeasurementSystemMethod == .metricWeight {
-                return measurement.amount.convert(from: measurement.unit, to: unit)
+                return try measurement.amount(for: unit)
             }
             
-            let gram = amount(for: .gram)
+            let gram = try self.amount(for: .gram)
             let milliliter = conversionMultiplier * gram
             let fluidOunce = milliliter / MiseEnPlace.Multipliers.fluidOunceMilliliter
             let ounce = gram / MiseEnPlace.Multipliers.ounceGram
             
             if toMeasurementSystemMethod == .metricVolume {
-                return milliliter.convert(from: .milliliter, to: unit)
+                return try MiseEnPlace.Measurement(amount: milliliter, unit: .milliliter).amount(for: unit)
             } else if toMeasurementSystemMethod == .usVolume {
-                return fluidOunce.convert(from: .fluidOunce, to: unit)
+                return try MiseEnPlace.Measurement(amount: fluidOunce, unit: .fluidOunce).amount(for: unit)
             } else if toMeasurementSystemMethod == .usWeight {
-                return ounce.convert(from: .ounce, to: unit)
+                return try MiseEnPlace.Measurement(amount: ounce, unit: .ounce).amount(for: unit)
             }
         default:
             return 0.0
@@ -153,44 +153,44 @@ public extension Convertable {
     ///
     /// All `MeasurementUnit`s of a given system are tested, and the unit having
     /// the multiplied total within its stepUp and stepDown range will be returned.
-    public func scale(by multiplier: Double, measurementSystemMethod: MeasurementSystemMethod) -> CookingMeasurement {
+    public func scale(by multiplier: Double, measurementSystemMethod: MeasurementSystemMethod) throws -> MiseEnPlace.Measurement {
         guard measurement.unit != .asNeeded else {
             return measurement
         }
         
         guard measurement.unit != .each else {
             guard let _ = self.eachMeasurement else {
-                return CookingMeasurement(amount: measurement.amount * multiplier, unit: measurement.unit)
+                return MiseEnPlace.Measurement(amount: measurement.amount * multiplier, unit: measurement.unit)
             }
             
             switch measurementSystemMethod {
             case .numericQuantity:
-                return CookingMeasurement(amount: measurement.amount * multiplier, unit: measurement.unit)
+                return MiseEnPlace.Measurement(amount: measurement.amount * multiplier, unit: measurement.unit)
             default:
                 guard let eachConvertable = EachConvertable(convertable: self) else {
-                    return CookingMeasurement(amount: measurement.amount * multiplier, unit: measurement.unit)
+                    return MiseEnPlace.Measurement(amount: measurement.amount * multiplier, unit: measurement.unit)
                 }
                 
-                return eachConvertable.scale(by: multiplier, measurementSystemMethod: measurementSystemMethod)
+                return try eachConvertable.scale(by: multiplier, measurementSystemMethod: measurementSystemMethod)
             }
         }
         
         guard measurementSystemMethod != .numericQuantity else {
             guard let eachMeasurement = self.eachMeasurement else {
-                return CookingMeasurement(amount: measurement.amount * multiplier, unit: measurement.unit)
+                return MiseEnPlace.Measurement(amount: measurement.amount * multiplier, unit: measurement.unit)
             }
             
-            let amt = amount(for: eachMeasurement.unit)
+            let amt = try self.amount(for: eachMeasurement.unit)
             let total = amt / eachMeasurement.amount
             
-            return CookingMeasurement(amount: total, unit: .each)
+            return MiseEnPlace.Measurement(amount: total, unit: .each)
         }
         
         let measurementUnits = Array(MeasurementUnit.measurementUnits(forMeasurementSystemMethod: measurementSystemMethod).reversed())
         for unit in measurementUnits {
-            let total = amount(for: unit) * multiplier
+            let total = try self.amount(for: unit) * multiplier
             if total >= unit.stepDownThreshold {
-                return CookingMeasurement(amount: total, unit: unit)
+                return MiseEnPlace.Measurement(amount: total, unit: unit)
             }
         }
         
@@ -200,69 +200,69 @@ public extension Convertable {
     /// Wrapper for scale(by:measurementSystemMethod:)
     /// Determines the `MeasurementSystemMethod` based on the `MeasurementSystem` and
     /// `MeasurementMethod` provided.
-    public func scale(by multiplier: Double, measurementSystem: MeasurementSystem?, measurementMethod: MeasurementMethod?) -> CookingMeasurement {
+    public func scale(by multiplier: Double, measurementSystem: MeasurementSystem?, measurementMethod: MeasurementMethod?) throws -> MiseEnPlace.Measurement {
         if measurementSystem == .numeric || measurementMethod == .quantity {
-            return scale(by: multiplier, measurementSystemMethod: .numericQuantity)
+            return try self.scale(by: multiplier, measurementSystemMethod: .numericQuantity)
         }
         
         let measurementSystemMethod = measurement.unit.measurementSystemMethod
         
         if measurementSystem == nil {
             guard let measurementMethod = measurementMethod else {
-                return CookingMeasurement(amount: measurement.amount * multiplier, unit: measurement.unit)
+                return MiseEnPlace.Measurement(amount: measurement.amount * multiplier, unit: measurement.unit)
             }
             
             switch measurementMethod {
             case .quantity:
-                return scale(by: multiplier, measurementSystemMethod: .numericQuantity)
+                return try self.scale(by: multiplier, measurementSystemMethod: .numericQuantity)
             case .volume:
                 switch measurementSystemMethod {
                 case .numericQuantity:
-                    return scale(by: multiplier, measurementSystemMethod: .numericQuantity)
+                    return try self.scale(by: multiplier, measurementSystemMethod: .numericQuantity)
                 case .usVolume, .usWeight:
-                    return scale(by: multiplier, measurementSystemMethod: .usVolume)
+                    return try self.scale(by: multiplier, measurementSystemMethod: .usVolume)
                 case .metricVolume, .metricWeight:
-                    return scale(by: multiplier, measurementSystemMethod: .metricVolume)
+                    return try self.scale(by: multiplier, measurementSystemMethod: .metricVolume)
                 }
             case .weight:
                 switch measurementSystemMethod {
                 case .numericQuantity:
-                    return scale(by: multiplier, measurementSystemMethod: .numericQuantity)
+                    return try self.scale(by: multiplier, measurementSystemMethod: .numericQuantity)
                 case .usVolume, .usWeight:
-                    return scale(by: multiplier, measurementSystemMethod: .usWeight)
+                    return try self.scale(by: multiplier, measurementSystemMethod: .usWeight)
                 case .metricVolume, .metricWeight:
-                    return scale(by: multiplier, measurementSystemMethod: .metricWeight)
+                    return try self.scale(by: multiplier, measurementSystemMethod: .metricWeight)
                 }
             }
         } else if measurementSystem! == .us {
             if measurementMethod == nil {
                 switch measurementSystemMethod {
                 case .numericQuantity:
-                    return scale(by: multiplier, measurementSystemMethod: .numericQuantity)
+                    return try self.scale(by: multiplier, measurementSystemMethod: .numericQuantity)
                 case .usVolume, .metricVolume:
-                    return scale(by: multiplier, measurementSystemMethod: .usVolume)
+                    return try self.scale(by: multiplier, measurementSystemMethod: .usVolume)
                 case .usWeight, .metricWeight:
-                    return scale(by: multiplier, measurementSystemMethod: .usWeight)
+                    return try self.scale(by: multiplier, measurementSystemMethod: .usWeight)
                 }
             } else if measurementMethod! == .volume {
-                return scale(by: multiplier, measurementSystemMethod: .usVolume)
+                return try self.scale(by: multiplier, measurementSystemMethod: .usVolume)
             } else if measurementMethod! == .weight {
-                return scale(by: multiplier, measurementSystemMethod: .usWeight)
+                return try self.scale(by: multiplier, measurementSystemMethod: .usWeight)
             }
         } else if measurementSystem! == .metric {
             if measurementMethod == nil {
                 switch measurementSystemMethod {
                 case .numericQuantity:
-                    return scale(by: multiplier, measurementSystemMethod: .numericQuantity)
+                    return try self.scale(by: multiplier, measurementSystemMethod: .numericQuantity)
                 case .usVolume, .metricVolume:
-                    return scale(by: multiplier, measurementSystemMethod: .metricVolume)
+                    return try self.scale(by: multiplier, measurementSystemMethod: .metricVolume)
                 case .usWeight, .metricWeight:
-                    return scale(by: multiplier, measurementSystemMethod: .metricWeight)
+                    return try self.scale(by: multiplier, measurementSystemMethod: .metricWeight)
                 }
             } else if measurementMethod! == .volume {
-                return scale(by: multiplier, measurementSystemMethod: .metricVolume)
+                return try self.scale(by: multiplier, measurementSystemMethod: .metricVolume)
             } else if measurementMethod! == .weight {
-                return scale(by: multiplier, measurementSystemMethod: .metricWeight)
+                return try self.scale(by: multiplier, measurementSystemMethod: .metricWeight)
             }
         }
         
@@ -270,22 +270,22 @@ public extension Convertable {
     }
     
     /// Wrapper for scale(by:measurementSystem:measurementMethod)
-    public func scale(with parameters: ScaleParameters) -> CookingMeasurement {
-        return scale(by: parameters.multiplier, measurementSystem: parameters.measurementSystem, measurementMethod: parameters.measurementMethod)
+    public func scale(with parameters: ScaleParameters) throws -> MiseEnPlace.Measurement {
+        return try self.scale(by: parameters.multiplier, measurementSystem: parameters.measurementSystem, measurementMethod: parameters.measurementMethod)
     }
 }
 
 fileprivate struct EachConvertable: Convertable {
-    var measurement: CookingMeasurement
+    var measurement: MiseEnPlace.Measurement
     var ratio: Ratio
-    var eachMeasurement: CookingMeasurement?
+    var eachMeasurement: MiseEnPlace.Measurement?
     
     init?(convertable: Convertable) {
         guard let em = convertable.eachMeasurement else {
             return nil
         }
         
-        self.measurement = CookingMeasurement(amount: convertable.measurement.amount * em.amount, unit: em.unit)
+        self.measurement = MiseEnPlace.Measurement(amount: convertable.measurement.amount * em.amount, unit: em.unit)
         self.ratio = convertable.ratio
     }
 }

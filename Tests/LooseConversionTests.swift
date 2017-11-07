@@ -32,49 +32,49 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurement.amount = 1
         ingredient.measurement.unit = .gallon
         
-        let gallon = ingredient.amount(for: .gallon)
+        let gallon = try! ingredient.amount(for: .gallon)
         XCTAssertTrue(gallon == 1)
         
-        let quart = ingredient.amount(for: .quart)
+        let quart = try! ingredient.amount(for: .quart)
         XCTAssertTrue(quart == 4)
         
-        let pint = ingredient.amount(for: .pint)
+        let pint = try! ingredient.amount(for: .pint)
         XCTAssertTrue(pint == 8)
         
-        let cup = ingredient.amount(for: .cup)
+        let cup = try! ingredient.amount(for: .cup)
         XCTAssertTrue(cup == 16)
         
-        let fluidOunce = ingredient.amount(for: .fluidOunce)
+        let fluidOunce = try! ingredient.amount(for: .fluidOunce)
         XCTAssertTrue(fluidOunce == 128)
         
-        let tableSpoon = ingredient.amount(for: .tablespoon)
+        let tableSpoon = try! ingredient.amount(for: .tablespoon)
         XCTAssertTrue(tableSpoon == 256)
         
-        let teaspoon = ingredient.amount(for: .teaspoon)
+        let teaspoon = try! ingredient.amount(for: .teaspoon)
         XCTAssertTrue(teaspoon.equals(768, precision: 0))
         
-        let dash = ingredient.amount(for: .dash)
+        let dash = try! ingredient.amount(for: .dash)
         XCTAssertTrue(dash.equals(6144, precision: 0))
         
-        let pinch = ingredient.amount(for: .pinch)
+        let pinch = try! ingredient.amount(for: .pinch)
         XCTAssertTrue(pinch.equals(12288, precision: 0))
         
-        let ounce = ingredient.amount(for: .ounce)
+        let ounce = try! ingredient.amount(for: .ounce)
         XCTAssertTrue(ounce == 128)
         
-        let pound = ingredient.amount(for: .pound)
+        let pound = try! ingredient.amount(for: .pound)
         XCTAssertTrue(pound == 8)
         
-        let milliliter = ingredient.amount(for: .milliliter)
+        let milliliter = try! ingredient.amount(for: .milliliter)
         XCTAssertTrue(milliliter.equals(3840, precision: 0))
         
-        let liter = ingredient.amount(for: .liter)
+        let liter = try! ingredient.amount(for: .liter)
         XCTAssertTrue(liter.equals(3.84, precision: 2))
         
-        let gram = ingredient.amount(for: .gram)
+        let gram = try! ingredient.amount(for: .gram)
         XCTAssertTrue(gram.equals(3840, precision: 0))
         
-        let kilogram = ingredient.amount(for: .kilogram)
+        let kilogram = try! ingredient.amount(for: .kilogram)
         XCTAssertTrue(kilogram.equals(3.84, precision: 2))
     }
     
@@ -82,7 +82,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurement.amount = 2
         ingredient.measurement.unit = .pound
         
-        let scaleMeasure = ingredient.scale(by: 0.25, measurementSystemMethod: .usWeight)
+        let scaleMeasure = try! ingredient.scale(by: 0.25, measurementSystemMethod: .usWeight)
         XCTAssertTrue(scaleMeasure.amount == 8)
         XCTAssertTrue(scaleMeasure.unit == .ounce)
     }
@@ -91,7 +91,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurement.amount = 0.5
         ingredient.measurement.unit = .pound
         
-        let scaleMeasure = ingredient.scale(by: 1.25, measurementSystemMethod: .usVolume)
+        let scaleMeasure = try! ingredient.scale(by: 1.25, measurementSystemMethod: .usVolume)
         XCTAssertTrue(scaleMeasure.amount.equals(1.25, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .cup)
     }
@@ -100,7 +100,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurement.amount = 10
         ingredient.measurement.unit = .ounce
         
-        let scaleMeasure = ingredient.scale(by: 1.0, measurementSystemMethod: .metricWeight)
+        let scaleMeasure = try! ingredient.scale(by: 1.0, measurementSystemMethod: .metricWeight)
         XCTAssertTrue(scaleMeasure.amount.equals(300, precision: 0))
         XCTAssertTrue(scaleMeasure.unit == .gram)
     }
@@ -109,7 +109,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurement.amount = 4
         ingredient.measurement.unit = .ounce
         
-        let scaleMeasure = ingredient.scale(by: 2.0, measurementSystemMethod: .metricVolume)
+        let scaleMeasure = try! ingredient.scale(by: 2.0, measurementSystemMethod: .metricVolume)
         XCTAssertTrue(scaleMeasure.amount.equals(240, precision: 0))
         XCTAssertTrue(scaleMeasure.unit == .milliliter)
     }
@@ -118,7 +118,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurement.amount = 4
         ingredient.measurement.unit = .tablespoon
         
-        let scaleMeasure = ingredient.scale(by: 3.5, measurementSystemMethod: .usWeight)
+        let scaleMeasure = try! ingredient.scale(by: 3.5, measurementSystemMethod: .usWeight)
         XCTAssertTrue(scaleMeasure.amount.equals(7, precision: 0))
         XCTAssertTrue(scaleMeasure.unit == .ounce)
     }
@@ -127,7 +127,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurement.amount = 28
         ingredient.measurement.unit = .quart
         
-        let scaleMeasure = ingredient.scale(by: Fraction.oneSixteenth.rawValue, measurementSystemMethod: .usVolume)
+        let scaleMeasure = try! ingredient.scale(by: Fraction.oneSixteenth.rawValue, measurementSystemMethod: .usVolume)
         XCTAssertTrue(scaleMeasure.amount.equals(1.75, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .quart)
     }
@@ -136,7 +136,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurement.amount = 1
         ingredient.measurement.unit = .gallon
         
-        let scaleMeasure = ingredient.scale(by: 1.75, measurementSystemMethod: .metricWeight)
+        let scaleMeasure = try! ingredient.scale(by: 1.75, measurementSystemMethod: .metricWeight)
         XCTAssertTrue(scaleMeasure.amount.equals(6.72, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .kilogram)
     }
@@ -145,7 +145,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurement.amount = 1.3
         ingredient.measurement.unit = .ounce
         
-        let scaleMeasure = ingredient.scale(by: 3.0, measurementSystemMethod: .metricVolume)
+        let scaleMeasure = try! ingredient.scale(by: 3.0, measurementSystemMethod: .metricVolume)
         XCTAssertTrue(scaleMeasure.amount.equals(117, precision: 0))
         XCTAssertTrue(scaleMeasure.unit == .milliliter)
     }
@@ -154,7 +154,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurement.amount = 250
         ingredient.measurement.unit = .gram
         
-        let scaleMeasure = ingredient.scale(by: Fraction.oneHalf.rawValue, measurementSystemMethod: .usWeight)
+        let scaleMeasure = try! ingredient.scale(by: Fraction.oneHalf.rawValue, measurementSystemMethod: .usWeight)
         XCTAssertTrue(scaleMeasure.amount.equals(4.17, precision: 0))
         XCTAssertTrue(scaleMeasure.unit == .ounce)
     }
@@ -163,7 +163,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurement.amount = 1.68
         ingredient.measurement.unit = .kilogram
         
-        let scaleMeasure = ingredient.scale(by: 1.0, measurementSystemMethod: .usVolume)
+        let scaleMeasure = try! ingredient.scale(by: 1.0, measurementSystemMethod: .usVolume)
         XCTAssertTrue(scaleMeasure.amount.equals(1.75, precision: 0))
         XCTAssertTrue(scaleMeasure.unit == .quart)
     }
@@ -172,7 +172,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurement.amount = 22
         ingredient.measurement.unit = .kilogram
         
-        let scaleMeasure = ingredient.scale(by: Fraction.oneThird.rawValue, measurementSystemMethod: .metricWeight)
+        let scaleMeasure = try! ingredient.scale(by: Fraction.oneThird.rawValue, measurementSystemMethod: .metricWeight)
         XCTAssertTrue(scaleMeasure.amount.equals(7.33, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .kilogram)
     }
@@ -181,7 +181,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurement.amount = 888.888
         ingredient.measurement.unit = .gram
         
-        let scaleMeasure = ingredient.scale(by: Fraction.twoThirds.rawValue, measurementSystemMethod: .metricVolume)
+        let scaleMeasure = try! ingredient.scale(by: Fraction.twoThirds.rawValue, measurementSystemMethod: .metricVolume)
         XCTAssertTrue(scaleMeasure.amount.equals(592.59, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .milliliter)
     }
@@ -190,7 +190,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurement.amount = 130
         ingredient.measurement.unit = .milliliter
         
-        let scaleMeasure = ingredient.scale(by: 1.01, measurementSystemMethod: .usWeight)
+        let scaleMeasure = try! ingredient.scale(by: 1.01, measurementSystemMethod: .usWeight)
         XCTAssertTrue(scaleMeasure.amount.equals(4.38, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .ounce)
     }
@@ -199,7 +199,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurement.amount = 2.99
         ingredient.measurement.unit = .liter
         
-        let scaleMeasure = ingredient.scale(by: Fraction.oneSixth.rawValue, measurementSystemMethod: .usVolume)
+        let scaleMeasure = try! ingredient.scale(by: Fraction.oneSixth.rawValue, measurementSystemMethod: .usVolume)
         XCTAssertTrue(scaleMeasure.amount.equals(1.04, precision: 2))
         XCTAssertTrue(scaleMeasure.unit == .pint)
     }
@@ -208,7 +208,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurement.amount = 45
         ingredient.measurement.unit = .liter
         
-        let scaleMeasure = ingredient.scale(by: 1.0, measurementSystemMethod: .metricWeight)
+        let scaleMeasure = try! ingredient.scale(by: 1.0, measurementSystemMethod: .metricWeight)
         XCTAssertTrue(scaleMeasure.amount.equals(45, precision: 0))
         XCTAssertTrue(scaleMeasure.unit == .kilogram)
     }
@@ -217,7 +217,7 @@ class LooseConversionTests: XCTestCase {
         ingredient.measurement.amount = 45000
         ingredient.measurement.unit = .milliliter
         
-        let scaleMeasure = ingredient.scale(by: Fraction.oneThousandth.rawValue, measurementSystemMethod: .metricVolume)
+        let scaleMeasure = try! ingredient.scale(by: Fraction.oneThousandth.rawValue, measurementSystemMethod: .metricVolume)
         XCTAssertTrue(scaleMeasure.amount.equals(45, precision: 0))
         XCTAssertTrue(scaleMeasure.unit == .milliliter)
     }

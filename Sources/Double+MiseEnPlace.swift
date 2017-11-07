@@ -46,44 +46,72 @@ public extension Double {
         }
     }
     
+    public var fractionedString: String {
+        guard self.isNaN == false else {
+            return "0"
+        }
+        
+        let decomposedAmount = modf(self)
+        
+        guard decomposedAmount.1 > 0.0 else {
+            return "\(Int(decomposedAmount.0))"
+        }
+        
+        let intergral = Int(decomposedAmount.0)
+        let fraction = Fraction(closestValue: decomposedAmount.1)
+        
+        switch fraction {
+        case .zero:
+            return "\(intergral)"
+        case .one:
+            return "\(Int(intergral + 1))"
+        default:
+            if intergral == 0 {
+                return "\(fraction.stringValue)"
+            } else {
+                return "\(intergral)\(fraction.stringValue)"
+            }
+        }
+    }
+    
     /// Converts an amount from one `MeasurementUnit` to another `MeasurementUnit`
     /// within the same `MeasurementSystemMethod`
-    public func convert(from fromUnit: MeasurementUnit, to toUnit: MeasurementUnit) -> Double {
-        let measurementUnits = MeasurementUnit.measurementUnits(forMeasurementSystemMethod: toUnit.measurementSystemMethod)
-        guard measurementUnits.contains(fromUnit) else {
-            return 0.0
-        }
-        
-        var currentIndex = -1
-        var goalIndex = -1
-        
-        for (index, unit) in measurementUnits.enumerated() {
-            if unit == fromUnit {
-                currentIndex = index
-            }
-            if unit == toUnit {
-                goalIndex = index
-            }
-        }
-        
-        guard currentIndex != goalIndex else {
-            return self
-        }
-        
-        var stepDirection = 0
-        var nextValue = self
-        
-        if goalIndex - currentIndex > 0 {
-            stepDirection = 1
-            nextValue = self * fromUnit.stepUpMultiplier
-        } else {
-            stepDirection = -1
-            nextValue = self / fromUnit.stepDownMultiplier
-        }
-        
-        let nextIndex = currentIndex + stepDirection
-        let nextUnit = measurementUnits[nextIndex]
-        
-        return nextValue.convert(from: nextUnit, to: toUnit)
-    }
+//    public func convert(from fromUnit: MeasurementUnit, to toUnit: MeasurementUnit) -> Double {
+//        let measurementUnits = MeasurementUnit.measurementUnits(forMeasurementSystemMethod: toUnit.measurementSystemMethod)
+//        guard measurementUnits.contains(fromUnit) else {
+//            return 0.0
+//        }
+//        
+//        var currentIndex = -1
+//        var goalIndex = -1
+//        
+//        for (index, unit) in measurementUnits.enumerated() {
+//            if unit == fromUnit {
+//                currentIndex = index
+//            }
+//            if unit == toUnit {
+//                goalIndex = index
+//            }
+//        }
+//        
+//        guard currentIndex != goalIndex else {
+//            return self
+//        }
+//        
+//        var stepDirection = 0
+//        var nextValue = self
+//        
+//        if goalIndex - currentIndex > 0 {
+//            stepDirection = 1
+//            nextValue = self * fromUnit.stepUpMultiplier
+//        } else {
+//            stepDirection = -1
+//            nextValue = self / fromUnit.stepDownMultiplier
+//        }
+//        
+//        let nextIndex = currentIndex + stepDirection
+//        let nextUnit = measurementUnits[nextIndex]
+//        
+//        return nextValue.convert(from: nextUnit, to: toUnit)
+//    }
 }

@@ -1,66 +1,87 @@
-//===----------------------------------------------------------------------===//
-//
-// Measurement.swift
-//
-// Copyright (c) 2016 Richard Piazza
-// https://github.com/richardpiazza/MiseEnPlace
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//
-//===----------------------------------------------------------------------===//
-
 import Foundation
 
-/// ## Measurement
-/// An amount/unit pairing
-public struct CookingMeasurement {
-    /// Changes the default behavior of the `Measurement` translation functions.
-    public static var abbreviateTranslations: Bool = false
-    
-    fileprivate static var singleDecimalFormatter: NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.maximumFractionDigits = 1
-        return formatter
-    }
-    
-    fileprivate static var significantDigitFormatter: NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.usesSignificantDigits = true
-        formatter.maximumSignificantDigits = 2
-        return formatter
-    }
-    
+/// # Measurement
+///
+/// A `Measured` amount and unit pairing.
+///
+/// ## Protocol Conformance
+///
+/// _Measured_
+/// ```swift
+/// var amount: Double { get set }
+/// var unit: MeasurementUnit { get set }
+/// ```
+///
+public struct Measurement: Measured {
     public var amount: Double = 0.0
     public var unit: MeasurementUnit = .each
     
     public init() {
-        
     }
     
     public init(amount: Double, unit: MeasurementUnit) {
         self.amount = amount
         self.unit = unit
     }
-    
+
+    public init(measured: Measured) {
+        self.amount = measured.amount
+        self.unit = measured.unit
+    }
+}
+
+public extension Measurement {
+    /// Converts an amount from one `MeasurementUnit` to another `MeasurementUnit`
+    /// within the same `MeasurementSystemMethod`
+    ///
+    /// - parameter unit: The `MeasurementUnit` to convert to.
+    ///
+    /// - throws: ConversionError.unhandled
+    ///
+    public func amount(for unit: MeasurementUnit) throws -> Double {
+        let measurementUnits = MeasurementUnit.measurementUnits(forMeasurementSystemMethod: unit.measurementSystemMethod)
+        guard measurementUnits.contains(self.unit) else {
+            throw Error.unhandledConversion
+        }
+        
+        var currentIndex = -1
+        var goalIndex = -1
+        
+        for (index, mu) in measurementUnits.enumerated() {
+            if mu == self.unit {
+                currentIndex = index
+            }
+            if mu == unit {
+                goalIndex = index
+            }
+        }
+        
+        guard currentIndex != goalIndex else {
+            return self.amount
+        }
+        
+        var stepDirection = 0
+        var nextValue = self.amount
+        
+        if goalIndex - currentIndex > 0 {
+            stepDirection = 1
+            nextValue = self.amount * self.unit.stepUpMultiplier
+        } else {
+            stepDirection = -1
+            nextValue = self.amount / self.unit.stepDownMultiplier
+        }
+        
+        let nextIndex = currentIndex + stepDirection
+        let nextUnit = measurementUnits[nextIndex]
+        
+        return try MiseEnPlace.Measurement(amount: nextValue, unit: nextUnit).amount(for: unit)
+    }
+}
+
+public extension Measurement {
     /// Returns this `Measurement` in terms of the current `MeasurementUnit` and
     /// the next smallest `MeasurementUnit` if needed.
-    public var components: [CookingMeasurement] {
+    public var components: [MiseEnPlace.Measurement] {
         guard unit != .asNeeded && unit != .each else {
             return [self]
         }
@@ -70,19 +91,25 @@ public struct CookingMeasurement {
             return [self]
         }
         
-        var components = [CookingMeasurement]()
+        var components = [MiseEnPlace.Measurement]()
         
         switch unit {
         case .kilogram, .liter, .pound, .tablespoon, .teaspoon, .fluidOunce, .cup, .pint, .quart, .gallon:
             if decomposedAmount.0 != 0 {
-                components.append(CookingMeasurement(amount: decomposedAmount.0, unit: unit))
+                components.append(MiseEnPlace.Measurement(amount: decomposedAmount.0, unit: unit))
             }
             
             if let stepDownUnit = unit.stepDownUnit, decomposedAmount.1 < unit.stepDownThreshold {
-                let stepDownMeasurement = decomposedAmount.1.convert(from: unit, to: stepDownUnit)
-                components.append(CookingMeasurement(amount: stepDownMeasurement, unit: stepDownUnit))
+                let measurement = MiseEnPlace.Measurement(amount: decomposedAmount.1, unit: unit)
+                var stepDownMeasurementAmount = 0.0
+                do {
+                    stepDownMeasurementAmount = try measurement.amount(for: stepDownUnit)
+                } catch {
+                    print(error)
+                }
+                components.append(MiseEnPlace.Measurement(amount: stepDownMeasurementAmount, unit: stepDownUnit))
             } else {
-                components.append(CookingMeasurement(amount: decomposedAmount.1, unit: unit))
+                components.append(MiseEnPlace.Measurement(amount: decomposedAmount.1, unit: unit))
             }
         default:
             components.append(self)
@@ -93,7 +120,7 @@ public struct CookingMeasurement {
     
     /// Returns a "human-readable" form of this `Measurement`.
     public var translation: String {
-        return translation(abbreviated: CookingMeasurement.abbreviateTranslations)
+        return translation(abbreviated: MiseEnPlace.Configuration.abbreviateTranslations)
     }
     
     /// Returns a "human-readable" form of this `Measurement` with the option to 
@@ -111,7 +138,7 @@ public struct CookingMeasurement {
     
     /// Returns a "human-readable" form of the componentized `Measurement`.
     public var componentsTranslation: String {
-        return componentsTranslation(abbreviated: CookingMeasurement.abbreviateTranslations)
+        return componentsTranslation(abbreviated: MiseEnPlace.Configuration.abbreviateTranslations)
     }
     
     /// Returns a "human-readable" form of the componentized `Measurement` with the
@@ -154,7 +181,7 @@ public struct CookingMeasurement {
         return interpretation.replacingOccurrencesExceptLast(unitName, with: "")
     }
     
-    fileprivate func metricTranslation(abbreviated: Bool) -> String {
+    private func metricTranslation(abbreviated: Bool) -> String {
         let unitName = unit.name(abbreviated: abbreviated)
         
         let decomposedAmount = modf(amount)
@@ -162,7 +189,7 @@ public struct CookingMeasurement {
             if decomposedAmount.1 == 0.0 {
                 return "\(Int(amount)) \(unitName)"
             } else {
-                guard let singleDecimal = type(of: self).singleDecimalFormatter.string(from: NSNumber(value: amount)) else {
+                guard let singleDecimal = Configuration.singleDecimalFormatter.string(from: NSNumber(value: amount)) else {
                     return "\(amount) \(unitName)"
                 }
                 
@@ -183,7 +210,7 @@ public struct CookingMeasurement {
         }
     }
     
-    fileprivate func fractionTranslation(abbreviated: Bool) -> String {
+    private func fractionTranslation(abbreviated: Bool) -> String {
         let unitName = unit.name(abbreviated: abbreviated)
         
         let decomposedAmount = modf(amount)
@@ -199,7 +226,7 @@ public struct CookingMeasurement {
             return "\(Int(intergral + 1)) \(unitName)"
         case .zero:
             if intergral == 0 {
-                guard let significantAmount = type(of: self).significantDigitFormatter.string(from: NSNumber(value: amount)) else {
+                guard let significantAmount = Configuration.significantDigitFormatter.string(from: NSNumber(value: amount)) else {
                     return "\(amount) \(unitName)"
                 }
                 

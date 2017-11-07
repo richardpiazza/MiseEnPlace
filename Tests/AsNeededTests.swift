@@ -28,7 +28,7 @@ class AsNeededTests: XCTestCase {
     func testAsNeededConvertAndInterpret() {
         ingredient.measurement.unit = .asNeeded
         
-        let scaleMeasure = ingredient.scale(by: 1.0, measurementSystemMethod: .usVolume)
+        let scaleMeasure = try! ingredient.scale(by: 1.0, measurementSystemMethod: .usVolume)
         XCTAssertTrue(scaleMeasure.amount == 0)
         XCTAssertTrue(scaleMeasure.unit == .asNeeded)
         
