@@ -2,7 +2,7 @@ import Foundation
 
 /// # Configuration
 ///
-/// Framework level congifuration variabls
+/// Framework level congifuration variables
 ///
 public struct Configuration {
     

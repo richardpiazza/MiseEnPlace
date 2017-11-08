@@ -36,16 +36,29 @@ public extension Measurement {
     ///
     /// - parameter unit: The `MeasurementUnit` to convert to.
     ///
-    /// - throws: ConversionError.unhandled
+    /// - throws: Error.asNeededConversion, Error.measurementAmount(), Error.measurementUnit()
     ///
     public func amount(for unit: MeasurementUnit) throws -> Double {
-        let measurementUnits = MeasurementUnit.measurementUnits(forMeasurementSystemMethod: unit.measurementSystemMethod)
-        guard measurementUnits.contains(self.unit) else {
-            throw Error.unhandledConversion
+        guard self.amount > 0.0 else {
+            throw Error.measurementAmount(method: nil)
+        }
+        
+        guard self.unit.measurementSystemMethod != .numericQuantity else {
+            throw Error.measurementUnit(method: nil)
+        }
+        
+        guard unit.measurementSystemMethod != .numericQuantity else {
+            throw Error.measurementUnit(method: nil)
+        }
+        
+        guard self.unit.measurementSystemMethod == unit.measurementSystemMethod else {
+            throw Error.measurementUnit(method: nil)
         }
         
         var currentIndex = -1
         var goalIndex = -1
+        
+        let measurementUnits = MeasurementUnit.measurementUnits(forMeasurementSystemMethod: unit.measurementSystemMethod)
         
         for (index, mu) in measurementUnits.enumerated() {
             if mu == self.unit {

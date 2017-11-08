@@ -32,6 +32,7 @@
 		E1D5432F1FB3A79B003E2777 /* RatioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A7B1FAD09AB0046D564 /* RatioTests.swift */; };
 		E1D543301FB3A79B003E2777 /* SignificantDigitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A7C1FAD09AB0046D564 /* SignificantDigitTests.swift */; };
 		E1D543321FB3AABD003E2777 /* ConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D543311FB3AABD003E2777 /* ConfigurationTests.swift */; };
+		E1D543341FB3B102003E2777 /* MeasurementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D543331FB3B102003E2777 /* MeasurementTests.swift */; };
 		E1E46A641FAD09A20046D564 /* ScaleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A561FAD09A20046D564 /* ScaleParameters.swift */; };
 		E1E46A651FAD09A20046D564 /* MeasurementMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A571FAD09A20046D564 /* MeasurementMethod.swift */; };
 		E1E46A661FAD09A20046D564 /* MeasurementSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A581FAD09A20046D564 /* MeasurementSystem.swift */; };
@@ -76,6 +77,7 @@
 		E1C1028E1FAD0FC70092C123 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E1D5431B1FB3A773003E2777 /* MiseEnPlaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiseEnPlaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1D543311FB3AABD003E2777 /* ConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
+		E1D543331FB3B102003E2777 /* MeasurementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementTests.swift; sourceTree = "<group>"; };
 		E1E02C791B6F200A00FEDC95 /* MiseEnPlace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MiseEnPlace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E02C7D1B6F200A00FEDC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1E02C8A1B6F200A00FEDC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				E1E46A731FAD09AB0046D564 /* HighVolumeRatioIngredientTests.swift */,
 				E1E46A781FAD09AB0046D564 /* InterpreterTests.swift */,
 				E1E46A751FAD09AB0046D564 /* LooseConversionTests.swift */,
+				E1D543331FB3B102003E2777 /* MeasurementTests.swift */,
 				E1E46A761FAD09AB0046D564 /* MeasurementUnitTests.swift */,
 				E1E46A7B1FAD09AB0046D564 /* RatioTests.swift */,
 				E1E46A7C1FAD09AB0046D564 /* SignificantDigitTests.swift */,
@@ -352,6 +355,7 @@
 				E1D543291FB3A79B003E2777 /* EqualRatioIngredientTests.swift in Sources */,
 				E1D5432F1FB3A79B003E2777 /* RatioTests.swift in Sources */,
 				E1D543301FB3A79B003E2777 /* SignificantDigitTests.swift in Sources */,
+				E1D543341FB3B102003E2777 /* MeasurementTests.swift in Sources */,
 				E1D543271FB3A79B003E2777 /* ConvertableIngredient.swift in Sources */,
 				E1D543261FB3A79B003E2777 /* AsNeededTests.swift in Sources */,
 			);
