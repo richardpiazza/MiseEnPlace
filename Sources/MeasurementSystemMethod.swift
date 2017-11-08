@@ -36,4 +36,21 @@ public enum MeasurementSystemMethod: Int {
     case usWeight = 12
     case metricVolume = 21
     case metricWeight = 22
+    
+    public static func measurementSystemMethod(for measurementSystem: MeasurementSystem, measurementMethod: MeasurementMethod) -> MeasurementSystemMethod? {
+        switch (measurementSystem, measurementMethod) {
+        case (.numeric, .quantity):
+            return .numericQuantity
+        case (.us, .volume):
+            return .usVolume
+        case (.us, .weight):
+            return .usWeight
+        case (.metric, .volume):
+            return .metricVolume
+        case (.metric, .weight):
+            return .metricWeight
+        default:
+            return nil
+        }
+    }
 }

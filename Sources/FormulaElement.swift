@@ -195,13 +195,17 @@ public extension FormulaElement {
 
 internal extension FormulaElement {
     internal func scale(by multiplier: Double, measurementSystem: MeasurementSystem? = nil, measurementMethod: MeasurementMethod? = nil) throws -> MiseEnPlace.Measurement {
-        
+        if let _ = self.ingredient {
+            return try self.scaleIngredient(by: multiplier, measurementSystem: measurementSystem, measurementMethod: measurementMethod)
+        } else if let _ = self.recipe {
+            return try self.scaleRecipe(by: multiplier, measurementSystem: measurementSystem, measurementMethod: measurementMethod)
+        }
         
         throw Error.unhandledConversion
     }
     
     private func scaleIngredient(by multiplier: Double, measurementSystem: MeasurementSystem? = nil, measurementMethod: MeasurementMethod? = nil) throws -> MiseEnPlace.Measurement {
-        guard self.unit != .asNeeded || unit != .asNeeded else {
+        guard self.unit != .asNeeded else {
             throw Error.asNeededConversion
         }
         
@@ -213,15 +217,19 @@ internal extension FormulaElement {
             throw Error.unhandledConversion
         }
         
-        if (self.unit == .each || unit == .each) && !ingredient.measurement.unit.isQuantifiable {
-            throw Error.quantifiableConversion
+        if self.unit == .each {
+            guard ingredient.unit.isQuantifiable else {
+                throw Error.quantifiableConversion
+            }
+            
+            
         }
         
-        throw Error.unhandledConversion
+        return try self.measurement.measurement(matching: self.unit.measurementSystem, measurementMethod: self.unit.measurementMethod)
     }
     
     private func scaleRecipe(by multiplier: Double, measurementSystem: MeasurementSystem? = nil, measurementMethod: MeasurementMethod? = nil) throws -> MiseEnPlace.Measurement {
-        guard self.unit != .asNeeded || unit != .asNeeded else {
+        guard self.unit != .asNeeded else {
             throw Error.asNeededConversion
         }
         
@@ -233,12 +241,24 @@ internal extension FormulaElement {
             throw Error.unhandledConversion
         }
         
-        if (self.unit == .each || unit == .each) && !recipe.measurement.unit.isQuantifiable {
-            throw Error.quantifiableConversion
+        if self.unit == .each {
+            guard recipe.unit.isQuantifiable else {
+                throw Error.quantifiableConversion
+            }
+            
+            var totalMeasurement = recipe.totalMeasurement
+            totalMeasurement.amount = totalMeasurement.amount * multiplier
+            
+            let ms = measurementSystem ?? totalMeasurement.unit.measurementSystem
+            let mm = measurementMethod ?? totalMeasurement.unit.measurementMethod
+            
+            return try totalMeasurement.measurement(matching: ms, measurementMethod: mm)
         }
         
+        let totalAmount = recipe.totalAmount(for: self.unit)
+        let totalMeasurement = MiseEnPlace.Measurement(amount: totalAmount * self.amount, unit: self.unit)
+        let scaledMeasurement = try totalMeasurement.measurement(matching: self.unit.measurementSystem, measurementMethod: self.unit.measurementMethod)
         
-        
-        throw Error.unhandledConversion
+        return scaledMeasurement
     }
 }

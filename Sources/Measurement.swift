@@ -76,6 +76,30 @@ public extension Measurement {
         
         return try MiseEnPlace.Measurement(amount: nextValue, unit: nextUnit).amount(for: unit)
     }
+    
+    public func measurement(matching measurementSystem: MeasurementSystem, measurementMethod: MeasurementMethod) throws -> MiseEnPlace.Measurement {
+        guard self.unit != .asNeeded else {
+            throw Error.asNeededConversion
+        }
+        
+        guard self.amount > 0.0 else {
+            throw Error.measurementAmount(method: nil)
+        }
+        
+        guard let msm = MeasurementSystemMethod.measurementSystemMethod(for: measurementSystem, measurementMethod: measurementMethod) else {
+            throw Error.unhandledConversion
+        }
+        
+        let units = Array(MeasurementUnit.measurementUnits(forMeasurementSystemMethod: msm).reversed())
+        for unit in units {
+            let unitAmount = try self.amount(for: unit)
+            if unitAmount >= unit.stepDownThreshold {
+                return MiseEnPlace.Measurement(amount: unitAmount, unit: unit)
+            }
+        }
+        
+        throw Error.unhandledConversion
+    }
 }
 
 public extension Measurement {
