@@ -68,8 +68,8 @@ public struct Ratio: Proportioned {
         weightMeasuredIngredient.amount = weight.amount
         weightMeasuredIngredient.unit = weight.unit
         
-        let volumeAmount = 0.0 //try volumeMeasuredIngredient.convert(to: .fluidOunce).amount
-        let weightAmount = 0.0 //try weightMeasuredIngredient.convert(to: .ounce).amount
+        let volumeAmount = try volumeMeasuredIngredient.amount(for: .fluidOunce)
+        let weightAmount = try weightMeasuredIngredient.amount(for: .ounce)
         
         guard volumeAmount != 0.0 && weightAmount != 0.0 else {
             throw Error.unhandledConversion

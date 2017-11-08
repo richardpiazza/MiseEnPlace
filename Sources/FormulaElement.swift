@@ -222,10 +222,19 @@ internal extension FormulaElement {
                 throw Error.quantifiableConversion
             }
             
+            let quantifiableMeasurement = ingredient.measurement
+            let equivalentMeasurement = MiseEnPlace.Measurement(amount: quantifiableMeasurement.amount * self.amount, unit: quantifiableMeasurement.unit)
             
+            let ms = measurementSystem ?? equivalentMeasurement.unit.measurementSystem
+            let mm = measurementMethod ?? equivalentMeasurement.unit.measurementMethod
+            
+            return try equivalentMeasurement.measurement(matching: ms, measurementMethod: mm)
         }
         
-        return try self.measurement.measurement(matching: self.unit.measurementSystem, measurementMethod: self.unit.measurementMethod)
+        let totalAmount = try ingredientAmount(for: self.unit)
+        let totalMeasurement = MiseEnPlace.Measurement(amount: totalAmount * self.amount, unit: self.unit)
+        
+        return try totalMeasurement.measurement(matching: self.unit.measurementSystem, measurementMethod: self.unit.measurementMethod)
     }
     
     private func scaleRecipe(by multiplier: Double, measurementSystem: MeasurementSystem? = nil, measurementMethod: MeasurementMethod? = nil) throws -> MiseEnPlace.Measurement {
