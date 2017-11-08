@@ -133,7 +133,25 @@ class MeasurementTests: XCTestCase {
     }
     
     func testTranslation() {
-        // Configuration.abbreviateTranslations
+        XCTAssertFalse(Configuration.abbreviateTranslations)
+        
+        var measurement: MiseEnPlace.Measurement
+        
+        // Significant Digits
+        measurement = MiseEnPlace.Measurement(amount: 0.0951019406578092, unit: .cup)
+        XCTAssertEqual(measurement.translation, "0.095 Cup")
+        
+        measurement = MiseEnPlace.Measurement(amount: 0.0475509703289046, unit: .pint)
+        XCTAssertEqual(measurement.translation, "0.048 Pint")
+        
+        measurement = MiseEnPlace.Measurement(amount: 0.0237754851644523, unit: .quart)
+        XCTAssertEqual(measurement.translation, "0.024 Quart")
+        
+        measurement = MiseEnPlace.Measurement(amount: 0.00594387129111308, unit: .gallon)
+        XCTAssertEqual(measurement.translation, "0.0059 Gallon")
+        
+        measurement = MiseEnPlace.Measurement(amount: 0.022046226315695, unit: .pound)
+        XCTAssertEqual(measurement.translation, "0.022 Pound")
     }
     
     func testComponentsTranslation() {

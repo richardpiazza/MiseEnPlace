@@ -37,11 +37,7 @@ public protocol Descriptive {
 public extension Descriptive {
     /// Returns the first character from `name` or "" (empty string).
     public var nameIndexCharacter: String {
-        guard let name = self.name else {
-            return ""
-        }
-        
-        guard name.count > 0 else {
+        guard let name = self.name, name.count > 0 else {
             return ""
         }
         

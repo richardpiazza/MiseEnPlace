@@ -48,7 +48,3 @@ import Foundation
 public protocol Ingredient: Unique, Descriptive, Multimedia, Proportioned, Measured {
     
 }
-
-public extension Ingredient {
-    
-}

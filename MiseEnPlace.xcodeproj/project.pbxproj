@@ -29,10 +29,11 @@
 		E1D5432D1FB3A79B003E2777 /* LooseConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A751FAD09AB0046D564 /* LooseConversionTests.swift */; };
 		E1D5432E1FB3A79B003E2777 /* MeasurementUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A761FAD09AB0046D564 /* MeasurementUnitTests.swift */; };
 		E1D5432F1FB3A79B003E2777 /* RatioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A7B1FAD09AB0046D564 /* RatioTests.swift */; };
-		E1D543301FB3A79B003E2777 /* SignificantDigitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A7C1FAD09AB0046D564 /* SignificantDigitTests.swift */; };
 		E1D543321FB3AABD003E2777 /* ConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D543311FB3AABD003E2777 /* ConfigurationTests.swift */; };
 		E1D543341FB3B102003E2777 /* MeasurementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D543331FB3B102003E2777 /* MeasurementTests.swift */; };
-		E1E46A641FAD09A20046D564 /* ScaleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A561FAD09A20046D564 /* ScaleParameters.swift */; };
+		E1D543361FB3C26F003E2777 /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D543351FB3C26F003E2777 /* Convertable.swift */; };
+		E1D543381FB3C330003E2777 /* ScaleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D543371FB3C330003E2777 /* ScaleParameters.swift */; };
+		E1D5433A1FB3C36D003E2777 /* DescriptiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D543391FB3C36D003E2777 /* DescriptiveTests.swift */; };
 		E1E46A651FAD09A20046D564 /* MeasurementMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A571FAD09A20046D564 /* MeasurementMethod.swift */; };
 		E1E46A661FAD09A20046D564 /* MeasurementSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A581FAD09A20046D564 /* MeasurementSystem.swift */; };
 		E1E46A671FAD09A20046D564 /* Ratio.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A591FAD09A20046D564 /* Ratio.swift */; };
@@ -41,7 +42,6 @@
 		E1E46A6A1FAD09A20046D564 /* Fraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A5C1FAD09A20046D564 /* Fraction.swift */; };
 		E1E46A6B1FAD09A20046D564 /* MeasurementInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A5D1FAD09A20046D564 /* MeasurementInputView.swift */; };
 		E1E46A6C1FAD09A20046D564 /* Intergral.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A5E1FAD09A20046D564 /* Intergral.swift */; };
-		E1E46A6D1FAD09A20046D564 /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A5F1FAD09A20046D564 /* Convertable.swift */; };
 		E1E46A6E1FAD09A20046D564 /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A601FAD09A20046D564 /* Measurement.swift */; };
 		E1E46A6F1FAD09A20046D564 /* MeasurementUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A611FAD09A20046D564 /* MeasurementUnit.swift */; };
 		E1E46A711FAD09A20046D564 /* String+MiseEnPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A631FAD09A20046D564 /* String+MiseEnPlace.swift */; };
@@ -77,10 +77,12 @@
 		E1D5431B1FB3A773003E2777 /* MiseEnPlaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiseEnPlaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1D543311FB3AABD003E2777 /* ConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
 		E1D543331FB3B102003E2777 /* MeasurementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementTests.swift; sourceTree = "<group>"; };
+		E1D543351FB3C26F003E2777 /* Convertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convertable.swift; sourceTree = "<group>"; };
+		E1D543371FB3C330003E2777 /* ScaleParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleParameters.swift; sourceTree = "<group>"; };
+		E1D543391FB3C36D003E2777 /* DescriptiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptiveTests.swift; sourceTree = "<group>"; };
 		E1E02C791B6F200A00FEDC95 /* MiseEnPlace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MiseEnPlace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E02C7D1B6F200A00FEDC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1E02C8A1B6F200A00FEDC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1E46A561FAD09A20046D564 /* ScaleParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleParameters.swift; sourceTree = "<group>"; };
 		E1E46A571FAD09A20046D564 /* MeasurementMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementMethod.swift; sourceTree = "<group>"; };
 		E1E46A581FAD09A20046D564 /* MeasurementSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementSystem.swift; sourceTree = "<group>"; };
 		E1E46A591FAD09A20046D564 /* Ratio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ratio.swift; sourceTree = "<group>"; };
@@ -89,7 +91,6 @@
 		E1E46A5C1FAD09A20046D564 /* Fraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fraction.swift; sourceTree = "<group>"; };
 		E1E46A5D1FAD09A20046D564 /* MeasurementInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementInputView.swift; sourceTree = "<group>"; };
 		E1E46A5E1FAD09A20046D564 /* Intergral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Intergral.swift; sourceTree = "<group>"; };
-		E1E46A5F1FAD09A20046D564 /* Convertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convertable.swift; sourceTree = "<group>"; };
 		E1E46A601FAD09A20046D564 /* Measurement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
 		E1E46A611FAD09A20046D564 /* MeasurementUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementUnit.swift; sourceTree = "<group>"; };
 		E1E46A631FAD09A20046D564 /* String+MiseEnPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MiseEnPlace.swift"; sourceTree = "<group>"; };
@@ -101,7 +102,6 @@
 		E1E46A791FAD09AB0046D564 /* EqualRatioIngredientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EqualRatioIngredientTests.swift; sourceTree = "<group>"; };
 		E1E46A7A1FAD09AB0046D564 /* EachMeasurementUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachMeasurementUnitTests.swift; sourceTree = "<group>"; };
 		E1E46A7B1FAD09AB0046D564 /* RatioTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatioTests.swift; sourceTree = "<group>"; };
-		E1E46A7C1FAD09AB0046D564 /* SignificantDigitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignificantDigitTests.swift; sourceTree = "<group>"; };
 		E1E46A7D1FAD09AB0046D564 /* AsNeededTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsNeededTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -184,7 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				E1307F081FB100C3008D28C4 /* Configuration.swift */,
-				E1E46A5F1FAD09A20046D564 /* Convertable.swift */,
 				E1307F0A1FB1020F008D28C4 /* Descriptive.swift */,
 				E1E46A5A1FAD09A20046D564 /* Double+MiseEnPlace.swift */,
 				E1307F0C1FB10468008D28C4 /* Error.swift */,
@@ -204,7 +203,6 @@
 				E1307F161FB10B34008D28C4 /* Proportioned.swift */,
 				E1E46A591FAD09A20046D564 /* Ratio.swift */,
 				E1307F1A1FB10B95008D28C4 /* Recipe.swift */,
-				E1E46A561FAD09A20046D564 /* ScaleParameters.swift */,
 				E1307F121FB10ACE008D28C4 /* Sequenced.swift */,
 				E1E46A631FAD09A20046D564 /* String+MiseEnPlace.swift */,
 				E1307F101FB1088D008D28C4 /* Unique.swift */,
@@ -216,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				E1D543311FB3AABD003E2777 /* ConfigurationTests.swift */,
+				E1D543391FB3C36D003E2777 /* DescriptiveTests.swift */,
 				E1E46A7D1FAD09AB0046D564 /* AsNeededTests.swift */,
 				E1E46A741FAD09AB0046D564 /* ConvertableIngredient.swift */,
 				E1E46A7A1FAD09AB0046D564 /* EachMeasurementUnitTests.swift */,
@@ -226,7 +225,8 @@
 				E1D543331FB3B102003E2777 /* MeasurementTests.swift */,
 				E1E46A761FAD09AB0046D564 /* MeasurementUnitTests.swift */,
 				E1E46A7B1FAD09AB0046D564 /* RatioTests.swift */,
-				E1E46A7C1FAD09AB0046D564 /* SignificantDigitTests.swift */,
+				E1D543351FB3C26F003E2777 /* Convertable.swift */,
+				E1D543371FB3C330003E2777 /* ScaleParameters.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -345,12 +345,12 @@
 				E1D5432E1FB3A79B003E2777 /* MeasurementUnitTests.swift in Sources */,
 				E1D5432D1FB3A79B003E2777 /* LooseConversionTests.swift in Sources */,
 				E1D543321FB3AABD003E2777 /* ConfigurationTests.swift in Sources */,
+				E1D5433A1FB3C36D003E2777 /* DescriptiveTests.swift in Sources */,
 				E1D543281FB3A79B003E2777 /* EachMeasurementUnitTests.swift in Sources */,
 				E1D5432A1FB3A79B003E2777 /* HighMassRatioIngredientTests.swift in Sources */,
 				E1D5432B1FB3A79B003E2777 /* HighVolumeRatioIngredientTests.swift in Sources */,
 				E1D543291FB3A79B003E2777 /* EqualRatioIngredientTests.swift in Sources */,
 				E1D5432F1FB3A79B003E2777 /* RatioTests.swift in Sources */,
-				E1D543301FB3A79B003E2777 /* SignificantDigitTests.swift in Sources */,
 				E1D543341FB3B102003E2777 /* MeasurementTests.swift in Sources */,
 				E1D543271FB3A79B003E2777 /* ConvertableIngredient.swift in Sources */,
 				E1D543261FB3A79B003E2777 /* AsNeededTests.swift in Sources */,
@@ -362,12 +362,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1E46A691FAD09A20046D564 /* MeasurementSystemMethod.swift in Sources */,
-				E1E46A6D1FAD09A20046D564 /* Convertable.swift in Sources */,
 				E1307F091FB100C3008D28C4 /* Configuration.swift in Sources */,
-				E1E46A641FAD09A20046D564 /* ScaleParameters.swift in Sources */,
 				E1307F191FB10B79008D28C4 /* Ingredient.swift in Sources */,
 				E1307F171FB10B34008D28C4 /* Proportioned.swift in Sources */,
 				E1E46A671FAD09A20046D564 /* Ratio.swift in Sources */,
+				E1D543361FB3C26F003E2777 /* Convertable.swift in Sources */,
 				E1E46A6A1FAD09A20046D564 /* Fraction.swift in Sources */,
 				E1307F151FB10B10008D28C4 /* Multimedia.swift in Sources */,
 				E1E46A6E1FAD09A20046D564 /* Measurement.swift in Sources */,
@@ -382,6 +381,7 @@
 				E1307F1D1FB10BAA008D28C4 /* FormulaElement.swift in Sources */,
 				E1E46A651FAD09A20046D564 /* MeasurementMethod.swift in Sources */,
 				E1307F131FB10ACE008D28C4 /* Sequenced.swift in Sources */,
+				E1D543381FB3C330003E2777 /* ScaleParameters.swift in Sources */,
 				E1E46A711FAD09A20046D564 /* String+MiseEnPlace.swift in Sources */,
 				E1E46A6F1FAD09A20046D564 /* MeasurementUnit.swift in Sources */,
 				E1307F0B1FB1020F008D28C4 /* Descriptive.swift in Sources */,
