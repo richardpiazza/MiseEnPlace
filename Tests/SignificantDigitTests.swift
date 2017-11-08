@@ -1,26 +1,7 @@
-//
-//  SignificantDigitTests.swift
-//  MiseEnPlace
-//
-//  Created by Richard Piazza on 11/8/16.
-//  Copyright © 2016 Richard Piazza. All rights reserved.
-//
-
-import Foundation
 import XCTest
-import MiseEnPlace
+@testable import MiseEnPlace
 
 class SignificantDigitTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
     
     func testCup() {
         let measurement = MiseEnPlace.Measurement(amount: 0.0951019406578092, unit: .cup)

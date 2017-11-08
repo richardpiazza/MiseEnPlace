@@ -80,8 +80,8 @@ public extension Convertable {
             
             let fluidOunce = try self.amount(for: .fluidOunce)
             let ounce = conversionMultiplier * fluidOunce
-            let milliliter = MiseEnPlace.Multipliers.fluidOunceMilliliter * fluidOunce
-            let gram: Double = MiseEnPlace.Multipliers.ounceGram * ounce
+            let milliliter = MiseEnPlace.Configuration.fluidOunceMilliliter * fluidOunce
+            let gram: Double = MiseEnPlace.Configuration.ounceGram * ounce
             
             if toMeasurementSystemMethod == .usWeight {
                 return try MiseEnPlace.Measurement(amount: ounce, unit: .ounce).amount(for: unit)
@@ -97,8 +97,8 @@ public extension Convertable {
             
             let ounce = try self.amount(for: .ounce)
             let fluidOunce = conversionMultiplier * ounce
-            let milliliter = MiseEnPlace.Multipliers.fluidOunceMilliliter * fluidOunce
-            let gram = MiseEnPlace.Multipliers.ounceGram * ounce
+            let milliliter = MiseEnPlace.Configuration.fluidOunceMilliliter * fluidOunce
+            let gram = MiseEnPlace.Configuration.ounceGram * ounce
             
             if toMeasurementSystemMethod == .usVolume {
                 return try MiseEnPlace.Measurement(amount: fluidOunce, unit: .fluidOunce).amount(for: unit)
@@ -114,8 +114,8 @@ public extension Convertable {
             
             let milliliter = try self.amount(for: .milliliter)
             let gram = conversionMultiplier * milliliter
-            let fluidOunce = milliliter / MiseEnPlace.Multipliers.fluidOunceMilliliter
-            let ounce = gram / MiseEnPlace.Multipliers.ounceGram
+            let fluidOunce = milliliter / MiseEnPlace.Configuration.fluidOunceMilliliter
+            let ounce = gram / MiseEnPlace.Configuration.ounceGram
             
             if toMeasurementSystemMethod == .metricWeight {
                 return try MiseEnPlace.Measurement(amount: gram, unit: .gram).amount(for: unit)
@@ -131,8 +131,8 @@ public extension Convertable {
             
             let gram = try self.amount(for: .gram)
             let milliliter = conversionMultiplier * gram
-            let fluidOunce = milliliter / MiseEnPlace.Multipliers.fluidOunceMilliliter
-            let ounce = gram / MiseEnPlace.Multipliers.ounceGram
+            let fluidOunce = milliliter / MiseEnPlace.Configuration.fluidOunceMilliliter
+            let ounce = gram / MiseEnPlace.Configuration.ounceGram
             
             if toMeasurementSystemMethod == .metricVolume {
                 return try MiseEnPlace.Measurement(amount: milliliter, unit: .milliliter).amount(for: unit)

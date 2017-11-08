@@ -31,6 +31,7 @@
 		E1D5432E1FB3A79B003E2777 /* MeasurementUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A761FAD09AB0046D564 /* MeasurementUnitTests.swift */; };
 		E1D5432F1FB3A79B003E2777 /* RatioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A7B1FAD09AB0046D564 /* RatioTests.swift */; };
 		E1D543301FB3A79B003E2777 /* SignificantDigitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A7C1FAD09AB0046D564 /* SignificantDigitTests.swift */; };
+		E1D543321FB3AABD003E2777 /* ConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D543311FB3AABD003E2777 /* ConfigurationTests.swift */; };
 		E1E46A641FAD09A20046D564 /* ScaleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A561FAD09A20046D564 /* ScaleParameters.swift */; };
 		E1E46A651FAD09A20046D564 /* MeasurementMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A571FAD09A20046D564 /* MeasurementMethod.swift */; };
 		E1E46A661FAD09A20046D564 /* MeasurementSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A581FAD09A20046D564 /* MeasurementSystem.swift */; };
@@ -43,7 +44,6 @@
 		E1E46A6D1FAD09A20046D564 /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A5F1FAD09A20046D564 /* Convertable.swift */; };
 		E1E46A6E1FAD09A20046D564 /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A601FAD09A20046D564 /* Measurement.swift */; };
 		E1E46A6F1FAD09A20046D564 /* MeasurementUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A611FAD09A20046D564 /* MeasurementUnit.swift */; };
-		E1E46A701FAD09A20046D564 /* Multipliers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A621FAD09A20046D564 /* Multipliers.swift */; };
 		E1E46A711FAD09A20046D564 /* String+MiseEnPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A631FAD09A20046D564 /* String+MiseEnPlace.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +75,7 @@
 		E1307F1E1FB10BBB008D28C4 /* ProcedureElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureElement.swift; sourceTree = "<group>"; };
 		E1C1028E1FAD0FC70092C123 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E1D5431B1FB3A773003E2777 /* MiseEnPlaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiseEnPlaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1D543311FB3AABD003E2777 /* ConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
 		E1E02C791B6F200A00FEDC95 /* MiseEnPlace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MiseEnPlace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E02C7D1B6F200A00FEDC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1E02C8A1B6F200A00FEDC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,7 +91,6 @@
 		E1E46A5F1FAD09A20046D564 /* Convertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convertable.swift; sourceTree = "<group>"; };
 		E1E46A601FAD09A20046D564 /* Measurement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
 		E1E46A611FAD09A20046D564 /* MeasurementUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementUnit.swift; sourceTree = "<group>"; };
-		E1E46A621FAD09A20046D564 /* Multipliers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Multipliers.swift; sourceTree = "<group>"; };
 		E1E46A631FAD09A20046D564 /* String+MiseEnPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MiseEnPlace.swift"; sourceTree = "<group>"; };
 		E1E46A731FAD09AB0046D564 /* HighVolumeRatioIngredientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighVolumeRatioIngredientTests.swift; sourceTree = "<group>"; };
 		E1E46A741FAD09AB0046D564 /* ConvertableIngredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertableIngredient.swift; sourceTree = "<group>"; };
@@ -200,7 +200,6 @@
 				E1E46A5B1FAD09A20046D564 /* MeasurementSystemMethod.swift */,
 				E1E46A611FAD09A20046D564 /* MeasurementUnit.swift */,
 				E1307F141FB10B10008D28C4 /* Multimedia.swift */,
-				E1E46A621FAD09A20046D564 /* Multipliers.swift */,
 				E1307F1E1FB10BBB008D28C4 /* ProcedureElement.swift */,
 				E1307F161FB10B34008D28C4 /* Proportioned.swift */,
 				E1E46A591FAD09A20046D564 /* Ratio.swift */,
@@ -216,6 +215,7 @@
 		E1E46A721FAD09AB0046D564 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				E1D543311FB3AABD003E2777 /* ConfigurationTests.swift */,
 				E1E46A7D1FAD09AB0046D564 /* AsNeededTests.swift */,
 				E1E46A741FAD09AB0046D564 /* ConvertableIngredient.swift */,
 				E1E46A7A1FAD09AB0046D564 /* EachMeasurementUnitTests.swift */,
@@ -344,6 +344,7 @@
 			files = (
 				E1D5432E1FB3A79B003E2777 /* MeasurementUnitTests.swift in Sources */,
 				E1D5432D1FB3A79B003E2777 /* LooseConversionTests.swift in Sources */,
+				E1D543321FB3AABD003E2777 /* ConfigurationTests.swift in Sources */,
 				E1D543281FB3A79B003E2777 /* EachMeasurementUnitTests.swift in Sources */,
 				E1D5432C1FB3A79B003E2777 /* InterpreterTests.swift in Sources */,
 				E1D5432A1FB3A79B003E2777 /* HighMassRatioIngredientTests.swift in Sources */,
@@ -378,7 +379,6 @@
 				E1E46A6B1FAD09A20046D564 /* MeasurementInputView.swift in Sources */,
 				E1307F1B1FB10B95008D28C4 /* Recipe.swift in Sources */,
 				E1307F0F1FB1050D008D28C4 /* Measured.swift in Sources */,
-				E1E46A701FAD09A20046D564 /* Multipliers.swift in Sources */,
 				E1307F1D1FB10BAA008D28C4 /* FormulaElement.swift in Sources */,
 				E1E46A651FAD09A20046D564 /* MeasurementMethod.swift in Sources */,
 				E1307F131FB10ACE008D28C4 /* Sequenced.swift in Sources */,

@@ -1,15 +1,7 @@
 import XCTest
-import MiseEnPlace
+@testable import MiseEnPlace
 
 class RatioTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
     
     func testOneToOneRatio() {
         let volumeMeasurement = MiseEnPlace.Measurement(amount: 2.0, unit: .fluidOunce)
