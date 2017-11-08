@@ -26,7 +26,6 @@
 		E1D543291FB3A79B003E2777 /* EqualRatioIngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A791FAD09AB0046D564 /* EqualRatioIngredientTests.swift */; };
 		E1D5432A1FB3A79B003E2777 /* HighMassRatioIngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A771FAD09AB0046D564 /* HighMassRatioIngredientTests.swift */; };
 		E1D5432B1FB3A79B003E2777 /* HighVolumeRatioIngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A731FAD09AB0046D564 /* HighVolumeRatioIngredientTests.swift */; };
-		E1D5432C1FB3A79B003E2777 /* InterpreterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A781FAD09AB0046D564 /* InterpreterTests.swift */; };
 		E1D5432D1FB3A79B003E2777 /* LooseConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A751FAD09AB0046D564 /* LooseConversionTests.swift */; };
 		E1D5432E1FB3A79B003E2777 /* MeasurementUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A761FAD09AB0046D564 /* MeasurementUnitTests.swift */; };
 		E1D5432F1FB3A79B003E2777 /* RatioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A7B1FAD09AB0046D564 /* RatioTests.swift */; };
@@ -99,7 +98,6 @@
 		E1E46A751FAD09AB0046D564 /* LooseConversionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LooseConversionTests.swift; sourceTree = "<group>"; };
 		E1E46A761FAD09AB0046D564 /* MeasurementUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementUnitTests.swift; sourceTree = "<group>"; };
 		E1E46A771FAD09AB0046D564 /* HighMassRatioIngredientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighMassRatioIngredientTests.swift; sourceTree = "<group>"; };
-		E1E46A781FAD09AB0046D564 /* InterpreterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterpreterTests.swift; sourceTree = "<group>"; };
 		E1E46A791FAD09AB0046D564 /* EqualRatioIngredientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EqualRatioIngredientTests.swift; sourceTree = "<group>"; };
 		E1E46A7A1FAD09AB0046D564 /* EachMeasurementUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachMeasurementUnitTests.swift; sourceTree = "<group>"; };
 		E1E46A7B1FAD09AB0046D564 /* RatioTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatioTests.swift; sourceTree = "<group>"; };
@@ -224,7 +222,6 @@
 				E1E46A791FAD09AB0046D564 /* EqualRatioIngredientTests.swift */,
 				E1E46A771FAD09AB0046D564 /* HighMassRatioIngredientTests.swift */,
 				E1E46A731FAD09AB0046D564 /* HighVolumeRatioIngredientTests.swift */,
-				E1E46A781FAD09AB0046D564 /* InterpreterTests.swift */,
 				E1E46A751FAD09AB0046D564 /* LooseConversionTests.swift */,
 				E1D543331FB3B102003E2777 /* MeasurementTests.swift */,
 				E1E46A761FAD09AB0046D564 /* MeasurementUnitTests.swift */,
@@ -349,7 +346,6 @@
 				E1D5432D1FB3A79B003E2777 /* LooseConversionTests.swift in Sources */,
 				E1D543321FB3AABD003E2777 /* ConfigurationTests.swift in Sources */,
 				E1D543281FB3A79B003E2777 /* EachMeasurementUnitTests.swift in Sources */,
-				E1D5432C1FB3A79B003E2777 /* InterpreterTests.swift in Sources */,
 				E1D5432A1FB3A79B003E2777 /* HighMassRatioIngredientTests.swift in Sources */,
 				E1D5432B1FB3A79B003E2777 /* HighVolumeRatioIngredientTests.swift in Sources */,
 				E1D543291FB3A79B003E2777 /* EqualRatioIngredientTests.swift in Sources */,

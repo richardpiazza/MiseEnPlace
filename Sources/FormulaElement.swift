@@ -228,13 +228,13 @@ internal extension FormulaElement {
             let ms = measurementSystem ?? equivalentMeasurement.unit.measurementSystem
             let mm = measurementMethod ?? equivalentMeasurement.unit.measurementMethod
             
-            return try equivalentMeasurement.measurement(matching: ms, measurementMethod: mm)
+            return try equivalentMeasurement.normalizedMeasurement()
         }
         
         let totalAmount = try ingredientAmount(for: self.unit)
         let totalMeasurement = MiseEnPlace.Measurement(amount: totalAmount * self.amount, unit: self.unit)
         
-        return try totalMeasurement.measurement(matching: self.unit.measurementSystem, measurementMethod: self.unit.measurementMethod)
+        return try totalMeasurement.normalizedMeasurement()
     }
     
     private func scaleRecipe(by multiplier: Double, measurementSystem: MeasurementSystem? = nil, measurementMethod: MeasurementMethod? = nil) throws -> MiseEnPlace.Measurement {
@@ -261,13 +261,12 @@ internal extension FormulaElement {
             let ms = measurementSystem ?? totalMeasurement.unit.measurementSystem
             let mm = measurementMethod ?? totalMeasurement.unit.measurementMethod
             
-            return try totalMeasurement.measurement(matching: ms, measurementMethod: mm)
+            return try totalMeasurement.normalizedMeasurement()
         }
         
         let totalAmount = recipe.totalAmount(for: self.unit)
         let totalMeasurement = MiseEnPlace.Measurement(amount: totalAmount * self.amount, unit: self.unit)
-        let scaledMeasurement = try totalMeasurement.measurement(matching: self.unit.measurementSystem, measurementMethod: self.unit.measurementMethod)
         
-        return scaledMeasurement
+        return try totalMeasurement.normalizedMeasurement()
     }
 }

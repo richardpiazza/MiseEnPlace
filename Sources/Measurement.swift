@@ -36,7 +36,7 @@ public extension Measurement {
     ///
     /// - parameter unit: The `MeasurementUnit` to convert to.
     ///
-    /// - throws: Error.asNeededConversion, Error.measurementAmount(), Error.measurementUnit()
+    /// - throws: Error.measurementAmount(), Error.measurementUnit()
     ///
     public func amount(for unit: MeasurementUnit) throws -> Double {
         guard self.amount > 0.0 else {
@@ -90,20 +90,21 @@ public extension Measurement {
         return try MiseEnPlace.Measurement(amount: nextValue, unit: nextUnit).amount(for: unit)
     }
     
-    public func measurement(matching measurementSystem: MeasurementSystem, measurementMethod: MeasurementMethod) throws -> MiseEnPlace.Measurement {
-        guard self.unit != .asNeeded else {
-            throw Error.asNeededConversion
-        }
-        
+    /// Calculates the best matching measurement amount and unit that matches the
+    /// current `unit` `MeasurementSystemMethod`.
+    ///
+    /// - throws: Error.measurementAmount(), Error.measurementUnit(), Error.unhandledConversion
+    ///
+    public func normalizedMeasurement() throws -> MiseEnPlace.Measurement {
         guard self.amount > 0.0 else {
             throw Error.measurementAmount(method: nil)
         }
         
-        guard let msm = MeasurementSystemMethod.measurementSystemMethod(for: measurementSystem, measurementMethod: measurementMethod) else {
-            throw Error.unhandledConversion
+        guard self.unit.measurementSystemMethod != .numericQuantity else {
+            throw Error.measurementUnit(method: nil)
         }
         
-        let units = Array(MeasurementUnit.measurementUnits(forMeasurementSystemMethod: msm).reversed())
+        let units = Array(MeasurementUnit.measurementUnits(forMeasurementSystemMethod: self.unit.measurementSystemMethod).reversed())
         for unit in units {
             let unitAmount = try self.amount(for: unit)
             if unitAmount >= unit.stepDownThreshold {
