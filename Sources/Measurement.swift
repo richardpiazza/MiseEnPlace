@@ -12,7 +12,8 @@ import Foundation
 /// var unit: MeasurementUnit { get set }
 /// ```
 ///
-public struct Measurement: Measured {
+public struct Measurement: Measured, Equatable {
+    
     public var amount: Double = 0.0
     public var unit: MeasurementUnit = .each
     
@@ -27,6 +28,18 @@ public struct Measurement: Measured {
     public init(measured: Measured) {
         self.amount = measured.amount
         self.unit = measured.unit
+    }
+    
+    public static func == (lhs: Measurement, rhs: Measurement) -> Bool {
+        guard lhs.amount == rhs.amount else {
+            return false
+        }
+        
+        guard lhs.unit == rhs.unit else {
+            return false
+        }
+        
+        return true
     }
 }
 
@@ -133,7 +146,7 @@ public extension Measurement {
         
         switch unit {
         case .kilogram, .liter, .pound, .tablespoon, .teaspoon, .fluidOunce, .cup, .pint, .quart, .gallon:
-            if decomposedAmount.0 != 0 {
+            if decomposedAmount.0 != 0.0 {
                 components.append(MiseEnPlace.Measurement(amount: decomposedAmount.0, unit: unit))
             }
             
