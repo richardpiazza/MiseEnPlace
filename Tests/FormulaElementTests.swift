@@ -111,7 +111,217 @@ class FormulaElementTests: XCTestCase {
         }
     }
     
-    func testAmountForIngredient() {
+    func testAmountForIngredientOneToOne() {
+        var amount: Double
+        let measuredIngredient = MeasuredIngredient(ingredient: self.water, amount: 1, unit: .gallon)
         
+        do {
+            amount = try measuredIngredient.amount(for: .gallon)
+            XCTAssertEqual(amount, 1.0)
+            
+            amount = try measuredIngredient.amount(for: .quart)
+            XCTAssertEqual(amount, 4.0)
+            
+            amount = try measuredIngredient.amount(for: .pint)
+            XCTAssertEqual(amount, 8.0)
+            
+            amount = try measuredIngredient.amount(for: .cup)
+            XCTAssertEqual(amount, 16.0)
+            
+            amount = try measuredIngredient.amount(for: .fluidOunce)
+            XCTAssertEqual(amount, 128.0)
+            
+            amount = try measuredIngredient.amount(for: .tablespoon)
+            XCTAssertEqual(amount, 256.0)
+            
+            amount = try measuredIngredient.amount(for: .teaspoon)
+            XCTAssertTrue(amount.equals(768.0, precision: 0))
+            
+            amount = try measuredIngredient.amount(for: .dash)
+            XCTAssertTrue(amount.equals(6144.0, precision: 0))
+            
+            amount = try measuredIngredient.amount(for: .pinch)
+            XCTAssertTrue(amount.equals(12288.0, precision: 0))
+            
+            amount = try measuredIngredient.amount(for: .ounce)
+            XCTAssertEqual(amount, 128.0)
+            
+            amount = try measuredIngredient.amount(for: .pound)
+            XCTAssertEqual(amount, 8.0)
+            
+            amount = try measuredIngredient.amount(for: .milliliter)
+            XCTAssertTrue(amount.equals(3785.41, precision: 2))
+            
+            amount = try measuredIngredient.amount(for: .liter)
+            XCTAssertTrue(amount.equals(3.79, precision: 2))
+            
+            amount = try measuredIngredient.amount(for: .gram)
+            XCTAssertTrue(amount.equals(3628.74, precision: 2))
+            
+            amount = try measuredIngredient.amount(for: .kilogram)
+            XCTAssertTrue(amount.equals(3.63, precision: 2))
+        } catch {
+            XCTFail("Unexpected Error Thrown")
+            return
+        }
+        
+        measuredIngredient.amount = 8.0
+        measuredIngredient.unit = .pound
+        
+        do {
+            amount = try measuredIngredient.amount(for: .gallon)
+            XCTAssertEqual(amount, 1.0)
+            
+            amount = try measuredIngredient.amount(for: .quart)
+            XCTAssertEqual(amount, 4.0)
+            
+            amount = try measuredIngredient.amount(for: .pint)
+            XCTAssertEqual(amount, 8.0)
+            
+            amount = try measuredIngredient.amount(for: .cup)
+            XCTAssertEqual(amount, 16.0)
+            
+            amount = try measuredIngredient.amount(for: .fluidOunce)
+            XCTAssertEqual(amount, 128.0)
+            
+            amount = try measuredIngredient.amount(for: .tablespoon)
+            XCTAssertEqual(amount, 256.0)
+            
+            amount = try measuredIngredient.amount(for: .teaspoon)
+            XCTAssertTrue(amount.equals(768.0, precision: 0))
+            
+            amount = try measuredIngredient.amount(for: .dash)
+            XCTAssertTrue(amount.equals(6144.0, precision: 0))
+            
+            amount = try measuredIngredient.amount(for: .pinch)
+            XCTAssertTrue(amount.equals(12288.0, precision: 0))
+            
+            amount = try measuredIngredient.amount(for: .ounce)
+            XCTAssertEqual(amount, 128.0)
+            
+            amount = try measuredIngredient.amount(for: .pound)
+            XCTAssertEqual(amount, 8.0)
+            
+            amount = try measuredIngredient.amount(for: .milliliter)
+            XCTAssertTrue(amount.equals(3785.41, precision: 2))
+            
+            amount = try measuredIngredient.amount(for: .liter)
+            XCTAssertTrue(amount.equals(3.79, precision: 2))
+            
+            amount = try measuredIngredient.amount(for: .gram)
+            XCTAssertTrue(amount.equals(3628.74, precision: 2))
+            
+            amount = try measuredIngredient.amount(for: .kilogram)
+            XCTAssertTrue(amount.equals(3.63, precision: 2))
+        } catch {
+            XCTFail("Unexpected Error Thrown")
+            return
+        }
+        
+        measuredIngredient.amount = 3.785
+        measuredIngredient.unit = .liter
+        
+        do {
+            amount = try measuredIngredient.amount(for: .gallon)
+            XCTAssertTrue(amount.equals(1.0, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .quart)
+            XCTAssertTrue(amount.equals(4.0, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .pint)
+            XCTAssertTrue(amount.equals(8.0, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .cup)
+            XCTAssertTrue(amount.equals(16.0, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .fluidOunce)
+            XCTAssertTrue(amount.equals(128.0, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .tablespoon)
+            XCTAssertTrue(amount.equals(256.0, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .teaspoon)
+            XCTAssertTrue(amount.equals(768.0, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .dash)
+            XCTAssertTrue(amount.equals(6143.33, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .pinch)
+            XCTAssertTrue(amount.equals(12286.66, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .ounce)
+            XCTAssertTrue(amount.equals(133.51, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .pound)
+            XCTAssertTrue(amount.equals(8.34, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .milliliter)
+            XCTAssertTrue(amount.equals(3785.0, precision: 0))
+            
+            amount = try measuredIngredient.amount(for: .liter)
+            XCTAssertTrue(amount.equals(3.785, precision: 0))
+            
+            amount = try measuredIngredient.amount(for: .gram)
+            XCTAssertTrue(amount.equals(3785.0, precision: 0))
+            
+            amount = try measuredIngredient.amount(for: .kilogram)
+            XCTAssertTrue(amount.equals(3.785, precision: 0))
+        } catch {
+            XCTFail("Unexpected Error Thrown")
+            return
+        }
+        
+        measuredIngredient.amount = 3.785
+        measuredIngredient.unit = .kilogram
+        
+        do {
+            amount = try measuredIngredient.amount(for: .gallon)
+            XCTAssertTrue(amount.equals(1.0, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .quart)
+            XCTAssertTrue(amount.equals(4.0, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .pint)
+            XCTAssertTrue(amount.equals(8.0, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .cup)
+            XCTAssertTrue(amount.equals(16.0, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .fluidOunce)
+            XCTAssertTrue(amount.equals(128.0, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .tablespoon)
+            XCTAssertTrue(amount.equals(256.0, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .teaspoon)
+            XCTAssertTrue(amount.equals(768.0, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .dash)
+            XCTAssertTrue(amount.equals(6143.33, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .pinch)
+            XCTAssertTrue(amount.equals(12286.66, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .ounce)
+            XCTAssertTrue(amount.equals(133.51, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .pound)
+            XCTAssertTrue(amount.equals(8.34, precision: 1))
+            
+            amount = try measuredIngredient.amount(for: .milliliter)
+            XCTAssertTrue(amount.equals(3785.0, precision: 0))
+            
+            amount = try measuredIngredient.amount(for: .liter)
+            XCTAssertTrue(amount.equals(3.785, precision: 0))
+            
+            amount = try measuredIngredient.amount(for: .gram)
+            XCTAssertTrue(amount.equals(3785.0, precision: 0))
+            
+            amount = try measuredIngredient.amount(for: .kilogram)
+            XCTAssertTrue(amount.equals(3.785, precision: 0))
+        } catch {
+            XCTFail("Unexpected Error Thrown")
+            return
+        }
     }
 }
