@@ -3,6 +3,30 @@ import XCTest
 
 class MeasurementTests: XCTestCase {
 
+    func testInit() {
+        let m1 = MiseEnPlace.Measurement()
+        XCTAssertEqual(m1.amount, 0.0)
+        XCTAssertEqual(m1.unit, .each)
+        
+        let m2 = MiseEnPlace.Measurement(amount: 6.0, unit: .fluidOunce)
+        XCTAssertEqual(m2.amount, 6.0)
+        XCTAssertEqual(m2.unit, .fluidOunce)
+        
+        let m3 = MiseEnPlace.Measurement(measured: m2)
+        XCTAssertEqual(m3.amount, 6.0)
+        XCTAssertEqual(m3.unit, .fluidOunce)
+        
+        XCTAssertEqual(m2, m3)
+        
+        let m4 = MiseEnPlace.Measurement(amount: 5.0, unit: .fluidOunce)
+        
+        XCTAssertNotEqual(m3, m4)
+        
+        let m5 = MiseEnPlace.Measurement(amount: 5.0, unit: .ounce)
+        
+        XCTAssertNotEqual(m4, m5)
+    }
+    
     func testAmountForUnit() {
         var measurement = MiseEnPlace.Measurement(amount: 0.0, unit: .asNeeded)
         do {
@@ -172,6 +196,9 @@ class MeasurementTests: XCTestCase {
         
         var measurement: MiseEnPlace.Measurement
         
+        measurement = MiseEnPlace.Measurement(amount: 0.0, unit: .asNeeded)
+        XCTAssertEqual(measurement.translation, "As Needed")
+        
         // Significant Digits
         measurement = MiseEnPlace.Measurement(amount: 0.0951019406578092, unit: .cup)
         XCTAssertEqual(measurement.translation, "0.095 Cup")
@@ -190,6 +217,9 @@ class MeasurementTests: XCTestCase {
         
         Configuration.abbreviateTranslations = true
         XCTAssertTrue(Configuration.abbreviateTranslations)
+        
+        measurement = MiseEnPlace.Measurement(amount: 0.0, unit: .asNeeded)
+        XCTAssertEqual(measurement.translation, "…")
         
         measurement = MiseEnPlace.Measurement(amount: 0.0951019406578092, unit: .cup)
         XCTAssertEqual(measurement.translation, "0.095 c")
