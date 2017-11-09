@@ -54,7 +54,7 @@ public extension FormulaElement {
     /// - throws: Error.asNeededConversion, Error.measurementAmount(), Error.quantifiableConversion, Error.unhandledConversion
     public func amount(for unit: MeasurementUnit) throws -> Double {
         guard self.unit != .asNeeded else {
-            return 0.0
+            throw Error.asNeededConversion
         }
         
         if let _ = self.ingredient {
@@ -67,7 +67,7 @@ public extension FormulaElement {
     }
     
     private func ingredientAmount(for unit: MeasurementUnit) throws -> Double {
-        guard self.unit != .asNeeded || unit != .asNeeded else {
+        guard self.unit != .asNeeded && unit != .asNeeded else {
             throw Error.asNeededConversion
         }
         
