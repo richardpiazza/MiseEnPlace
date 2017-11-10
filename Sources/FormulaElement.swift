@@ -89,87 +89,23 @@ public extension FormulaElement {
         case (.numericQuantity, .usVolume), (.numericQuantity, .usWeight), (.numericQuantity, .metricVolume), (.numericQuantity, .metricWeight):
             let quantifiableMeasurement = ingredient.measurement
             let equivalentMeasurement = MiseEnPlace.Measurement(amount: quantifiableMeasurement.amount * self.amount, unit: quantifiableMeasurement.unit)
-            return try equivalentMeasurement.amount(for: unit)
+            let multiplier = ingredient.multiplier(for: unit.measurementMethod)
+            return try equivalentMeasurement.amount(for: unit, conversionMultiplier: multiplier)
         case (.usVolume, .numericQuantity), (.usWeight, .numericQuantity), (.metricVolume, .numericQuantity), (.metricWeight, .numericQuantity):
             let quantifiableMeasurement = ingredient.measurement
             let equivalentAmount = try self.ingredientAmount(for: quantifiableMeasurement.unit)
-            return self.amount / equivalentAmount
+            return equivalentAmount / quantifiableMeasurement.amount
         case (.usVolume, .usVolume), (.usWeight, .usWeight), (.metricVolume, .metricVolume), (.metricWeight, .metricWeight):
             return try self.measurement.amount(for: unit)
         default:
-            break
+            let multiplier: Double
+            if self.unit.measurementMethod == .volume && unit.measurementMethod == .weight {
+                multiplier = ingredient.multiplier(for: .volume)
+            } else {
+                multiplier = ingredient.multiplier(for: .weight)
+            }
+            return try self.measurement.amount(for: unit, conversionMultiplier: multiplier)
         }
-        
-        switch self.unit.measurementSystemMethod {
-        case .usVolume:
-            let fluidOunce = try self.measurement.amount(for: .fluidOunce)
-            let ounce = fluidOunce * ingredient.multiplier(for: self.unit.measurementMethod)
-            let milliliter = fluidOunce * Configuration.fluidOunceMilliliter
-            let gram = ounce * Configuration.ounceGram
-            
-            switch unit.measurementSystemMethod {
-            case .usWeight:
-                return try MiseEnPlace.Measurement(amount: ounce, unit: .ounce).amount(for: unit)
-            case .metricVolume:
-                return try MiseEnPlace.Measurement(amount: milliliter, unit: .milliliter).amount(for: unit)
-            case .metricWeight:
-                return try MiseEnPlace.Measurement(amount: gram, unit: .gram).amount(for: unit)
-            default:
-                break
-            }
-        case .usWeight:
-            let ounce = try self.measurement.amount(for: .ounce)
-            let fluidOunce = ounce * ingredient.multiplier(for: unit.measurementMethod)
-            let milliliter = fluidOunce * Configuration.fluidOunceMilliliter
-            let gram = ounce * Configuration.ounceGram
-            
-            switch unit.measurementSystemMethod {
-            case .usVolume:
-                return try MiseEnPlace.Measurement(amount: fluidOunce, unit: .fluidOunce).amount(for: unit)
-            case .metricVolume:
-                return try MiseEnPlace.Measurement(amount: milliliter, unit: .milliliter).amount(for: unit)
-            case .metricWeight:
-                return try MiseEnPlace.Measurement(amount: gram, unit: .gram).amount(for: unit)
-            default:
-                break
-            }
-        case .metricVolume:
-            let milliliter = try self.measurement.amount(for: .milliliter)
-            let gram = milliliter * ingredient.multiplier(for: unit.measurementMethod)
-            let fluidOunce = milliliter / Configuration.fluidOunceMilliliter
-            let ounce = gram / Configuration.ounceGram
-            
-            switch unit.measurementSystemMethod {
-            case .metricWeight:
-                return try MiseEnPlace.Measurement(amount: gram, unit: .gram).amount(for: unit)
-            case .usVolume:
-                return try MiseEnPlace.Measurement(amount: fluidOunce, unit: .fluidOunce).amount(for: unit)
-            case .usWeight:
-                return try MiseEnPlace.Measurement(amount: ounce, unit: .ounce).amount(for: unit)
-            default:
-                break
-            }
-        case .metricWeight:
-            let gram = try self.measurement.amount(for: .gram)
-            let milliliter = gram * ingredient.multiplier(for: unit.measurementMethod)
-            let fluidOunce = milliliter / Configuration.fluidOunceMilliliter
-            let ounce = gram / Configuration.ounceGram
-            
-            switch unit.measurementSystemMethod {
-            case .metricVolume:
-                return try MiseEnPlace.Measurement(amount: milliliter, unit: .milliliter).amount(for: unit)
-            case .usVolume:
-                return try MiseEnPlace.Measurement(amount: fluidOunce, unit: .fluidOunce).amount(for: unit)
-            case .usWeight:
-                return try MiseEnPlace.Measurement(amount: ounce, unit: .ounce).amount(for: unit)
-            default:
-                break
-            }
-        default:
-            break
-        }
-        
-        throw Error.unhandledConversion
     }
     
     private func recipeAmount(for unit: MeasurementUnit) throws -> Double {
