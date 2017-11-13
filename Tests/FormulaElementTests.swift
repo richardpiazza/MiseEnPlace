@@ -121,52 +121,52 @@ class FormulaElementTests: XCTestCase {
         
         do {
             amount = try measuredIngredient.amount(for: .gallon)
-            XCTAssertEqual(amount, 1.0)
+            XCTAssertEqual(amount.rounded(to: 2), 1.0)
             
             amount = try measuredIngredient.amount(for: .quart)
-            XCTAssertEqual(amount, 4.0)
+            XCTAssertEqual(amount.rounded(to: 2), 4.0)
             
             amount = try measuredIngredient.amount(for: .pint)
-            XCTAssertEqual(amount, 8.0)
+            XCTAssertEqual(amount.rounded(to: 2), 8.0)
             
             amount = try measuredIngredient.amount(for: .cup)
-            XCTAssertEqual(amount, 16.0)
+            XCTAssertEqual(amount.rounded(to: 2), 16.0)
             
             amount = try measuredIngredient.amount(for: .fluidOunce)
-            XCTAssertEqual(amount, 128.0)
+            XCTAssertEqual(amount.rounded(to: 2), 128.0)
             
             amount = try measuredIngredient.amount(for: .tablespoon)
-            XCTAssertEqual(amount, 256.0)
+            XCTAssertEqual(amount.rounded(to: 2), 256.0)
             
             amount = try measuredIngredient.amount(for: .teaspoon)
-            XCTAssertTrue(amount.equals(768.0, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 2), 768.0)
             
             amount = try measuredIngredient.amount(for: .dash)
-            XCTAssertTrue(amount.equals(6144.0, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 2), 6144.0)
             
             amount = try measuredIngredient.amount(for: .pinch)
-            XCTAssertTrue(amount.equals(12288.0, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 2), 12288.0)
             
             amount = try measuredIngredient.amount(for: .ounce)
-            XCTAssertEqual(amount, 128.0)
+            XCTAssertEqual(amount.rounded(to: 2), 128.0)
             
             amount = try measuredIngredient.amount(for: .pound)
-            XCTAssertEqual(amount, 8.0)
+            XCTAssertEqual(amount.rounded(to: 2), 8.0)
             
             amount = try measuredIngredient.amount(for: .milliliter)
-            XCTAssertTrue(amount.equals(3785.41, precision: 2))
+            XCTAssertEqual(amount.rounded(to: 2), 3785.41)
             
             amount = try measuredIngredient.amount(for: .liter)
-            XCTAssertTrue(amount.equals(3.79, precision: 2))
+            XCTAssertEqual(amount.rounded(to: 2), 3.79)
             
             amount = try measuredIngredient.amount(for: .gram)
-            XCTAssertTrue(amount.equals(3628.74, precision: 2))
+            XCTAssertEqual(amount.rounded(to: 2), 3785.41)
             
             amount = try measuredIngredient.amount(for: .kilogram)
-            XCTAssertTrue(amount.equals(3.63, precision: 2))
+            XCTAssertEqual(amount.rounded(to: 2), 3.79)
             
             amount = try measuredIngredient.amount(for: .each)
-            XCTAssertTrue(amount.equals(2.52, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 2.52)
             
             let ma = measuredIngredient.amount
             let mu = measuredIngredient.unit
@@ -186,52 +186,52 @@ class FormulaElementTests: XCTestCase {
         
         do {
             amount = try measuredIngredient.amount(for: .gallon)
-            XCTAssertEqual(amount, 1.0)
+            XCTAssertEqual(amount.rounded(to: 2), 1.0)
             
             amount = try measuredIngredient.amount(for: .quart)
-            XCTAssertEqual(amount, 4.0)
+            XCTAssertEqual(amount.rounded(to: 2), 4.0)
             
             amount = try measuredIngredient.amount(for: .pint)
-            XCTAssertEqual(amount, 8.0)
+            XCTAssertEqual(amount.rounded(to: 2), 8.0)
             
             amount = try measuredIngredient.amount(for: .cup)
-            XCTAssertEqual(amount, 16.0)
+            XCTAssertEqual(amount.rounded(to: 2), 16.0)
             
             amount = try measuredIngredient.amount(for: .fluidOunce)
-            XCTAssertEqual(amount, 128.0)
+            XCTAssertEqual(amount.rounded(to: 2), 128.0)
             
             amount = try measuredIngredient.amount(for: .tablespoon)
-            XCTAssertEqual(amount, 256.0)
+            XCTAssertEqual(amount.rounded(to: 2), 256.0)
             
             amount = try measuredIngredient.amount(for: .teaspoon)
-            XCTAssertTrue(amount.equals(768.0, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 0), 768.0)
             
             amount = try measuredIngredient.amount(for: .dash)
-            XCTAssertTrue(amount.equals(6144.0, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 0), 6144.0)
             
             amount = try measuredIngredient.amount(for: .pinch)
-            XCTAssertTrue(amount.equals(12288.0, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 0), 12288.0)
             
             amount = try measuredIngredient.amount(for: .ounce)
-            XCTAssertEqual(amount, 128.0)
+            XCTAssertEqual(amount.rounded(to: 2), 128.0)
             
             amount = try measuredIngredient.amount(for: .pound)
-            XCTAssertEqual(amount, 8.0)
+            XCTAssertEqual(amount.rounded(to: 2), 8.0)
             
             amount = try measuredIngredient.amount(for: .milliliter)
-            XCTAssertTrue(amount.equals(3785.41, precision: 2))
+            XCTAssertEqual(amount.rounded(to: 2), 3628.74)
             
             amount = try measuredIngredient.amount(for: .liter)
-            XCTAssertTrue(amount.equals(3.79, precision: 2))
+            XCTAssertEqual(amount.rounded(to: 2), 3.63)
             
             amount = try measuredIngredient.amount(for: .gram)
-            XCTAssertTrue(amount.equals(3628.74, precision: 2))
+            XCTAssertEqual(amount.rounded(to: 2), 3628.74)
             
             amount = try measuredIngredient.amount(for: .kilogram)
-            XCTAssertTrue(amount.equals(3.63, precision: 2))
+            XCTAssertEqual(amount.rounded(to: 2), 3.63)
             
             amount = try measuredIngredient.amount(for: .each)
-            XCTAssertTrue(amount.equals(2.52, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 2.42)
             
             let ma = measuredIngredient.amount
             let mu = measuredIngredient.unit
@@ -240,7 +240,11 @@ class FormulaElementTests: XCTestCase {
             measuredIngredient.unit = .each
             
             amount = try measuredIngredient.amount(for: mu)
-            XCTAssertEqual(amount.rounded(to: 2), ma.rounded(to: 2))
+            let adjusted = ma * (Configuration.ounceGram / Configuration.fluidOunceMilliliter)
+            // The reason for using an adjusted amount is the path for conversion is not the same in performing the calculations.
+            // In going from US Weight (8 lb) to each (liter): us weight > metric weight > metric volume.
+            // In going from each (liter) to US Weight (8 lb): metric volume > us volume > us weight.
+            XCTAssertEqual(amount.rounded(to: 2), adjusted.rounded(to: 2))
         } catch {
             XCTFail("Unexpected Error Thrown")
             return
@@ -251,52 +255,52 @@ class FormulaElementTests: XCTestCase {
         
         do {
             amount = try measuredIngredient.amount(for: .gallon)
-            XCTAssertTrue(amount.equals(1.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 1.0)
             
             amount = try measuredIngredient.amount(for: .quart)
-            XCTAssertTrue(amount.equals(4.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 4.0)
             
             amount = try measuredIngredient.amount(for: .pint)
-            XCTAssertTrue(amount.equals(8.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 8.0)
             
             amount = try measuredIngredient.amount(for: .cup)
-            XCTAssertTrue(amount.equals(16.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 16.0)
             
             amount = try measuredIngredient.amount(for: .fluidOunce)
-            XCTAssertTrue(amount.equals(128.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 127.99)
             
             amount = try measuredIngredient.amount(for: .tablespoon)
-            XCTAssertTrue(amount.equals(256.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 255.97)
             
             amount = try measuredIngredient.amount(for: .teaspoon)
-            XCTAssertTrue(amount.equals(768.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 767.92)
             
             amount = try measuredIngredient.amount(for: .dash)
-            XCTAssertTrue(amount.equals(6143.33, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 6143.33)
             
             amount = try measuredIngredient.amount(for: .pinch)
-            XCTAssertTrue(amount.equals(12286.66, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 12286.66)
             
             amount = try measuredIngredient.amount(for: .ounce)
-            XCTAssertTrue(amount.equals(133.51, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 127.99)
             
             amount = try measuredIngredient.amount(for: .pound)
-            XCTAssertTrue(amount.equals(8.34, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 8.0)
             
             amount = try measuredIngredient.amount(for: .milliliter)
-            XCTAssertTrue(amount.equals(3785.0, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 2), 3785.0)
             
             amount = try measuredIngredient.amount(for: .liter)
-            XCTAssertTrue(amount.equals(3.785, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 3), 3.785)
             
             amount = try measuredIngredient.amount(for: .gram)
-            XCTAssertTrue(amount.equals(3785.0, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 2), 3785.0)
             
             amount = try measuredIngredient.amount(for: .kilogram)
-            XCTAssertTrue(amount.equals(3.785, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 3), 3.785)
             
             amount = try measuredIngredient.amount(for: .each)
-            XCTAssertTrue(amount.equals(2.52, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 2.52)
             
             let ma = measuredIngredient.amount
             let mu = measuredIngredient.unit
@@ -316,52 +320,52 @@ class FormulaElementTests: XCTestCase {
         
         do {
             amount = try measuredIngredient.amount(for: .gallon)
-            XCTAssertTrue(amount.equals(1.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 1.04)
             
             amount = try measuredIngredient.amount(for: .quart)
-            XCTAssertTrue(amount.equals(4.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 4.17)
             
             amount = try measuredIngredient.amount(for: .pint)
-            XCTAssertTrue(amount.equals(8.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 8.34)
             
             amount = try measuredIngredient.amount(for: .cup)
-            XCTAssertTrue(amount.equals(16.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 16.69)
             
             amount = try measuredIngredient.amount(for: .fluidOunce)
-            XCTAssertTrue(amount.equals(128.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 133.51)
             
             amount = try measuredIngredient.amount(for: .tablespoon)
-            XCTAssertTrue(amount.equals(256.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 267.02)
             
             amount = try measuredIngredient.amount(for: .teaspoon)
-            XCTAssertTrue(amount.equals(768.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 801.07)
             
             amount = try measuredIngredient.amount(for: .dash)
-            XCTAssertTrue(amount.equals(6143.33, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 6408.57)
             
             amount = try measuredIngredient.amount(for: .pinch)
-            XCTAssertTrue(amount.equals(12286.66, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 12817.15)
             
             amount = try measuredIngredient.amount(for: .ounce)
-            XCTAssertTrue(amount.equals(133.51, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 133.51)
             
             amount = try measuredIngredient.amount(for: .pound)
-            XCTAssertTrue(amount.equals(8.34, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 8.34)
             
             amount = try measuredIngredient.amount(for: .milliliter)
-            XCTAssertTrue(amount.equals(3785.0, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 2), 3785.0)
             
             amount = try measuredIngredient.amount(for: .liter)
-            XCTAssertTrue(amount.equals(3.785, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 3), 3.785)
             
             amount = try measuredIngredient.amount(for: .gram)
-            XCTAssertTrue(amount.equals(3785.0, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 2), 3785.0)
             
             amount = try measuredIngredient.amount(for: .kilogram)
-            XCTAssertTrue(amount.equals(3.785, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 3), 3.785)
             
             amount = try measuredIngredient.amount(for: .each)
-            XCTAssertTrue(amount.equals(2.52, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 2.52)
             
             let ma = measuredIngredient.amount
             let mu = measuredIngredient.unit
@@ -383,52 +387,52 @@ class FormulaElementTests: XCTestCase {
         
         do {
             amount = try measuredIngredient.amount(for: .gallon)
-            XCTAssertEqual(amount, 1.0)
+            XCTAssertEqual(amount.rounded(to: 2), 1.0)
             
             amount = try measuredIngredient.amount(for: .quart)
-            XCTAssertEqual(amount, 4.0)
+            XCTAssertEqual(amount.rounded(to: 2), 4.0)
             
             amount = try measuredIngredient.amount(for: .pint)
-            XCTAssertEqual(amount, 8.0)
+            XCTAssertEqual(amount.rounded(to: 2), 8.0)
             
             amount = try measuredIngredient.amount(for: .cup)
-            XCTAssertEqual(amount, 16.0)
+            XCTAssertEqual(amount.rounded(to: 2), 16.0)
             
             amount = try measuredIngredient.amount(for: .fluidOunce)
-            XCTAssertEqual(amount, 128.0)
+            XCTAssertEqual(amount.rounded(to: 2), 128.0)
             
             amount = try measuredIngredient.amount(for: .tablespoon)
-            XCTAssertEqual(amount, 256.0)
+            XCTAssertEqual(amount.rounded(to: 2), 256.0)
             
             amount = try measuredIngredient.amount(for: .teaspoon)
-            XCTAssertTrue(amount.equals(768.0, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 2), 768.0)
             
             amount = try measuredIngredient.amount(for: .dash)
-            XCTAssertTrue(amount.equals(6144.0, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 2), 6144.0)
             
             amount = try measuredIngredient.amount(for: .pinch)
-            XCTAssertTrue(amount.equals(12288.0, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 2), 12288.0)
             
             amount = try measuredIngredient.amount(for: .ounce)
-            XCTAssertEqual(amount, 153.6)
+            XCTAssertEqual(amount.rounded(to: 2), 153.6)
             
             amount = try measuredIngredient.amount(for: .pound)
-            XCTAssertEqual(amount, 9.6)
+            XCTAssertEqual(amount.rounded(to: 2), 9.6)
             
             amount = try measuredIngredient.amount(for: .milliliter)
-            XCTAssertTrue(amount.equals(3785.41, precision: 2))
+            XCTAssertEqual(amount.rounded(to: 2), 3785.41)
             
             amount = try measuredIngredient.amount(for: .liter)
-            XCTAssertTrue(amount.equals(3.79, precision: 2))
+            XCTAssertEqual(amount.rounded(to: 2), 3.79)
             
             amount = try measuredIngredient.amount(for: .gram)
-            XCTAssertTrue(amount.equals(4354.48, precision: 2))
+            XCTAssertEqual(amount.rounded(to: 2), 4542.49)
             
             amount = try measuredIngredient.amount(for: .kilogram)
-            XCTAssertTrue(amount.equals(4.35, precision: 2))
+            XCTAssertEqual(amount.rounded(to: 2), 4.54)
             
             amount = try measuredIngredient.amount(for: .each)
-            XCTAssertTrue(amount.equals(0.049, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 0.05)
             
             let ma = measuredIngredient.amount
             let mu = measuredIngredient.unit
@@ -437,7 +441,11 @@ class FormulaElementTests: XCTestCase {
             measuredIngredient.unit = .each
             
             amount = try measuredIngredient.amount(for: mu)
-            XCTAssertEqual(amount.rounded(to: 2), ma.rounded(to: 2))
+            let adjusted = ma * (Configuration.fluidOunceMilliliter / Configuration.ounceGram)
+            // The reason for using an adjusted amount is the path for conversion is not the same in performing the calculations.
+            // In going from US Volume (1 gal) to each (kg): us volume > metric volume > metric weight.
+            // In going from each (kg) to US Volume (1 gal): metric weight > us weight > us volume.
+            XCTAssertEqual(amount.rounded(to: 2), adjusted.rounded(to: 2))
         } catch {
             XCTFail("Unexpected Error Thrown")
             return
@@ -466,13 +474,13 @@ class FormulaElementTests: XCTestCase {
             XCTAssertEqual(amount.rounded(to: 2), 213.33)
             
             amount = try measuredIngredient.amount(for: .teaspoon)
-            XCTAssertEqual(amount.rounded(to: 2), 640.0)
+            XCTAssertEqual(amount.rounded(to: 0), 640.0)
             
             amount = try measuredIngredient.amount(for: .dash)
-            XCTAssertEqual(amount.rounded(to: 2), 5120.0)
+            XCTAssertEqual(amount.rounded(to: 0), 5120.0)
             
             amount = try measuredIngredient.amount(for: .pinch)
-            XCTAssertEqual(amount.rounded(to: 2), 10240.0)
+            XCTAssertEqual(amount.rounded(to: 0), 10240.0)
             
             amount = try measuredIngredient.amount(for: .ounce)
             XCTAssertEqual(amount.rounded(to: 2), 128.0)
@@ -481,19 +489,19 @@ class FormulaElementTests: XCTestCase {
             XCTAssertEqual(amount.rounded(to: 2), 8.0)
             
             amount = try measuredIngredient.amount(for: .milliliter)
-            XCTAssertEqual(amount.rounded(to: 2), 3154.51)
+            XCTAssertEqual(amount.rounded(to: 2), 3023.95)
             
             amount = try measuredIngredient.amount(for: .liter)
-            XCTAssertEqual(amount.rounded(to: 2), 3.15)
+            XCTAssertEqual(amount.rounded(to: 2), 3.02)
             
             amount = try measuredIngredient.amount(for: .gram)
-            XCTAssertTrue(amount.equals(3628.74, precision: 2))
+            XCTAssertEqual(amount.rounded(to: 2), 3628.74)
             
             amount = try measuredIngredient.amount(for: .kilogram)
-            XCTAssertTrue(amount.equals(3.63, precision: 2))
+            XCTAssertEqual(amount.rounded(to: 2), 3.63)
             
             amount = try measuredIngredient.amount(for: .each)
-            XCTAssertTrue(amount.equals(0.04, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 0.04)
             
             let ma = measuredIngredient.amount
             let mu = measuredIngredient.unit
@@ -513,52 +521,52 @@ class FormulaElementTests: XCTestCase {
         
         do {
             amount = try measuredIngredient.amount(for: .gallon)
-            XCTAssertTrue(amount.equals(1.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 1.0)
             
             amount = try measuredIngredient.amount(for: .quart)
-            XCTAssertTrue(amount.equals(4.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 4.0)
             
             amount = try measuredIngredient.amount(for: .pint)
-            XCTAssertTrue(amount.equals(8.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 8.0)
             
             amount = try measuredIngredient.amount(for: .cup)
-            XCTAssertTrue(amount.equals(16.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 16.0)
             
             amount = try measuredIngredient.amount(for: .fluidOunce)
-            XCTAssertTrue(amount.equals(128.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 127.99)
             
             amount = try measuredIngredient.amount(for: .tablespoon)
-            XCTAssertTrue(amount.equals(256.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 255.97)
             
             amount = try measuredIngredient.amount(for: .teaspoon)
-            XCTAssertTrue(amount.equals(768.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 767.92)
             
             amount = try measuredIngredient.amount(for: .dash)
-            XCTAssertTrue(amount.equals(6143.33, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 6143.33)
             
             amount = try measuredIngredient.amount(for: .pinch)
-            XCTAssertTrue(amount.equals(12286.66, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 12286.66)
             
             amount = try measuredIngredient.amount(for: .ounce)
-            XCTAssertTrue(amount.equals(160.21, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 153.58)
             
             amount = try measuredIngredient.amount(for: .pound)
-            XCTAssertTrue(amount.equals(10.01, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 9.6)
             
             amount = try measuredIngredient.amount(for: .milliliter)
-            XCTAssertTrue(amount.equals(3785.0, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 2), 3785.0)
             
             amount = try measuredIngredient.amount(for: .liter)
-            XCTAssertTrue(amount.equals(3.785, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 3), 3.785)
             
             amount = try measuredIngredient.amount(for: .gram)
-            XCTAssertTrue(amount.equals(4542.0, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 2), 4542.0)
             
             amount = try measuredIngredient.amount(for: .kilogram)
-            XCTAssertTrue(amount.equals(4.54, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 3), 4.542)
             
             amount = try measuredIngredient.amount(for: .each)
-            XCTAssertEqual(amount.rounded(to: 3), 0.052)
+            XCTAssertEqual(amount.rounded(to: 2), 0.05)
             
             let ma = measuredIngredient.amount
             let mu = measuredIngredient.unit
@@ -578,31 +586,31 @@ class FormulaElementTests: XCTestCase {
         
         do {
             amount = try measuredIngredient.amount(for: .gallon)
-            XCTAssertEqual(amount.rounded(to: 2), 0.83)
+            XCTAssertEqual(amount.rounded(to: 2), 0.87)
             
             amount = try measuredIngredient.amount(for: .quart)
-            XCTAssertEqual(amount.rounded(to: 2), 3.33)
+            XCTAssertEqual(amount.rounded(to: 2), 3.48)
             
             amount = try measuredIngredient.amount(for: .pint)
-            XCTAssertEqual(amount.rounded(to: 2), 6.67)
+            XCTAssertEqual(amount.rounded(to: 2), 6.95)
             
             amount = try measuredIngredient.amount(for: .cup)
-            XCTAssertEqual(amount.rounded(to: 2), 13.33)
+            XCTAssertEqual(amount.rounded(to: 2), 13.91)
             
             amount = try measuredIngredient.amount(for: .fluidOunce)
-            XCTAssertEqual(amount.rounded(to: 2), 106.66)
+            XCTAssertEqual(amount.rounded(to: 2), 111.26)
             
             amount = try measuredIngredient.amount(for: .tablespoon)
-            XCTAssertEqual(amount.rounded(to: 2), 213.31)
+            XCTAssertEqual(amount.rounded(to: 2), 222.52)
             
             amount = try measuredIngredient.amount(for: .teaspoon)
-            XCTAssertEqual(amount.rounded(to: 2), 639.93)
+            XCTAssertEqual(amount.rounded(to: 2), 667.56)
             
             amount = try measuredIngredient.amount(for: .dash)
-            XCTAssertEqual(amount.rounded(to: 2), 5119.44)
+            XCTAssertEqual(amount.rounded(to: 2), 5340.48)
             
             amount = try measuredIngredient.amount(for: .pinch)
-            XCTAssertEqual(amount.rounded(to: 2), 10238.89)
+            XCTAssertEqual(amount.rounded(to: 2), 10680.96)
             
             amount = try measuredIngredient.amount(for: .ounce)
             XCTAssertEqual(amount.rounded(to: 2), 133.51)
@@ -614,16 +622,16 @@ class FormulaElementTests: XCTestCase {
             XCTAssertEqual(amount.rounded(to: 2), 3154.17)
             
             amount = try measuredIngredient.amount(for: .liter)
-            XCTAssertEqual(amount.rounded(to: 2), 3.15)
+            XCTAssertEqual(amount.rounded(to: 3), 3.154)
             
             amount = try measuredIngredient.amount(for: .gram)
-            XCTAssertTrue(amount.equals(3785.0, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 2), 3785.0)
             
             amount = try measuredIngredient.amount(for: .kilogram)
-            XCTAssertTrue(amount.equals(3.785, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 3), 3.785)
             
             amount = try measuredIngredient.amount(for: .each)
-            XCTAssertTrue(amount.equals(0.043, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 0.04)
             
             let ma = measuredIngredient.amount
             let mu = measuredIngredient.unit
@@ -645,52 +653,52 @@ class FormulaElementTests: XCTestCase {
         
         do {
             amount = try measuredIngredient.amount(for: .gallon)
-            XCTAssertEqual(amount, 1.0)
+            XCTAssertEqual(amount.rounded(to: 2), 1.0)
             
             amount = try measuredIngredient.amount(for: .quart)
-            XCTAssertEqual(amount, 4.0)
+            XCTAssertEqual(amount.rounded(to: 2), 4.0)
             
             amount = try measuredIngredient.amount(for: .pint)
-            XCTAssertEqual(amount, 8.0)
+            XCTAssertEqual(amount.rounded(to: 2), 8.0)
             
             amount = try measuredIngredient.amount(for: .cup)
-            XCTAssertEqual(amount, 16.0)
+            XCTAssertEqual(amount.rounded(to: 2), 16.0)
             
             amount = try measuredIngredient.amount(for: .fluidOunce)
-            XCTAssertEqual(amount, 128.0)
+            XCTAssertEqual(amount.rounded(to: 2), 128.0)
             
             amount = try measuredIngredient.amount(for: .tablespoon)
-            XCTAssertEqual(amount, 256.0)
+            XCTAssertEqual(amount.rounded(to: 2), 256.0)
             
             amount = try measuredIngredient.amount(for: .teaspoon)
-            XCTAssertTrue(amount.equals(768.0, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 2), 768.0)
             
             amount = try measuredIngredient.amount(for: .dash)
-            XCTAssertTrue(amount.equals(6144.0, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 2), 6144.0)
             
             amount = try measuredIngredient.amount(for: .pinch)
-            XCTAssertTrue(amount.equals(12288.0, precision: 0))
+            XCTAssertEqual(amount.rounded(to: 2), 12288.0)
             
             amount = try measuredIngredient.amount(for: .ounce)
-            XCTAssertEqual(amount, 102.4)
+            XCTAssertEqual(amount.rounded(to: 2), 102.4)
             
             amount = try measuredIngredient.amount(for: .pound)
-            XCTAssertEqual(amount, 6.4)
+            XCTAssertEqual(amount.rounded(to: 2), 6.4)
             
             amount = try measuredIngredient.amount(for: .milliliter)
-            XCTAssertTrue(amount.equals(3785.41, precision: 2))
+            XCTAssertEqual(amount.rounded(to: 2), 3785.41)
             
             amount = try measuredIngredient.amount(for: .liter)
-            XCTAssertTrue(amount.equals(3.79, precision: 2))
+            XCTAssertEqual(amount.rounded(to: 2), 3.79)
             
             amount = try measuredIngredient.amount(for: .gram)
-            XCTAssertTrue(amount.equals(2902.99, precision: 2))
+            XCTAssertEqual(amount.rounded(to: 2), 3028.33)
             
             amount = try measuredIngredient.amount(for: .kilogram)
-            XCTAssertTrue(amount.equals(2.90, precision: 2))
+            XCTAssertEqual(amount.rounded(to: 2), 3.03)
             
             amount = try measuredIngredient.amount(for: .each)
-            XCTAssertTrue(amount.equals(414.71, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 2), 432.62)
             
             let ma = measuredIngredient.amount
             let mu = measuredIngredient.unit
@@ -699,7 +707,11 @@ class FormulaElementTests: XCTestCase {
             measuredIngredient.unit = .each
             
             amount = try measuredIngredient.amount(for: mu)
-            XCTAssertEqual(amount.rounded(to: 2), ma.rounded(to: 2))
+            let adjusted = ma * (Configuration.fluidOunceMilliliter / Configuration.ounceGram)
+            // The reason for using an adjusted amount is the path for conversion is not the same in performing the calculations.
+            // In going from US Volume (1 gal) to each (kg): us volume > metric volume > metric weight.
+            // In going from each (kg) to US Volume (1 gal): metric weight > us weight > us volume.
+            XCTAssertEqual(amount.rounded(to: 2), adjusted.rounded(to: 2))
         } catch {
             XCTFail("Unexpected Error Thrown")
             return
@@ -728,13 +740,13 @@ class FormulaElementTests: XCTestCase {
             XCTAssertEqual(amount.rounded(to: 2), 320.0)
             
             amount = try measuredIngredient.amount(for: .teaspoon)
-            XCTAssertEqual(amount.rounded(to: 2), 960.0)
+            XCTAssertEqual(amount.rounded(to: 0), 960.0)
             
             amount = try measuredIngredient.amount(for: .dash)
-            XCTAssertEqual(amount.rounded(to: 2), 7680.0)
+            XCTAssertEqual(amount.rounded(to: 0), 7680.0)
             
             amount = try measuredIngredient.amount(for: .pinch)
-            XCTAssertEqual(amount.rounded(to: 2), 15360.0)
+            XCTAssertEqual(amount.rounded(to: 0), 15360.0)
             
             amount = try measuredIngredient.amount(for: .ounce)
             XCTAssertEqual(amount.rounded(to: 2), 128.0)
@@ -743,10 +755,10 @@ class FormulaElementTests: XCTestCase {
             XCTAssertEqual(amount.rounded(to: 2), 8.0)
             
             amount = try measuredIngredient.amount(for: .milliliter)
-            XCTAssertEqual(amount.rounded(to: 2), 4731.76)
+            XCTAssertEqual(amount.rounded(to: 2), 4535.92)
             
             amount = try measuredIngredient.amount(for: .liter)
-            XCTAssertEqual(amount.rounded(to: 2), 4.73)
+            XCTAssertEqual(amount.rounded(to: 2), 4.54)
             
             amount = try measuredIngredient.amount(for: .gram)
             XCTAssertEqual(amount.rounded(to: 2), 3628.74)
@@ -802,22 +814,22 @@ class FormulaElementTests: XCTestCase {
             XCTAssertEqual(amount.rounded(to: 2), 12286.66)
             
             amount = try measuredIngredient.amount(for: .ounce)
-            XCTAssertEqual(amount.rounded(to: 2), 106.81)
+            XCTAssertEqual(amount.rounded(to: 2), 102.39)
             
             amount = try measuredIngredient.amount(for: .pound)
-            XCTAssertEqual(amount.rounded(to: 2), 6.68)
+            XCTAssertEqual(amount.rounded(to: 2), 6.4)
             
             amount = try measuredIngredient.amount(for: .milliliter)
             XCTAssertEqual(amount.rounded(to: 2), 3785.0)
             
             amount = try measuredIngredient.amount(for: .liter)
-            XCTAssertEqual(amount.rounded(to: 2), 3.79)
+            XCTAssertEqual(amount.rounded(to: 3), 3.785)
             
             amount = try measuredIngredient.amount(for: .gram)
             XCTAssertEqual(amount.rounded(to: 2), 3028.0)
             
             amount = try measuredIngredient.amount(for: .kilogram)
-            XCTAssertEqual(amount.rounded(to: 2), 3.03)
+            XCTAssertEqual(amount.rounded(to: 3), 3.028)
             
             amount = try measuredIngredient.amount(for: .each)
             XCTAssertEqual(amount.rounded(to: 2), 432.57)
@@ -840,31 +852,31 @@ class FormulaElementTests: XCTestCase {
         
         do {
             amount = try measuredIngredient.amount(for: .gallon)
-            XCTAssertEqual(amount.rounded(to: 2), 1.25)
+            XCTAssertEqual(amount.rounded(to: 2), 1.3)
             
             amount = try measuredIngredient.amount(for: .quart)
-            XCTAssertEqual(amount.rounded(to: 2), 5.0)
+            XCTAssertEqual(amount.rounded(to: 2), 5.22)
             
             amount = try measuredIngredient.amount(for: .pint)
-            XCTAssertEqual(amount.rounded(to: 2), 10.0)
+            XCTAssertEqual(amount.rounded(to: 2), 10.43)
             
             amount = try measuredIngredient.amount(for: .cup)
-            XCTAssertEqual(amount.rounded(to: 2), 20.0)
+            XCTAssertEqual(amount.rounded(to: 2), 20.86)
             
             amount = try measuredIngredient.amount(for: .fluidOunce)
-            XCTAssertEqual(amount.rounded(to: 2), 159.98)
+            XCTAssertEqual(amount.rounded(to: 2), 166.89)
             
             amount = try measuredIngredient.amount(for: .tablespoon)
-            XCTAssertEqual(amount.rounded(to: 2), 319.97)
+            XCTAssertEqual(amount.rounded(to: 2), 333.78)
             
             amount = try measuredIngredient.amount(for: .teaspoon)
-            XCTAssertEqual(amount.rounded(to: 2), 959.9)
+            XCTAssertEqual(amount.rounded(to: 2), 1001.34)
             
             amount = try measuredIngredient.amount(for: .dash)
-            XCTAssertEqual(amount.rounded(to: 2), 7679.17)
+            XCTAssertEqual(amount.rounded(to: 2), 8010.72)
             
             amount = try measuredIngredient.amount(for: .pinch)
-            XCTAssertEqual(amount.rounded(to: 2), 15358.33)
+            XCTAssertEqual(amount.rounded(to: 2), 16021.44)
             
             amount = try measuredIngredient.amount(for: .ounce)
             XCTAssertEqual(amount.rounded(to: 2), 133.51)
@@ -876,13 +888,13 @@ class FormulaElementTests: XCTestCase {
             XCTAssertEqual(amount.rounded(to: 2), 4731.25)
             
             amount = try measuredIngredient.amount(for: .liter)
-            XCTAssertEqual(amount.rounded(to: 2), 4.73)
+            XCTAssertEqual(amount.rounded(to: 3), 4.731)
             
             amount = try measuredIngredient.amount(for: .gram)
             XCTAssertEqual(amount.rounded(to: 2), 3785.0)
             
             amount = try measuredIngredient.amount(for: .kilogram)
-            XCTAssertEqual(amount.rounded(to: 2), 3.79)
+            XCTAssertEqual(amount.rounded(to: 3), 3.785)
             
             amount = try measuredIngredient.amount(for: .each)
             XCTAssertEqual(amount.rounded(to: 2), 540.71)

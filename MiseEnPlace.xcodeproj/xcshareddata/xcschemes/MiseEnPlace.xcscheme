@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E1E02C831B6F200A00FEDC95"
+               BlueprintIdentifier = "E1D5431A1FB3A773003E2777"
                BuildableName = "MiseEnPlaceTests.xctest"
                BlueprintName = "MiseEnPlaceTests"
                ReferencedContainer = "container:MiseEnPlace.xcodeproj">
@@ -48,7 +48,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E1E02C831B6F200A00FEDC95"
+               BlueprintIdentifier = "E1D5431A1FB3A773003E2777"
                BuildableName = "MiseEnPlaceTests.xctest"
                BlueprintName = "MiseEnPlaceTests"
                ReferencedContainer = "container:MiseEnPlace.xcodeproj">

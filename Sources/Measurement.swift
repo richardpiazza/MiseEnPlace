@@ -70,67 +70,75 @@ public extension Measurement {
                 throw Error.measurementUnit(method: nil)
             }
             
+            // Translate to the desired unit
+            // First: `MeasurementSystem`
+            // Than: `MeasurementMethod`
+            
             switch self.unit.measurementSystemMethod {
             case .usVolume:
                 let fluidOunce = try self.measurement.amount(for: .fluidOunce)
-                let ounce = fluidOunce * multiplier
-                let milliliter = fluidOunce * Configuration.fluidOunceMilliliter
-                let gram = ounce * Configuration.ounceGram
                 
                 switch unit.measurementSystemMethod {
                 case .usWeight:
+                    let ounce = fluidOunce * multiplier
                     return try MiseEnPlace.Measurement(amount: ounce, unit: .ounce).amount(for: unit)
                 case .metricVolume:
+                    let milliliter = fluidOunce * Configuration.fluidOunceMilliliter
                     return try MiseEnPlace.Measurement(amount: milliliter, unit: .milliliter).amount(for: unit)
                 case .metricWeight:
+                    let milliliter = fluidOunce * Configuration.fluidOunceMilliliter
+                    let gram = milliliter * multiplier
                     return try MiseEnPlace.Measurement(amount: gram, unit: .gram).amount(for: unit)
                 default:
                     break
                 }
             case .usWeight:
                 let ounce = try self.measurement.amount(for: .ounce)
-                let fluidOunce = ounce * multiplier
-                let milliliter = fluidOunce * Configuration.fluidOunceMilliliter
-                let gram = ounce * Configuration.ounceGram
                 
                 switch unit.measurementSystemMethod {
                 case .usVolume:
+                    let fluidOunce = ounce * multiplier
                     return try MiseEnPlace.Measurement(amount: fluidOunce, unit: .fluidOunce).amount(for: unit)
                 case .metricVolume:
+                    let gram = ounce * Configuration.ounceGram
+                    let milliliter = gram * multiplier
                     return try MiseEnPlace.Measurement(amount: milliliter, unit: .milliliter).amount(for: unit)
                 case .metricWeight:
+                    let gram = ounce * Configuration.ounceGram
                     return try MiseEnPlace.Measurement(amount: gram, unit: .gram).amount(for: unit)
                 default:
                     break
                 }
             case .metricVolume:
                 let milliliter = try self.measurement.amount(for: .milliliter)
-                let gram = milliliter * multiplier
-                let fluidOunce = milliliter / Configuration.fluidOunceMilliliter
-                let ounce = gram / Configuration.ounceGram
                 
                 switch unit.measurementSystemMethod {
                 case .metricWeight:
+                    let gram = milliliter * multiplier
                     return try MiseEnPlace.Measurement(amount: gram, unit: .gram).amount(for: unit)
                 case .usVolume:
+                    let fluidOunce = milliliter / Configuration.fluidOunceMilliliter
                     return try MiseEnPlace.Measurement(amount: fluidOunce, unit: .fluidOunce).amount(for: unit)
                 case .usWeight:
+                    let fluidOunce = milliliter / Configuration.fluidOunceMilliliter
+                    let ounce = fluidOunce * multiplier
                     return try MiseEnPlace.Measurement(amount: ounce, unit: .ounce).amount(for: unit)
                 default:
                     break
                 }
             case .metricWeight:
                 let gram = try self.measurement.amount(for: .gram)
-                let milliliter = gram * multiplier
-                let fluidOunce = milliliter / Configuration.fluidOunceMilliliter
-                let ounce = gram / Configuration.ounceGram
                 
                 switch unit.measurementSystemMethod {
                 case .metricVolume:
+                    let milliliter = gram * multiplier
                     return try MiseEnPlace.Measurement(amount: milliliter, unit: .milliliter).amount(for: unit)
                 case .usVolume:
+                    let ounce = gram / Configuration.ounceGram
+                    let fluidOunce = ounce * multiplier
                     return try MiseEnPlace.Measurement(amount: fluidOunce, unit: .fluidOunce).amount(for: unit)
                 case .usWeight:
+                    let ounce = gram / Configuration.ounceGram
                     return try MiseEnPlace.Measurement(amount: ounce, unit: .ounce).amount(for: unit)
                 default:
                     break
