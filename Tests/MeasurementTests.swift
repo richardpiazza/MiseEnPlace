@@ -88,7 +88,7 @@ class MeasurementTests: XCTestCase {
         
         do {
             let amount = try measurement.amount(for: .gallon)
-            XCTAssertTrue(amount.equals(2.4414, precision: 3))
+            XCTAssertEqual(amount.rounded(to: 3), 2.441)
         } catch {
             XCTFail("Unexpected Error Thrown")
             return
@@ -99,7 +99,7 @@ class MeasurementTests: XCTestCase {
         
         do {
             let amount = try measurement.amount(for: .pinch)
-            XCTAssertTrue(amount.equals(79872.0, precision: 1))
+            XCTAssertEqual(amount.rounded(to: 0), 79872.0)
         } catch {
             XCTFail("Unexpected Error Thrown")
             return

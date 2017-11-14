@@ -77,10 +77,12 @@ public extension FormulaElement {
                 let quantifiableMeasurement = ingredient.measurement
                 let equivalentMeasurement = MiseEnPlace.Measurement(amount: quantifiableMeasurement.amount * self.amount, unit: quantifiableMeasurement.unit)
                 let multiplier = ingredient.multiplier(for: unit.measurementMethod)
+//                let multiplier = ingredient.multiplier(from: quantifiableMeasurement.unit.measurementMethod, to: unit.measurementMethod)
                 return try equivalentMeasurement.amount(for: unit, conversionMultiplier: multiplier)
             case (.usVolume, .numericQuantity), (.usWeight, .numericQuantity), (.metricVolume, .numericQuantity), (.metricWeight, .numericQuantity):
                 let quantifiableMeasurement = ingredient.measurement
                 let multiplier = ingredient.multiplier(for: self.unit.measurementMethod)
+//                let multiplier = ingredient.multiplier(from: quantifiableMeasurement.unit.measurementMethod, to: unit.measurementMethod)
                 let equivalentAmount = try self.measurement.amount(for: quantifiableMeasurement.unit, conversionMultiplier: multiplier)
                 return equivalentAmount / quantifiableMeasurement.amount
             case (.usVolume, .usVolume), (.usWeight, .usWeight), (.metricVolume, .metricVolume), (.metricWeight, .metricWeight):

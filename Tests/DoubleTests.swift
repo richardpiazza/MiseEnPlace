@@ -3,18 +3,18 @@ import XCTest
 
 class DoubleTests: XCTestCase {
 
-    func testEquals() {
+    func testRounded() {
         let double = 9.87654321
-        XCTAssertTrue(double.equals(9.87654321, precision: 0))
-        XCTAssertTrue(double.equals(9.8765432, precision: 0))
-        XCTAssertTrue(double.equals(9.8765432, precision: 1))
-        XCTAssertTrue(double.equals(9.8765432, precision: 2))
-        XCTAssertTrue(double.equals(9.8765432, precision: 3))
-        XCTAssertTrue(double.equals(9.8765432, precision: 4))
-        XCTAssertTrue(double.equals(9.8765432, precision: 5))
-        XCTAssertTrue(double.equals(9.8765432, precision: 6))
-        XCTAssertFalse(double.equals(9.8765432, precision: 7))
-        XCTAssertFalse(double.equals(9.8765432, precision: -1))
+        
+        XCTAssertEqual(double.rounded(to: 0), 10.0)
+        XCTAssertEqual(double.rounded(to: 1), 9.9)
+        XCTAssertEqual(double.rounded(to: 2), 9.88)
+        XCTAssertEqual(double.rounded(to: 3), 9.877)
+        XCTAssertEqual(double.rounded(to: 4), 9.8765)
+        XCTAssertEqual(double.rounded(to: 5), 9.87654)
+        XCTAssertEqual(double.rounded(to: 6), 9.876543)
+        XCTAssertEqual(double.rounded(to: 7), 9.8765432)
+        XCTAssertEqual(double.rounded(to: 8), 9.87654321)
     }
     
     func testFractionedString() {

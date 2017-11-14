@@ -22,6 +22,17 @@ public protocol Proportioned {
 }
 
 public extension Proportioned {
+    public func multiplier(from fromMethod: MeasurementMethod, to toMethod: MeasurementMethod) -> Double {
+        switch (fromMethod, toMethod) {
+        case (.volume, .weight):
+            return self.volume / self.weight
+        case (.weight, .volume):
+            return self.weight / self.volume
+        default:
+            return 1.0
+        }
+    }
+    
     public func multiplier(for method: MeasurementMethod) -> Double {
         switch method {
         case .volume:

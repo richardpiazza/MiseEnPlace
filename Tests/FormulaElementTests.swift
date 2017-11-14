@@ -168,14 +168,11 @@ class FormulaElementTests: XCTestCase {
             amount = try measuredIngredient.amount(for: .each)
             XCTAssertEqual(amount.rounded(to: 2), 2.52)
             
-            let ma = measuredIngredient.amount
-            let mu = measuredIngredient.unit
-            
             measuredIngredient.amount = amount
             measuredIngredient.unit = .each
             
-            amount = try measuredIngredient.amount(for: mu)
-            XCTAssertEqual(amount.rounded(to: 2), ma.rounded(to: 2))
+            amount = try measuredIngredient.amount(for: .gallon)
+            XCTAssertEqual(amount.rounded(to: 2), 1.0)
         } catch {
             XCTFail("Unexpected Error Thrown")
             return
@@ -233,18 +230,16 @@ class FormulaElementTests: XCTestCase {
             amount = try measuredIngredient.amount(for: .each)
             XCTAssertEqual(amount.rounded(to: 2), 2.42)
             
-            let ma = measuredIngredient.amount
-            let mu = measuredIngredient.unit
-            
             measuredIngredient.amount = amount
             measuredIngredient.unit = .each
             
-            amount = try measuredIngredient.amount(for: mu)
-            let adjusted = ma * (Configuration.ounceGram / Configuration.fluidOunceMilliliter)
-            // The reason for using an adjusted amount is the path for conversion is not the same in performing the calculations.
-            // In going from US Weight (8 lb) to each (liter): us weight > metric weight > metric volume.
-            // In going from each (liter) to US Weight (8 lb): metric volume > us volume > us weight.
-            XCTAssertEqual(amount.rounded(to: 2), adjusted.rounded(to: 2))
+            amount = try measuredIngredient.amount(for: .pound)
+            // You would expect this amount to be 8.0, but you have to
+            // take into account the different calculation path when going
+            // back to the .pound unit.
+            // To Each: us weight > metric weight > metric volume
+            // From Each: metric volume > us volume > us weight
+            XCTAssertEqual(amount.rounded(to: 2), 7.67)
         } catch {
             XCTFail("Unexpected Error Thrown")
             return
@@ -302,14 +297,11 @@ class FormulaElementTests: XCTestCase {
             amount = try measuredIngredient.amount(for: .each)
             XCTAssertEqual(amount.rounded(to: 2), 2.52)
             
-            let ma = measuredIngredient.amount
-            let mu = measuredIngredient.unit
-            
             measuredIngredient.amount = amount
             measuredIngredient.unit = .each
             
-            amount = try measuredIngredient.amount(for: mu)
-            XCTAssertEqual(amount.rounded(to: 2), ma.rounded(to: 2))
+            amount = try measuredIngredient.amount(for: .liter)
+            XCTAssertEqual(amount.rounded(to: 3), 3.785)
         } catch {
             XCTFail("Unexpected Error Thrown")
             return
@@ -367,14 +359,11 @@ class FormulaElementTests: XCTestCase {
             amount = try measuredIngredient.amount(for: .each)
             XCTAssertEqual(amount.rounded(to: 2), 2.52)
             
-            let ma = measuredIngredient.amount
-            let mu = measuredIngredient.unit
-            
             measuredIngredient.amount = amount
             measuredIngredient.unit = .each
             
-            amount = try measuredIngredient.amount(for: mu)
-            XCTAssertEqual(amount.rounded(to: 2), ma.rounded(to: 2))
+            amount = try measuredIngredient.amount(for: .kilogram)
+            XCTAssertEqual(amount.rounded(to: 3), 3.785)
         } catch {
             XCTFail("Unexpected Error Thrown")
             return
@@ -434,18 +423,16 @@ class FormulaElementTests: XCTestCase {
             amount = try measuredIngredient.amount(for: .each)
             XCTAssertEqual(amount.rounded(to: 2), 0.05)
             
-            let ma = measuredIngredient.amount
-            let mu = measuredIngredient.unit
-            
             measuredIngredient.amount = amount
             measuredIngredient.unit = .each
             
-            amount = try measuredIngredient.amount(for: mu)
-            let adjusted = ma * (Configuration.fluidOunceMilliliter / Configuration.ounceGram)
-            // The reason for using an adjusted amount is the path for conversion is not the same in performing the calculations.
-            // In going from US Volume (1 gal) to each (kg): us volume > metric volume > metric weight.
-            // In going from each (kg) to US Volume (1 gal): metric weight > us weight > us volume.
-            XCTAssertEqual(amount.rounded(to: 2), adjusted.rounded(to: 2))
+            amount = try measuredIngredient.amount(for: .gallon)
+            // You would expect this amount to be 1.0, but you have to
+            // take into account the different calculation path when going
+            // back to the .gallon unit.
+            // To Each: us volume > metric volume > metric weight
+            // From Each: metric weight > us weight > us volume
+            XCTAssertEqual(amount.rounded(to: 2), 1.5)
         } catch {
             XCTFail("Unexpected Error Thrown")
             return
@@ -503,14 +490,11 @@ class FormulaElementTests: XCTestCase {
             amount = try measuredIngredient.amount(for: .each)
             XCTAssertEqual(amount.rounded(to: 2), 0.04)
             
-            let ma = measuredIngredient.amount
-            let mu = measuredIngredient.unit
-            
             measuredIngredient.amount = amount
             measuredIngredient.unit = .each
             
-            amount = try measuredIngredient.amount(for: mu)
-            XCTAssertEqual(amount.rounded(to: 2), ma.rounded(to: 2))
+            amount = try measuredIngredient.amount(for: .pound)
+            XCTAssertEqual(amount.rounded(to: 2), 8.0)
         } catch {
             XCTFail("Unexpected Error Thrown")
             return
@@ -568,14 +552,11 @@ class FormulaElementTests: XCTestCase {
             amount = try measuredIngredient.amount(for: .each)
             XCTAssertEqual(amount.rounded(to: 2), 0.05)
             
-            let ma = measuredIngredient.amount
-            let mu = measuredIngredient.unit
-            
             measuredIngredient.amount = amount
             measuredIngredient.unit = .each
             
-            amount = try measuredIngredient.amount(for: mu)
-            XCTAssertEqual(amount.rounded(to: 2), ma.rounded(to: 2))
+            amount = try measuredIngredient.amount(for: .liter)
+            XCTAssertEqual(amount.rounded(to: 3), 3.785)
         } catch {
             XCTFail("Unexpected Error Thrown")
             return
@@ -633,14 +614,11 @@ class FormulaElementTests: XCTestCase {
             amount = try measuredIngredient.amount(for: .each)
             XCTAssertEqual(amount.rounded(to: 2), 0.04)
             
-            let ma = measuredIngredient.amount
-            let mu = measuredIngredient.unit
-            
             measuredIngredient.amount = amount
             measuredIngredient.unit = .each
             
-            amount = try measuredIngredient.amount(for: mu)
-            XCTAssertEqual(amount.rounded(to: 2), ma.rounded(to: 2))
+            amount = try measuredIngredient.amount(for: .kilogram)
+            XCTAssertEqual(amount.rounded(to: 3), 3.785)
         } catch {
             XCTFail("Unexpected Error Thrown")
             return
@@ -700,18 +678,16 @@ class FormulaElementTests: XCTestCase {
             amount = try measuredIngredient.amount(for: .each)
             XCTAssertEqual(amount.rounded(to: 2), 432.62)
             
-            let ma = measuredIngredient.amount
-            let mu = measuredIngredient.unit
-            
             measuredIngredient.amount = amount
             measuredIngredient.unit = .each
             
-            amount = try measuredIngredient.amount(for: mu)
-            let adjusted = ma * (Configuration.fluidOunceMilliliter / Configuration.ounceGram)
-            // The reason for using an adjusted amount is the path for conversion is not the same in performing the calculations.
-            // In going from US Volume (1 gal) to each (kg): us volume > metric volume > metric weight.
-            // In going from each (kg) to US Volume (1 gal): metric weight > us weight > us volume.
-            XCTAssertEqual(amount.rounded(to: 2), adjusted.rounded(to: 2))
+            amount = try measuredIngredient.amount(for: .gallon)
+            // You would expect this amount to be 1.0, but you have to
+            // take into account the different calculation path when going
+            // back to the .gallon unit.
+            // To Each: us volume > metric volume > metric weight
+            // From Each: metric weight > us weight > us volume
+            XCTAssertEqual(amount.rounded(to: 2), 0.67)
         } catch {
             XCTFail("Unexpected Error Thrown")
             return
@@ -769,14 +745,11 @@ class FormulaElementTests: XCTestCase {
             amount = try measuredIngredient.amount(for: .each)
             XCTAssertEqual(amount.rounded(to: 2), 518.39)
             
-            let ma = measuredIngredient.amount
-            let mu = measuredIngredient.unit
-            
             measuredIngredient.amount = amount
             measuredIngredient.unit = .each
             
-            amount = try measuredIngredient.amount(for: mu)
-            XCTAssertEqual(amount.rounded(to: 2), ma.rounded(to: 2))
+            amount = try measuredIngredient.amount(for: .pound)
+            XCTAssertEqual(amount.rounded(to: 2), 8.0)
         } catch {
             XCTFail("Unexpected Error Thrown")
             return
@@ -834,14 +807,11 @@ class FormulaElementTests: XCTestCase {
             amount = try measuredIngredient.amount(for: .each)
             XCTAssertEqual(amount.rounded(to: 2), 432.57)
             
-            let ma = measuredIngredient.amount
-            let mu = measuredIngredient.unit
-            
             measuredIngredient.amount = amount
             measuredIngredient.unit = .each
             
-            amount = try measuredIngredient.amount(for: mu)
-            XCTAssertEqual(amount.rounded(to: 2), ma.rounded(to: 2))
+            amount = try measuredIngredient.amount(for: .liter)
+            XCTAssertEqual(amount.rounded(to: 3), 3.785)
         } catch {
             XCTFail("Unexpected Error Thrown")
             return
@@ -899,14 +869,11 @@ class FormulaElementTests: XCTestCase {
             amount = try measuredIngredient.amount(for: .each)
             XCTAssertEqual(amount.rounded(to: 2), 540.71)
             
-            let ma = measuredIngredient.amount
-            let mu = measuredIngredient.unit
-            
             measuredIngredient.amount = amount
             measuredIngredient.unit = .each
             
-            amount = try measuredIngredient.amount(for: mu)
-            XCTAssertEqual(amount.rounded(to: 2), ma.rounded(to: 2))
+            amount = try measuredIngredient.amount(for: .kilogram)
+            XCTAssertEqual(amount.rounded(to: 3), 3.785)
         } catch {
             XCTFail("Unexpected Error Thrown")
             return

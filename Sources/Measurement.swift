@@ -114,7 +114,7 @@ public extension Measurement {
                 
                 switch unit.measurementSystemMethod {
                 case .metricWeight:
-                    let gram = milliliter * multiplier
+                    let gram = milliliter / multiplier // * ?? /
                     return try MiseEnPlace.Measurement(amount: gram, unit: .gram).amount(for: unit)
                 case .usVolume:
                     let fluidOunce = milliliter / Configuration.fluidOunceMilliliter
@@ -131,7 +131,7 @@ public extension Measurement {
                 
                 switch unit.measurementSystemMethod {
                 case .metricVolume:
-                    let milliliter = gram * multiplier
+                    let milliliter = gram / multiplier // * ?? /
                     return try MiseEnPlace.Measurement(amount: milliliter, unit: .milliliter).amount(for: unit)
                 case .usVolume:
                     let ounce = gram / Configuration.ounceGram
