@@ -22,9 +22,9 @@ public enum Error: Swift.Error, LocalizedError {
             }
         case .measurementUnit(let method):
             if let m = method, m == .volume {
-                return "Volume measurement requires a unit `MeasurementMethod` of type .volume"
+                return "Volume measurement requires a unit `MeasurementMethod` of type .volume."
             } else if let m = method, m == .weight {
-                return "Weight measurement requires a unit `MeasurementMethod` of type .weight"
+                return "Weight measurement requires a unit `MeasurementMethod` of type .weight."
             } else {
                 return "Measurement unit must be specified."
             }

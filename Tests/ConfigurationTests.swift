@@ -3,6 +3,16 @@ import XCTest
 
 class ConfigurationTests: XCTestCase {
 
+    let us = Locale(identifier: "en_US")
+    let gb = Locale(identifier: "en_GB")
+    
+    override func setUp() {
+        super.setUp()
+        
+        XCTAssertFalse(us.usesMetricSystem)
+        XCTAssertTrue(gb.usesMetricSystem)
+    }
+    
     func testConstants() {
         XCTAssertEqual(Configuration.looseOunceGram, 30.0)
         XCTAssertEqual(Configuration.preciseOunceGram, 28.349523)
@@ -37,19 +47,31 @@ class ConfigurationTests: XCTestCase {
     }
     
     func testSmallAndLargeMeasurements() {
-        let smallMeasurement = Configuration.smallMeasurement
-        let largeMeasurement = Configuration.largeMeasurement
+        var smallMeasurement: MiseEnPlace.Measurement
+        var largeMeasurement: MiseEnPlace.Measurement
         
-        if Locale.current.usesMetricSystem {
-            XCTAssertEqual(smallMeasurement.amount, 100.0)
-            XCTAssertEqual(smallMeasurement.unit, .gram)
-            XCTAssertEqual(largeMeasurement.amount, 1.0)
-            XCTAssertEqual(largeMeasurement.unit, .kilogram)
-        } else {
-            XCTAssertEqual(smallMeasurement.amount, 1.0)
-            XCTAssertEqual(smallMeasurement.unit, .ounce)
-            XCTAssertEqual(largeMeasurement.amount, 1.0)
-            XCTAssertEqual(largeMeasurement.unit, .pound)
-        }
+        let currentLocale = Configuration.locale
+        
+        Configuration.locale = us
+        
+        smallMeasurement = Configuration.smallMeasurement
+        largeMeasurement = Configuration.largeMeasurement
+        
+        XCTAssertEqual(smallMeasurement.amount, 1.0)
+        XCTAssertEqual(smallMeasurement.unit, .ounce)
+        XCTAssertEqual(largeMeasurement.amount, 1.0)
+        XCTAssertEqual(largeMeasurement.unit, .pound)
+        
+        Configuration.locale = gb
+        
+        smallMeasurement = Configuration.smallMeasurement
+        largeMeasurement = Configuration.largeMeasurement
+        
+        XCTAssertEqual(smallMeasurement.amount, 100.0)
+        XCTAssertEqual(smallMeasurement.unit, .gram)
+        XCTAssertEqual(largeMeasurement.amount, 1.0)
+        XCTAssertEqual(largeMeasurement.unit, .kilogram)
+        
+        Configuration.locale = currentLocale
     }
 }

@@ -14,6 +14,7 @@ public struct Configuration {
     internal static var singleDecimalFormatter: NumberFormatter {
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 1
+        formatter.locale = self.locale
         return formatter
     }
     
@@ -21,8 +22,11 @@ public struct Configuration {
         let formatter = NumberFormatter()
         formatter.usesSignificantDigits = true
         formatter.maximumSignificantDigits = 2
+        formatter.locale = self.locale
         return formatter
     }
+    
+    public static var locale: Locale = Locale.current
     
     /// Changes the default behavior of the `Measurement` translation functions.
     public static var abbreviateTranslations: Bool = false
@@ -42,7 +46,7 @@ public struct Configuration {
     
     /// A measurement typical of a 'small' portion size
     public static var smallMeasurement: MiseEnPlace.Measurement {
-        if Locale.current.usesMetricSystem {
+        if self.locale.usesMetricSystem {
             return MiseEnPlace.Measurement(amount: 100.0, unit: .gram)
         }
         
@@ -51,7 +55,7 @@ public struct Configuration {
     
     /// A measurement typical of a 'large' portion size
     public static var largeMeasurement: MiseEnPlace.Measurement {
-        if Locale.current.usesMetricSystem {
+        if self.locale.usesMetricSystem {
             return MiseEnPlace.Measurement(amount: 1.0, unit: .kilogram)
         }
         
