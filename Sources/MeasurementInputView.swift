@@ -219,10 +219,10 @@ public class MeasurementInputView: UIView, UIInputViewAudioFeedback, UIPickerVie
         }
         
         if let color = UIApplication.shared.delegate?.window??.tintColor {
-            return NSAttributedString(string: attributedTitle, attributes: [NSAttributedStringKey.foregroundColor:color])
+            return NSAttributedString(string: attributedTitle, attributes: [NSAttributedString.Key.foregroundColor:color])
         }
         
-        return NSAttributedString(string: attributedTitle, attributes: [NSAttributedStringKey.foregroundColor:UIColor.white])
+        return NSAttributedString(string: attributedTitle, attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
     }
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

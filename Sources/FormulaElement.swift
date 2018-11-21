@@ -135,8 +135,8 @@ internal extension FormulaElement {
                 let quantifiableMeasurement = ingredient.measurement
                 let equivalentMeasurement = MiseEnPlace.Measurement(amount: quantifiableMeasurement.amount * self.amount, unit: quantifiableMeasurement.unit)
                 
-                let ms = measurementSystem ?? equivalentMeasurement.unit.measurementSystem
-                let mm = measurementMethod ?? equivalentMeasurement.unit.measurementMethod
+                let _ = measurementSystem ?? equivalentMeasurement.unit.measurementSystem
+                let _ = measurementMethod ?? equivalentMeasurement.unit.measurementMethod
                 
                 return try equivalentMeasurement.normalizedMeasurement()
             }
@@ -154,8 +154,8 @@ internal extension FormulaElement {
                 var totalMeasurement = recipe.totalMeasurement
                 totalMeasurement.amount = totalMeasurement.amount * multiplier
                 
-                let ms = measurementSystem ?? totalMeasurement.unit.measurementSystem
-                let mm = measurementMethod ?? totalMeasurement.unit.measurementMethod
+                let _ = measurementSystem ?? totalMeasurement.unit.measurementSystem
+                let _ = measurementMethod ?? totalMeasurement.unit.measurementMethod
                 
                 return try totalMeasurement.normalizedMeasurement()
             }
