@@ -25,9 +25,9 @@ public extension Proportioned {
     public func multiplier(from fromMethod: MeasurementMethod, to toMethod: MeasurementMethod) -> Double {
         switch (fromMethod, toMethod) {
         case (.volume, .weight):
-            return self.volume / self.weight
+            return volume / weight
         case (.weight, .volume):
-            return self.weight / self.volume
+            return weight / volume
         default:
             return 1.0
         }
@@ -36,9 +36,9 @@ public extension Proportioned {
     public func multiplier(for method: MeasurementMethod) -> Double {
         switch method {
         case .volume:
-            return self.weight / self.volume
+            return weight / volume
         case .weight:
-            return self.volume / self.weight
+            return volume / weight
         default:
             return 1.0
         }

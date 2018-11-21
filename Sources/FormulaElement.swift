@@ -74,15 +74,17 @@ public extension FormulaElement {
             case (.numericQuantity, .numericQuantity):
                 return self.amount
             case (.numericQuantity, .usVolume), (.numericQuantity, .usWeight), (.numericQuantity, .metricVolume), (.numericQuantity, .metricWeight):
+                #warning ("Do I need to take into account what the 'quantifiableMeasurement' unit would be?")
                 let quantifiableMeasurement = ingredient.measurement
                 let equivalentMeasurement = MiseEnPlace.Measurement(amount: quantifiableMeasurement.amount * self.amount, unit: quantifiableMeasurement.unit)
-                let multiplier = ingredient.multiplier(for: unit.measurementMethod)
-//                let multiplier = ingredient.multiplier(from: quantifiableMeasurement.unit.measurementMethod, to: unit.measurementMethod)
-                return try equivalentMeasurement.amount(for: unit, conversionMultiplier: multiplier)
+//                let multiplier = ingredient.multiplier(for: unit.measurementMethod)
+                let multiplier = ingredient.multiplier(from: self.unit.measurementMethod, to: unit.measurementMethod)
+                let equivalentAmount = try equivalentMeasurement.amount(for: unit, conversionMultiplier: multiplier)
+                return equivalentAmount
             case (.usVolume, .numericQuantity), (.usWeight, .numericQuantity), (.metricVolume, .numericQuantity), (.metricWeight, .numericQuantity):
                 let quantifiableMeasurement = ingredient.measurement
-                let multiplier = ingredient.multiplier(for: self.unit.measurementMethod)
-//                let multiplier = ingredient.multiplier(from: quantifiableMeasurement.unit.measurementMethod, to: unit.measurementMethod)
+//                let multiplier = ingredient.multiplier(for: self.unit.measurementMethod)
+                let multiplier = ingredient.multiplier(from: self.unit.measurementMethod, to: unit.measurementMethod)
                 let equivalentAmount = try self.measurement.amount(for: quantifiableMeasurement.unit, conversionMultiplier: multiplier)
                 return equivalentAmount / quantifiableMeasurement.amount
             case (.usVolume, .usVolume), (.usWeight, .usWeight), (.metricVolume, .metricVolume), (.metricWeight, .metricWeight):
@@ -135,9 +137,6 @@ internal extension FormulaElement {
                 let quantifiableMeasurement = ingredient.measurement
                 let equivalentMeasurement = MiseEnPlace.Measurement(amount: quantifiableMeasurement.amount * self.amount, unit: quantifiableMeasurement.unit)
                 
-                let _ = measurementSystem ?? equivalentMeasurement.unit.measurementSystem
-                let _ = measurementMethod ?? equivalentMeasurement.unit.measurementMethod
-                
                 return try equivalentMeasurement.normalizedMeasurement()
             }
             
@@ -153,9 +152,6 @@ internal extension FormulaElement {
                 
                 var totalMeasurement = recipe.totalMeasurement
                 totalMeasurement.amount = totalMeasurement.amount * multiplier
-                
-                let _ = measurementSystem ?? totalMeasurement.unit.measurementSystem
-                let _ = measurementMethod ?? totalMeasurement.unit.measurementMethod
                 
                 return try totalMeasurement.normalizedMeasurement()
             }

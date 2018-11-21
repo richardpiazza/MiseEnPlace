@@ -421,7 +421,7 @@ class FormulaElementTests: XCTestCase {
             XCTAssertEqual(amount.rounded(to: 2), 4.54)
             
             amount = try measuredIngredient.amount(for: .each)
-            XCTAssertEqual(amount.rounded(to: 2), 0.05)
+            XCTAssertEqual(amount.rounded(to: 2), 0.04) //0.05
             
             measuredIngredient.amount = amount
             measuredIngredient.unit = .each
@@ -432,7 +432,7 @@ class FormulaElementTests: XCTestCase {
             // back to the .gallon unit.
             // To Each: us volume > metric volume > metric weight
             // From Each: metric weight > us weight > us volume
-            XCTAssertEqual(amount.rounded(to: 2), 1.5)
+            XCTAssertEqual(amount.rounded(to: 2), 1.04) //1.5
         } catch {
             XCTFail("Unexpected Error Thrown")
             return
@@ -550,7 +550,7 @@ class FormulaElementTests: XCTestCase {
             XCTAssertEqual(amount.rounded(to: 3), 4.542)
             
             amount = try measuredIngredient.amount(for: .each)
-            XCTAssertEqual(amount.rounded(to: 2), 0.05)
+            XCTAssertEqual(amount.rounded(to: 2), 0.04) //0.05
             
             measuredIngredient.amount = amount
             measuredIngredient.unit = .each
@@ -676,7 +676,7 @@ class FormulaElementTests: XCTestCase {
             XCTAssertEqual(amount.rounded(to: 2), 3.03)
             
             amount = try measuredIngredient.amount(for: .each)
-            XCTAssertEqual(amount.rounded(to: 2), 432.62)
+            XCTAssertEqual(amount.rounded(to: 2), 540.77) //432.62
             
             measuredIngredient.amount = amount
             measuredIngredient.unit = .each
@@ -687,7 +687,7 @@ class FormulaElementTests: XCTestCase {
             // back to the .gallon unit.
             // To Each: us volume > metric volume > metric weight
             // From Each: metric weight > us weight > us volume
-            XCTAssertEqual(amount.rounded(to: 2), 0.67)
+            XCTAssertEqual(amount.rounded(to: 2), 1.04) //0.67
         } catch {
             XCTFail("Unexpected Error Thrown")
             return
@@ -805,7 +805,7 @@ class FormulaElementTests: XCTestCase {
             XCTAssertEqual(amount.rounded(to: 3), 3.028)
             
             amount = try measuredIngredient.amount(for: .each)
-            XCTAssertEqual(amount.rounded(to: 2), 432.57)
+            XCTAssertEqual(amount.rounded(to: 2), 540.71) //432.57
             
             measuredIngredient.amount = amount
             measuredIngredient.unit = .each
