@@ -22,8 +22,7 @@ Pod::Spec.new do |s|
   s.osx.frameworks = 'Foundation'
 
   s.ios.deployment_target = "11.0"
-  s.ios.frameworks = 'Foundation', 'UIKit'
-  s.ios.resources = 'Resources/*'
+  s.ios.frameworks = 'Foundation'
 
   s.tvos.deployment_target = "11.0"
   s.tvos.frameworks = 'Foundation'

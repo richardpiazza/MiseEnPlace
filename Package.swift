@@ -12,6 +12,7 @@ let package = Package(
     targets: [
         .target(name: "MiseEnPlace", path: "Sources"),
         .testTarget(name: "MiseEnPlaceTests", dependencies: ["MiseEnPlace"], path: "Tests")
-    ]
+    ],
+    swiftLanguageVersions: [.v4_2]
 )
 

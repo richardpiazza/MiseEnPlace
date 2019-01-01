@@ -6,109 +6,124 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		"MiseEnPlace::MiseEnPlacePackageTests::ProductTarget" /* MiseEnPlacePackageTests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = OBJ_81 /* Build configuration list for PBXAggregateTarget "MiseEnPlacePackageTests" */;
+			buildPhases = (
+			);
+			dependencies = (
+				OBJ_84 /* PBXTargetDependency */,
+			);
+			name = MiseEnPlacePackageTests;
+			productName = MiseEnPlacePackageTests;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		E1307F091FB100C3008D28C4 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1307F081FB100C3008D28C4 /* Configuration.swift */; };
-		E1307F0B1FB1020F008D28C4 /* Descriptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1307F0A1FB1020F008D28C4 /* Descriptive.swift */; };
-		E1307F0D1FB10468008D28C4 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1307F0C1FB10468008D28C4 /* Error.swift */; };
-		E1307F0F1FB1050D008D28C4 /* Measured.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1307F0E1FB1050D008D28C4 /* Measured.swift */; };
-		E1307F111FB1088D008D28C4 /* Unique.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1307F101FB1088D008D28C4 /* Unique.swift */; };
-		E1307F131FB10ACE008D28C4 /* Sequenced.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1307F121FB10ACE008D28C4 /* Sequenced.swift */; };
-		E1307F151FB10B10008D28C4 /* Multimedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1307F141FB10B10008D28C4 /* Multimedia.swift */; };
-		E1307F171FB10B34008D28C4 /* Proportioned.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1307F161FB10B34008D28C4 /* Proportioned.swift */; };
-		E1307F191FB10B79008D28C4 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1307F181FB10B79008D28C4 /* Ingredient.swift */; };
-		E1307F1B1FB10B95008D28C4 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1307F1A1FB10B95008D28C4 /* Recipe.swift */; };
-		E1307F1D1FB10BAA008D28C4 /* FormulaElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1307F1C1FB10BAA008D28C4 /* FormulaElement.swift */; };
-		E1307F1F1FB10BBB008D28C4 /* ProcedureElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1307F1E1FB10BBB008D28C4 /* ProcedureElement.swift */; };
-		E18F35411FBB318A0035A001 /* ErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F35401FBB318A0035A001 /* ErrorTests.swift */; };
-		E18F35431FBB3AC20035A001 /* FractionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F35421FBB3AC20035A001 /* FractionTests.swift */; };
-		E1D543201FB3A773003E2777 /* MiseEnPlace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E02C791B6F200A00FEDC95 /* MiseEnPlace.framework */; };
-		E1D5432E1FB3A79B003E2777 /* MeasurementUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A761FAD09AB0046D564 /* MeasurementUnitTests.swift */; };
-		E1D5432F1FB3A79B003E2777 /* RatioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A7B1FAD09AB0046D564 /* RatioTests.swift */; };
-		E1D543321FB3AABD003E2777 /* ConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D543311FB3AABD003E2777 /* ConfigurationTests.swift */; };
-		E1D543341FB3B102003E2777 /* MeasurementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D543331FB3B102003E2777 /* MeasurementTests.swift */; };
-		E1D5433A1FB3C36D003E2777 /* DescriptiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D543391FB3C36D003E2777 /* DescriptiveTests.swift */; };
-		E1D5433C1FB3E4FD003E2777 /* DoubleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D5433B1FB3E4FD003E2777 /* DoubleTests.swift */; };
-		E1D5433E1FB49163003E2777 /* FormulaElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D5433D1FB49163003E2777 /* FormulaElementTests.swift */; };
-		E1D543401FB49A1F003E2777 /* _SharedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D5433F1FB49A1F003E2777 /* _SharedModels.swift */; };
-		E1E46A651FAD09A20046D564 /* MeasurementMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A571FAD09A20046D564 /* MeasurementMethod.swift */; };
-		E1E46A661FAD09A20046D564 /* MeasurementSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A581FAD09A20046D564 /* MeasurementSystem.swift */; };
-		E1E46A671FAD09A20046D564 /* Ratio.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A591FAD09A20046D564 /* Ratio.swift */; };
-		E1E46A681FAD09A20046D564 /* Double+MiseEnPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A5A1FAD09A20046D564 /* Double+MiseEnPlace.swift */; };
-		E1E46A691FAD09A20046D564 /* MeasurementSystemMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A5B1FAD09A20046D564 /* MeasurementSystemMethod.swift */; };
-		E1E46A6A1FAD09A20046D564 /* Fraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A5C1FAD09A20046D564 /* Fraction.swift */; };
-		E1E46A6B1FAD09A20046D564 /* MeasurementInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A5D1FAD09A20046D564 /* MeasurementInputView.swift */; };
-		E1E46A6C1FAD09A20046D564 /* Intergral.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A5E1FAD09A20046D564 /* Intergral.swift */; };
-		E1E46A6E1FAD09A20046D564 /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A601FAD09A20046D564 /* Measurement.swift */; };
-		E1E46A6F1FAD09A20046D564 /* MeasurementUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A611FAD09A20046D564 /* MeasurementUnit.swift */; };
-		E1E46A711FAD09A20046D564 /* String+MiseEnPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E46A631FAD09A20046D564 /* String+MiseEnPlace.swift */; };
+		OBJ_101 /* MiseEnPlace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "MiseEnPlace::MiseEnPlace::Product" /* MiseEnPlace.framework */; };
+		OBJ_50 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_8 /* Configuration.swift */; };
+		OBJ_51 /* Descriptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Descriptive.swift */; };
+		OBJ_52 /* Double+MiseEnPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Double+MiseEnPlace.swift */; };
+		OBJ_53 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Error.swift */; };
+		OBJ_54 /* FormulaElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* FormulaElement.swift */; };
+		OBJ_55 /* Fraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Fraction.swift */; };
+		OBJ_56 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* Ingredient.swift */; };
+		OBJ_57 /* Intergral.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* Intergral.swift */; };
+		OBJ_58 /* Measured.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* Measured.swift */; };
+		OBJ_59 /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* Measurement.swift */; };
+		OBJ_61 /* MeasurementMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* MeasurementMethod.swift */; };
+		OBJ_62 /* MeasurementSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* MeasurementSystem.swift */; };
+		OBJ_63 /* MeasurementSystemMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* MeasurementSystemMethod.swift */; };
+		OBJ_64 /* MeasurementUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* MeasurementUnit.swift */; };
+		OBJ_65 /* Multimedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* Multimedia.swift */; };
+		OBJ_66 /* ProcedureElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* ProcedureElement.swift */; };
+		OBJ_67 /* Proportioned.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Proportioned.swift */; };
+		OBJ_68 /* Ratio.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* Ratio.swift */; };
+		OBJ_69 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* Recipe.swift */; };
+		OBJ_70 /* Sequenced.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* Sequenced.swift */; };
+		OBJ_71 /* String+MiseEnPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* String+MiseEnPlace.swift */; };
+		OBJ_72 /* Unique.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* Unique.swift */; };
+		OBJ_79 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_90 /* ConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* ConfigurationTests.swift */; };
+		OBJ_91 /* DescriptiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* DescriptiveTests.swift */; };
+		OBJ_92 /* DoubleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* DoubleTests.swift */; };
+		OBJ_93 /* ErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* ErrorTests.swift */; };
+		OBJ_94 /* FormulaElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* FormulaElementTests.swift */; };
+		OBJ_95 /* FractionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* FractionTests.swift */; };
+		OBJ_96 /* MeasurementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* MeasurementTests.swift */; };
+		OBJ_97 /* MeasurementUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* MeasurementUnitTests.swift */; };
+		OBJ_98 /* RatioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* RatioTests.swift */; };
+		OBJ_99 /* _SharedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* _SharedModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E1D543211FB3A773003E2777 /* PBXContainerItemProxy */ = {
+		7331D20921DAC2D40057963C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E1E02C701B6F200A00FEDC95 /* Project object */;
+			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E1E02C781B6F200A00FEDC95;
+			remoteGlobalIDString = "MiseEnPlace::MiseEnPlace";
 			remoteInfo = MiseEnPlace;
+		};
+		7331D20A21DAC2D50057963C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "MiseEnPlace::MiseEnPlaceTests";
+			remoteInfo = MiseEnPlaceTests;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E12682221D26F699006B4887 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		E12682241D26F70E006B4887 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		E12682261D26F714006B4887 /* MiseEnPlace.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MiseEnPlace.podspec; sourceTree = "<group>"; };
-		E1307F081FB100C3008D28C4 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
-		E1307F0A1FB1020F008D28C4 /* Descriptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Descriptive.swift; sourceTree = "<group>"; };
-		E1307F0C1FB10468008D28C4 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
-		E1307F0E1FB1050D008D28C4 /* Measured.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measured.swift; sourceTree = "<group>"; };
-		E1307F101FB1088D008D28C4 /* Unique.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unique.swift; sourceTree = "<group>"; };
-		E1307F121FB10ACE008D28C4 /* Sequenced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequenced.swift; sourceTree = "<group>"; };
-		E1307F141FB10B10008D28C4 /* Multimedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Multimedia.swift; sourceTree = "<group>"; };
-		E1307F161FB10B34008D28C4 /* Proportioned.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Proportioned.swift; sourceTree = "<group>"; };
-		E1307F181FB10B79008D28C4 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
-		E1307F1A1FB10B95008D28C4 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
-		E1307F1C1FB10BAA008D28C4 /* FormulaElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaElement.swift; sourceTree = "<group>"; };
-		E1307F1E1FB10BBB008D28C4 /* ProcedureElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureElement.swift; sourceTree = "<group>"; };
-		E18F35401FBB318A0035A001 /* ErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTests.swift; sourceTree = "<group>"; };
-		E18F35421FBB3AC20035A001 /* FractionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FractionTests.swift; sourceTree = "<group>"; };
-		E1C1028E1FAD0FC70092C123 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		E1D5431B1FB3A773003E2777 /* MiseEnPlaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiseEnPlaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E1D543311FB3AABD003E2777 /* ConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
-		E1D543331FB3B102003E2777 /* MeasurementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementTests.swift; sourceTree = "<group>"; };
-		E1D543391FB3C36D003E2777 /* DescriptiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptiveTests.swift; sourceTree = "<group>"; };
-		E1D5433B1FB3E4FD003E2777 /* DoubleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleTests.swift; sourceTree = "<group>"; };
-		E1D5433D1FB49163003E2777 /* FormulaElementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaElementTests.swift; sourceTree = "<group>"; };
-		E1D5433F1FB49A1F003E2777 /* _SharedModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _SharedModels.swift; sourceTree = "<group>"; };
-		E1E02C791B6F200A00FEDC95 /* MiseEnPlace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MiseEnPlace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E1E02C7D1B6F200A00FEDC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1E02C8A1B6F200A00FEDC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1E46A571FAD09A20046D564 /* MeasurementMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementMethod.swift; sourceTree = "<group>"; };
-		E1E46A581FAD09A20046D564 /* MeasurementSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementSystem.swift; sourceTree = "<group>"; };
-		E1E46A591FAD09A20046D564 /* Ratio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ratio.swift; sourceTree = "<group>"; };
-		E1E46A5A1FAD09A20046D564 /* Double+MiseEnPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+MiseEnPlace.swift"; sourceTree = "<group>"; };
-		E1E46A5B1FAD09A20046D564 /* MeasurementSystemMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementSystemMethod.swift; sourceTree = "<group>"; };
-		E1E46A5C1FAD09A20046D564 /* Fraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fraction.swift; sourceTree = "<group>"; };
-		E1E46A5D1FAD09A20046D564 /* MeasurementInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementInputView.swift; sourceTree = "<group>"; };
-		E1E46A5E1FAD09A20046D564 /* Intergral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Intergral.swift; sourceTree = "<group>"; };
-		E1E46A601FAD09A20046D564 /* Measurement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
-		E1E46A611FAD09A20046D564 /* MeasurementUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementUnit.swift; sourceTree = "<group>"; };
-		E1E46A631FAD09A20046D564 /* String+MiseEnPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MiseEnPlace.swift"; sourceTree = "<group>"; };
-		E1E46A761FAD09AB0046D564 /* MeasurementUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementUnitTests.swift; sourceTree = "<group>"; };
-		E1E46A7B1FAD09AB0046D564 /* RatioTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatioTests.swift; sourceTree = "<group>"; };
+		"MiseEnPlace::MiseEnPlace::Product" /* MiseEnPlace.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MiseEnPlace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"MiseEnPlace::MiseEnPlaceTests::Product" /* MiseEnPlaceTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = MiseEnPlaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_10 /* Double+MiseEnPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+MiseEnPlace.swift"; sourceTree = "<group>"; };
+		OBJ_11 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		OBJ_12 /* FormulaElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaElement.swift; sourceTree = "<group>"; };
+		OBJ_13 /* Fraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fraction.swift; sourceTree = "<group>"; };
+		OBJ_14 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		OBJ_15 /* Intergral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intergral.swift; sourceTree = "<group>"; };
+		OBJ_16 /* Measured.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measured.swift; sourceTree = "<group>"; };
+		OBJ_17 /* Measurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
+		OBJ_19 /* MeasurementMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementMethod.swift; sourceTree = "<group>"; };
+		OBJ_20 /* MeasurementSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementSystem.swift; sourceTree = "<group>"; };
+		OBJ_21 /* MeasurementSystemMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementSystemMethod.swift; sourceTree = "<group>"; };
+		OBJ_22 /* MeasurementUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementUnit.swift; sourceTree = "<group>"; };
+		OBJ_23 /* Multimedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Multimedia.swift; sourceTree = "<group>"; };
+		OBJ_24 /* ProcedureElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureElement.swift; sourceTree = "<group>"; };
+		OBJ_25 /* Proportioned.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Proportioned.swift; sourceTree = "<group>"; };
+		OBJ_26 /* Ratio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ratio.swift; sourceTree = "<group>"; };
+		OBJ_27 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		OBJ_28 /* Sequenced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequenced.swift; sourceTree = "<group>"; };
+		OBJ_29 /* String+MiseEnPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+MiseEnPlace.swift"; sourceTree = "<group>"; };
+		OBJ_30 /* Unique.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unique.swift; sourceTree = "<group>"; };
+		OBJ_32 /* ConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
+		OBJ_33 /* DescriptiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptiveTests.swift; sourceTree = "<group>"; };
+		OBJ_34 /* DoubleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleTests.swift; sourceTree = "<group>"; };
+		OBJ_35 /* ErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTests.swift; sourceTree = "<group>"; };
+		OBJ_36 /* FormulaElementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaElementTests.swift; sourceTree = "<group>"; };
+		OBJ_37 /* FractionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FractionTests.swift; sourceTree = "<group>"; };
+		OBJ_38 /* MeasurementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementTests.swift; sourceTree = "<group>"; };
+		OBJ_39 /* MeasurementUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementUnitTests.swift; sourceTree = "<group>"; };
+		OBJ_40 /* RatioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatioTests.swift; sourceTree = "<group>"; };
+		OBJ_41 /* _SharedModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _SharedModels.swift; sourceTree = "<group>"; };
+		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		OBJ_8 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		OBJ_9 /* Descriptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Descriptive.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E1D543181FB3A773003E2777 /* Frameworks */ = {
+		OBJ_100 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
-				E1D543201FB3A773003E2777 /* MiseEnPlace.framework in Frameworks */,
+				OBJ_101 /* MiseEnPlace.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1E02C751B6F200A00FEDC95 /* Frameworks */ = {
+		OBJ_73 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,512 +131,436 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E1E02C6F1B6F200A00FEDC95 = {
+		OBJ_31 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				E1C1028E1FAD0FC70092C123 /* LICENSE */,
-				E12682261D26F714006B4887 /* MiseEnPlace.podspec */,
-				E12682221D26F699006B4887 /* Package.swift */,
-				E12682241D26F70E006B4887 /* README.md */,
-				E1E46A551FAD09A20046D564 /* Sources */,
-				E1E46A721FAD09AB0046D564 /* Tests */,
-				E1E02C7B1B6F200A00FEDC95 /* MiseEnPlace */,
-				E1E02C881B6F200A00FEDC95 /* MiseEnPlaceTests */,
-				E1E02C7A1B6F200A00FEDC95 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		E1E02C7A1B6F200A00FEDC95 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E1E02C791B6F200A00FEDC95 /* MiseEnPlace.framework */,
-				E1D5431B1FB3A773003E2777 /* MiseEnPlaceTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		E1E02C7B1B6F200A00FEDC95 /* MiseEnPlace */ = {
-			isa = PBXGroup;
-			children = (
-				E1E02C7C1B6F200A00FEDC95 /* Supporting Files */,
-			);
-			path = MiseEnPlace;
-			sourceTree = "<group>";
-		};
-		E1E02C7C1B6F200A00FEDC95 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E1E02C7D1B6F200A00FEDC95 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E1E02C881B6F200A00FEDC95 /* MiseEnPlaceTests */ = {
-			isa = PBXGroup;
-			children = (
-				E1E02C891B6F200A00FEDC95 /* Supporting Files */,
-			);
-			path = MiseEnPlaceTests;
-			sourceTree = "<group>";
-		};
-		E1E02C891B6F200A00FEDC95 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E1E02C8A1B6F200A00FEDC95 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E1E46A551FAD09A20046D564 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				E1307F081FB100C3008D28C4 /* Configuration.swift */,
-				E1307F0A1FB1020F008D28C4 /* Descriptive.swift */,
-				E1E46A5A1FAD09A20046D564 /* Double+MiseEnPlace.swift */,
-				E1307F0C1FB10468008D28C4 /* Error.swift */,
-				E1307F1C1FB10BAA008D28C4 /* FormulaElement.swift */,
-				E1E46A5C1FAD09A20046D564 /* Fraction.swift */,
-				E1307F181FB10B79008D28C4 /* Ingredient.swift */,
-				E1E46A5E1FAD09A20046D564 /* Intergral.swift */,
-				E1307F0E1FB1050D008D28C4 /* Measured.swift */,
-				E1E46A601FAD09A20046D564 /* Measurement.swift */,
-				E1E46A5D1FAD09A20046D564 /* MeasurementInputView.swift */,
-				E1E46A571FAD09A20046D564 /* MeasurementMethod.swift */,
-				E1E46A581FAD09A20046D564 /* MeasurementSystem.swift */,
-				E1E46A5B1FAD09A20046D564 /* MeasurementSystemMethod.swift */,
-				E1E46A611FAD09A20046D564 /* MeasurementUnit.swift */,
-				E1307F141FB10B10008D28C4 /* Multimedia.swift */,
-				E1307F1E1FB10BBB008D28C4 /* ProcedureElement.swift */,
-				E1307F161FB10B34008D28C4 /* Proportioned.swift */,
-				E1E46A591FAD09A20046D564 /* Ratio.swift */,
-				E1307F1A1FB10B95008D28C4 /* Recipe.swift */,
-				E1307F121FB10ACE008D28C4 /* Sequenced.swift */,
-				E1E46A631FAD09A20046D564 /* String+MiseEnPlace.swift */,
-				E1307F101FB1088D008D28C4 /* Unique.swift */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		E1E46A721FAD09AB0046D564 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				E1D5433F1FB49A1F003E2777 /* _SharedModels.swift */,
-				E1D543311FB3AABD003E2777 /* ConfigurationTests.swift */,
-				E1D543391FB3C36D003E2777 /* DescriptiveTests.swift */,
-				E1D5433B1FB3E4FD003E2777 /* DoubleTests.swift */,
-				E18F35401FBB318A0035A001 /* ErrorTests.swift */,
-				E1D5433D1FB49163003E2777 /* FormulaElementTests.swift */,
-				E18F35421FBB3AC20035A001 /* FractionTests.swift */,
-				E1D543331FB3B102003E2777 /* MeasurementTests.swift */,
-				E1E46A761FAD09AB0046D564 /* MeasurementUnitTests.swift */,
-				E1E46A7B1FAD09AB0046D564 /* RatioTests.swift */,
+				OBJ_32 /* ConfigurationTests.swift */,
+				OBJ_33 /* DescriptiveTests.swift */,
+				OBJ_34 /* DoubleTests.swift */,
+				OBJ_35 /* ErrorTests.swift */,
+				OBJ_36 /* FormulaElementTests.swift */,
+				OBJ_37 /* FractionTests.swift */,
+				OBJ_38 /* MeasurementTests.swift */,
+				OBJ_39 /* MeasurementUnitTests.swift */,
+				OBJ_40 /* RatioTests.swift */,
+				OBJ_41 /* _SharedModels.swift */,
 			);
 			path = Tests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_42 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				"MiseEnPlace::MiseEnPlaceTests::Product" /* MiseEnPlaceTests.xctest */,
+				"MiseEnPlace::MiseEnPlace::Product" /* MiseEnPlace.framework */,
+			);
+			name = Products;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		OBJ_5 /*  */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_6 /* Package.swift */,
+				OBJ_7 /* Sources */,
+				OBJ_31 /* Tests */,
+				OBJ_42 /* Products */,
+			);
+			name = "";
 			sourceTree = "<group>";
+		};
+		OBJ_7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_8 /* Configuration.swift */,
+				OBJ_9 /* Descriptive.swift */,
+				OBJ_10 /* Double+MiseEnPlace.swift */,
+				OBJ_11 /* Error.swift */,
+				OBJ_12 /* FormulaElement.swift */,
+				OBJ_13 /* Fraction.swift */,
+				OBJ_14 /* Ingredient.swift */,
+				OBJ_15 /* Intergral.swift */,
+				OBJ_16 /* Measured.swift */,
+				OBJ_17 /* Measurement.swift */,
+				OBJ_19 /* MeasurementMethod.swift */,
+				OBJ_20 /* MeasurementSystem.swift */,
+				OBJ_21 /* MeasurementSystemMethod.swift */,
+				OBJ_22 /* MeasurementUnit.swift */,
+				OBJ_23 /* Multimedia.swift */,
+				OBJ_24 /* ProcedureElement.swift */,
+				OBJ_25 /* Proportioned.swift */,
+				OBJ_26 /* Ratio.swift */,
+				OBJ_27 /* Recipe.swift */,
+				OBJ_28 /* Sequenced.swift */,
+				OBJ_29 /* String+MiseEnPlace.swift */,
+				OBJ_30 /* Unique.swift */,
+			);
+			path = Sources;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		E1E02C761B6F200A00FEDC95 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		E1D5431A1FB3A773003E2777 /* MiseEnPlaceTests */ = {
+		"MiseEnPlace::MiseEnPlace" /* MiseEnPlace */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E1D543231FB3A773003E2777 /* Build configuration list for PBXNativeTarget "MiseEnPlaceTests" */;
+			buildConfigurationList = OBJ_46 /* Build configuration list for PBXNativeTarget "MiseEnPlace" */;
 			buildPhases = (
-				E1D543171FB3A773003E2777 /* Sources */,
-				E1D543181FB3A773003E2777 /* Frameworks */,
-				E1D543191FB3A773003E2777 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E1D543221FB3A773003E2777 /* PBXTargetDependency */,
-			);
-			name = MiseEnPlaceTests;
-			productName = MiseEnPlaceTests;
-			productReference = E1D5431B1FB3A773003E2777 /* MiseEnPlaceTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		E1E02C781B6F200A00FEDC95 /* MiseEnPlace */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E1E02C8F1B6F200A00FEDC95 /* Build configuration list for PBXNativeTarget "MiseEnPlace" */;
-			buildPhases = (
-				E1E02C741B6F200A00FEDC95 /* Sources */,
-				E1E02C751B6F200A00FEDC95 /* Frameworks */,
-				E1E02C761B6F200A00FEDC95 /* Headers */,
-				E1E02C771B6F200A00FEDC95 /* Resources */,
+				OBJ_49 /* Sources */,
+				OBJ_73 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = MiseEnPlace;
-			productName = miseenplace;
-			productReference = E1E02C791B6F200A00FEDC95 /* MiseEnPlace.framework */;
+			productName = MiseEnPlace;
+			productReference = "MiseEnPlace::MiseEnPlace::Product" /* MiseEnPlace.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"MiseEnPlace::MiseEnPlaceTests" /* MiseEnPlaceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_86 /* Build configuration list for PBXNativeTarget "MiseEnPlaceTests" */;
+			buildPhases = (
+				OBJ_89 /* Sources */,
+				OBJ_100 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_102 /* PBXTargetDependency */,
+			);
+			name = MiseEnPlaceTests;
+			productName = MiseEnPlaceTests;
+			productReference = "MiseEnPlace::MiseEnPlaceTests::Product" /* MiseEnPlaceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"MiseEnPlace::SwiftPMPackageDescription" /* MiseEnPlacePackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_75 /* Build configuration list for PBXNativeTarget "MiseEnPlacePackageDescription" */;
+			buildPhases = (
+				OBJ_78 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MiseEnPlacePackageDescription;
+			productName = MiseEnPlacePackageDescription;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E1E02C701B6F200A00FEDC95 /* Project object */ = {
+		OBJ_1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftMigration = 0710;
-				LastSwiftUpdateCheck = 0910;
-				LastUpgradeCheck = 1010;
-				ORGANIZATIONNAME = "Richard Piazza";
-				TargetAttributes = {
-					E1D5431A1FB3A773003E2777 = {
-						CreatedOnToolsVersion = 9.1;
-						LastSwiftMigration = 1010;
-						ProvisioningStyle = Automatic;
-					};
-					E1E02C781B6F200A00FEDC95 = {
-						CreatedOnToolsVersion = 6.4;
-						LastSwiftMigration = 1010;
-						ProvisioningStyle = Manual;
-					};
-				};
+				LastUpgradeCheck = 9999;
 			};
-			buildConfigurationList = E1E02C731B6F200A00FEDC95 /* Build configuration list for PBXProject "MiseEnPlace" */;
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "MiseEnPlace" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = E1E02C6F1B6F200A00FEDC95;
-			productRefGroup = E1E02C7A1B6F200A00FEDC95 /* Products */;
+			mainGroup = OBJ_5 /*  */;
+			productRefGroup = OBJ_42 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E1E02C781B6F200A00FEDC95 /* MiseEnPlace */,
-				E1D5431A1FB3A773003E2777 /* MiseEnPlaceTests */,
+				"MiseEnPlace::MiseEnPlace" /* MiseEnPlace */,
+				"MiseEnPlace::SwiftPMPackageDescription" /* MiseEnPlacePackageDescription */,
+				"MiseEnPlace::MiseEnPlacePackageTests::ProductTarget" /* MiseEnPlacePackageTests */,
+				"MiseEnPlace::MiseEnPlaceTests" /* MiseEnPlaceTests */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		E1D543191FB3A773003E2777 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E1E02C771B6F200A00FEDC95 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		E1D543171FB3A773003E2777 /* Sources */ = {
+		OBJ_49 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
-				E1D5432E1FB3A79B003E2777 /* MeasurementUnitTests.swift in Sources */,
-				E1D543321FB3AABD003E2777 /* ConfigurationTests.swift in Sources */,
-				E1D5433C1FB3E4FD003E2777 /* DoubleTests.swift in Sources */,
-				E1D5433A1FB3C36D003E2777 /* DescriptiveTests.swift in Sources */,
-				E1D543401FB49A1F003E2777 /* _SharedModels.swift in Sources */,
-				E18F35431FBB3AC20035A001 /* FractionTests.swift in Sources */,
-				E18F35411FBB318A0035A001 /* ErrorTests.swift in Sources */,
-				E1D5432F1FB3A79B003E2777 /* RatioTests.swift in Sources */,
-				E1D543341FB3B102003E2777 /* MeasurementTests.swift in Sources */,
-				E1D5433E1FB49163003E2777 /* FormulaElementTests.swift in Sources */,
+				OBJ_50 /* Configuration.swift in Sources */,
+				OBJ_51 /* Descriptive.swift in Sources */,
+				OBJ_52 /* Double+MiseEnPlace.swift in Sources */,
+				OBJ_53 /* Error.swift in Sources */,
+				OBJ_54 /* FormulaElement.swift in Sources */,
+				OBJ_55 /* Fraction.swift in Sources */,
+				OBJ_56 /* Ingredient.swift in Sources */,
+				OBJ_57 /* Intergral.swift in Sources */,
+				OBJ_58 /* Measured.swift in Sources */,
+				OBJ_59 /* Measurement.swift in Sources */,
+				OBJ_61 /* MeasurementMethod.swift in Sources */,
+				OBJ_62 /* MeasurementSystem.swift in Sources */,
+				OBJ_63 /* MeasurementSystemMethod.swift in Sources */,
+				OBJ_64 /* MeasurementUnit.swift in Sources */,
+				OBJ_65 /* Multimedia.swift in Sources */,
+				OBJ_66 /* ProcedureElement.swift in Sources */,
+				OBJ_67 /* Proportioned.swift in Sources */,
+				OBJ_68 /* Ratio.swift in Sources */,
+				OBJ_69 /* Recipe.swift in Sources */,
+				OBJ_70 /* Sequenced.swift in Sources */,
+				OBJ_71 /* String+MiseEnPlace.swift in Sources */,
+				OBJ_72 /* Unique.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1E02C741B6F200A00FEDC95 /* Sources */ = {
+		OBJ_78 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
-				E1E46A691FAD09A20046D564 /* MeasurementSystemMethod.swift in Sources */,
-				E1307F091FB100C3008D28C4 /* Configuration.swift in Sources */,
-				E1307F191FB10B79008D28C4 /* Ingredient.swift in Sources */,
-				E1307F171FB10B34008D28C4 /* Proportioned.swift in Sources */,
-				E1E46A671FAD09A20046D564 /* Ratio.swift in Sources */,
-				E1E46A6A1FAD09A20046D564 /* Fraction.swift in Sources */,
-				E1307F151FB10B10008D28C4 /* Multimedia.swift in Sources */,
-				E1E46A6E1FAD09A20046D564 /* Measurement.swift in Sources */,
-				E1307F1F1FB10BBB008D28C4 /* ProcedureElement.swift in Sources */,
-				E1E46A661FAD09A20046D564 /* MeasurementSystem.swift in Sources */,
-				E1E46A681FAD09A20046D564 /* Double+MiseEnPlace.swift in Sources */,
-				E1307F111FB1088D008D28C4 /* Unique.swift in Sources */,
-				E1307F0D1FB10468008D28C4 /* Error.swift in Sources */,
-				E1E46A6B1FAD09A20046D564 /* MeasurementInputView.swift in Sources */,
-				E1307F1B1FB10B95008D28C4 /* Recipe.swift in Sources */,
-				E1307F0F1FB1050D008D28C4 /* Measured.swift in Sources */,
-				E1307F1D1FB10BAA008D28C4 /* FormulaElement.swift in Sources */,
-				E1E46A651FAD09A20046D564 /* MeasurementMethod.swift in Sources */,
-				E1307F131FB10ACE008D28C4 /* Sequenced.swift in Sources */,
-				E1E46A711FAD09A20046D564 /* String+MiseEnPlace.swift in Sources */,
-				E1E46A6F1FAD09A20046D564 /* MeasurementUnit.swift in Sources */,
-				E1307F0B1FB1020F008D28C4 /* Descriptive.swift in Sources */,
-				E1E46A6C1FAD09A20046D564 /* Intergral.swift in Sources */,
+				OBJ_79 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_90 /* ConfigurationTests.swift in Sources */,
+				OBJ_91 /* DescriptiveTests.swift in Sources */,
+				OBJ_92 /* DoubleTests.swift in Sources */,
+				OBJ_93 /* ErrorTests.swift in Sources */,
+				OBJ_94 /* FormulaElementTests.swift in Sources */,
+				OBJ_95 /* FractionTests.swift in Sources */,
+				OBJ_96 /* MeasurementTests.swift in Sources */,
+				OBJ_97 /* MeasurementUnitTests.swift in Sources */,
+				OBJ_98 /* RatioTests.swift in Sources */,
+				OBJ_99 /* _SharedModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E1D543221FB3A773003E2777 /* PBXTargetDependency */ = {
+		OBJ_102 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E1E02C781B6F200A00FEDC95 /* MiseEnPlace */;
-			targetProxy = E1D543211FB3A773003E2777 /* PBXContainerItemProxy */;
+			target = "MiseEnPlace::MiseEnPlace" /* MiseEnPlace */;
+			targetProxy = 7331D20921DAC2D40057963C /* PBXContainerItemProxy */;
+		};
+		OBJ_84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "MiseEnPlace::MiseEnPlaceTests" /* MiseEnPlaceTests */;
+			targetProxy = 7331D20A21DAC2D50057963C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		E1D543241FB3A773003E2777 /* Debug */ = {
+		OBJ_3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = MiseEnPlaceTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.richardpiazza.MiseEnPlaceTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.2;
-			};
-			name = Debug;
-		};
-		E1D543251FB3A773003E2777 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = MiseEnPlaceTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.richardpiazza.MiseEnPlaceTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-			};
-			name = Release;
-		};
-		E1E02C8D1B6F200A00FEDC95 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos watchsimulator watchos appletvsimulator appletvos";
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "SWIFT_PACKAGE DEBUG";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2,3,4";
-				TVOS_DEPLOYMENT_TARGET = 11.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				USE_HEADERMAP = NO;
 			};
 			name = Debug;
 		};
-		E1E02C8E1B6F200A00FEDC95 /* Release */ = {
+		OBJ_4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MTL_ENABLE_DEBUG_INFO = NO;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_OPTIMIZATION_LEVEL = s;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos watchsimulator watchos appletvsimulator appletvos";
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2,3,4";
-				TVOS_DEPLOYMENT_TARGET = 11.0;
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				USE_HEADERMAP = NO;
 			};
 			name = Release;
 		};
-		E1E02C901B6F200A00FEDC95 /* Debug */ = {
+		OBJ_47 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Manual;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = MiseEnPlace/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.richardpiazza.MiseEnPlace;
-				PRODUCT_NAME = MiseEnPlace;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = MiseEnPlace.xcodeproj/MiseEnPlace_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = MiseEnPlace;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = MiseEnPlace;
+			};
+			name = Debug;
+		};
+		OBJ_48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = MiseEnPlace.xcodeproj/MiseEnPlace_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = MiseEnPlace;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = MiseEnPlace;
+			};
+			name = Release;
+		};
+		OBJ_76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
-		E1E02C911B6F200A00FEDC95 /* Release */ = {
+		OBJ_77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		OBJ_82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		OBJ_83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		OBJ_87 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Manual;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = MiseEnPlace/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.richardpiazza.MiseEnPlace;
-				PRODUCT_NAME = MiseEnPlace;
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = MiseEnPlace.xcodeproj/MiseEnPlaceTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 4.2;
+				TARGET_NAME = MiseEnPlaceTests;
+			};
+			name = Debug;
+		};
+		OBJ_88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = MiseEnPlace.xcodeproj/MiseEnPlaceTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = MiseEnPlaceTests;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E1D543231FB3A773003E2777 /* Build configuration list for PBXNativeTarget "MiseEnPlaceTests" */ = {
+		OBJ_2 /* Build configuration list for PBXProject "MiseEnPlace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E1D543241FB3A773003E2777 /* Debug */,
-				E1D543251FB3A773003E2777 /* Release */,
+				OBJ_3 /* Debug */,
+				OBJ_4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E1E02C731B6F200A00FEDC95 /* Build configuration list for PBXProject "MiseEnPlace" */ = {
+		OBJ_46 /* Build configuration list for PBXNativeTarget "MiseEnPlace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E1E02C8D1B6F200A00FEDC95 /* Debug */,
-				E1E02C8E1B6F200A00FEDC95 /* Release */,
+				OBJ_47 /* Debug */,
+				OBJ_48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E1E02C8F1B6F200A00FEDC95 /* Build configuration list for PBXNativeTarget "MiseEnPlace" */ = {
+		OBJ_75 /* Build configuration list for PBXNativeTarget "MiseEnPlacePackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E1E02C901B6F200A00FEDC95 /* Debug */,
-				E1E02C911B6F200A00FEDC95 /* Release */,
+				OBJ_76 /* Debug */,
+				OBJ_77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_81 /* Build configuration list for PBXAggregateTarget "MiseEnPlacePackageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_82 /* Debug */,
+				OBJ_83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_86 /* Build configuration list for PBXNativeTarget "MiseEnPlaceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_87 /* Debug */,
+				OBJ_88 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = E1E02C701B6F200A00FEDC95 /* Project object */;
+	rootObject = OBJ_1 /* Project object */;
 }
