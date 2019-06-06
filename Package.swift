@@ -1,3 +1,5 @@
+// swift-tools-version:5.0
+
 //===----------------------------------------------------------------------===//
 //
 // Package.swift
@@ -29,5 +31,14 @@ import PackageDescription
 
 let package = Package(
     name: "MiseEnPlace",
-    dependencies: []
+    products: [
+        .library(name: "MiseEnPlace", targets: ["MiseEnPlace"])
+    ],
+    dependencies: [
+    ],
+    targets: [
+        .target(name: "MiseEnPlace"),
+        .testTarget(name: "MiseEnPlaceTests", dependencies: ["MiseEnPlace"]),
+    ],
+    swiftLanguageVersions: [.v4, .v4_2, .v5]
 )

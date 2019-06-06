@@ -7,13 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E113B81A1E324BC000A03A0F /* EachMeasurementUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E113B8191E324BC000A03A0F /* EachMeasurementUnitTests.swift */; };
-		E113B81C1E364A7300A03A0F /* MeasurementUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E113B81B1E364A7300A03A0F /* MeasurementUnitTests.swift */; };
 		E1215CA71D7B5F0200C9B55C /* String+MiseEnPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CA61D7B5F0200C9B55C /* String+MiseEnPlace.swift */; };
 		E1215CAB1D7B61C000C9B55C /* Ratio.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CAA1D7B61C000C9B55C /* Ratio.swift */; };
 		E1215CAD1D7B61C800C9B55C /* CookingMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1215CAC1D7B61C800C9B55C /* CookingMeasurement.swift */; };
 		E1375E611DA949C800AA6B8F /* ScaleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1375E601DA949C800AA6B8F /* ScaleParameters.swift */; };
-		E1465A921DD2208E00C5ADAD /* SignificantDigitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1465A911DD2208E00C5ADAD /* SignificantDigitTests.swift */; };
+		E15928D122A9C88200F5239F /* HighVolumeRatioIngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15928C622A9C88200F5239F /* HighVolumeRatioIngredientTests.swift */; };
+		E15928D222A9C88200F5239F /* ConvertableIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15928C722A9C88200F5239F /* ConvertableIngredient.swift */; };
+		E15928D322A9C88200F5239F /* LooseConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15928C822A9C88200F5239F /* LooseConversionTests.swift */; };
+		E15928D422A9C88200F5239F /* MeasurementUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15928C922A9C88200F5239F /* MeasurementUnitTests.swift */; };
+		E15928D522A9C88200F5239F /* HighMassRatioIngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15928CA22A9C88200F5239F /* HighMassRatioIngredientTests.swift */; };
+		E15928D622A9C88200F5239F /* InterpreterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15928CB22A9C88200F5239F /* InterpreterTests.swift */; };
+		E15928D722A9C88200F5239F /* EqualRatioIngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15928CC22A9C88200F5239F /* EqualRatioIngredientTests.swift */; };
+		E15928D822A9C88200F5239F /* EachMeasurementUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15928CD22A9C88200F5239F /* EachMeasurementUnitTests.swift */; };
+		E15928D922A9C88200F5239F /* RatioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15928CE22A9C88200F5239F /* RatioTests.swift */; };
+		E15928DA22A9C88200F5239F /* SignificantDigitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15928CF22A9C88200F5239F /* SignificantDigitTests.swift */; };
+		E15928DB22A9C88200F5239F /* AsNeededTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15928D022A9C88200F5239F /* AsNeededTests.swift */; };
 		E162249D1DA6C73800AAA98A /* Double+MiseEnPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E162249C1DA6C73800AAA98A /* Double+MiseEnPlace.swift */; };
 		E19EA2DC1D91CAC60068A3E6 /* Multipliers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19EA2DB1D91CAC60068A3E6 /* Multipliers.swift */; };
 		E19EA2DE1D91CAF50068A3E6 /* Fraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19EA2DD1D91CAF50068A3E6 /* Fraction.swift */; };
@@ -25,15 +33,7 @@
 		E1C08BAD1DCBDBF200759F33 /* MeasurementInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C08BAC1DCBDBF200759F33 /* MeasurementInputView.xib */; };
 		E1C08BB21DCBDBF900759F33 /* Intergral.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C08BAF1DCBDBF900759F33 /* Intergral.swift */; };
 		E1C08BB31DCBDBF900759F33 /* MeasurementInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C08BB11DCBDBF900759F33 /* MeasurementInputView.swift */; };
-		E1D646361BE6CCDC006860FD /* ConvertableIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E02CAC1B6F573900FEDC95 /* ConvertableIngredient.swift */; };
-		E1D646371BE6CCDC006860FD /* EqualRatioIngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E02CB21B6FA0EC00FEDC95 /* EqualRatioIngredientTests.swift */; };
-		E1D646381BE6CCDC006860FD /* HighVolumeRatioIngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E02CC31B70874400FEDC95 /* HighVolumeRatioIngredientTests.swift */; };
-		E1D646391BE6CCDC006860FD /* HighMassRatioIngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E02CC51B708B7100FEDC95 /* HighMassRatioIngredientTests.swift */; };
-		E1D6463A1BE6CCDC006860FD /* InterpreterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E02CC91B70CB6500FEDC95 /* InterpreterTests.swift */; };
-		E1D6463B1BE6CCDC006860FD /* LooseConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A98CC11B71E8F50017EFB2 /* LooseConversionTests.swift */; };
-		E1D6463C1BE6CCDC006860FD /* AsNeededTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A98CC31B72D5B50017EFB2 /* AsNeededTests.swift */; };
 		E1E02C851B6F200A00FEDC95 /* MiseEnPlace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E02C791B6F200A00FEDC95 /* MiseEnPlace.framework */; };
-		E1E92EA41BE99950000A8C92 /* RatioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E92EA31BE99950000A8C92 /* RatioTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,8 +47,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E113B8191E324BC000A03A0F /* EachMeasurementUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachMeasurementUnitTests.swift; sourceTree = "<group>"; };
-		E113B81B1E364A7300A03A0F /* MeasurementUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementUnitTests.swift; sourceTree = "<group>"; };
 		E1215CA61D7B5F0200C9B55C /* String+MiseEnPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MiseEnPlace.swift"; sourceTree = "<group>"; };
 		E1215CAA1D7B61C000C9B55C /* Ratio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ratio.swift; sourceTree = "<group>"; };
 		E1215CAC1D7B61C800C9B55C /* CookingMeasurement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CookingMeasurement.swift; sourceTree = "<group>"; };
@@ -56,7 +54,17 @@
 		E12682241D26F70E006B4887 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E12682261D26F714006B4887 /* MiseEnPlace.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MiseEnPlace.podspec; sourceTree = "<group>"; };
 		E1375E601DA949C800AA6B8F /* ScaleParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleParameters.swift; sourceTree = "<group>"; };
-		E1465A911DD2208E00C5ADAD /* SignificantDigitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignificantDigitTests.swift; sourceTree = "<group>"; };
+		E15928C622A9C88200F5239F /* HighVolumeRatioIngredientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighVolumeRatioIngredientTests.swift; sourceTree = "<group>"; };
+		E15928C722A9C88200F5239F /* ConvertableIngredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertableIngredient.swift; sourceTree = "<group>"; };
+		E15928C822A9C88200F5239F /* LooseConversionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LooseConversionTests.swift; sourceTree = "<group>"; };
+		E15928C922A9C88200F5239F /* MeasurementUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementUnitTests.swift; sourceTree = "<group>"; };
+		E15928CA22A9C88200F5239F /* HighMassRatioIngredientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighMassRatioIngredientTests.swift; sourceTree = "<group>"; };
+		E15928CB22A9C88200F5239F /* InterpreterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterpreterTests.swift; sourceTree = "<group>"; };
+		E15928CC22A9C88200F5239F /* EqualRatioIngredientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EqualRatioIngredientTests.swift; sourceTree = "<group>"; };
+		E15928CD22A9C88200F5239F /* EachMeasurementUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachMeasurementUnitTests.swift; sourceTree = "<group>"; };
+		E15928CE22A9C88200F5239F /* RatioTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatioTests.swift; sourceTree = "<group>"; };
+		E15928CF22A9C88200F5239F /* SignificantDigitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignificantDigitTests.swift; sourceTree = "<group>"; };
+		E15928D022A9C88200F5239F /* AsNeededTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsNeededTests.swift; sourceTree = "<group>"; };
 		E162249C1DA6C73800AAA98A /* Double+MiseEnPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+MiseEnPlace.swift"; sourceTree = "<group>"; };
 		E19EA2DB1D91CAC60068A3E6 /* Multipliers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Multipliers.swift; sourceTree = "<group>"; };
 		E19EA2DD1D91CAF50068A3E6 /* Fraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fraction.swift; sourceTree = "<group>"; };
@@ -65,8 +73,6 @@
 		E1A418171C77E40E0025D094 /* MeasurementSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementSystem.swift; sourceTree = "<group>"; };
 		E1A418181C77E40E0025D094 /* MeasurementSystemMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementSystemMethod.swift; sourceTree = "<group>"; };
 		E1A418191C77E40E0025D094 /* MeasurementUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementUnit.swift; sourceTree = "<group>"; };
-		E1A98CC11B71E8F50017EFB2 /* LooseConversionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LooseConversionTests.swift; sourceTree = "<group>"; };
-		E1A98CC31B72D5B50017EFB2 /* AsNeededTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsNeededTests.swift; sourceTree = "<group>"; };
 		E1C08BAC1DCBDBF200759F33 /* MeasurementInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeasurementInputView.xib; sourceTree = "<group>"; };
 		E1C08BAF1DCBDBF900759F33 /* Intergral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Intergral.swift; sourceTree = "<group>"; };
 		E1C08BB11DCBDBF900759F33 /* MeasurementInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementInputView.swift; sourceTree = "<group>"; };
@@ -74,12 +80,6 @@
 		E1E02C7D1B6F200A00FEDC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1E02C841B6F200A00FEDC95 /* MiseEnPlaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiseEnPlaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E02C8A1B6F200A00FEDC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1E02CAC1B6F573900FEDC95 /* ConvertableIngredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertableIngredient.swift; sourceTree = "<group>"; };
-		E1E02CB21B6FA0EC00FEDC95 /* EqualRatioIngredientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EqualRatioIngredientTests.swift; sourceTree = "<group>"; };
-		E1E02CC31B70874400FEDC95 /* HighVolumeRatioIngredientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighVolumeRatioIngredientTests.swift; sourceTree = "<group>"; };
-		E1E02CC51B708B7100FEDC95 /* HighMassRatioIngredientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighMassRatioIngredientTests.swift; sourceTree = "<group>"; };
-		E1E02CC91B70CB6500FEDC95 /* InterpreterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterpreterTests.swift; sourceTree = "<group>"; };
-		E1E92EA31BE99950000A8C92 /* RatioTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatioTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,32 +101,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E1A22D811B742A06007A55C5 /* Swift */ = {
+		E15928C422A9C88200F5239F /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				E1A98CC31B72D5B50017EFB2 /* AsNeededTests.swift */,
-				E1E02CAC1B6F573900FEDC95 /* ConvertableIngredient.swift */,
-				E113B8191E324BC000A03A0F /* EachMeasurementUnitTests.swift */,
-				E1E02CB21B6FA0EC00FEDC95 /* EqualRatioIngredientTests.swift */,
-				E1E02CC31B70874400FEDC95 /* HighVolumeRatioIngredientTests.swift */,
-				E1E02CC51B708B7100FEDC95 /* HighMassRatioIngredientTests.swift */,
-				E1E02CC91B70CB6500FEDC95 /* InterpreterTests.swift */,
-				E1A98CC11B71E8F50017EFB2 /* LooseConversionTests.swift */,
-				E113B81B1E364A7300A03A0F /* MeasurementUnitTests.swift */,
-				E1E92EA31BE99950000A8C92 /* RatioTests.swift */,
-				E1465A911DD2208E00C5ADAD /* SignificantDigitTests.swift */,
+				E15928C522A9C88200F5239F /* MiseEnPlaceTests */,
 			);
-			name = Swift;
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		E15928C522A9C88200F5239F /* MiseEnPlaceTests */ = {
+			isa = PBXGroup;
+			children = (
+				E15928C622A9C88200F5239F /* HighVolumeRatioIngredientTests.swift */,
+				E15928C722A9C88200F5239F /* ConvertableIngredient.swift */,
+				E15928C822A9C88200F5239F /* LooseConversionTests.swift */,
+				E15928C922A9C88200F5239F /* MeasurementUnitTests.swift */,
+				E15928CA22A9C88200F5239F /* HighMassRatioIngredientTests.swift */,
+				E15928CB22A9C88200F5239F /* InterpreterTests.swift */,
+				E15928CC22A9C88200F5239F /* EqualRatioIngredientTests.swift */,
+				E15928CD22A9C88200F5239F /* EachMeasurementUnitTests.swift */,
+				E15928CE22A9C88200F5239F /* RatioTests.swift */,
+				E15928CF22A9C88200F5239F /* SignificantDigitTests.swift */,
+				E15928D022A9C88200F5239F /* AsNeededTests.swift */,
+			);
+			path = MiseEnPlaceTests;
 			sourceTree = "<group>";
 		};
 		E1A4180F1C77E40E0025D094 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				E1C08BAE1DCBDBF900759F33 /* Foundation */,
+				E1C08BAE1DCBDBF900759F33 /* MiseEnPlace */,
 				E1C08BB01DCBDBF900759F33 /* iOS */,
 			);
-			name = Sources;
-			path = ../Sources;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		E1C08BAA1DCBDBF200759F33 /* Resources */ = {
@@ -145,7 +152,7 @@
 			path = iOS;
 			sourceTree = "<group>";
 		};
-		E1C08BAE1DCBDBF900759F33 /* Foundation */ = {
+		E1C08BAE1DCBDBF900759F33 /* MiseEnPlace */ = {
 			isa = PBXGroup;
 			children = (
 				E1A418121C77E40E0025D094 /* Convertable.swift */,
@@ -162,7 +169,7 @@
 				E1375E601DA949C800AA6B8F /* ScaleParameters.swift */,
 				E1215CA61D7B5F0200C9B55C /* String+MiseEnPlace.swift */,
 			);
-			path = Foundation;
+			path = MiseEnPlace;
 			sourceTree = "<group>";
 		};
 		E1C08BB01DCBDBF900759F33 /* iOS */ = {
@@ -179,6 +186,8 @@
 				E12682261D26F714006B4887 /* MiseEnPlace.podspec */,
 				E12682241D26F70E006B4887 /* README.md */,
 				E12682221D26F699006B4887 /* Package.swift */,
+				E1A4180F1C77E40E0025D094 /* Sources */,
+				E15928C422A9C88200F5239F /* Tests */,
 				E1E02C7B1B6F200A00FEDC95 /* MiseEnPlace */,
 				E1E02C881B6F200A00FEDC95 /* MiseEnPlaceTests */,
 				E1E02C7A1B6F200A00FEDC95 /* Products */,
@@ -199,7 +208,6 @@
 			children = (
 				E1E02C7C1B6F200A00FEDC95 /* Supporting Files */,
 				E1C08BAA1DCBDBF200759F33 /* Resources */,
-				E1A4180F1C77E40E0025D094 /* Sources */,
 			);
 			path = MiseEnPlace;
 			sourceTree = "<group>";
@@ -216,7 +224,6 @@
 			isa = PBXGroup;
 			children = (
 				E1E02C891B6F200A00FEDC95 /* Supporting Files */,
-				E1A22D811B742A06007A55C5 /* Swift */,
 			);
 			path = MiseEnPlaceTests;
 			sourceTree = "<group>";
@@ -285,25 +292,28 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0710;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Richard Piazza";
 				TargetAttributes = {
 					E1E02C781B6F200A00FEDC95 = {
 						CreatedOnToolsVersion = 6.4;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1020;
 					};
 					E1E02C831B6F200A00FEDC95 = {
 						CreatedOnToolsVersion = 6.4;
-						LastSwiftMigration = 0900;
+						DevelopmentTeam = EX6YK9HKXA;
+						LastSwiftMigration = 1020;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
 			buildConfigurationList = E1E02C731B6F200A00FEDC95 /* Build configuration list for PBXProject "MiseEnPlace" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = E1E02C6F1B6F200A00FEDC95;
 			productRefGroup = E1E02C7A1B6F200A00FEDC95 /* Products */;
@@ -360,17 +370,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1D6463B1BE6CCDC006860FD /* LooseConversionTests.swift in Sources */,
-				E1D6463A1BE6CCDC006860FD /* InterpreterTests.swift in Sources */,
-				E1D646381BE6CCDC006860FD /* HighVolumeRatioIngredientTests.swift in Sources */,
-				E113B81A1E324BC000A03A0F /* EachMeasurementUnitTests.swift in Sources */,
-				E1D646361BE6CCDC006860FD /* ConvertableIngredient.swift in Sources */,
-				E1D646391BE6CCDC006860FD /* HighMassRatioIngredientTests.swift in Sources */,
-				E1D646371BE6CCDC006860FD /* EqualRatioIngredientTests.swift in Sources */,
-				E1E92EA41BE99950000A8C92 /* RatioTests.swift in Sources */,
-				E1465A921DD2208E00C5ADAD /* SignificantDigitTests.swift in Sources */,
-				E113B81C1E364A7300A03A0F /* MeasurementUnitTests.swift in Sources */,
-				E1D6463C1BE6CCDC006860FD /* AsNeededTests.swift in Sources */,
+				E15928DB22A9C88200F5239F /* AsNeededTests.swift in Sources */,
+				E15928D422A9C88200F5239F /* MeasurementUnitTests.swift in Sources */,
+				E15928D122A9C88200F5239F /* HighVolumeRatioIngredientTests.swift in Sources */,
+				E15928DA22A9C88200F5239F /* SignificantDigitTests.swift in Sources */,
+				E15928D322A9C88200F5239F /* LooseConversionTests.swift in Sources */,
+				E15928D522A9C88200F5239F /* HighMassRatioIngredientTests.swift in Sources */,
+				E15928D822A9C88200F5239F /* EachMeasurementUnitTests.swift in Sources */,
+				E15928D722A9C88200F5239F /* EqualRatioIngredientTests.swift in Sources */,
+				E15928D922A9C88200F5239F /* RatioTests.swift in Sources */,
+				E15928D622A9C88200F5239F /* InterpreterTests.swift in Sources */,
+				E15928D222A9C88200F5239F /* ConvertableIngredient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +400,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -398,12 +409,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -449,6 +462,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -457,12 +471,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -512,7 +528,7 @@
 				PRODUCT_NAME = MiseEnPlace;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -531,7 +547,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.richardpiazza.MiseEnPlace;
 				PRODUCT_NAME = MiseEnPlace;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -539,6 +555,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = EX6YK9HKXA;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -547,8 +565,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.richardpiazza.bakeshop.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = MiseEnPlaceTests;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -556,11 +575,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MiseEnPlaceTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.richardpiazza.bakeshop.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = MiseEnPlaceTests;
-				SWIFT_VERSION = 4.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

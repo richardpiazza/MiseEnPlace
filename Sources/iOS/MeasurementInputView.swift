@@ -138,12 +138,12 @@ public class MeasurementInputView: UIView, UIInputViewAudioFeedback, UIPickerVie
         
         if let intergralI = Integral(rawValue: i), let fractionF = Fraction(commonValue: f) {
             integral = intergralI
-            if let row = integrals.index(of: integral) {
+            if let row = integrals.firstIndex(of: integral) {
                 numberPicker?.selectRow(row, inComponent: 0, animated: true)
             }
             
             fraction = fractionF
-            if let row = fractions.index(of: fraction) {
+            if let row = fractions.firstIndex(of: fraction) {
                 numberPicker?.selectRow(row, inComponent: 1, animated: true)
             }
         } else {
@@ -152,7 +152,7 @@ public class MeasurementInputView: UIView, UIInputViewAudioFeedback, UIPickerVie
             padContainer?.isHidden = false
         }
         
-        if let row = units.index(of: unit) {
+        if let row = units.firstIndex(of: unit) {
             unitPicker?.selectRow(row, inComponent: 0, animated: true)
         }
         
@@ -217,10 +217,10 @@ public class MeasurementInputView: UIView, UIInputViewAudioFeedback, UIPickerVie
         }
         
         if let color = UIApplication.shared.delegate?.window??.tintColor {
-            return NSAttributedString(string: attributedTitle, attributes: [NSAttributedStringKey.foregroundColor:color])
+            return NSAttributedString(string: attributedTitle, attributes: [NSAttributedString.Key.foregroundColor:color])
         }
         
-        return NSAttributedString(string: attributedTitle, attributes: [NSAttributedStringKey.foregroundColor:UIColor.white])
+        return NSAttributedString(string: attributedTitle, attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
     }
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -264,7 +264,7 @@ public class MeasurementInputView: UIView, UIInputViewAudioFeedback, UIPickerVie
             
             textualValue = textualValue.appending(".")
         } else if sender == delete {
-            guard textualValue.characters.count > 0 else {
+            guard textualValue.count > 0 else {
                 return
             }
             

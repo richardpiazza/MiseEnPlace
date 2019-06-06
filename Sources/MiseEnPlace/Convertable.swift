@@ -41,7 +41,7 @@ public extension Convertable {
     ///
     /// If the `MeasurementMethod` is .volume, a Weight/Volume calculation is made.
     /// If the `MeasurementMethod` is .weight, a Volume/Weight calculation is made.
-    public var conversionMultiplier: Double {
+    var conversionMultiplier: Double {
         guard ratio.volume > 0.0 && ratio.weight > 0.0 else {
             return 1.0
         }
@@ -64,7 +64,7 @@ public extension Convertable {
     }
     
     /// Calculates the amount for a given unit.
-    public func amount(for unit: MeasurementUnit) -> Double {
+    func amount(for unit: MeasurementUnit) -> Double {
         guard measurement.amount > 0.0 else {
             return 0.0
         }
@@ -153,7 +153,7 @@ public extension Convertable {
     ///
     /// All `MeasurementUnit`s of a given system are tested, and the unit having
     /// the multiplied total within its stepUp and stepDown range will be returned.
-    public func scale(by multiplier: Double, measurementSystemMethod: MeasurementSystemMethod) -> CookingMeasurement {
+    func scale(by multiplier: Double, measurementSystemMethod: MeasurementSystemMethod) -> CookingMeasurement {
         guard measurement.unit != .asNeeded else {
             return measurement
         }
@@ -200,7 +200,7 @@ public extension Convertable {
     /// Wrapper for scale(by:measurementSystemMethod:)
     /// Determines the `MeasurementSystemMethod` based on the `MeasurementSystem` and
     /// `MeasurementMethod` provided.
-    public func scale(by multiplier: Double, measurementSystem: MeasurementSystem?, measurementMethod: MeasurementMethod?) -> CookingMeasurement {
+    func scale(by multiplier: Double, measurementSystem: MeasurementSystem?, measurementMethod: MeasurementMethod?) -> CookingMeasurement {
         if measurementSystem == .numeric || measurementMethod == .quantity {
             return scale(by: multiplier, measurementSystemMethod: .numericQuantity)
         }
@@ -270,7 +270,7 @@ public extension Convertable {
     }
     
     /// Wrapper for scale(by:measurementSystem:measurementMethod)
-    public func scale(with parameters: ScaleParameters) -> CookingMeasurement {
+    func scale(with parameters: ScaleParameters) -> CookingMeasurement {
         return scale(by: parameters.multiplier, measurementSystem: parameters.measurementSystem, measurementMethod: parameters.measurementMethod)
     }
 }

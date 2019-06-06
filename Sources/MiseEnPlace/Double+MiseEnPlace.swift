@@ -29,7 +29,7 @@ import Foundation
 
 public extension Double {
     
-    public func equals(_ value: Double, precision: Int) -> Bool {
+    func equals(_ value: Double, precision: Int) -> Bool {
         if self == value {
             return true
         }
@@ -48,7 +48,7 @@ public extension Double {
     
     /// Converts an amount from one `MeasurementUnit` to another `MeasurementUnit`
     /// within the same `MeasurementSystemMethod`
-    public func convert(from fromUnit: MeasurementUnit, to toUnit: MeasurementUnit) -> Double {
+    func convert(from fromUnit: MeasurementUnit, to toUnit: MeasurementUnit) -> Double {
         let measurementUnits = MeasurementUnit.measurementUnits(forMeasurementSystemMethod: toUnit.measurementSystemMethod)
         guard measurementUnits.contains(fromUnit) else {
             return 0.0
