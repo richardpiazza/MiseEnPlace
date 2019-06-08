@@ -1,14 +1,6 @@
-#
-# Be sure to run `pod lib lint MiseEnPlace.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name = "MiseEnPlace"
-  s.version = "4.3.0"
+  s.version = "5.0.0"
   s.summary = "A Framework for converting and interpreting common measurements used in cooking."
   s.description = <<-DESC
   MiseEnPlace provides powerfull conversion and interpretation for any cooking application.
@@ -29,9 +21,8 @@ Pod::Spec.new do |s|
   s.osx.source_files = 'Sources/MiseEnPlace/*'
 
   s.ios.deployment_target = "11.0"
-  s.ios.frameworks = 'Foundation', 'UIKit'
-  s.ios.source_files = 'Sources/MiseEnPlace/*', 'Sources/iOS/*'
-  s.ios.resources = 'Resources/iOS/*'
+  s.ios.frameworks = 'Foundation'
+  s.ios.source_files = 'Sources/MiseEnPlace/*'
 
   s.tvos.deployment_target = "11.0"
   s.tvos.frameworks = 'Foundation'
