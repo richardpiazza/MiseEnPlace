@@ -2,6 +2,7 @@ import Foundation
 
 /// ## Convertable
 /// Protocol specifying properties needing to be supplied for conversion.
+@available(*, deprecated)
 public protocol Convertable {
     var measurement: CookingMeasurement { get }
     var ratio: Ratio { get }

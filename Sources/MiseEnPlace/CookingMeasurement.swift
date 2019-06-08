@@ -2,8 +2,10 @@ import Foundation
 
 /// ## Measurement
 /// An amount/unit pairing
+@available(*, deprecated, renamed: "MiseEnPlace.Measurement")
 public struct CookingMeasurement {
     /// Changes the default behavior of the `Measurement` translation functions.
+    @available(*, deprecated, renamed: "Configuration.abbreviateTranslations")
     public static var abbreviateTranslations: Bool = false
     
     fileprivate static var singleDecimalFormatter: NumberFormatter {

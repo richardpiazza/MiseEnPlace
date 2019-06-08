@@ -43,7 +43,7 @@ public struct Configuration {
     
     /// A measurement typical of a 'small' portion size
     public static var smallMeasurement: MiseEnPlace.Measurement {
-        if self.locale.usesMetricSystem {
+        if locale.usesMetricSystem {
             return MiseEnPlace.Measurement(amount: 100.0, unit: .gram)
         }
 
@@ -52,7 +52,7 @@ public struct Configuration {
 
     /// A measurement typical of a 'large' portion size
     public static var largeMeasurement: MiseEnPlace.Measurement {
-        if self.locale.usesMetricSystem {
+        if locale.usesMetricSystem {
             return MiseEnPlace.Measurement(amount: 1.0, unit: .kilogram)
         }
 

@@ -249,7 +249,7 @@ public extension Measurement {
     
     /// Returns a "human-readable" form of this `Measurement`.
     var translation: String {
-        return translation(abbreviated: MiseEnPlace.Configuration.abbreviateTranslations)
+        return translation(abbreviated: Configuration.abbreviateTranslations)
     }
     
     /// Returns a "human-readable" form of this `Measurement` with the option to
@@ -267,7 +267,7 @@ public extension Measurement {
     
     /// Returns a "human-readable" form of the componentized `Measurement`.
     var componentsTranslation: String {
-        return componentsTranslation(abbreviated: MiseEnPlace.Configuration.abbreviateTranslations)
+        return componentsTranslation(abbreviated: Configuration.abbreviateTranslations)
     }
     
     /// Returns a "human-readable" form of the componentized `Measurement` with the

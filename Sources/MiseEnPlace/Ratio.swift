@@ -87,6 +87,7 @@ public struct Ratio {
         return Ratio(volume: ratioVolume, weight: ratioWeight)
     }
     
+    @available(*, deprecated)
     public static func makeRatio(volumeConvertable: Convertable, weightConvertable: Convertable) -> Ratio {
         let volume = volumeConvertable.amount(for: .fluidOunce)
         let weight = weightConvertable.amount(for: .ounce)

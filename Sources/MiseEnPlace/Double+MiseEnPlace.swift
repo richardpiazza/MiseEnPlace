@@ -59,6 +59,7 @@ public extension Double {
     
     /// Converts an amount from one `MeasurementUnit` to another `MeasurementUnit`
     /// within the same `MeasurementSystemMethod`
+    @available(*, deprecated, message: "")
     func convert(from fromUnit: MeasurementUnit, to toUnit: MeasurementUnit) -> Double {
         let measurementUnits = MeasurementUnit.measurementUnits(forMeasurementSystemMethod: toUnit.measurementSystemMethod)
         guard measurementUnits.contains(fromUnit) else {
