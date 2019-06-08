@@ -1,40 +1,12 @@
-//===----------------------------------------------------------------------===//
-//
-// MeasurementUnit.swift
-//
-// Copyright (c) 2015 Richard Piazza
-// https://github.com/richardpiazza/MiseEnPlace
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//
-//===----------------------------------------------------------------------===//
-
 import Foundation
 
-/// ## MeasurementUnit
-/// The `MeasurementUnit` enum is the heart of the MiseEnPlace framework. This enum 
+/// The `MeasurementUnit` enum is the heart of the MiseEnPlace framework. This enum
 /// represents some unit of measure, along with `MeasurementSystem` and `MeasurementMethod`
 /// that it belongs to.
 /// All of the logic for how and when to convert to other units and amounts is 
 /// contained within the enum.
 /// - note: The rawValue is comprised of [`MeasurementSystem`][`MeasurementMethod`][##Unique]
-public enum MeasurementUnit: Int {
+public enum MeasurementUnit: Int, CaseIterable {
     // numericQuantity
     case asNeeded = 0
     case each = 1
@@ -57,10 +29,6 @@ public enum MeasurementUnit: Int {
     // metricWeight
     case gram = 2200
     case kilogram = 2201
-    
-    public static var allMeasurementUnits: [MeasurementUnit] {
-        return [.asNeeded, .each, .pinch, .dash, .teaspoon, .tablespoon, .fluidOunce, .cup, .pint, .quart, .gallon, .ounce, .pound, .milliliter, .liter, .gram, .kilogram]
-    }
     
     public static var quantifiableMeasurementUnits: [MeasurementUnit] {
         return [.pinch, .dash, .teaspoon, .tablespoon, .fluidOunce, .cup, .pint, .quart, .gallon, .ounce, .pound, .milliliter, .liter, .gram, .kilogram]
@@ -86,7 +54,7 @@ public enum MeasurementUnit: Int {
     }
     
     public init?(stringValue: String) {
-        for unit in MeasurementUnit.allMeasurementUnits {
+        for unit in MeasurementUnit.allCases {
             if unit.name == stringValue {
                 self = unit
                 return

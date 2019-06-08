@@ -23,7 +23,7 @@ class MeasurementUnitTests: XCTestCase {
     }
     
     func testAllMeasurementUnits() {
-        let units = MeasurementUnit.allMeasurementUnits
+        let units = MeasurementUnit.allCases
         XCTAssertEqual(units.count, 17)
         XCTAssertEqual(units[4], .teaspoon)
         XCTAssertEqual(units[13], .milliliter)

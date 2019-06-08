@@ -1,30 +1,3 @@
-//===----------------------------------------------------------------------===//
-//
-// Convertable.swift
-//
-// Copyright (c) 2015 Richard Piazza
-// https://github.com/richardpiazza/MiseEnPlace
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//
-//===----------------------------------------------------------------------===//
-
 import Foundation
 
 /// ## Convertable
@@ -80,8 +53,8 @@ public extension Convertable {
             
             let fluidOunce = amount(for: .fluidOunce)
             let ounce = conversionMultiplier * fluidOunce
-            let milliliter = MiseEnPlace.Multipliers.fluidOunceMilliliter * fluidOunce
-            let gram: Double = MiseEnPlace.Multipliers.ounceGram * ounce
+            let milliliter = Configuration.fluidOunceMilliliter * fluidOunce
+            let gram: Double = Configuration.ounceGram * ounce
             
             if toMeasurementSystemMethod == .usWeight {
                 return ounce.convert(from: .ounce, to: unit)
@@ -97,8 +70,8 @@ public extension Convertable {
             
             let ounce = amount(for: .ounce)
             let fluidOunce = conversionMultiplier * ounce
-            let milliliter = MiseEnPlace.Multipliers.fluidOunceMilliliter * fluidOunce
-            let gram = MiseEnPlace.Multipliers.ounceGram * ounce
+            let milliliter = Configuration.fluidOunceMilliliter * fluidOunce
+            let gram = Configuration.ounceGram * ounce
             
             if toMeasurementSystemMethod == .usVolume {
                 return fluidOunce.convert(from: .fluidOunce, to: unit)
@@ -114,8 +87,8 @@ public extension Convertable {
             
             let milliliter = amount(for: .milliliter)
             let gram = conversionMultiplier * milliliter
-            let fluidOunce = milliliter / MiseEnPlace.Multipliers.fluidOunceMilliliter
-            let ounce = gram / MiseEnPlace.Multipliers.ounceGram
+            let fluidOunce = milliliter / Configuration.fluidOunceMilliliter
+            let ounce = gram / Configuration.ounceGram
             
             if toMeasurementSystemMethod == .metricWeight {
                 return gram.convert(from: .gram, to: unit)
@@ -131,8 +104,8 @@ public extension Convertable {
             
             let gram = amount(for: .gram)
             let milliliter = conversionMultiplier * gram
-            let fluidOunce = milliliter / MiseEnPlace.Multipliers.fluidOunceMilliliter
-            let ounce = gram / MiseEnPlace.Multipliers.ounceGram
+            let fluidOunce = milliliter / Configuration.fluidOunceMilliliter
+            let ounce = gram / Configuration.ounceGram
             
             if toMeasurementSystemMethod == .metricVolume {
                 return milliliter.convert(from: .milliliter, to: unit)

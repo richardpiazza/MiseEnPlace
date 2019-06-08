@@ -1,35 +1,7 @@
-//===----------------------------------------------------------------------===//
-//
-// Integral.swift
-//
-// Copyright (c) 2016 Richard Piazza
-// https://github.com/richardpiazza/MiseEnPlace
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//
-//===----------------------------------------------------------------------===//
-
 import Foundation
 
-/// ## Integral
 /// Enumeration of commonly used intergrals in cooking.
-public enum Integral: Int {
+public enum Integral: Int, CaseIterable {
     case zero = 0
     case one = 1
     case two = 2
@@ -72,14 +44,7 @@ public enum Integral: Int {
     case eightHundred = 800
     case nineHundred = 900
     
-    public static let allIntegrals: [Integral] = [.zero, .one, .two, .three, .four, .five, .six, .seven, .eight, .nine,
-                                                    .ten, .eleven, .twelve, .thirteen, .fourteen, .fifteen,
-                                                    .twenty, .twentyFive, .thirty, .thirtyFive, .fourty, .fourtyFive, .fifty,
-                                                    .sixty, .seventy, .eighty, .ninety, .oneHundred,
-                                                    .oneTwentyFive, .oneFifty, .oneSeventyFive, .twoHundred, .twoFifty,
-                                                    .threeHundred, .fourHundred, .fiveHundred, .sixHundred, .sevenHundred, .sevenFifty,
-                                                    .eightHundred, .nineHundred]
-    public static let singleDigitIntegrals: [Integral] = [.zero, .one, .two, .three, .four, .five, .six, .seven, .eight, .nine]
+    public static let singleDigits: [Integral] = [.zero, .one, .two, .three, .four, .five, .six, .seven, .eight, .nine]
     
     public var stringValue: String {
         return "\(self.rawValue)"
