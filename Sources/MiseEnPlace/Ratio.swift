@@ -41,7 +41,7 @@ public struct Ratio {
         var recipe: Recipe?
     }
     
-    public static func makeRatio(volume: MiseEnPlace.Measurement, weight: MiseEnPlace.Measurement) throws -> Ratio {
+    public static func makeRatio(volume: Quantification, weight: Quantification) throws -> Ratio {
         guard volume.amount > 0.0 else {
             throw MiseEnPlaceError.measurementAmount(method: .volume)
         }

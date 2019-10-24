@@ -42,20 +42,20 @@ public struct Configuration {
     }
     
     /// A measurement typical of a 'small' portion size
-    public static var smallMeasurement: MiseEnPlace.Measurement {
+    public static var smallMeasurement: Quantification {
         if locale.usesMetricSystem {
-            return MiseEnPlace.Measurement(amount: 100.0, unit: .gram)
+            return Quantification(amount: 100.0, unit: .gram)
         }
 
-        return MiseEnPlace.Measurement(amount: 1.0, unit: .ounce)
+        return Quantification(amount: 1.0, unit: .ounce)
     }
 
     /// A measurement typical of a 'large' portion size
-    public static var largeMeasurement: MiseEnPlace.Measurement {
+    public static var largeMeasurement: Quantification {
         if locale.usesMetricSystem {
-            return MiseEnPlace.Measurement(amount: 1.0, unit: .kilogram)
+            return Quantification(amount: 1.0, unit: .kilogram)
         }
 
-        return MiseEnPlace.Measurement(amount: 1.0, unit: .pound)
+        return Quantification(amount: 1.0, unit: .pound)
     }
 }

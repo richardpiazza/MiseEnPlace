@@ -18,7 +18,12 @@ public protocol Measured {
 }
 
 public extension Measured {
-    var measurement: MiseEnPlace.Measurement {
-        return MiseEnPlace.Measurement(amount: amount, unit: unit)
+    var quantification: Quantification {
+        return Quantification(amount: amount, unit: unit)
+    }
+    
+    @available(*, deprecated, renamed: "quantification")
+    var measurement: Quantification {
+        return quantification
     }
 }

@@ -64,7 +64,7 @@ public extension FormulaElement {
                 throw MiseEnPlaceError.measurementAmount(method: nil)
             }
             
-            if (self.unit == .each || unit == .each) && !ingredient.measurement.unit.isQuantifiable {
+            if (self.unit == .each || unit == .each) && !ingredient.quantification.unit.isQuantifiable {
                 throw MiseEnPlaceError.quantifiableConversion
             }
             
@@ -72,18 +72,18 @@ public extension FormulaElement {
             case (.numericQuantity, .numericQuantity):
                 return self.amount
             case (.numericQuantity, .usVolume), (.numericQuantity, .usWeight), (.numericQuantity, .metricVolume), (.numericQuantity, .metricWeight):
-                let quantifiableMeasurement = ingredient.measurement
-                let equivalentMeasurement = MiseEnPlace.Measurement(amount: quantifiableMeasurement.amount * self.amount, unit: quantifiableMeasurement.unit)
+                let quantifiableMeasurement = ingredient.quantification
+                let equivalentMeasurement = Quantification(amount: quantifiableMeasurement.amount * self.amount, unit: quantifiableMeasurement.unit)
                 let multiplier = ingredient.multiplier(from: self.unit.measurementMethod, to: unit.measurementMethod)
                 let equivalentAmount = try equivalentMeasurement.amount(for: unit, conversionMultiplier: multiplier)
                 return equivalentAmount
             case (.usVolume, .numericQuantity), (.usWeight, .numericQuantity), (.metricVolume, .numericQuantity), (.metricWeight, .numericQuantity):
-                let quantifiableMeasurement = ingredient.measurement
+                let quantifiableMeasurement = ingredient.quantification
                 let multiplier = ingredient.multiplier(from: self.unit.measurementMethod, to: unit.measurementMethod)
-                let equivalentAmount = try self.measurement.amount(for: quantifiableMeasurement.unit, conversionMultiplier: multiplier)
+                let equivalentAmount = try quantification.amount(for: quantifiableMeasurement.unit, conversionMultiplier: multiplier)
                 return equivalentAmount / quantifiableMeasurement.amount
             case (.usVolume, .usVolume), (.usWeight, .usWeight), (.metricVolume, .metricVolume), (.metricWeight, .metricWeight):
-                return try self.measurement.amount(for: unit)
+                return try quantification.amount(for: unit)
             default:
                 let multiplier: Double
                 if self.unit.measurementMethod == .volume && unit.measurementMethod == .weight {
@@ -91,7 +91,7 @@ public extension FormulaElement {
                 } else {
                     multiplier = ingredient.multiplier(for: .weight)
                 }
-                return try self.measurement.amount(for: unit, conversionMultiplier: multiplier)
+                return try quantification.amount(for: unit, conversionMultiplier: multiplier)
             }
         } else if let recipe = self.recipe {
             guard unit != .asNeeded else {
@@ -102,7 +102,7 @@ public extension FormulaElement {
                 throw MiseEnPlaceError.measurementAmount(method: nil)
             }
             
-            if (self.unit == .each || unit == .each) && !recipe.measurement.unit.isQuantifiable {
+            if (self.unit == .each || unit == .each) && !recipe.quantification.unit.isQuantifiable {
                 throw MiseEnPlaceError.quantifiableConversion
             }
             
@@ -114,7 +114,7 @@ public extension FormulaElement {
 }
 
 internal extension FormulaElement {
-    func scale(by multiplier: Double, measurementSystem: MeasurementSystem? = nil, measurementMethod: MeasurementMethod? = nil) throws -> MiseEnPlace.Measurement {
+    func scale(by multiplier: Double, measurementSystem: MeasurementSystem? = nil, measurementMethod: MeasurementMethod? = nil) throws -> Quantification {
         guard self.unit != .asNeeded else {
             throw MiseEnPlaceError.asNeededConversion
         }
@@ -129,14 +129,14 @@ internal extension FormulaElement {
                     throw MiseEnPlaceError.quantifiableConversion
                 }
                 
-                let quantifiableMeasurement = ingredient.measurement
-                let equivalentMeasurement = MiseEnPlace.Measurement(amount: quantifiableMeasurement.amount * self.amount, unit: quantifiableMeasurement.unit)
+                let quantifiableMeasurement = ingredient.quantification
+                let equivalentMeasurement = Quantification(amount: quantifiableMeasurement.amount * self.amount, unit: quantifiableMeasurement.unit)
                 
                 return try equivalentMeasurement.normalizedMeasurement()
             }
             
             let totalAmount = try amount(for: self.unit)
-            let totalMeasurement = MiseEnPlace.Measurement(amount: totalAmount * self.amount, unit: self.unit)
+            let totalMeasurement = Quantification(amount: totalAmount * self.amount, unit: self.unit)
             
             return try totalMeasurement.normalizedMeasurement()
         } else if let recipe = self.recipe {
@@ -145,14 +145,14 @@ internal extension FormulaElement {
                     throw MiseEnPlaceError.quantifiableConversion
                 }
                 
-                var totalMeasurement = recipe.totalMeasurement
+                var totalMeasurement = recipe.totalQuantification
                 totalMeasurement.amount = totalMeasurement.amount * multiplier
                 
                 return try totalMeasurement.normalizedMeasurement()
             }
             
             let totalAmount = recipe.totalAmount(for: self.unit)
-            let totalMeasurement = MiseEnPlace.Measurement(amount: totalAmount * self.amount, unit: self.unit)
+            let totalMeasurement = Quantification(amount: totalAmount * self.amount, unit: self.unit)
             
             return try totalMeasurement.normalizedMeasurement()
         }

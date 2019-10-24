@@ -10,7 +10,7 @@ import Foundation
 /// var unit: MeasurementUnit { get set }
 /// ```
 ///
-public struct Measurement: Measured, Equatable {
+public struct Quantification: Measured, Equatable {
     
     public var amount: Double = 0.0
     public var unit: MeasurementUnit = .each
@@ -28,7 +28,7 @@ public struct Measurement: Measured, Equatable {
         self.unit = measured.unit
     }
     
-    public static func == (lhs: Measurement, rhs: Measurement) -> Bool {
+    public static func == (lhs: Quantification, rhs: Quantification) -> Bool {
         guard lhs.amount == rhs.amount else {
             return false
         }
@@ -41,7 +41,7 @@ public struct Measurement: Measured, Equatable {
     }
 }
 
-public extension Measurement {
+public extension Quantification {
     /// Converts an amount from one `MeasurementUnit` to another `MeasurementUnit`
     /// within the same `MeasurementSystemMethod`
     ///
@@ -74,70 +74,70 @@ public extension Measurement {
             
             switch self.unit.measurementSystemMethod {
             case .usVolume:
-                let fluidOunce = try self.measurement.amount(for: .fluidOunce)
+                let fluidOunce = try quantification.amount(for: .fluidOunce)
                 
                 switch unit.measurementSystemMethod {
                 case .usWeight:
                     let ounce = fluidOunce * multiplier
-                    return try MiseEnPlace.Measurement(amount: ounce, unit: .ounce).amount(for: unit)
+                    return try Quantification(amount: ounce, unit: .ounce).amount(for: unit)
                 case .metricVolume:
                     let milliliter = fluidOunce * Configuration.fluidOunceMilliliter
-                    return try MiseEnPlace.Measurement(amount: milliliter, unit: .milliliter).amount(for: unit)
+                    return try Quantification(amount: milliliter, unit: .milliliter).amount(for: unit)
                 case .metricWeight:
                     let milliliter = fluidOunce * Configuration.fluidOunceMilliliter
                     let gram = milliliter * multiplier
-                    return try MiseEnPlace.Measurement(amount: gram, unit: .gram).amount(for: unit)
+                    return try Quantification(amount: gram, unit: .gram).amount(for: unit)
                 default:
                     break
                 }
             case .usWeight:
-                let ounce = try self.measurement.amount(for: .ounce)
+                let ounce = try quantification.amount(for: .ounce)
                 
                 switch unit.measurementSystemMethod {
                 case .usVolume:
                     let fluidOunce = ounce * multiplier
-                    return try MiseEnPlace.Measurement(amount: fluidOunce, unit: .fluidOunce).amount(for: unit)
+                    return try Quantification(amount: fluidOunce, unit: .fluidOunce).amount(for: unit)
                 case .metricVolume:
                     let gram = ounce * Configuration.ounceGram
                     let milliliter = gram * multiplier
-                    return try MiseEnPlace.Measurement(amount: milliliter, unit: .milliliter).amount(for: unit)
+                    return try Quantification(amount: milliliter, unit: .milliliter).amount(for: unit)
                 case .metricWeight:
                     let gram = ounce * Configuration.ounceGram
-                    return try MiseEnPlace.Measurement(amount: gram, unit: .gram).amount(for: unit)
+                    return try Quantification(amount: gram, unit: .gram).amount(for: unit)
                 default:
                     break
                 }
             case .metricVolume:
-                let milliliter = try self.measurement.amount(for: .milliliter)
+                let milliliter = try quantification.amount(for: .milliliter)
                 
                 switch unit.measurementSystemMethod {
                 case .metricWeight:
                     let gram = milliliter * multiplier // * ?? /
-                    return try MiseEnPlace.Measurement(amount: gram, unit: .gram).amount(for: unit)
+                    return try Quantification(amount: gram, unit: .gram).amount(for: unit)
                 case .usVolume:
                     let fluidOunce = milliliter / Configuration.fluidOunceMilliliter
-                    return try MiseEnPlace.Measurement(amount: fluidOunce, unit: .fluidOunce).amount(for: unit)
+                    return try Quantification(amount: fluidOunce, unit: .fluidOunce).amount(for: unit)
                 case .usWeight:
                     let fluidOunce = milliliter / Configuration.fluidOunceMilliliter
                     let ounce = fluidOunce * multiplier
-                    return try MiseEnPlace.Measurement(amount: ounce, unit: .ounce).amount(for: unit)
+                    return try Quantification(amount: ounce, unit: .ounce).amount(for: unit)
                 default:
                     break
                 }
             case .metricWeight:
-                let gram = try self.measurement.amount(for: .gram)
+                let gram = try quantification.amount(for: .gram)
                 
                 switch unit.measurementSystemMethod {
                 case .metricVolume:
                     let milliliter = gram * multiplier // * ?? /
-                    return try MiseEnPlace.Measurement(amount: milliliter, unit: .milliliter).amount(for: unit)
+                    return try Quantification(amount: milliliter, unit: .milliliter).amount(for: unit)
                 case .usVolume:
                     let ounce = gram / Configuration.ounceGram
                     let fluidOunce = ounce * multiplier
-                    return try MiseEnPlace.Measurement(amount: fluidOunce, unit: .fluidOunce).amount(for: unit)
+                    return try Quantification(amount: fluidOunce, unit: .fluidOunce).amount(for: unit)
                 case .usWeight:
                     let ounce = gram / Configuration.ounceGram
-                    return try MiseEnPlace.Measurement(amount: ounce, unit: .ounce).amount(for: unit)
+                    return try Quantification(amount: ounce, unit: .ounce).amount(for: unit)
                 default:
                     break
                 }
@@ -180,7 +180,7 @@ public extension Measurement {
         let nextIndex = currentIndex + stepDirection
         let nextUnit = measurementUnits[nextIndex]
         
-        return try MiseEnPlace.Measurement(amount: nextValue, unit: nextUnit).amount(for: unit)
+        return try Quantification(amount: nextValue, unit: nextUnit).amount(for: unit)
     }
     
     /// Calculates the best matching measurement amount and unit that matches the
@@ -188,7 +188,7 @@ public extension Measurement {
     ///
     /// - throws: Error.measurementAmount(), Error.measurementUnit(), Error.unhandledConversion
     ///
-    func normalizedMeasurement() throws -> MiseEnPlace.Measurement {
+    func normalizedMeasurement() throws -> Quantification {
         guard self.amount > 0.0 else {
             throw MiseEnPlaceError.measurementAmount(method: nil)
         }
@@ -201,7 +201,7 @@ public extension Measurement {
         for unit in units {
             let unitAmount = try self.amount(for: unit)
             if unitAmount >= unit.stepDownThreshold {
-                return MiseEnPlace.Measurement(amount: unitAmount, unit: unit)
+                return Quantification(amount: unitAmount, unit: unit)
             }
         }
         
@@ -210,7 +210,7 @@ public extension Measurement {
     
     /// Returns this `Measurement` in terms of the current `MeasurementUnit` and
     /// the next smallest `MeasurementUnit` if needed.
-    var components: [MiseEnPlace.Measurement] {
+    var components: [Quantification] {
         guard unit != .asNeeded && unit != .each else {
             return [self]
         }
@@ -220,25 +220,25 @@ public extension Measurement {
             return [self]
         }
         
-        var components = [MiseEnPlace.Measurement]()
+        var components = [Quantification]()
         
         switch unit {
         case .kilogram, .liter, .pound, .tablespoon, .teaspoon, .fluidOunce, .cup, .pint, .quart, .gallon:
             if decomposedAmount.0 != 0.0 {
-                components.append(MiseEnPlace.Measurement(amount: decomposedAmount.0, unit: unit))
+                components.append(Quantification(amount: decomposedAmount.0, unit: unit))
             }
             
             if let stepDownUnit = unit.stepDownUnit, decomposedAmount.1 < unit.stepDownThreshold {
-                let measurement = MiseEnPlace.Measurement(amount: decomposedAmount.1, unit: unit)
+                let measurement = Quantification(amount: decomposedAmount.1, unit: unit)
                 var stepDownMeasurementAmount = 0.0
                 do {
                     stepDownMeasurementAmount = try measurement.amount(for: stepDownUnit)
                 } catch {
                     print(error)
                 }
-                components.append(MiseEnPlace.Measurement(amount: stepDownMeasurementAmount, unit: stepDownUnit))
+                components.append(Quantification(amount: stepDownMeasurementAmount, unit: stepDownUnit))
             } else {
-                components.append(MiseEnPlace.Measurement(amount: decomposedAmount.1, unit: unit))
+                components.append(Quantification(amount: decomposedAmount.1, unit: unit))
             }
         default:
             components.append(self)
@@ -311,7 +311,7 @@ public extension Measurement {
     }
 }
 
-private extension Measurement {
+private extension Quantification {
     func metricTranslation(abbreviated: Bool) -> String {
         let unitName = unit.name(abbreviated: abbreviated)
         

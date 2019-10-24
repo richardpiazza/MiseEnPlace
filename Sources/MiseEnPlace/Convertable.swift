@@ -9,6 +9,7 @@ public protocol Convertable {
     var eachMeasurement: CookingMeasurement? { get }
 }
 
+@available(*, deprecated)
 public extension Convertable {
     /// Calculates the multiplier needed to convert from one `MeasurementMethod`
     /// to another `MeasurementMethod`.
@@ -249,6 +250,7 @@ public extension Convertable {
     }
 }
 
+@available(*, deprecated)
 fileprivate struct EachConvertable: Convertable {
     var measurement: CookingMeasurement
     var ratio: Ratio

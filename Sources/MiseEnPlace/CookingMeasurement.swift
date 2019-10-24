@@ -2,7 +2,7 @@ import Foundation
 
 /// ## Measurement
 /// An amount/unit pairing
-@available(*, deprecated, renamed: "MiseEnPlace.Measurement")
+@available(*, deprecated, renamed: "Quantification")
 public struct CookingMeasurement {
     /// Changes the default behavior of the `Measurement` translation functions.
     @available(*, deprecated, renamed: "Configuration.abbreviateTranslations")

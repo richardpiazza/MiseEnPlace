@@ -73,9 +73,15 @@ public extension Recipe {
     }
     
     /// The total mass of this formula in the portions unit.
-    var totalMeasurement: MiseEnPlace.Measurement {
+    var totalQuantification: Quantification {
         let total = self.totalAmount(for: self.unit)
-        return MiseEnPlace.Measurement(amount: total, unit: self.unit)
+        return Quantification(amount: total, unit: self.unit)
+    }
+    
+    /// The total mass of this formula in the portions unit.
+    @available(*, deprecated, renamed: "totalQuantification")
+    var totalMeasurement: Quantification {
+        return totalQuantification
     }
 }
 
@@ -84,17 +90,17 @@ public extension Recipe {
 public extension Recipe {
     /// Calculates the total number of portions (yield).
     var yield: Double {
-        return self.totalMeasurement.amount / self.amount
+        return totalQuantification.amount / amount
     }
     
     /// A 'Fractioned String' output of the `yield`.
     var yieldString: String {
-        return "\(self.yield.fractionedString) portions"
+        return "\(yield.fractionedString) portions"
     }
     
     /// A combined string: Total Measurement amount, Yield
     var yieldTranslation: String {
-        return "\(self.totalMeasurement.componentsTranslation), \(self.yieldString)"
+        return "\(totalQuantification.componentsTranslation), \(yieldString)"
     }
 }
 

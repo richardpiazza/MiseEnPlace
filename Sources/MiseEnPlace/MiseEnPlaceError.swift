@@ -1,6 +1,6 @@
 import Foundation
 
-public enum MiseEnPlaceError: Swift.Error, LocalizedError {
+public enum MiseEnPlaceError: Error, LocalizedError {
     case asNeededConversion
     case quantifiableConversion
     case unhandledConversion
