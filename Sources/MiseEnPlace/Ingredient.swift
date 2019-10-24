@@ -31,7 +31,7 @@ import Foundation
 /// var weight: Double { get set }
 /// ```
 ///
-/// _Measured_
+/// _Quantifiable_
 /// ```swift
 /// var amount: Double { get set }
 /// var unit: MeasurementUnit { get set }
@@ -39,10 +39,16 @@ import Foundation
 ///
 /// ## Notes:
 ///
-/// - The `Measured` conformance on an `Ingredient` will represent an
+/// - The `Quantifiable` conformance on an `Ingredient` will represent an
 /// _each_ measurement. i.e. What is the equivalent measurement for one (1)
 /// of this `Ingredient`?
 ///
-public protocol Ingredient: Unique, Descriptive, Multimedia, Proportioned, Measured {
+public protocol Ingredient: Unique, Descriptive, Multimedia, Proportioned, Quantifiable {
     
+}
+
+public extension Ingredient {
+    var eachQuantification: Quantification {
+        return Quantification(amount: amount, unit: unit)
+    }
 }

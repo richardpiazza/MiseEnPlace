@@ -2,20 +2,20 @@ import Foundation
 
 /// ## Convertable
 /// Protocol specifying properties needing to be supplied for conversion.
-@available(*, deprecated)
+@available(*, deprecated, message: "Use `Proportioned` and `Quantifiable` protocols.")
 public protocol Convertable {
     var measurement: CookingMeasurement { get }
     var ratio: Ratio { get }
     var eachMeasurement: CookingMeasurement? { get }
 }
 
-@available(*, deprecated)
 public extension Convertable {
     /// Calculates the multiplier needed to convert from one `MeasurementMethod`
     /// to another `MeasurementMethod`.
     ///
     /// If the `MeasurementMethod` is .volume, a Weight/Volume calculation is made.
     /// If the `MeasurementMethod` is .weight, a Volume/Weight calculation is made.
+    @available(*, deprecated, message: "Use `Proportioned.multiplier(for:)`?")
     var conversionMultiplier: Double {
         guard ratio.volume > 0.0 && ratio.weight > 0.0 else {
             return 1.0
@@ -39,6 +39,7 @@ public extension Convertable {
     }
     
     /// Calculates the amount for a given unit.
+    @available(*, deprecated, message: "Use `Quantification.amount(for:..)`")
     func amount(for unit: MeasurementUnit) -> Double {
         guard measurement.amount > 0.0 else {
             return 0.0

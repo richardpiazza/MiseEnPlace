@@ -19,25 +19,25 @@ import Foundation
 ///
 /// ## Protocol Conformance
 ///
-/// _Unique_
+/// `Unique`
 /// ```swift
 /// var uuid: String { get set }
 /// var creationDate: Date { get set }
 /// var modificationDate: Date { get set }
 /// ```
 ///
-/// _Sequenced_
+/// `Sequenced`
 /// ```swift
 /// var sequence: Int { get set }
 /// ```
 ///
-/// _Measured_
+/// `Quantifiable`
 /// ```swift
 /// var amount: Double { get set }
 /// var unit: MeasurementUnit { get set }
 /// ```
 ///
-public protocol FormulaElement: Unique, Sequenced, Measured {
+public protocol FormulaElement: Unique, Sequenced, Quantifiable {
     var inverseRecipe: Recipe? { get set }
     var ingredient: Ingredient? { get set }
     var recipe: Recipe? { get set }

@@ -20,6 +20,10 @@ public protocol Proportioned {
 }
 
 public extension Proportioned {
+    var ratio: Ratio {
+        return Ratio(volume: volume, weight: weight)
+    }
+    
     /// Multiplier value to use when converting from `fromMethod` to `toMethod`
     func multiplier(from fromMethod: MeasurementMethod, to toMethod: MeasurementMethod) -> Double {
         switch (fromMethod, toMethod) {
@@ -32,8 +36,7 @@ public extension Proportioned {
         }
     }
     
-    /// Multiplier to use when converting measurements within the context
-    /// of s singal `Measured` element.
+    /// Multiplier to use when converting measurements within the context of s singal `Quantifiable` element.
     func multiplier(for method: MeasurementMethod) -> Double {
         switch method {
         case .volume:

@@ -16,26 +16,26 @@ import Foundation
 ///
 /// ## Protocol Conformance
 ///
-/// _Unique_
+/// `Unique`
 /// ```swift
 /// var uuid: String { get set }
 /// var creationDate: Date { get set }
 /// var modificationDate: Date { get set }
 /// ```
 ///
-/// _Descriptive_
+/// `Descriptive`
 /// ```swift
 /// var name: String? { get set }
 /// var commentary: String? { get set }
 /// var classification: String? { get set }
 /// ```
 ///
-/// _Multimedia_
+/// `Multimedia`
 /// ```swift
 /// var imagePath: String? { get set }
 /// ```
 ///
-/// _Measured_
+/// `Quantifiable`
 /// ```swift
 /// var amount: Double { get set }
 /// var unit: MeasurementUnit { get set }
@@ -43,13 +43,19 @@ import Foundation
 ///
 /// ## Notes:
 ///
-/// - The `Measured` conformance on a `Recipe` will represent the
+/// - The `Quantifiable` conformance on a `Recipe` will represent the
 /// _portion_ measurement. i.e. What is the equivalent measurement for one (1)
 /// portion of this `Recipe`?
 ///
-public protocol Recipe: Unique, Descriptive, Multimedia, Measured {
+public protocol Recipe: Unique, Descriptive, Multimedia, Quantifiable {
     var formulaElements: [FormulaElement] { get set }
     var procedureElements: [ProcedureElement] { get set }
+}
+
+public extension Recipe {
+    var portion: Quantification {
+        return Quantification(amount: amount, unit: unit)
+    }
 }
 
 // MARK: - Amount

@@ -1,16 +1,16 @@
 import Foundation
 
-/// A `Measured` amount and unit pairing.
+/// An amount and unit pairing.
 ///
 /// ## Protocol Conformance
 ///
-/// _Measured_
+/// `Quantifiable`
 /// ```swift
 /// var amount: Double { get set }
 /// var unit: MeasurementUnit { get set }
 /// ```
 ///
-public struct Quantification: Measured, Equatable {
+public struct Quantification: Quantifiable, Equatable {
     
     public var amount: Double = 0.0
     public var unit: MeasurementUnit = .each
@@ -23,9 +23,9 @@ public struct Quantification: Measured, Equatable {
         self.unit = unit
     }
     
-    public init(measured: Measured) {
-        self.amount = measured.amount
-        self.unit = measured.unit
+    public init(quantifiable: Quantifiable) {
+        self.amount = quantifiable.amount
+        self.unit = quantifiable.unit
     }
     
     public static func == (lhs: Quantification, rhs: Quantification) -> Bool {
