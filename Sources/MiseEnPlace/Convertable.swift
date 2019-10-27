@@ -129,6 +129,7 @@ public extension Convertable {
     ///
     /// All `MeasurementUnit`s of a given system are tested, and the unit having
     /// the multiplied total within its stepUp and stepDown range will be returned.
+    @available(*, deprecated, message: "Use `FormulaElement.scale(by:...)`")
     func scale(by multiplier: Double, measurementSystemMethod: MeasurementSystemMethod) -> CookingMeasurement {
         guard measurement.unit != .asNeeded else {
             return measurement
@@ -176,6 +177,7 @@ public extension Convertable {
     /// Wrapper for scale(by:measurementSystemMethod:)
     /// Determines the `MeasurementSystemMethod` based on the `MeasurementSystem` and
     /// `MeasurementMethod` provided.
+    @available(*, deprecated, message: "Use `FormulaElement.scale(by:...)`")
     func scale(by multiplier: Double, measurementSystem: MeasurementSystem?, measurementMethod: MeasurementMethod?) -> CookingMeasurement {
         if measurementSystem == .numeric || measurementMethod == .quantity {
             return scale(by: multiplier, measurementSystemMethod: .numericQuantity)
@@ -246,6 +248,7 @@ public extension Convertable {
     }
     
     /// Wrapper for scale(by:measurementSystem:measurementMethod)
+    @available(*, deprecated, message: "Use `FormulaElement.scale(by:...)`")
     func scale(with parameters: ScaleParameters) -> CookingMeasurement {
         return scale(by: parameters.multiplier, measurementSystem: parameters.measurementSystem, measurementMethod: parameters.measurementMethod)
     }

@@ -9,6 +9,7 @@
 import Foundation
 import MiseEnPlace
 
+@available(*, deprecated, message: "Use `TestIngredient`")
 open class ConvertableIngredient : Convertable {
     open var measurement = CookingMeasurement(amount: 0.0, unit: .asNeeded)
     open var ratio: Ratio = Ratio(volume: 1, weight: 1)

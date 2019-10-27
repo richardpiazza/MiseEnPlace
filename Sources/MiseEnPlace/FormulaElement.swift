@@ -44,87 +44,110 @@ public protocol FormulaElement: Unique, Sequenced, Quantifiable {
 }
 
 public extension FormulaElement {
-    /// Translates the measurement to a different unit.
-    /// Neither the self.unit nor specified unit can be .asNeeded.
+    /// Translates the measurement to a different unit. Neither the `unit` nor specified `destinationUnit` can be .asNeeded.
     ///
-    /// - parameter unit: The unit to convert to.
-    ///
-    /// - throws: Error.asNeededConversion, Error.measurementAmount(), Error.quantifiableConversion, Error.unhandledConversion
-    func amount(for unit: MeasurementUnit) throws -> Double {
-        guard self.unit != .asNeeded else {
+    /// - parameter destinationUnit: The unit to convert to.
+    /// - throws: `MiseEnPlaceError`
+    func amount(for destinationUnit: MeasurementUnit) throws -> Double {
+        guard unit != .asNeeded else {
             throw MiseEnPlaceError.asNeededConversion
         }
         
         if let ingredient = self.ingredient {
-            guard unit != .asNeeded else {
+            guard destinationUnit != .asNeeded else {
                 throw MiseEnPlaceError.asNeededConversion
             }
             
-            guard self.amount > 0.0 else {
+            guard amount > 0.0 else {
                 throw MiseEnPlaceError.measurementAmount(method: nil)
             }
             
-            if (self.unit == .each || unit == .each) && !ingredient.quantification.unit.isQuantifiable {
+            if (unit == .each || destinationUnit == .each) && !ingredient.quantification.unit.isQuantifiable {
                 throw MiseEnPlaceError.quantifiableConversion
             }
             
-            switch (self.unit.measurementSystemMethod, unit.measurementSystemMethod) {
+            switch (unit.measurementSystemMethod, destinationUnit.measurementSystemMethod) {
             case (.numericQuantity, .numericQuantity):
-                return self.amount
+                return amount
             case (.numericQuantity, .usVolume), (.numericQuantity, .usWeight), (.numericQuantity, .metricVolume), (.numericQuantity, .metricWeight):
                 let quantifiableMeasurement = ingredient.quantification
-                let equivalentMeasurement = Quantification(amount: quantifiableMeasurement.amount * self.amount, unit: quantifiableMeasurement.unit)
-                let multiplier = ingredient.multiplier(from: self.unit.measurementMethod, to: unit.measurementMethod)
-                let equivalentAmount = try equivalentMeasurement.amount(for: unit, conversionMultiplier: multiplier)
+                let equivalentMeasurement = Quantification(amount: quantifiableMeasurement.amount * amount, unit: quantifiableMeasurement.unit)
+                let multiplier = ingredient.multiplier(from: unit.measurementMethod, to: destinationUnit.measurementMethod)
+                let equivalentAmount = try equivalentMeasurement.amount(for: destinationUnit, conversionMultiplier: multiplier)
                 return equivalentAmount
             case (.usVolume, .numericQuantity), (.usWeight, .numericQuantity), (.metricVolume, .numericQuantity), (.metricWeight, .numericQuantity):
                 let quantifiableMeasurement = ingredient.quantification
-                let multiplier = ingredient.multiplier(from: self.unit.measurementMethod, to: unit.measurementMethod)
+                let multiplier = ingredient.multiplier(from: unit.measurementMethod, to: destinationUnit.measurementMethod)
                 let equivalentAmount = try quantification.amount(for: quantifiableMeasurement.unit, conversionMultiplier: multiplier)
                 return equivalentAmount / quantifiableMeasurement.amount
             case (.usVolume, .usVolume), (.usWeight, .usWeight), (.metricVolume, .metricVolume), (.metricWeight, .metricWeight):
-                return try quantification.amount(for: unit)
+                return try quantification.amount(for: destinationUnit)
             default:
                 let multiplier: Double
-                if self.unit.measurementMethod == .volume && unit.measurementMethod == .weight {
+                if unit.measurementMethod == .volume && destinationUnit.measurementMethod == .weight {
                     multiplier = ingredient.multiplier(for: .volume)
                 } else {
                     multiplier = ingredient.multiplier(for: .weight)
                 }
-                return try quantification.amount(for: unit, conversionMultiplier: multiplier)
+                return try quantification.amount(for: destinationUnit, conversionMultiplier: multiplier)
             }
         } else if let recipe = self.recipe {
             guard unit != .asNeeded else {
                 throw MiseEnPlaceError.asNeededConversion
             }
             
-            guard self.amount > 0.0 else {
+            guard amount > 0.0 else {
                 throw MiseEnPlaceError.measurementAmount(method: nil)
             }
             
-            if (self.unit == .each || unit == .each) && !recipe.quantification.unit.isQuantifiable {
+            if (unit == .each || destinationUnit == .each) && !recipe.quantification.unit.isQuantifiable {
                 throw MiseEnPlaceError.quantifiableConversion
             }
             
-            return recipe.totalAmount(for: unit)
+            return recipe.totalAmount(for: destinationUnit)
         }
         
         throw MiseEnPlaceError.unhandledConversion
     }
-}
-
-internal extension FormulaElement {
+    
+    /// Scales the 'measured' amount of either the `ingredient` or `recipe`.
+    ///
+    /// - parameter multiplier:
+    /// - parameter measurementSystem:
+    /// - parameter measurementMethod:
+    /// - throws: `MiseEnPlaceError`
     func scale(by multiplier: Double, measurementSystem: MeasurementSystem? = nil, measurementMethod: MeasurementMethod? = nil) throws -> Quantification {
-        guard self.unit != .asNeeded else {
+        guard unit != .asNeeded else {
             throw MiseEnPlaceError.asNeededConversion
         }
         
-        guard self.amount > 0.0 else {
-            throw MiseEnPlaceError.measurementAmount(method: nil)
+        guard !amount.isNaN && amount > 0.0 else {
+            throw MiseEnPlaceError.nanZeroConversion
         }
         
         if let ingredient = self.ingredient {
-            if self.unit == .each {
+            switch (unit, measurementSystem, measurementMethod) {
+            case (_, .none, .none), (.each, .numeric, .quantity):
+                return Quantification(amount: amount * multiplier, unit: unit)
+            case (_, .numeric, .quantity):
+                guard ingredient.unit.isQuantifiable else {
+                    throw MiseEnPlaceError.quantifiableConversion
+                }
+                
+                let eachUnitTotalAmount = try amount(for: ingredient.eachQuantification.unit)
+                let scaledEachTotalAmount = eachUnitTotalAmount / ingredient.eachQuantification.amount
+                return Quantification(amount: scaledEachTotalAmount, unit: .each)
+            case (.each, _, _):
+                guard ingredient.unit.isQuantifiable else {
+                    throw MiseEnPlaceError.quantifiableConversion
+                }
+                
+                break
+            default:
+                break
+            }
+            
+            if unit == .each {
                 guard ingredient.unit.isQuantifiable else {
                     throw MiseEnPlaceError.quantifiableConversion
                 }
@@ -159,4 +182,79 @@ internal extension FormulaElement {
         
         throw MiseEnPlaceError.unhandledConversion
     }
+}
+
+internal extension FormulaElement {
+//    func scale(by multiplier: Double, measurementSystem: MeasurementSystem? = nil, measurementMethod: MeasurementMethod? = nil) throws -> Quantification {
+//        guard unit != .asNeeded else {
+//            throw MiseEnPlaceError.asNeededConversion
+//        }
+//
+//        guard !amount.isNaN && amount > 0.0 else {
+//            throw MiseEnPlaceError.nanZeroConversion
+//        }
+//
+//        if let ingredient = self.ingredient {
+//            switch (unit, measurementSystem, measurementMethod) {
+//            case (_, .none, .none):
+//                let totalAmount = try amount(for: unit)
+//                let totalMeasurement = Quantification(amount: totalAmount * amount, unit: unit)
+//                return try totalMeasurement.normalizedMeasurement()
+//            case (.each, .numeric, .quantity):
+//                return Quantification(amount: amount * multiplier, unit: unit)
+//            case (_, .numeric, .quantity):
+//                guard ingredient.unit.isQuantifiable else {
+//                    throw MiseEnPlaceError.quantifiableConversion
+//                }
+//
+//                let eachQuantification = ingredient.eachQuantification
+//                let unitQuantification = try amount(for: eachQuantification.unit)
+//                return Quantification(amount: unitQuantification / eachQuantification.amount, unit: .each)
+//            case (_, .us, .volume):
+//                break
+//            case (_, .us, .weight):
+//                break
+//            case (_, .metric, .volume):
+//                break
+//            case (_, .metric, .weight):
+//                break
+//            default:
+//                break
+//            }
+//
+//            if unit == .each {
+//                guard ingredient.unit.isQuantifiable else {
+//                    throw MiseEnPlaceError.quantifiableConversion
+//                }
+//
+//                let quantifiableMeasurement = ingredient.quantification
+//                let equivalentMeasurement = Quantification(amount: quantifiableMeasurement.amount * amount, unit: quantifiableMeasurement.unit)
+//
+//                return try equivalentMeasurement.normalizedMeasurement()
+//            }
+//
+//            let totalAmount = try amount(for: unit)
+//            let totalMeasurement = Quantification(amount: totalAmount * amount, unit: unit)
+//
+//            return try totalMeasurement.normalizedMeasurement()
+//        } else if let recipe = self.recipe {
+//            if unit == .each {
+//                guard recipe.unit.isQuantifiable else {
+//                    throw MiseEnPlaceError.quantifiableConversion
+//                }
+//
+//                var totalMeasurement = recipe.totalQuantification
+//                totalMeasurement.amount = totalMeasurement.amount * multiplier
+//
+//                return try totalMeasurement.normalizedMeasurement()
+//            }
+//
+//            let totalAmount = recipe.totalAmount(for: unit)
+//            let totalMeasurement = Quantification(amount: totalAmount * amount, unit: unit)
+//
+//            return try totalMeasurement.normalizedMeasurement()
+//        }
+//
+//        throw MiseEnPlaceError.unhandledConversion
+//    }
 }

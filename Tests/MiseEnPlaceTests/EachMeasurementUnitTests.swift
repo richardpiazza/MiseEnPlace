@@ -1,84 +1,108 @@
-//
-//  EachMeasurementUnitTests.swift
-//  MiseEnPlace
-//
-//  Created by Richard Piazza on 1/20/17.
-//  Copyright © 2017 Richard Piazza. All rights reserved.
-//
-
-import Foundation
 import XCTest
-import MiseEnPlace
+@testable import MiseEnPlace
 
 class EachMeasurementUnitTests: XCTestCase {
-    var egg: ConvertableIngredient = ConvertableIngredient()
-    var eggWhite: ConvertableIngredient = ConvertableIngredient()
-    var eggYolk: ConvertableIngredient = ConvertableIngredient()
     
-    override func setUp() {
-        super.setUp()
+    #if !os(macOS) && !os(iOS) && !os(tvOS) && !os(watchOS)
+    static var allTests = [
+        ("testCup", testCup),
+        ("testPint", testPint),
+        ("testQuart", testQuart),
+        ("testGallon", testGallon),
+        ("testPound", testPound),
+    ]
+    #endif
+    
+    private lazy var egg: TestIngredient = {
+        var ingredient = TestIngredient()
+        ingredient.eachQuantification = Quantification(amount: 50, unit: .gram)
+        return ingredient
+    }()
+    
+    private lazy var eggWhite: TestIngredient = {
+        var ingredient = TestIngredient()
+        ingredient.eachQuantification = Quantification(amount: 25, unit: .gram)
+        return ingredient
+    }()
+    
+    private lazy var eggYolk: TestIngredient = {
+        var ingredient = TestIngredient()
+        ingredient.eachQuantification = Quantification(amount: 25, unit: .gram)
+        return ingredient
+    }()
+    
+    private lazy var measuredEgg: TestMeasuredIngredient = {
+        let measuredIngredient = TestMeasuredIngredient()
+        measuredIngredient.ingredient = egg
+        return measuredIngredient
+    }()
+    
+    private lazy var measuredEggWhite: TestMeasuredIngredient = {
+        let measuredIngredient = TestMeasuredIngredient()
+        measuredIngredient.ingredient = eggWhite
+        return measuredIngredient
+    }()
+    
+    private lazy var measuredEggYolk: TestMeasuredIngredient = {
+        let measuredIngredient = TestMeasuredIngredient()
+        measuredIngredient.ingredient = eggYolk
+        return measuredIngredient
+    }()
+    
+    func testEgg() throws {
+        measuredEgg.amount = 4
+        measuredEgg.unit = .each
         
-        egg.eachMeasurement = CookingMeasurement(amount: 50, unit: .gram)
-        eggWhite.eachMeasurement = CookingMeasurement(amount: 25, unit: .gram)
-        eggYolk.eachMeasurement = CookingMeasurement(amount: 25, unit: .gram)
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testEgg() {
-        egg.measurement.amount = 4
-        egg.measurement.unit = .each
-        
-        var interpretation = egg.measurement.componentsTranslation
+        var interpretation = measuredEgg.quantification.componentsTranslation
         XCTAssertEqual(interpretation, "4 Each")
         
-        var scaleMeasure = egg.scale(by: 2.0, measurementSystemMethod: .numericQuantity)
+        var scaleMeasure = try measuredEgg.scale(by: 2.0, measurementSystem: .numeric, measurementMethod: .quantity)
         XCTAssertEqual(scaleMeasure.amount, 8)
         XCTAssertEqual(scaleMeasure.unit, .each)
         
         interpretation = scaleMeasure.componentsTranslation
         XCTAssertEqual(interpretation, "8 Each")
         
-        scaleMeasure = egg.scale(by: 1.0, measurementSystemMethod: .metricWeight)
+        scaleMeasure = try measuredEgg.scale(by: 1.0, measurementSystem: .metric, measurementMethod: .weight)
         XCTAssertEqual(scaleMeasure.amount, 200)
         XCTAssertEqual(scaleMeasure.unit, .gram)
         
         interpretation = scaleMeasure.componentsTranslation
         XCTAssertEqual(interpretation, "200 Gram")
         
-        egg.measurement.amount = 200
-        egg.measurement.unit = .gram
+        measuredEgg.amount = 200
+        measuredEgg.unit = .gram
         
-        scaleMeasure = egg.scale(by: 1.0, measurementSystemMethod: .numericQuantity)
+        scaleMeasure = try measuredEgg.scale(by: 1.0, measurementSystem: .numeric, measurementMethod: .quantity)
         XCTAssertEqual(scaleMeasure.amount, 4)
         XCTAssertEqual(scaleMeasure.unit, .each)
     }
     
-    func testEggWhite() {
-        eggWhite.measurement.amount = 8
-        eggWhite.measurement.unit = .fluidOunce
+    func testEggWhite() throws {
+        measuredEggWhite.amount = 8
+        measuredEggWhite.unit = .fluidOunce
         
-        let interpretation = eggWhite.measurement.componentsTranslation
+        let interpretation = measuredEggWhite.quantification.componentsTranslation
         XCTAssertEqual(interpretation, "8 Fluid Ounce")
         
-        let scaleMeasure = eggWhite.scale(by: 1.0, measurementSystem: .numeric, measurementMethod: .quantity)
+        let scaleMeasure = try measuredEggWhite.scale(by: 1.0, measurementSystem: .numeric, measurementMethod: .quantity)
         XCTAssertTrue(scaleMeasure.amount.equals(9.07, precision: 2))
         XCTAssertEqual(scaleMeasure.unit, .each)
     }
     
-    func testEggYolk() {
-        eggYolk.eachMeasurement = nil
-        eggYolk.measurement.amount = 4
-        eggYolk.measurement.unit = .each
+    func testEggYolk() throws {
+        measuredEggYolk.amount = 4.0
+        measuredEggYolk.unit = .each
         
-        let interpretation = eggYolk.measurement.componentsTranslation
+        let interpretation = measuredEggYolk.quantification.componentsTranslation
         XCTAssertEqual(interpretation, "4 Each")
         
-        let scaleMeasure = eggYolk.scale(with: ScaleParameters(multiplier: 3.0, measurementSystem: .metric, measurementMethod: .weight))
+        var scaleMeasure = try measuredEggYolk.scale(by: 3.0, measurementSystem: nil, measurementMethod: nil)
         XCTAssertEqual(scaleMeasure.amount, 12)
         XCTAssertEqual(scaleMeasure.unit, .each)
+        
+        scaleMeasure = try measuredEggYolk.scale(by: 3.0, measurementSystem: .metric, measurementMethod: .weight)
+        XCTAssertEqual(scaleMeasure.amount, 100)
+        XCTAssertEqual(scaleMeasure.unit, .gram)
     }
 }

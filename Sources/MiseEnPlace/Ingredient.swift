@@ -49,6 +49,12 @@ public protocol Ingredient: Unique, Descriptive, Multimedia, Proportioned, Quant
 
 public extension Ingredient {
     var eachQuantification: Quantification {
-        return Quantification(amount: amount, unit: unit)
+        get {
+            return Quantification(amount: amount, unit: unit)
+        }
+        set {
+            amount = newValue.amount
+            unit = newValue.unit
+        }
     }
 }
