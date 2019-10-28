@@ -44,18 +44,18 @@ class ConfigurationTests: XCTestCase {
     func testFluidOunceMilliliter() {
         let current = Configuration.useLooseConversions
         Configuration.useLooseConversions = false
-        XCTAssertEqual(Configuration.fluidOunceMilliliter, Configuration.preciseFluidOunceMilliliter)
+        XCTAssertEqual(Configuration.millilitersPerFluidOunce, Configuration.preciseMillilitersPerFluidOunce)
         Configuration.useLooseConversions = true
-        XCTAssertEqual(Configuration.fluidOunceMilliliter, Configuration.looseFluidOunceMilliliter)
+        XCTAssertEqual(Configuration.millilitersPerFluidOunce, Configuration.looseMillilitersPerFluidOunce)
         Configuration.useLooseConversions = current
     }
     
     func testOunceGram() {
         let current = Configuration.useLooseConversions
         Configuration.useLooseConversions = false
-        XCTAssertEqual(Configuration.ounceGram, Configuration.preciseOunceGram)
+        XCTAssertEqual(Configuration.gramsPerOunce, Configuration.preciseGramsPerOunce)
         Configuration.useLooseConversions = true
-        XCTAssertEqual(Configuration.ounceGram, Configuration.looseOunceGram)
+        XCTAssertEqual(Configuration.gramsPerOunce, Configuration.looseGramsPerOunce)
         Configuration.useLooseConversions = current
     }
     
@@ -63,12 +63,12 @@ class ConfigurationTests: XCTestCase {
         let current = Configuration.locale
         
         Configuration.locale = us
-        var smallMeasurement = Configuration.smallMeasurement
+        var smallMeasurement = Quantification.small
         XCTAssertEqual(smallMeasurement.amount, 1.0)
         XCTAssertEqual(smallMeasurement.unit, .ounce)
         
         Configuration.locale = gb
-        smallMeasurement = Configuration.smallMeasurement
+        smallMeasurement = Quantification.small
         XCTAssertEqual(smallMeasurement.amount, 100.0)
         XCTAssertEqual(smallMeasurement.unit, .gram)
         
@@ -79,12 +79,12 @@ class ConfigurationTests: XCTestCase {
         let current = Configuration.locale
         
         Configuration.locale = us
-        var measurement = Configuration.largeMeasurement
+        var measurement = Quantification.large
         XCTAssertEqual(measurement.amount, 1.0)
         XCTAssertEqual(measurement.unit, .pound)
         
         Configuration.locale = gb
-        measurement = Configuration.largeMeasurement
+        measurement = Quantification.large
         XCTAssertEqual(measurement.amount, 1.0)
         XCTAssertEqual(measurement.unit, .kilogram)
         

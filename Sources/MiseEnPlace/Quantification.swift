@@ -42,145 +42,48 @@ public struct Quantification: Quantifiable, Equatable {
 }
 
 public extension Quantification {
-    /// Converts an amount from one `MeasurementUnit` to another `MeasurementUnit`
-    /// within the same `MeasurementSystemMethod`
+    /// A measurement typical of a 'small' portion size
+    static var small: Quantification {
+        return Configuration.locale.usesMetricSystem ? Quantification(amount: 100.0, unit: .gram) : Quantification(amount: 1.0, unit: .ounce)
+    }
+
+    /// A measurement typical of a 'large' portion size
+    static var large: Quantification {
+        return Configuration.locale.usesMetricSystem ? Quantification(amount: 1.0, unit: .kilogram) : Quantification(amount: 1.0, unit: .pound)
+    }
+}
+
+public extension Quantification {
+    /// Converts an amount from one `MeasurementUnit` to another `MeasurementUnit` within the same `MeasurementSystemMethod`.
+    ///
+    /// This is a recursive algorithm
     ///
     /// - parameter unit: The `MeasurementUnit` to convert to.
-    /// - parameter conversionMultiplier: A multipler used to convert between measurement systems & methods.
-    ///
-    /// - throws: Error.measurementAmount(), Error.measurementUnit()
-    ///
-    func amount(for unit: MeasurementUnit, conversionMultiplier: Double? = nil) throws -> Double {
-        guard self.amount > 0.0 else {
-            throw MiseEnPlaceError.measurementAmount(method: nil)
-        }
-        
-        guard self.unit.measurementSystemMethod != .numericQuantity else {
-            throw MiseEnPlaceError.measurementUnit(method: nil)
+    /// - parameter ratio: A multipler used to convert between measurement systems & methods.
+    /// - throws: `MiseEnPlaceError`
+    func amount(for destinationUnit: MeasurementUnit, ratio: Ratio? = nil) throws -> Double {
+        guard !amount.isNaN && amount > 0.0 else {
+            throw MiseEnPlaceError.nanZeroConversion
         }
         
         guard unit.measurementSystemMethod != .numericQuantity else {
             throw MiseEnPlaceError.measurementUnit(method: nil)
         }
         
-        guard self.unit.measurementSystemMethod == unit.measurementSystemMethod else {
-            guard let multiplier = conversionMultiplier else {
-                throw MiseEnPlaceError.measurementUnit(method: nil)
-            }
-            
-            // Translate to the desired unit
-            // First: `MeasurementSystem`
-            // Than: `MeasurementMethod`
-            
-            switch self.unit.measurementSystemMethod {
-            case .usVolume:
-                let fluidOunce = try quantification.amount(for: .fluidOunce)
-                
-                switch unit.measurementSystemMethod {
-                case .usWeight:
-                    let ounce = fluidOunce * multiplier
-                    return try Quantification(amount: ounce, unit: .ounce).amount(for: unit)
-                case .metricVolume:
-                    let milliliter = fluidOunce * Configuration.fluidOunceMilliliter
-                    return try Quantification(amount: milliliter, unit: .milliliter).amount(for: unit)
-                case .metricWeight:
-                    let milliliter = fluidOunce * Configuration.fluidOunceMilliliter
-                    let gram = milliliter * multiplier
-                    return try Quantification(amount: gram, unit: .gram).amount(for: unit)
-                default:
-                    break
-                }
-            case .usWeight:
-                let ounce = try quantification.amount(for: .ounce)
-                
-                switch unit.measurementSystemMethod {
-                case .usVolume:
-                    let fluidOunce = ounce * multiplier
-                    return try Quantification(amount: fluidOunce, unit: .fluidOunce).amount(for: unit)
-                case .metricVolume:
-                    let gram = ounce * Configuration.ounceGram
-                    let milliliter = gram * multiplier
-                    return try Quantification(amount: milliliter, unit: .milliliter).amount(for: unit)
-                case .metricWeight:
-                    let gram = ounce * Configuration.ounceGram
-                    return try Quantification(amount: gram, unit: .gram).amount(for: unit)
-                default:
-                    break
-                }
-            case .metricVolume:
-                let milliliter = try quantification.amount(for: .milliliter)
-                
-                switch unit.measurementSystemMethod {
-                case .metricWeight:
-                    let gram = milliliter * multiplier // * ?? /
-                    return try Quantification(amount: gram, unit: .gram).amount(for: unit)
-                case .usVolume:
-                    let fluidOunce = milliliter / Configuration.fluidOunceMilliliter
-                    return try Quantification(amount: fluidOunce, unit: .fluidOunce).amount(for: unit)
-                case .usWeight:
-                    let fluidOunce = milliliter / Configuration.fluidOunceMilliliter
-                    let ounce = fluidOunce * multiplier
-                    return try Quantification(amount: ounce, unit: .ounce).amount(for: unit)
-                default:
-                    break
-                }
-            case .metricWeight:
-                let gram = try quantification.amount(for: .gram)
-                
-                switch unit.measurementSystemMethod {
-                case .metricVolume:
-                    let milliliter = gram * multiplier // * ?? /
-                    return try Quantification(amount: milliliter, unit: .milliliter).amount(for: unit)
-                case .usVolume:
-                    let ounce = gram / Configuration.ounceGram
-                    let fluidOunce = ounce * multiplier
-                    return try Quantification(amount: fluidOunce, unit: .fluidOunce).amount(for: unit)
-                case .usWeight:
-                    let ounce = gram / Configuration.ounceGram
-                    return try Quantification(amount: ounce, unit: .ounce).amount(for: unit)
-                default:
-                    break
-                }
-            default:
-                break
-            }
-            
+        guard destinationUnit.measurementSystemMethod != .numericQuantity else {
             throw MiseEnPlaceError.measurementUnit(method: nil)
         }
         
-        var currentIndex = -1
-        var goalIndex = -1
-        
-        let measurementUnits = MeasurementUnit.measurementUnits(forMeasurementSystemMethod: unit.measurementSystemMethod)
-        
-        for (index, mu) in measurementUnits.enumerated() {
-            if mu == self.unit {
-                currentIndex = index
-            }
-            if mu == unit {
-                goalIndex = index
-            }
+        if unit.measurementSystemMethod == destinationUnit.measurementSystemMethod {
+            return try convertAmount(to: destinationUnit)
         }
         
-        guard currentIndex != goalIndex else {
-            return self.amount
+        guard let ratio = ratio else {
+            throw MiseEnPlaceError.measurementUnit(method: nil)
         }
         
-        var stepDirection = 0
-        var nextValue = self.amount
-        
-        if goalIndex - currentIndex > 0 {
-            stepDirection = 1
-            nextValue = self.amount * self.unit.stepUpMultiplier
-        } else {
-            stepDirection = -1
-            nextValue = self.amount / self.unit.stepDownMultiplier
-        }
-        
-        let nextIndex = currentIndex + stepDirection
-        let nextUnit = measurementUnits[nextIndex]
-        
-        return try Quantification(amount: nextValue, unit: nextUnit).amount(for: unit)
+        let quantification = try requantify(in: destinationUnit.measurementSystemMethod, ratio: ratio)
+        return try quantification.convertAmount(to: destinationUnit)
     }
     
     /// Calculates the best matching measurement amount and unit that matches the
@@ -312,6 +215,152 @@ public extension Quantification {
 }
 
 private extension Quantification {
+    /// Converts the amount to another `MeasurementUnit` within the same `MeasurementSystemMethod`.
+    ///
+    /// - parameter unit: The `MeasurementUnit` to convert to.
+    /// - throws: `MiseEnPlaceError`
+    func convertAmount(to destinationUnit: MeasurementUnit) throws -> Double {
+        guard !amount.isNaN && amount > 0.0 else {
+            throw MiseEnPlaceError.nanZeroConversion
+        }
+        
+        guard unit.measurementSystemMethod == destinationUnit.measurementSystemMethod else {
+            throw MiseEnPlaceError.unhandledConversion
+        }
+        
+        var currentIndex = -1
+        var goalIndex = -1
+        
+        let measurementUnits = MeasurementUnit.measurementUnits(forMeasurementSystemMethod: destinationUnit.measurementSystemMethod)
+        
+        for (index, measurementUnit) in measurementUnits.enumerated() {
+            if measurementUnit == unit {
+                currentIndex = index
+            }
+            if measurementUnit == destinationUnit {
+                goalIndex = index
+            }
+        }
+        
+        guard currentIndex != goalIndex else {
+            return amount
+        }
+        
+        var stepDirection = 0
+        var nextValue = amount
+        
+        if goalIndex - currentIndex > 0 {
+            stepDirection = 1
+            nextValue = amount * unit.stepUpMultiplier
+        } else {
+            stepDirection = -1
+            nextValue = amount / unit.stepDownMultiplier
+        }
+        
+        let nextIndex = currentIndex + stepDirection
+        let nextUnit = measurementUnits[nextIndex]
+        
+        return try Quantification(amount: nextValue, unit: nextUnit).convertAmount(to: destinationUnit)
+    }
+    
+    /// Re-quantifies this `Quantification` in terms of another `MeasurementSytemMethod`.
+    ///
+    /// Recursive algorithm. The output from the requantification may not be in the final unit desired. See `convertAmount(to:)` for more infromation.
+    ///
+    /// - parameter destinationMeasurementSystemMethod: The output `MeasurementSystemMethod`
+    /// - parameter ratio: Ratio used during measurement method calculations (i.e. weight > volume / volume > weight)
+    /// - parameter methodFirst: [default true] Determines the order of operations. Wether `MeasurementMethod` or `MeasurementSystem`
+    ///                             calculations are performed before the other.
+    /// - throws: `MiseEnPlaceError`
+    func requantify(in destinationMeasurementSystemMethod: MeasurementSystemMethod, ratio: Ratio) throws -> Quantification {
+        guard unit.measurementSystemMethod != destinationMeasurementSystemMethod else {
+            return self
+        }
+        
+        switch (unit.measurementSystemMethod, destinationMeasurementSystemMethod) {
+        case (.usVolume, .usWeight):
+            let fluidOunce = try convertAmount(to: .fluidOunce)
+            let ounce = fluidOunce * ratio.multiplier(converting: .volume, to: .weight)
+            return Quantification(amount: ounce, unit: .ounce)
+        case (.usVolume, .metricVolume):
+            let fluidOunce = try convertAmount(to: .fluidOunce)
+            let milliliter = fluidOunce * Configuration.millilitersPerFluidOunce
+            return Quantification(amount: milliliter, unit: .milliliter)
+        case (.usVolume, .metricWeight):
+            switch Configuration.conversionOrder {
+            case .methodThanSystem:
+                let fluidOunce = try convertAmount(to: .fluidOunce)
+                let ounce = fluidOunce * ratio.multiplier(converting: .volume, to: .weight)
+                return try Quantification(amount: ounce, unit: .ounce).requantify(in: destinationMeasurementSystemMethod, ratio: ratio)
+            case .systemThanMethod:
+                let fluidOunce = try convertAmount(to: .fluidOunce)
+                let milliliter = fluidOunce * Configuration.millilitersPerFluidOunce
+                return try Quantification(amount: milliliter, unit: .milliliter).requantify(in: destinationMeasurementSystemMethod, ratio: ratio)
+            }
+        case (.usWeight, .usVolume):
+            let ounce = try convertAmount(to: .ounce)
+            let fluidOunce = ounce * ratio.multiplier(converting: .weight, to: .volume)
+            return Quantification(amount: fluidOunce, unit: .fluidOunce)
+        case (.usWeight, .metricVolume):
+            switch Configuration.conversionOrder {
+            case .methodThanSystem:
+                let ounce = try convertAmount(to: .ounce)
+                let fluidOunce = ounce * ratio.multiplier(converting: .weight, to: .volume)
+                return try Quantification(amount: fluidOunce, unit: .fluidOunce).requantify(in: destinationMeasurementSystemMethod, ratio: ratio)
+            case .systemThanMethod:
+                let ounce = try convertAmount(to: .ounce)
+                let gram = ounce / Configuration.gramsPerOunce
+                return try Quantification(amount: gram, unit: .gram).requantify(in: destinationMeasurementSystemMethod, ratio: ratio)
+            }
+        case (.usWeight, .metricWeight):
+            let ounce = try convertAmount(to: .ounce)
+            let gram = ounce / Configuration.gramsPerOunce
+            return Quantification(amount: gram, unit: .gram)
+        case (.metricVolume, .metricWeight):
+            let milliliter = try convertAmount(to: .milliliter)
+            let gram = milliliter * ratio.multiplier(converting: .volume, to: .weight)
+            return Quantification(amount: gram, unit: .gram)
+        case (.metricVolume, .usVolume):
+            let milliliter = try convertAmount(to: .milliliter)
+            let fluidOunce = milliliter / Configuration.millilitersPerFluidOunce
+            return Quantification(amount: fluidOunce, unit: .fluidOunce)
+        case (.metricVolume, .usWeight):
+            switch Configuration.conversionOrder {
+            case .methodThanSystem:
+                let milliliter = try convertAmount(to: .milliliter)
+                let gram = milliliter * ratio.multiplier(converting: .volume, to: .weight)
+                return try Quantification(amount: gram, unit: .gram).requantify(in: destinationMeasurementSystemMethod, ratio: ratio)
+            case .systemThanMethod:
+                let milliliter = try convertAmount(to: .milliliter)
+                let fluidOunce = milliliter / Configuration.millilitersPerFluidOunce
+                return try Quantification(amount: fluidOunce, unit: .fluidOunce).requantify(in: destinationMeasurementSystemMethod, ratio: ratio)
+            }
+        case (.metricWeight, .metricVolume):
+            let gram = try convertAmount(to: .gram)
+            let milliliter = gram * ratio.multiplier(converting: .weight, to: .volume)
+            return Quantification(amount: milliliter, unit: .gram)
+        case (.metricWeight, .usVolume):
+            switch Configuration.conversionOrder {
+            case .methodThanSystem:
+                let gram = try convertAmount(to: .gram)
+                let milliliter = gram * ratio.multiplier(converting: .weight, to: .volume)
+                return try Quantification(amount: milliliter, unit: .gram).requantify(in: destinationMeasurementSystemMethod, ratio: ratio)
+            case .systemThanMethod:
+                let gram = try convertAmount(to: .gram)
+                let ounce = gram / Configuration.gramsPerOunce
+                return try Quantification(amount: ounce, unit: .ounce).requantify(in: destinationMeasurementSystemMethod, ratio: ratio)
+            }
+        case (.metricWeight, .usWeight):
+            let gram = try convertAmount(to: .gram)
+            let ounce = gram / Configuration.gramsPerOunce
+            return Quantification(amount: ounce, unit: .ounce)
+        default:
+            break
+        }
+        
+        throw MiseEnPlaceError.measurementUnit(method: nil)
+    }
+    
     func metricTranslation(abbreviated: Bool) -> String {
         let unitName = unit.name(abbreviated: abbreviated)
         

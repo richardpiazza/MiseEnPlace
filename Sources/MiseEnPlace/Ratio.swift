@@ -15,6 +15,18 @@ public struct Ratio {
         self.weight = weight
     }
     
+    /// Conversion factor to used when going from one `MeasurementMethod` to another `MeasurementMethod`.
+    public func multiplier(converting from: MeasurementMethod, to: MeasurementMethod) -> Double {
+        switch (from, to) {
+        case (.volume, .weight):
+            return volume / weight
+        case (.weight, .volume):
+            return weight / volume
+        default:
+            return 1.0
+        }
+    }
+    
     fileprivate struct RatioIngredient: Ingredient {
         var uuid: String = UUID().uuidString
         var creationDate: Date = Date()

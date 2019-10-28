@@ -3,10 +3,32 @@ import Foundation
 /// _MiseEnPlace_ Congifuration Variables
 public struct Configuration {
     
-    internal static let looseOunceGram: Double = 30.0
-    internal static let preciseOunceGram: Double = 28.349523
-    internal static let looseFluidOunceMilliliter: Double = 30.0
-    internal static let preciseFluidOunceMilliliter: Double = 29.573529
+    /// Ways in which `MeasurementSystemMethod` conversions can take place
+    public enum ConversionOrder {
+        /// `MeasurementMethod` than `MeasurementSystem`.
+        ///
+        /// In the example converting from 'cup' to 'kilograms':
+        /// * amount as US Volume
+        /// * amount as US Weight
+        /// * amount as Metric Weight
+        case methodThanSystem
+        /// `MeasurementSystem` than `MeasurementMethod`.
+        ///
+        /// In the example converting from 'cup' to 'kilograms':
+        /// * amount as US Volume
+        /// * amount as Metric Volume
+        /// * amount as Metric Weight
+        case systemThanMethod
+    }
+    
+    /// The _loose_ number of 'grams' to use for converting to/from 'ounces'.
+    internal static let looseGramsPerOunce: Double = 30.0
+    /// The _precise_ number of 'grams' to use for converting to/from 'ounces'.
+    internal static let preciseGramsPerOunce: Double = 28.349523
+    /// The _loose_ number of 'milliliters' to use for converting to/from 'fluid ounces'.
+    internal static let looseMillilitersPerFluidOunce: Double = 30.0
+    /// The _precise_ number of 'milliliters' to use for converting to/from 'fluid ounces'.
+    internal static let preciseMillilitersPerFluidOunce: Double = 29.573529
     
     internal static var singleDecimalFormatter: NumberFormatter {
         let formatter = NumberFormatter()
@@ -23,39 +45,43 @@ public struct Configuration {
         return formatter
     }
     
-    public static var locale: Locale = Locale.current
+    public static var locale: Locale = Locale.current {
+        didSet {
+            singleDecimalFormatter.locale = locale
+            significantDigitFormatter.locale = locale
+        }
+    }
     
-    /// Changes the default behavior of the `Measurement` translation functions.
+    /// Changes the default behavior of the `Quantification` translation functions.
     public static var abbreviateTranslations: Bool = false
     
     /// Replaces precise oz->g / floz->ml conversions with 30g/30ml respectively.
     public static var useLooseConversions: Bool = false
     
-    /// Multiplier for volume conversion: fluid ounces to milliliters.
-    public static var fluidOunceMilliliter: Double {
-        return (useLooseConversions) ? looseFluidOunceMilliliter : preciseFluidOunceMilliliter
+    /// The number of **milliliters** to use for converting to/from **fluid ounces**.
+    public static var millilitersPerFluidOunce: Double {
+        return (useLooseConversions) ? looseMillilitersPerFluidOunce : preciseMillilitersPerFluidOunce
     }
     
-    /// Multiplier for weight conversions: ounces to grams.
-    public static var ounceGram: Double {
-        return (useLooseConversions) ? looseOunceGram : preciseOunceGram
+    /// The number of **grams** to use for converting to/from **ounces**.
+    public static var gramsPerOunce: Double {
+        return (useLooseConversions) ? looseGramsPerOunce : preciseGramsPerOunce
     }
+    
+    /// The method by which cross `MeasurementSystemMethod` conversions are performed.
+    ///
+    /// Default `.systemThanMethod`
+    public static var conversionOrder: ConversionOrder = .systemThanMethod
     
     /// A measurement typical of a 'small' portion size
+    @available(*, deprecated, renamed: "Quantification.small")
     public static var smallMeasurement: Quantification {
-        if locale.usesMetricSystem {
-            return Quantification(amount: 100.0, unit: .gram)
-        }
-
-        return Quantification(amount: 1.0, unit: .ounce)
+        return Quantification.small
     }
 
     /// A measurement typical of a 'large' portion size
+    @available(*, deprecated, renamed: "Quantification.large")
     public static var largeMeasurement: Quantification {
-        if locale.usesMetricSystem {
-            return Quantification(amount: 1.0, unit: .kilogram)
-        }
-
-        return Quantification(amount: 1.0, unit: .pound)
+        return Quantification.large
     }
 }

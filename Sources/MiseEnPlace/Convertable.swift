@@ -56,8 +56,8 @@ public extension Convertable {
             
             let fluidOunce = amount(for: .fluidOunce)
             let ounce = conversionMultiplier * fluidOunce
-            let milliliter = Configuration.fluidOunceMilliliter * fluidOunce
-            let gram: Double = Configuration.ounceGram * ounce
+            let milliliter = Configuration.millilitersPerFluidOunce * fluidOunce
+            let gram: Double = Configuration.gramsPerOunce * ounce
             
             if toMeasurementSystemMethod == .usWeight {
                 return ounce.convert(from: .ounce, to: unit)
@@ -73,8 +73,8 @@ public extension Convertable {
             
             let ounce = amount(for: .ounce)
             let fluidOunce = conversionMultiplier * ounce
-            let milliliter = Configuration.fluidOunceMilliliter * fluidOunce
-            let gram = Configuration.ounceGram * ounce
+            let milliliter = Configuration.millilitersPerFluidOunce * fluidOunce
+            let gram = Configuration.gramsPerOunce * ounce
             
             if toMeasurementSystemMethod == .usVolume {
                 return fluidOunce.convert(from: .fluidOunce, to: unit)
@@ -90,8 +90,8 @@ public extension Convertable {
             
             let milliliter = amount(for: .milliliter)
             let gram = conversionMultiplier * milliliter
-            let fluidOunce = milliliter / Configuration.fluidOunceMilliliter
-            let ounce = gram / Configuration.ounceGram
+            let fluidOunce = milliliter / Configuration.millilitersPerFluidOunce
+            let ounce = gram / Configuration.gramsPerOunce
             
             if toMeasurementSystemMethod == .metricWeight {
                 return gram.convert(from: .gram, to: unit)
@@ -107,8 +107,8 @@ public extension Convertable {
             
             let gram = amount(for: .gram)
             let milliliter = conversionMultiplier * gram
-            let fluidOunce = milliliter / Configuration.fluidOunceMilliliter
-            let ounce = gram / Configuration.ounceGram
+            let fluidOunce = milliliter / Configuration.millilitersPerFluidOunce
+            let ounce = gram / Configuration.gramsPerOunce
             
             if toMeasurementSystemMethod == .metricVolume {
                 return milliliter.convert(from: .milliliter, to: unit)

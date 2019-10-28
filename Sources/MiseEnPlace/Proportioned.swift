@@ -25,6 +25,7 @@ public extension Proportioned {
     }
     
     /// Multiplier value to use when converting from `fromMethod` to `toMethod`
+    @available(*, deprecated, message: "Use `Ratio.multipler(converting:to:)`")
     func multiplier(from fromMethod: MeasurementMethod, to toMethod: MeasurementMethod) -> Double {
         switch (fromMethod, toMethod) {
         case (.volume, .weight):
@@ -37,6 +38,7 @@ public extension Proportioned {
     }
     
     /// Multiplier to use when converting measurements within the context of s singal `Quantifiable` element.
+    @available(*, deprecated, message: "Use `Ratio.multipler(converting:to:)`")
     func multiplier(for method: MeasurementMethod) -> Double {
         switch method {
         case .volume:
