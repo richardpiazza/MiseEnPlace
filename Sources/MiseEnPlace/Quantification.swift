@@ -309,12 +309,12 @@ private extension Quantification {
                 return try Quantification(amount: fluidOunce, unit: .fluidOunce).requantify(in: destinationMeasurementSystemMethod, ratio: ratio)
             case .systemThanMethod:
                 let ounce = try convertAmount(to: .ounce)
-                let gram = ounce / Configuration.gramsPerOunce
+                let gram = ounce * Configuration.gramsPerOunce
                 return try Quantification(amount: gram, unit: .gram).requantify(in: destinationMeasurementSystemMethod, ratio: ratio)
             }
         case (.usWeight, .metricWeight):
             let ounce = try convertAmount(to: .ounce)
-            let gram = ounce / Configuration.gramsPerOunce
+            let gram = ounce * Configuration.gramsPerOunce
             return Quantification(amount: gram, unit: .gram)
         case (.metricVolume, .metricWeight):
             let milliliter = try convertAmount(to: .milliliter)

@@ -68,10 +68,8 @@ public struct Configuration {
         return (useLooseConversions) ? looseGramsPerOunce : preciseGramsPerOunce
     }
     
-    /// The method by which cross `MeasurementSystemMethod` conversions are performed.
-    ///
-    /// Default `.systemThanMethod`
-    public static var conversionOrder: ConversionOrder = .systemThanMethod
+    /// The method by which cross `MeasurementSystemMethod` conversions are performed. The default is `.methodThanSystem`.
+    public static var conversionOrder: ConversionOrder = .methodThanSystem
     
     /// A measurement typical of a 'small' portion size
     @available(*, deprecated, renamed: "Quantification.small")
