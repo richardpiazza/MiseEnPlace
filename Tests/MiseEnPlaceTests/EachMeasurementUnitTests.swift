@@ -1,17 +1,14 @@
+import Foundation
 import XCTest
 @testable import MiseEnPlace
 
 class EachMeasurementUnitTests: XCTestCase {
     
-    #if !os(macOS) && !os(iOS) && !os(tvOS) && !os(watchOS)
     static var allTests = [
-        ("testCup", testCup),
-        ("testPint", testPint),
-        ("testQuart", testQuart),
-        ("testGallon", testGallon),
-        ("testPound", testPound),
+        ("testEgg", testEgg),
+        ("testEggWhite", testEggWhite),
+        ("testEggYolk", testEggYolk),
     ]
-    #endif
     
     private lazy var egg: TestIngredient = {
         var ingredient = TestIngredient()

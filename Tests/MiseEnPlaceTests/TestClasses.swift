@@ -39,6 +39,13 @@ class TestMeasuredIngredient: FormulaElement {
     var ingredient: Ingredient?
     var recipe: Recipe?
     var inverseRecipe: Recipe?
+    
+    convenience init(ratio: Ratio) {
+        self.init()
+        ingredient = TestIngredient()
+        ingredient?.volume = ratio.volume
+        ingredient?.weight = ratio.weight
+    }
 }
 
 class TestMeasuredRecipe: FormulaElement {

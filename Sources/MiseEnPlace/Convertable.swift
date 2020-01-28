@@ -9,6 +9,7 @@ public protocol Convertable {
     var eachMeasurement: CookingMeasurement? { get }
 }
 
+@available(*, deprecated, message: "Use `Proportioned` and `Quantifiable` protocols.")
 public extension Convertable {
     /// Calculates the multiplier needed to convert from one `MeasurementMethod`
     /// to another `MeasurementMethod`.

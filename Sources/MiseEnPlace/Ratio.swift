@@ -1,8 +1,15 @@
 import Foundation
 
-/// ## Ratio
-/// Holds the relation between volume and weight
+/// The relation between volume and weight
 public struct Ratio {
+    
+    /// A common/default ratio where volume is equivalent to weight
+    public static let oneToOne: Ratio = Ratio(volume: 1.0, weight: 1.0)
+    /// A common/default ratio where volume is twice the measurement in weight
+    public static let twoToOne: Ratio = Ratio(volume: 2.0, weight: 1.0)
+    /// A common/default ratio where weight is twice the measurement in volume
+    public static let oneToTwo: Ratio = Ratio(volume: 1.0, weight: 2.0)
+    
     public var volume: Double = 1.0
     public var weight: Double = 1.0
     
@@ -99,7 +106,7 @@ public struct Ratio {
         return Ratio(volume: ratioVolume, weight: ratioWeight)
     }
     
-    @available(*, deprecated)
+    @available(*, deprecated, message: "Use `makeRatio(volume:weight:)`.")
     public static func makeRatio(volumeConvertable: Convertable, weightConvertable: Convertable) -> Ratio {
         let volume = volumeConvertable.amount(for: .fluidOunce)
         let weight = weightConvertable.amount(for: .ounce)

@@ -1,9 +1,9 @@
+import Foundation
 import XCTest
 @testable import MiseEnPlace
 
 class SignificantDigitTests: XCTestCase {
     
-    #if !os(macOS) && !os(iOS) && !os(tvOS) && !os(watchOS)
     static var allTests = [
         ("testCup", testCup),
         ("testPint", testPint),
@@ -11,7 +11,6 @@ class SignificantDigitTests: XCTestCase {
         ("testGallon", testGallon),
         ("testPound", testPound),
     ]
-    #endif
     
     func testCup() {
         let measurement = Quantification(amount: 0.0951019406578092, unit: .cup)

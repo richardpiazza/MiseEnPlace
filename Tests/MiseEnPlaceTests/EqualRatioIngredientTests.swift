@@ -1,371 +1,275 @@
-//
-//  equalRatioIngredientTests.swift
-//  miseenplace
-//
-//  Created by Richard Piazza on 8/3/15.
-//  Copyright (c) 2015 Richard Piazza. All rights reserved.
-//
-
 import Foundation
 import XCTest
 @testable import MiseEnPlace
 
 class EqualRatioIngredientTests: XCTestCase {
-    let ingredient: ConvertableIngredient = ConvertableIngredient()
+    
+    static var allTests = [
+        ("testMeasurementAmountForUSVolume", testMeasurementAmountForUSVolume),
+        ("testMeasurementAmountForUSMass", testMeasurementAmountForUSMass),
+        ("testMeasurementAmountForMetricVolume", testMeasurementAmountForMetricVolume),
+        ("testMeasurementAmountForMetricMass", testMeasurementAmountForMetricMass),
+        ("testScaleUSMassToUSMass", testScaleUSMassToUSMass),
+        ("testScaleUSMassToUSVolume", testScaleUSMassToUSVolume),
+        ("testScaleUSMassToMetricMass", testScaleUSMassToMetricMass),
+        ("testScaleUSMassToMetricVolume", testScaleUSMassToMetricVolume),
+        ("testScaleUSVolumeToUSMass", testScaleUSVolumeToUSMass),
+        ("testScaleUSVolumeToUSVolume", testScaleUSVolumeToUSVolume),
+        ("testScaleUSVolumeToMetricMass", testScaleUSVolumeToMetricMass),
+        ("testScaleUSVolumeToMetricVolume", testScaleUSVolumeToMetricVolume),
+        ("testScaleMetricMassToUSMass", testScaleMetricMassToUSMass),
+        ("testScaleMetricMassToUSVolume", testScaleMetricMassToUSVolume),
+        ("testScaleMetricMassToMetricMass", testScaleMetricMassToMetricMass),
+        ("testScaleMetricMassToMetricVolume", testScaleMetricMassToMetricVolume),
+        ("testScaleMetricVolumeToUSMass", testScaleMetricVolumeToUSMass),
+        ("testScaleMetricVolumeToUSVolume", testScaleMetricVolumeToUSVolume),
+        ("testScaleMetricVolumeToMetricMass", testScaleMetricVolumeToMetricMass),
+        ("testScaleMetricVolumeToMetricVolume", testScaleMetricVolumeToMetricVolume),
+    ]
+    
+    private var measuredIngredient: TestMeasuredIngredient = TestMeasuredIngredient(ratio: .oneToOne)
 
-    override func setUp() {
-        super.setUp()
+    func testMeasurementAmountForUSVolume() throws {
+        measuredIngredient.amount = 1.0
+        measuredIngredient.unit = .gallon
         
-        ingredient.ratio.volume = 1
-        ingredient.ratio.weight = 1
+        XCTAssertEqual(try measuredIngredient.amount(for: .gallon), 1.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .quart), 4.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pint), 8.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .cup), 16.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .fluidOunce), 128.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .tablespoon), 256.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 768.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .dash), 6144.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 12288.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .ounce), 128.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pound), 8.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .milliliter), 3785.41, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .liter), 3.79, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .gram), 3628.74, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .kilogram), 3.63, accuracy: 0.01)
     }
     
-    override func tearDown() {
+    func testMeasurementAmountForUSMass() throws {
+        measuredIngredient.amount = 5.0
+        measuredIngredient.unit = .pound
         
-        super.tearDown()
-    }
-
-    func testMeasurementAmountForUSVolume() {
-        ingredient.measurement.amount = 1
-        ingredient.measurement.unit = .gallon
-        
-        let gallon = ingredient.amount(for: .gallon)
-        XCTAssertTrue(gallon == 1)
-        
-        let quart = ingredient.amount(for: .quart)
-        XCTAssertTrue(quart == 4)
-        
-        let pint = ingredient.amount(for: .pint)
-        XCTAssertTrue(pint == 8)
-        
-        let cup = ingredient.amount(for: .cup)
-        XCTAssertTrue(cup == 16)
-        
-        let fluidOunce = ingredient.amount(for: .fluidOunce)
-        XCTAssertTrue(fluidOunce == 128)
-        
-        let tableSpoon = ingredient.amount(for: .tablespoon)
-        XCTAssertTrue(tableSpoon == 256)
-        
-        let teaspoon = ingredient.amount(for: .teaspoon)
-        XCTAssertTrue(teaspoon.equals(768, precision: 2))
-        
-        let dash = ingredient.amount(for: .dash)
-        XCTAssertTrue(dash.equals(6144, precision: 0))
-        
-        let pinch = ingredient.amount(for: .pinch)
-        XCTAssertTrue(pinch.equals(12288, precision: 0))
-        
-        let ounce = ingredient.amount(for: .ounce)
-        XCTAssertTrue(ounce == 128)
-        
-        let pound = ingredient.amount(for: .pound)
-        XCTAssertTrue(pound == 8)
-        
-        let milliliter = ingredient.amount(for: .milliliter)
-        XCTAssertTrue(milliliter.equals(3785.41, precision: 2))
-        
-        let liter = ingredient.amount(for: .liter)
-        XCTAssertTrue(liter.equals(3.79, precision: 2))
-        
-        let gram = ingredient.amount(for: .gram)
-        XCTAssertTrue(gram.equals(3628.74, precision: 2))
-        
-        let kilogram = ingredient.amount(for: .kilogram)
-        XCTAssertTrue(kilogram.equals(3.63, precision: 2))
+        XCTAssertEqual(try measuredIngredient.amount(for: .gallon), 0.62, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .quart), 2.5, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pint), 5, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .cup), 10.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .fluidOunce), 80.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .tablespoon), 160.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 480.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .dash), 3840.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 7680.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .ounce), 80.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pound), 5.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .milliliter), 2365.88, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .liter), 2.37, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .gram), 2267.96, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .kilogram), 2.27, accuracy: 0.01)
     }
     
-    func testMeasurementAmountForUSMass() {
-        ingredient.measurement.amount = 5
-        ingredient.measurement.unit = .pound
+    func testMeasurementAmountForMetricVolume() throws {
+        measuredIngredient.amount = 750.0
+        measuredIngredient.unit = .milliliter
         
-        let gallon = ingredient.amount(for: .gallon)
-        XCTAssertTrue(gallon.equals(0.62, precision: 2))
-        
-        let quart = ingredient.amount(for: .quart)
-        XCTAssertTrue(quart.equals(2.5, precision: 1))
-        
-        let pint = ingredient.amount(for: .pint)
-        XCTAssertTrue(pint.equals(5, precision: 0))
-        
-        let cup = ingredient.amount(for: .cup)
-        XCTAssertTrue(cup.equals(10, precision: 0))
-        
-        let fluidOunce = ingredient.amount(for: .fluidOunce)
-        XCTAssertTrue(fluidOunce.equals(80, precision: 0))
-        
-        let tableSpoon = ingredient.amount(for: .tablespoon)
-        XCTAssertTrue(tableSpoon.equals(160, precision: 0))
-        
-        let teaspoon = ingredient.amount(for: .teaspoon)
-        XCTAssertTrue(teaspoon.equals(480, precision: 0))
-        
-        let dash = ingredient.amount(for: .dash)
-        XCTAssertTrue(dash.equals(3840, precision: 0))
-        
-        let pinch = ingredient.amount(for: .pinch)
-        XCTAssertTrue(pinch.equals(7680, precision: 0))
-        
-        let ounce = ingredient.amount(for: .ounce)
-        XCTAssertTrue(ounce.equals(80, precision: 0))
-        
-        let pound = ingredient.amount(for: .pound)
-        XCTAssertTrue(pound.equals(5, precision: 0))
-        
-        let milliliter = ingredient.amount(for: .milliliter)
-        XCTAssertTrue(milliliter.equals(2365.88, precision: 2))
-        
-        let liter = ingredient.amount(for: .liter)
-        XCTAssertTrue(liter.equals(2.37, precision: 2))
-        
-        let gram = ingredient.amount(for: .gram)
-        XCTAssertTrue(gram.equals(2267.96, precision: 2))
-        
-        let kilogram = ingredient.amount(for: .kilogram)
-        XCTAssertTrue(kilogram.equals(2.27, precision: 2))
+        XCTAssertEqual(try measuredIngredient.amount(for: .gallon), 0.2, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .quart), 0.79, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pint), 1.59, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .cup), 3.17, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .fluidOunce), 25.36, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .tablespoon), 50.72, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 152.16, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .dash), 1217.30, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 2434.61, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .ounce), 26.46, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pound), 1.65, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .milliliter), 750.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .liter), 0.75, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .gram), 750.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .kilogram), 0.75, accuracy: 0.01)
     }
     
-    func testMeasurementAmountForMetricVolume() {
-        ingredient.measurement.amount = 750
-        ingredient.measurement.unit = .milliliter
+    func testMeasurementAmountForMetricMass() throws {
+        measuredIngredient.amount = 2.5
+        measuredIngredient.unit = .kilogram
         
-        let gallon = ingredient.amount(for: .gallon)
-        XCTAssertTrue(gallon.equals(0.20, precision: 2))
-        
-        let quart = ingredient.amount(for: .quart)
-        XCTAssertTrue(quart.equals(0.79, precision: 2))
-        
-        let pint = ingredient.amount(for: .pint)
-        XCTAssertTrue(pint.equals(1.59, precision: 2))
-        
-        let cup = ingredient.amount(for: .cup)
-        XCTAssertTrue(cup.equals(3.17, precision: 2))
-        
-        let fluidOunce = ingredient.amount(for: .fluidOunce)
-        XCTAssertTrue(fluidOunce.equals(25.36, precision: 2))
-        
-        let tableSpoon = ingredient.amount(for: .tablespoon)
-        XCTAssertTrue(tableSpoon.equals(50.72, precision: 2))
-        
-        let teaspoon = ingredient.amount(for: .teaspoon)
-        XCTAssertTrue(teaspoon.equals(152.16, precision: 2))
-        
-        let dash = ingredient.amount(for: .dash)
-        XCTAssertTrue(dash.equals(1217.30, precision: 2))
-        
-        let pinch = ingredient.amount(for: .pinch)
-        XCTAssertTrue(pinch.equals(2434.61, precision: 2))
-        
-        let ounce = ingredient.amount(for: .ounce)
-        XCTAssertTrue(ounce.equals(26.46, precision: 2))
-        
-        let pound = ingredient.amount(for: .pound)
-        XCTAssertTrue(pound.equals(1.65, precision: 2))
-        
-        let milliliter = ingredient.amount(for: .milliliter)
-        XCTAssertTrue(milliliter.equals(750, precision: 0))
-        
-        let liter = ingredient.amount(for: .liter)
-        XCTAssertTrue(liter.equals(0.75, precision: 2))
-        
-        let gram = ingredient.amount(for: .gram)
-        XCTAssertTrue(gram.equals(750, precision: 0))
-        
-        let kilogram = ingredient.amount(for: .kilogram)
-        XCTAssertTrue(kilogram.equals(0.75, precision: 2))
+        XCTAssertEqual(try measuredIngredient.amount(for: .gallon), 0.66, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .quart), 2.64, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pint), 5.28, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .cup), 10.57, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .fluidOunce), 84.54, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .tablespoon), 169.07, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 507.21, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .dash), 4057.68, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 8115.37, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .ounce), 88.18, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pound), 5.51, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .milliliter), 2500.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .liter), 2.5, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .gram), 2500.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .kilogram), 2.5, accuracy: 0.01)
     }
     
-    func testMeasurementAmountForMetricMass() {
-        ingredient.measurement.amount = 2.5
-        ingredient.measurement.unit = .kilogram
+    func testScaleUSMassToUSMass() throws {
+        measuredIngredient.amount = 2
+        measuredIngredient.unit = .pound
         
-        let gallon = ingredient.amount(for: .gallon)
-        XCTAssertTrue(gallon.equals(0.66, precision: 2))
+        let quantification = try measuredIngredient.scale(by: 0.25, measurementSystem: .us, measurementMethod: .weight)
         
-        let quart = ingredient.amount(for: .quart)
-        XCTAssertTrue(quart.equals(2.64, precision: 2))
-        
-        let pint = ingredient.amount(for: .pint)
-        XCTAssertTrue(pint.equals(5.28, precision: 2))
-        
-        let cup = ingredient.amount(for: .cup)
-        XCTAssertTrue(cup.equals(10.57, precision: 2))
-        
-        let fluidOunce = ingredient.amount(for: .fluidOunce)
-        XCTAssertTrue(fluidOunce.equals(84.54, precision: 2))
-        
-        let tableSpoon = ingredient.amount(for: .tablespoon)
-        XCTAssertTrue(tableSpoon.equals(169.07, precision: 2))
-        
-        let teaspoon = ingredient.amount(for: .teaspoon)
-        XCTAssertTrue(teaspoon.equals(507.21, precision: 2))
-        
-        let dash = ingredient.amount(for: .dash)
-        XCTAssertTrue(dash.equals(4057.68, precision: 2))
-        
-        let pinch = ingredient.amount(for: .pinch)
-        XCTAssertTrue(pinch.equals(8115.37, precision: 2))
-        
-        let ounce = ingredient.amount(for: .ounce)
-        XCTAssertTrue(ounce.equals(88.18, precision: 2))
-        
-        let pound = ingredient.amount(for: .pound)
-        XCTAssertTrue(pound.equals(5.51, precision: 2))
-        
-        let milliliter = ingredient.amount(for: .milliliter)
-        XCTAssertTrue(milliliter.equals(2500, precision: 0))
-        
-        let liter = ingredient.amount(for: .liter)
-        XCTAssertTrue(liter.equals(2.5, precision: 1))
-        
-        let gram = ingredient.amount(for: .gram)
-        XCTAssertTrue(gram.equals(2500, precision: 0))
-        
-        let kilogram = ingredient.amount(for: .kilogram)
-        XCTAssertTrue(kilogram.equals(2.5, precision: 1))
+        XCTAssertEqual(quantification.amount, 8)
+        XCTAssertEqual(quantification.unit, .ounce)
     }
     
-    func testScaleUSMassToUSMass() {
-        ingredient.measurement.amount = 2
-        ingredient.measurement.unit = .pound
+    func testScaleUSMassToUSVolume() throws {
+        measuredIngredient.amount = 0.5
+        measuredIngredient.unit = .pound
         
-        let scaleMeasure = ingredient.scale(by: 0.25, measurementSystemMethod: .usWeight)
-        XCTAssertTrue(scaleMeasure.amount == 8)
-        XCTAssertTrue(scaleMeasure.unit == .ounce)
+        let quantification = try measuredIngredient.scale(by: 1.25, measurementSystem: .us, measurementMethod: .volume)
+        
+        XCTAssertEqual(quantification.amount, 1.25, accuracy: 0.01)
+        XCTAssertEqual(quantification.unit, .cup)
     }
     
-    func testScaleUSMassToUSVolume() {
-        ingredient.measurement.amount = 0.5
-        ingredient.measurement.unit = .pound
+    func testScaleUSMassToMetricMass() throws {
+        measuredIngredient.amount = 10
+        measuredIngredient.unit = .ounce
         
-        let scaleMeasure = ingredient.scale(by: 1.25, measurementSystemMethod: .usVolume)
-        XCTAssertTrue(scaleMeasure.amount.equals(1.25, precision: 2))
-        XCTAssertTrue(scaleMeasure.unit == .cup)
+        let quantification = try measuredIngredient.scale(by: 1.0, measurementSystem: .metric, measurementMethod: .weight)
+        
+        XCTAssertEqual(quantification.amount, 283.50, accuracy: 0.01)
+        XCTAssertEqual(quantification.unit, .gram)
     }
     
-    func testScaleUSMassToMetricMass() {
-        ingredient.measurement.amount = 10
-        ingredient.measurement.unit = .ounce
+    func testScaleUSMassToMetricVolume() throws {
+        measuredIngredient.amount = 4
+        measuredIngredient.unit = .ounce
         
-        let scaleMeasure = ingredient.scale(by: 1.0, measurementSystemMethod: .metricWeight)
-        XCTAssertTrue(scaleMeasure.amount.equals(283.50, precision: 2))
-        XCTAssertTrue(scaleMeasure.unit == .gram)
+        let quantification = try measuredIngredient.scale(by: 2.0, measurementSystem: .metric, measurementMethod: .volume)
+        
+        XCTAssertEqual(quantification.amount, 236.59, accuracy: 0.01)
+        XCTAssertEqual(quantification.unit, .milliliter)
     }
     
-    func testScaleUSMassToMetricVolume() {
-        ingredient.measurement.amount = 4
-        ingredient.measurement.unit = .ounce
+    func testScaleUSVolumeToUSMass() throws {
+        measuredIngredient.amount = 4
+        measuredIngredient.unit = .tablespoon
         
-        let scaleMeasure = ingredient.scale(by: 2.0, measurementSystemMethod: .metricVolume)
-        XCTAssertTrue(scaleMeasure.amount.equals(236.59, precision: 2))
-        XCTAssertTrue(scaleMeasure.unit == .milliliter)
+        let quantification = try measuredIngredient.scale(by: 3.5, measurementSystem: .us, measurementMethod: .weight)
+        
+        XCTAssertEqual(quantification.amount, 7.0, accuracy: 0.01)
+        XCTAssertEqual(quantification.unit, .ounce)
     }
     
-    func testScaleUSVolumeToUSMass() {
-        ingredient.measurement.amount = 4
-        ingredient.measurement.unit = .tablespoon
+    func testScaleUSVolumeToUSVolume() throws {
+        measuredIngredient.amount = 28
+        measuredIngredient.unit = .quart
         
-        let scaleMeasure = ingredient.scale(by: 3.5, measurementSystemMethod: .usWeight)
-        XCTAssertTrue(scaleMeasure.amount.equals(7, precision: 0))
-        XCTAssertTrue(scaleMeasure.unit == .ounce)
+        let quantification = try measuredIngredient.scale(by: Fraction.oneSixteenth.rawValue, measurementSystem: .us, measurementMethod: .volume)
+        
+        XCTAssertEqual(quantification.amount, 1.75, accuracy: 0.01)
+        XCTAssertEqual(quantification.unit, .quart)
     }
     
-    func testScaleUSVolumeToUSVolume() {
-        ingredient.measurement.amount = 28
-        ingredient.measurement.unit = .quart
+    func testScaleUSVolumeToMetricMass() throws {
+        measuredIngredient.amount = 1
+        measuredIngredient.unit = .gallon
         
-        let scaleMeasure = ingredient.scale(by: Fraction.oneSixteenth.rawValue, measurementSystemMethod: .usVolume)
-        XCTAssertTrue(scaleMeasure.amount.equals(1.75, precision: 2))
-        XCTAssertTrue(scaleMeasure.unit == .quart)
+        let quantification = try measuredIngredient.scale(by: 1.75, measurementSystem: .metric, measurementMethod: .weight)
+        
+        XCTAssertEqual(quantification.amount, 6.35, accuracy: 0.01)
+        XCTAssertEqual(quantification.unit, .kilogram)
     }
     
-    func testScaleUSVolumeToMetricMass() {
-        ingredient.measurement.amount = 1
-        ingredient.measurement.unit = .gallon
+    func testScaleUSVolumeToMetricVolume() throws {
+        measuredIngredient.amount = 1.3
+        measuredIngredient.unit = .ounce
         
-        let scaleMeasure = ingredient.scale(by: 1.75, measurementSystemMethod: .metricWeight)
-        XCTAssertTrue(scaleMeasure.amount.equals(6.35, precision: 2))
-        XCTAssertTrue(scaleMeasure.unit == .kilogram)
+        let quantification = try measuredIngredient.scale(by: 3.0, measurementSystem: .metric, measurementMethod: .volume)
+        
+        XCTAssertEqual(quantification.amount, 115.34, accuracy: 0.01)
+        XCTAssertEqual(quantification.unit, .milliliter)
     }
     
-    func testScaleUSVolumeToMetricVolume() {
-        ingredient.measurement.amount = 1.3
-        ingredient.measurement.unit = .ounce
+    func testScaleMetricMassToUSMass() throws {
+        measuredIngredient.amount = 250
+        measuredIngredient.unit = .gram
         
-        let scaleMeasure = ingredient.scale(by: 3.0, measurementSystemMethod: .metricVolume)
-        XCTAssertTrue(scaleMeasure.amount.equals(115.34, precision: 2))
-        XCTAssertTrue(scaleMeasure.unit == .milliliter)
+        let quantification = try measuredIngredient.scale(by: Fraction.oneHalf.rawValue, measurementSystem: .us, measurementMethod: .weight)
+        
+        XCTAssertEqual(quantification.amount, 4.41, accuracy: 0.01)
+        XCTAssertEqual(quantification.unit, .ounce)
     }
     
-    func testScaleMetricMassToUSMass() {
-        ingredient.measurement.amount = 250
-        ingredient.measurement.unit = .gram
+    func testScaleMetricMassToUSVolume() throws {
+        measuredIngredient.amount = 1.68
+        measuredIngredient.unit = .kilogram
         
-        let scaleMeasure = ingredient.scale(by: Fraction.oneHalf.rawValue, measurementSystemMethod: .usWeight)
-        XCTAssertTrue(scaleMeasure.amount.equals(4.41, precision: 2))
-        XCTAssertTrue(scaleMeasure.unit == .ounce)
+        let quantification = try measuredIngredient.scale(by: 1.0, measurementSystem: .us, measurementMethod: .volume)
+        
+        XCTAssertEqual(quantification.amount, 1.78, accuracy: 0.01)
+        XCTAssertEqual(quantification.unit, .quart)
     }
     
-    func testScaleMetricMassToUSVolume() {
-        ingredient.measurement.amount = 1.68
-        ingredient.measurement.unit = .kilogram
+    func testScaleMetricMassToMetricMass() throws {
+        measuredIngredient.amount = 22
+        measuredIngredient.unit = .kilogram
         
-        let scaleMeasure = ingredient.scale(by: 1.0, measurementSystemMethod: .usVolume)
-        XCTAssertTrue(scaleMeasure.amount.equals(1.78, precision: 2))
-        XCTAssertTrue(scaleMeasure.unit == .quart)
+        let quantification = try measuredIngredient.scale(by: Fraction.oneThird.rawValue, measurementSystem: .metric, measurementMethod: .weight)
+        
+        XCTAssertEqual(quantification.amount, 7.33, accuracy: 0.01)
+        XCTAssertEqual(quantification.unit, .kilogram)
     }
     
-    func testScaleMetricMassToMetricMass() {
-        ingredient.measurement.amount = 22
-        ingredient.measurement.unit = .kilogram
+    func testScaleMetricMassToMetricVolume() throws {
+        measuredIngredient.amount = 888.888
+        measuredIngredient.unit = .gram
         
-        let scaleMeasure = ingredient.scale(by: Fraction.oneThird.rawValue, measurementSystemMethod: .metricWeight)
-        XCTAssertTrue(scaleMeasure.amount.equals(7.33, precision: 2))
-        XCTAssertTrue(scaleMeasure.unit == .kilogram)
+        let quantification = try measuredIngredient.scale(by: Fraction.twoThirds.rawValue, measurementSystem: .metric, measurementMethod: .volume)
+        
+        XCTAssertEqual(quantification.amount, 592.59, accuracy: 0.01)
+        XCTAssertEqual(quantification.unit, .milliliter)
     }
     
-    func testScaleMetricMassToMetricVolume() {
-        ingredient.measurement.amount = 888.888
-        ingredient.measurement.unit = .gram
+    func testScaleMetricVolumeToUSMass() throws {
+        measuredIngredient.amount = 130
+        measuredIngredient.unit = .milliliter
         
-        let scaleMeasure = ingredient.scale(by: Fraction.twoThirds.rawValue, measurementSystemMethod: .metricVolume)
-        XCTAssertTrue(scaleMeasure.amount.equals(592.59, precision: 2))
-        XCTAssertTrue(scaleMeasure.unit == .milliliter)
+        let quantification = try measuredIngredient.scale(by: 1.01, measurementSystem: .us, measurementMethod: .weight)
+        
+        XCTAssertEqual(quantification.amount, 4.63, accuracy: 0.01)
+        XCTAssertEqual(quantification.unit, .ounce)
     }
     
-    func testScaleMetricVolumeToUSMass() {
-        ingredient.measurement.amount = 130
-        ingredient.measurement.unit = .milliliter
+    func testScaleMetricVolumeToUSVolume() throws {
+        measuredIngredient.amount = 2.99
+        measuredIngredient.unit = .liter
         
-        let scaleMeasure = ingredient.scale(by: 1.01, measurementSystemMethod: .usWeight)
-        XCTAssertTrue(scaleMeasure.amount.equals(4.63, precision: 2))
-        XCTAssertTrue(scaleMeasure.unit == .ounce)
+        let quantification = try measuredIngredient.scale(by: Fraction.oneSixth.rawValue, measurementSystem: .us, measurementMethod: .volume)
+        
+        XCTAssertEqual(quantification.amount, 1.05, accuracy: 0.01)
+        XCTAssertEqual(quantification.unit, .pint)
     }
     
-    func testScaleMetricVolumeToUSVolume() {
-        ingredient.measurement.amount = 2.99
-        ingredient.measurement.unit = .liter
+    func testScaleMetricVolumeToMetricMass() throws {
+        measuredIngredient.amount = 45
+        measuredIngredient.unit = .liter
         
-        let scaleMeasure = ingredient.scale(by: Fraction.oneSixth.rawValue, measurementSystemMethod: .usVolume)
-        XCTAssertTrue(scaleMeasure.amount.equals(1.05, precision: 2))
-        XCTAssertTrue(scaleMeasure.unit == .pint)
+        let quantification = try measuredIngredient.scale(by: 1.0, measurementSystem: .metric, measurementMethod: .weight)
+        
+        XCTAssertEqual(quantification.amount, 45, accuracy: 0.01)
+        XCTAssertEqual(quantification.unit, .kilogram)
     }
     
-    func testScaleMetricVolumeToMetricMass() {
-        ingredient.measurement.amount = 45
-        ingredient.measurement.unit = .liter
+    func testScaleMetricVolumeToMetricVolume() throws {
+        measuredIngredient.amount = 45000
+        measuredIngredient.unit = .milliliter
         
-        let scaleMeasure = ingredient.scale(by: 1.0, measurementSystemMethod: .metricWeight)
-        XCTAssertTrue(scaleMeasure.amount.equals(45, precision: 0))
-        XCTAssertTrue(scaleMeasure.unit == .kilogram)
-    }
-    
-    func testScaleMetricVolumeToMetricVolume() {
-        ingredient.measurement.amount = 45000
-        ingredient.measurement.unit = .milliliter
+        let quantification = try measuredIngredient.scale(by: Fraction.oneThousandth.rawValue, measurementSystem: .metric, measurementMethod: .volume)
         
-        let scaleMeasure = ingredient.scale(by: Fraction.oneThousandth.rawValue, measurementSystemMethod: .metricVolume)
-        XCTAssertTrue(scaleMeasure.amount.equals(45, precision: 0))
-        XCTAssertTrue(scaleMeasure.unit == .milliliter)
+        XCTAssertEqual(quantification.amount, 45, accuracy: 0.01)
+        XCTAssertEqual(quantification.unit, .milliliter)
     }
 }

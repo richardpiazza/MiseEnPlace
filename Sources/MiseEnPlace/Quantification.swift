@@ -92,19 +92,19 @@ public extension Quantification {
     /// - throws: Error.measurementAmount(), Error.measurementUnit(), Error.unhandledConversion
     ///
     func normalizedMeasurement() throws -> Quantification {
-        guard self.amount > 0.0 else {
+        guard amount > 0.0 else {
             throw MiseEnPlaceError.measurementAmount(method: nil)
         }
         
-        guard self.unit.measurementSystemMethod != .numericQuantity else {
+        guard unit.measurementSystemMethod != .numericQuantity else {
             throw MiseEnPlaceError.measurementUnit(method: nil)
         }
         
-        let units = Array(MeasurementUnit.measurementUnits(forMeasurementSystemMethod: self.unit.measurementSystemMethod).reversed())
-        for unit in units {
-            let unitAmount = try self.amount(for: unit)
-            if unitAmount >= unit.stepDownThreshold {
-                return Quantification(amount: unitAmount, unit: unit)
+        let units = Array(MeasurementUnit.measurementUnits(forMeasurementSystemMethod: unit.measurementSystemMethod).reversed())
+        for u in units {
+            let unitAmount = try amount(for: u)
+            if unitAmount >= u.stepDownThreshold {
+                return Quantification(amount: unitAmount, unit: u)
             }
         }
         
@@ -214,55 +214,7 @@ public extension Quantification {
     }
 }
 
-private extension Quantification {
-    /// Converts the amount to another `MeasurementUnit` within the same `MeasurementSystemMethod`.
-    ///
-    /// - parameter unit: The `MeasurementUnit` to convert to.
-    /// - throws: `MiseEnPlaceError`
-    func convertAmount(to destinationUnit: MeasurementUnit) throws -> Double {
-        guard !amount.isNaN && amount > 0.0 else {
-            throw MiseEnPlaceError.nanZeroConversion
-        }
-        
-        guard unit.measurementSystemMethod == destinationUnit.measurementSystemMethod else {
-            throw MiseEnPlaceError.unhandledConversion
-        }
-        
-        var currentIndex = -1
-        var goalIndex = -1
-        
-        let measurementUnits = MeasurementUnit.measurementUnits(forMeasurementSystemMethod: destinationUnit.measurementSystemMethod)
-        
-        for (index, measurementUnit) in measurementUnits.enumerated() {
-            if measurementUnit == unit {
-                currentIndex = index
-            }
-            if measurementUnit == destinationUnit {
-                goalIndex = index
-            }
-        }
-        
-        guard currentIndex != goalIndex else {
-            return amount
-        }
-        
-        var stepDirection = 0
-        var nextValue = amount
-        
-        if goalIndex - currentIndex > 0 {
-            stepDirection = 1
-            nextValue = amount * unit.stepUpMultiplier
-        } else {
-            stepDirection = -1
-            nextValue = amount / unit.stepDownMultiplier
-        }
-        
-        let nextIndex = currentIndex + stepDirection
-        let nextUnit = measurementUnits[nextIndex]
-        
-        return try Quantification(amount: nextValue, unit: nextUnit).convertAmount(to: destinationUnit)
-    }
-    
+internal extension Quantification {
     /// Re-quantifies this `Quantification` in terms of another `MeasurementSytemMethod`.
     ///
     /// Recursive algorithm. The output from the requantification may not be in the final unit desired. See `convertAmount(to:)` for more infromation.
@@ -338,13 +290,13 @@ private extension Quantification {
         case (.metricWeight, .metricVolume):
             let gram = try convertAmount(to: .gram)
             let milliliter = gram * ratio.multiplier(converting: .weight, to: .volume)
-            return Quantification(amount: milliliter, unit: .gram)
+            return Quantification(amount: milliliter, unit: .milliliter)
         case (.metricWeight, .usVolume):
             switch Configuration.conversionOrder {
             case .methodThanSystem:
                 let gram = try convertAmount(to: .gram)
                 let milliliter = gram * ratio.multiplier(converting: .weight, to: .volume)
-                return try Quantification(amount: milliliter, unit: .gram).requantify(in: destinationMeasurementSystemMethod, ratio: ratio)
+                return try Quantification(amount: milliliter, unit: .milliliter).requantify(in: destinationMeasurementSystemMethod, ratio: ratio)
             case .systemThanMethod:
                 let gram = try convertAmount(to: .gram)
                 let ounce = gram / Configuration.gramsPerOunce
@@ -359,6 +311,56 @@ private extension Quantification {
         }
         
         throw MiseEnPlaceError.measurementUnit(method: nil)
+    }
+}
+
+private extension Quantification {
+    /// Converts the amount to another `MeasurementUnit` within the same `MeasurementSystemMethod`.
+    ///
+    /// - parameter unit: The `MeasurementUnit` to convert to.
+    /// - throws: `MiseEnPlaceError`
+    func convertAmount(to destinationUnit: MeasurementUnit) throws -> Double {
+        guard !amount.isNaN && amount > 0.0 else {
+            throw MiseEnPlaceError.nanZeroConversion
+        }
+        
+        guard unit.measurementSystemMethod == destinationUnit.measurementSystemMethod else {
+            throw MiseEnPlaceError.unhandledConversion
+        }
+        
+        var currentIndex = -1
+        var goalIndex = -1
+        
+        let measurementUnits = MeasurementUnit.measurementUnits(forMeasurementSystemMethod: destinationUnit.measurementSystemMethod)
+        
+        for (index, measurementUnit) in measurementUnits.enumerated() {
+            if measurementUnit == unit {
+                currentIndex = index
+            }
+            if measurementUnit == destinationUnit {
+                goalIndex = index
+            }
+        }
+        
+        guard currentIndex != goalIndex else {
+            return amount
+        }
+        
+        var stepDirection = 0
+        var nextValue = amount
+        
+        if goalIndex - currentIndex > 0 {
+            stepDirection = 1
+            nextValue = amount * unit.stepUpMultiplier
+        } else {
+            stepDirection = -1
+            nextValue = amount / unit.stepDownMultiplier
+        }
+        
+        let nextIndex = currentIndex + stepDirection
+        let nextUnit = measurementUnits[nextIndex]
+        
+        return try Quantification(amount: nextValue, unit: nextUnit).convertAmount(to: destinationUnit)
     }
     
     func metricTranslation(abbreviated: Bool) -> String {

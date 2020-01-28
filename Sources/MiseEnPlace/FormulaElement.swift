@@ -118,6 +118,9 @@ public extension FormulaElement {
         }
         
         if let ingredient = self.ingredient {
+            
+            let scaledQuantification: Quantification
+            
             switch (unit, measurementSystem, measurementMethod) {
             case (_, .none, .none), (.each, .numeric, .quantity):
                 return Quantification(amount: amount * multiplier, unit: unit)
@@ -134,28 +137,28 @@ public extension FormulaElement {
                     throw MiseEnPlaceError.quantifiableConversion
                 }
                 
-                break
+                let quantifiableMeasurement = ingredient.quantification
+                scaledQuantification = Quantification(amount: quantifiableMeasurement.amount * amount, unit: quantifiableMeasurement.unit)
             default:
-                break
+                let totalAmount = try amount(for: unit)
+                scaledQuantification = Quantification(amount: totalAmount * multiplier, unit: unit)
             }
+            
+            let ms = measurementSystem ?? scaledQuantification.unit.measurementSystem
+            let mm = measurementMethod ?? scaledQuantification.unit.measurementMethod
+            
+            guard let measurementSystemMethod = MeasurementSystemMethod.measurementSystemMethod(for: ms, measurementMethod: mm) else {
+                return try scaledQuantification.normalizedMeasurement()
+            }
+            
+            let translatedQuantification = try scaledQuantification.quantification.requantify(in: measurementSystemMethod, ratio: ingredient.ratio)
+            return try translatedQuantification.normalizedMeasurement()
+            
+        } else if let recipe = self.recipe {
+            
+            let scaledQuantification: Quantification
             
             if unit == .each {
-                guard ingredient.unit.isQuantifiable else {
-                    throw MiseEnPlaceError.quantifiableConversion
-                }
-                
-                let quantifiableMeasurement = ingredient.quantification
-                let equivalentMeasurement = Quantification(amount: quantifiableMeasurement.amount * self.amount, unit: quantifiableMeasurement.unit)
-                
-                return try equivalentMeasurement.normalizedMeasurement()
-            }
-            
-            let totalAmount = try amount(for: self.unit)
-            let totalMeasurement = Quantification(amount: totalAmount * self.amount, unit: self.unit)
-            
-            return try totalMeasurement.normalizedMeasurement()
-        } else if let recipe = self.recipe {
-            if self.unit == .each {
                 guard recipe.unit.isQuantifiable else {
                     throw MiseEnPlaceError.quantifiableConversion
                 }
@@ -163,13 +166,21 @@ public extension FormulaElement {
                 var totalMeasurement = recipe.totalQuantification
                 totalMeasurement.amount = totalMeasurement.amount * multiplier
                 
-                return try totalMeasurement.normalizedMeasurement()
+                scaledQuantification = totalMeasurement
+            } else {
+                let totalAmount = recipe.totalAmount(for: unit)
+                scaledQuantification = Quantification(amount: totalAmount * multiplier, unit: unit)
             }
             
-            let totalAmount = recipe.totalAmount(for: self.unit)
-            let totalMeasurement = Quantification(amount: totalAmount * self.amount, unit: self.unit)
+            let ms = measurementSystem ?? scaledQuantification.unit.measurementSystem
+            let mm = measurementMethod ?? scaledQuantification.unit.measurementMethod
             
-            return try totalMeasurement.normalizedMeasurement()
+            guard let measurementSystemMethod = MeasurementSystemMethod.measurementSystemMethod(for: ms, measurementMethod: mm) else {
+                return try scaledQuantification.normalizedMeasurement()
+            }
+            
+            let translatedQuantification = try scaledQuantification.quantification.requantify(in: measurementSystemMethod, ratio: .oneToOne)
+            return try translatedQuantification.normalizedMeasurement()
         }
         
         throw MiseEnPlaceError.unhandledConversion

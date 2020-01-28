@@ -1,64 +1,97 @@
-//
-//  RatioTests.swift
-//  MiseEnPlace
-//
-//  Created by Richard Piazza on 11/4/15.
-//  Copyright © 2015 Richard Piazza. All rights reserved.
-//
-
+import Foundation
 import XCTest
-import MiseEnPlace
+@testable import MiseEnPlace
 
 class RatioTests: XCTestCase {
     
-    fileprivate class MeasurementConvertable: NSObject, Convertable {
-        var measurement = CookingMeasurement(amount: 1.0, unit: .gram)
-        var ratio = Ratio(volume: 1.0, weight: 1.0)
-        var eachMeasurement: CookingMeasurement?
-    }
+    static var allTests = [
+        ("testOneToOneRatio", testOneToOneRatio),
+        ("testOneToTwoRatio", testOneToTwoRatio),
+        ("testTwoToOneRatio", testTwoToOneRatio),
+        ("testMakeRatioErrors", testMakeRatioErrors),
+    ]
     
-    fileprivate var volumeConvertable: MeasurementConvertable = MeasurementConvertable()
-    fileprivate var weightConvertable: MeasurementConvertable = MeasurementConvertable()
+    private var volume: Quantification = Quantification()
+    private var weight: Quantification = Quantification()
     
-    override func setUp() {
-        super.setUp()
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testOneToOneRatio() {
-        volumeConvertable.measurement.amount = 2
-        volumeConvertable.measurement.unit = .fluidOunce
-        weightConvertable.measurement.amount = 2
-        weightConvertable.measurement.unit = .ounce
+    func testOneToOneRatio() throws {
+        volume.amount = 2
+        volume.unit = .fluidOunce
+        weight.amount = 2
+        weight.unit = .ounce
         
-        let ratio = Ratio.makeRatio(volumeConvertable: volumeConvertable, weightConvertable: weightConvertable)
+        let ratio = try Ratio.makeRatio(volume: volume, weight: weight)
+        
         XCTAssertTrue(ratio.volume == 1)
         XCTAssertTrue(ratio.weight == 1)
     }
     
-    func testOneToTwoRatio() {
-        volumeConvertable.measurement.amount = 2
-        volumeConvertable.measurement.unit = .fluidOunce
-        weightConvertable.measurement.amount = 4
-        weightConvertable.measurement.unit = .ounce
+    func testOneToTwoRatio() throws {
+        volume.amount = 2
+        volume.unit = .fluidOunce
+        weight.amount = 4
+        weight.unit = .ounce
         
-        let ratio = Ratio.makeRatio(volumeConvertable: volumeConvertable, weightConvertable: weightConvertable)
+        let ratio = try Ratio.makeRatio(volume: volume, weight: weight)
+        
         XCTAssertTrue(ratio.volume == 1)
         XCTAssertTrue(ratio.weight == 2)
     }
     
-    func testTwoToOneRatio() {
-        volumeConvertable.measurement.amount = 4
-        volumeConvertable.measurement.unit = .fluidOunce
-        weightConvertable.measurement.amount = 2
-        weightConvertable.measurement.unit = .ounce
+    func testTwoToOneRatio() throws {
+        volume.amount = 4
+        volume.unit = .fluidOunce
+        weight.amount = 2
+        weight.unit = .ounce
         
-        let ratio = Ratio.makeRatio(volumeConvertable: volumeConvertable, weightConvertable: weightConvertable)
+        let ratio = try Ratio.makeRatio(volume: volume, weight: weight)
+        
         XCTAssertTrue(ratio.volume == 2)
         XCTAssertTrue(ratio.weight == 1)
+    }
+    
+    func testMakeRatioErrors() throws {
+        volume.amount = -1
+        
+        XCTAssertThrowsError(try Ratio.makeRatio(volume: volume, weight: weight)) { (error) in
+            guard case MiseEnPlaceError.measurementAmount(method: .volume) = error else {
+                XCTFail("Expected MisEnPlaceError.measurementAmount(method: .volume)")
+                return
+            }
+        }
+        
+        volume.amount = 1
+        volume.unit = .gram
+        
+        XCTAssertThrowsError(try Ratio.makeRatio(volume: volume, weight: weight)) { (error) in
+            guard case MiseEnPlaceError.measurementUnit(method: .volume) = error else {
+                XCTFail("Expected MisEnPlaceError.measurementUnit(method: .volume)")
+                return
+            }
+        }
+        
+        volume.unit = .fluidOunce
+        weight.amount = -1
+        
+        XCTAssertThrowsError(try Ratio.makeRatio(volume: volume, weight: weight)) { (error) in
+            guard case MiseEnPlaceError.measurementAmount(method: .weight) = error else {
+                XCTFail("Expected MisEnPlaceError.measurementAmount(method: .weight)")
+                return
+            }
+        }
+        
+        weight.amount = 1
+        weight.unit = .teaspoon
+        
+        XCTAssertThrowsError(try Ratio.makeRatio(volume: volume, weight: weight)) { (error) in
+            guard case MiseEnPlaceError.measurementUnit(method: .weight) = error else {
+                XCTFail("Expected MisEnPlaceError.measurementUnit(method: .weight)")
+                return
+            }
+        }
+        
+        weight.unit = .ounce
+        
+        _ = try Ratio.makeRatio(volume: volume, weight: weight)
     }
 }

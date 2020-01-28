@@ -1,26 +1,16 @@
-//
-//  InterpreterTests.swift
-//  miseenplace
-//
-//  Created by Richard Piazza on 8/4/15.
-//  Copyright (c) 2015 Richard Piazza. All rights reserved.
-//
-
 import Foundation
 import XCTest
-import MiseEnPlace
+@testable import MiseEnPlace
 
 class InterpreterTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
+    static var allTests = [
+        ("testMetricMass", testMetricMass),
+        ("testMetricVolume", testMetricVolume),
+        ("testUSMass", testUSMass),
+        ("testUSVolume", testUSVolume),
+        ("testEdgeConditions", testEdgeConditions),
+    ]
 
     func testMetricMass() {
         let smallGramMass = Quantification(amount: 7.542, unit: .gram)
