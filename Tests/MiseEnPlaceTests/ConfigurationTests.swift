@@ -12,6 +12,8 @@ class ConfigurationTests: XCTestCase {
         ("testOunceGram", testOunceGram),
         ("testSmallMeasurement", testSmallMeasurement),
         ("testLargeMeasurement", testLargeMeasurement),
+        ("testSingleDecimalFormatter", testSingleDecimalFormatter),
+        ("testSignificantDigitFormatter", testSignificantDigitFormatter),
     ]
     
     let us = Locale(identifier: "en_US")
