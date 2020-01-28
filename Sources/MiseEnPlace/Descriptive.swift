@@ -2,6 +2,9 @@ import Foundation
 
 /// Parameters that describe and categorize an object.
 ///
+/// Although all of the properties are `Optional<String>`, best practices are to provide values for each;
+/// with `name` provided at a minimum.
+///
 /// ## Requied Conformance
 ///
 /// ```swift
@@ -15,14 +18,15 @@ import Foundation
 /// var classification: String? { get set }
 /// ```
 ///
-/// For Example:
+/// ## Example
 ///
-/// name = 'Whole Milk'
-///
-/// commentary = 'The mamary lactations from a bovine.'
-///
-/// classification = 'Dairy, Milk, Cow, Whole/Full Fat'
-///
+/// ```swift
+/// struct FoodStuff: Descriptive {
+///     var name: String? = "Whole Milk"
+///     var commentary: String? = "The mammary lactations from a bovine."
+///     var classification: String? = "Dairy, Milk, Cow, Whole/Full Fat"
+/// }
+/// ```
 public protocol Descriptive {
     // The common, short, human-understandable text.
     var name: String? { get set }
