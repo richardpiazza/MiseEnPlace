@@ -293,9 +293,15 @@ public extension Recipe {
                 continue
             }
             if text == "" {
-                text = text.appending(commentary)
+                text.append(commentary)
             } else {
-                text = text.appendingFormat("\n%@", [commentary])
+                #if !canImport(ObjectiveC)
+                commentary.withCString {
+                    text.append(String(format: "\n%s", $0))
+                }
+                #else
+                text.append(String(format: "\n%@", commentary))
+                #endif
             }
         }
         
