@@ -39,7 +39,7 @@ public extension Double {
 }
 
 public extension Double {
-    
+    @available(*, deprecated, message: "Intended for testing; use `XCTestEqual(_:_:accuracy:)`")
     func equals(_ value: Double, precision: Int) -> Bool {
         if self == value {
             return true
