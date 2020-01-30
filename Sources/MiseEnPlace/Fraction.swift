@@ -65,7 +65,7 @@ public enum Fraction: Double, CaseIterable {
     public var stepDownThreshold: Double {
         switch self {
         case .zero, .oneThousandth, .oneSixteenth, .oneEighth: return Fraction.oneEighth.rawValue
-        case .oneSixth: return Fraction.oneFourth.rawValue //0.14583
+        case .oneSixth: return 0.14583 // return Fraction.oneFourth.rawValue
         case .oneFourth: return 0.208333
         case .oneThird: return 0.291666
         case .oneHalf: return 0.41666

@@ -104,7 +104,7 @@ class InterpreterTests: XCTestCase {
         XCTAssertTrue(quartTest == "3 Quart " + Fraction.twoThirds.stringValue + " Pint")
         
         let gallonTest = Quantification(amount: 1.789, unit: .gallon).componentsTranslation
-        XCTAssertTrue(gallonTest == "1 Gallon 3" + Fraction.oneEighth.stringValue + " Quart")
+        XCTAssertEqual(gallonTest, "1 Gallon 3" + Fraction.oneSixth.stringValue + " Quart")
     }
     
     func testEdgeConditions() {
