@@ -8,13 +8,13 @@ import Foundation
 /// ## Requied Conformance
 ///
 /// ```swift
-/// // The common, short, human-understandable text.
+/// /// The common, short, human-understandable text.
 /// var name: String? { get set }
 ///
-/// // The expanded description i.e. 'notes'
+/// /// The expanded description i.e. 'notes'
 /// var commentary: String? { get set }
 ///
-/// // The scientific or structured identity of the item.
+/// /// The scientific or structured identity of the item.
 /// var classification: String? { get set }
 /// ```
 ///

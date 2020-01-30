@@ -155,9 +155,7 @@ public extension Recipe {
     
     /// Adjusts the sequence numbers of all elements following the specified element.
     mutating func removeFormulaElement(_ element: FormulaElement) {
-        guard let index = formula.firstIndex(where: { (fe) -> Bool in
-            return element.uuid == fe.uuid
-        }) else {
+        guard let index = formula.firstIndex(where: { $0.uuid == element.uuid }) else {
             return
         }
         
@@ -219,20 +217,11 @@ public extension Recipe {
         self.procedureElements.append(procedureElement)
     }
     
-    internal func indexOfProcedureElement(_ procedureElement: ProcedureElement) -> Int? {
-        for (idx, element) in self.procedureElements.enumerated() {
-            if element.uuid == procedureElement.uuid {
-                return idx
-            }
-        }
-        return nil
-    }
-    
     internal mutating func updateSequence(_ element: ProcedureElement, sequence: Int) {
         var e = element
         e.sequence = sequence
         
-        guard let index = indexOfProcedureElement(element) else {
+        guard let index = procedureElements.firstIndex(where: { $0.uuid == element.uuid }) else {
             return
         }
         
@@ -242,9 +231,7 @@ public extension Recipe {
     
     /// Adjusts the sequence numbers of all elements following the specified element.
     mutating func removeProcedureElement(_ element: ProcedureElement) {
-        guard let index = procedure.firstIndex(where: { (e) -> Bool in
-            return element.uuid == e.uuid
-        }) else {
+        guard let index = procedure.firstIndex(where: { $0.uuid == element.uuid }) else {
             return
         }
         

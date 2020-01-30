@@ -35,7 +35,7 @@ public struct Ratio {
     }
     
     fileprivate struct RatioIngredient: Ingredient {
-        var uuid: String = UUID().uuidString
+        var uuid: UUID = UUID()
         var creationDate: Date = Date()
         var modificationDate: Date = Date()
         var name: String?
@@ -48,8 +48,8 @@ public struct Ratio {
         var unit: MeasurementUnit = .each
     }
     
-    fileprivate struct RatioElement: FormulaElement {
-        var uuid: String = UUID().uuidString
+    fileprivate struct RatioMeasuredIngredient: FormulaElement {
+        var uuid: UUID = UUID()
         var creationDate: Date = Date()
         var modificationDate: Date = Date()
         var sequence: Int = 0
@@ -77,11 +77,11 @@ public struct Ratio {
             throw MiseEnPlaceError.measurementUnit(method: .weight)
         }
         
-        var volumeMeasuredIngredient = RatioElement()
+        var volumeMeasuredIngredient = RatioMeasuredIngredient()
         volumeMeasuredIngredient.amount = volume.amount
         volumeMeasuredIngredient.unit = volume.unit
         
-        var weightMeasuredIngredient = RatioElement()
+        var weightMeasuredIngredient = RatioMeasuredIngredient()
         weightMeasuredIngredient.amount = weight.amount
         weightMeasuredIngredient.unit = weight.unit
         

@@ -2,7 +2,7 @@ import Foundation
 @testable import MiseEnPlace
 
 class TestIngredient: Ingredient {
-    var uuid: String = UUID().uuidString
+    var uuid: UUID = UUID()
     var creationDate: Date = Date()
     var modificationDate: Date = Date()
     var name: String?
@@ -16,7 +16,7 @@ class TestIngredient: Ingredient {
 }
 
 class TestRecipe: Recipe {
-    var uuid: String = UUID().uuidString
+    var uuid: UUID = UUID()
     var creationDate: Date = Date()
     var modificationDate: Date = Date()
     var name: String?
@@ -30,7 +30,7 @@ class TestRecipe: Recipe {
 }
 
 class TestMeasuredIngredient: FormulaElement {
-    var uuid: String = UUID().uuidString
+    var uuid: UUID = UUID()
     var creationDate: Date = Date()
     var modificationDate: Date = Date()
     var sequence: Int = 0
@@ -49,7 +49,7 @@ class TestMeasuredIngredient: FormulaElement {
 }
 
 class TestMeasuredRecipe: FormulaElement {
-    var uuid: String = UUID().uuidString
+    var uuid: UUID = UUID()
     var creationDate: Date = Date()
     var modificationDate: Date = Date()
     var sequence: Int = 0
