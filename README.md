@@ -1,49 +1,39 @@
-# MiseEnPlace
-[![Version](https://img.shields.io/cocoapods/v/MiseEnPlace.svg?style=flat)](http://cocoadocs.org/docsets/MiseEnPlace)
-[![Platform](https://img.shields.io/cocoapods/p/MiseEnPlace.svg?style=flat)](http://cocoadocs.org/docsets/MiseEnPlace)
+<p align="center">
+    <img src="MiseEnPlace.png" width="1000" max-width="90%" alt="MiseEnPlace" />
+</p>
 
-A Framework for converting and interpreting common measurements used in cooking.
+<p align="center">
+    <img src="https://img.shields.io/badge/Swift-5.1-orange.svg" />
+    <a href="https://swift.org/package-manager">
+        <img src="https://img.shields.io/badge/swiftpm-compatible-brightgreen.svg?style=flat" alt="Swift Package Manager" />
+    </a>
+     <img src="https://img.shields.io/badge/platforms-mac+linux-brightgreen.svg?style=flat" alt="Mac + Linux" />
+    <a href="https://twitter.com/richardpiazza">
+        <img src="https://img.shields.io/badge/twitter-@richardpiazza-blue.svg?style=flat" alt="Twitter: @richardpiazza" />
+    </a>
+</p>
 
-#### MeasurementUnit.swift
+<p align="center">A framework for converting and interpreting common measurements used in cooking.</p>
 
-The `MeasurementUnit` enum is the heart of the MiseEnPlace framework. This enum represents some unit of measure, along with `MeasurementSystem` and `MeasurementMethod` that it belongs to.
+## Installation
 
-All of the logic for how and when to convert to other units and amounts is contained within the enum.
+**MiseEnPlace** is distributed using the [Swift Package Manager](https://swift.org/package-manager). To install it into a project, add it as a dependency within your `Package.swift` manifest, or through [Xcode](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app):
 
-#### MeasurementMethod.swift
+```swift
+let package = Package(
+    ...
+    dependencies: [
+        .package(url: "https://github.com/richardpiazza/MiseEnPlace.git", from: "5.0.0")
+    ],
+    ...
+)
+```
 
-The `MeasurementMethod` represents the ways in which something can be measured. In the case of the MiseEnPlace framework, this means `Volume` and `Mass`.
+Then import **MiseEnPlace** wherever you'd like to use it:
 
-#### MeasurementSystem.swift
+```swift
+import MiseEnPlace
+```
 
-Similar to the `MeasurementMethod` the `MeasurementSystem` enum represents the types of unit systems that can be used. Currently only `US` and `Metric` are supported.
-
-#### MeasurementSystemMethod.swift
-
-The `MeasurementSystemMethod` represents the ways `MeasurementMethod`s and `MeasurementSystem`s can be combined.
-
-#### Convertable.swift
-
-The `Convertable` protocol defines the properties needed to be able to perform conversion and translation.
-An extension to the protocol offers many important methods for scaling a measurement based on it's ratio.
-
-#### CookingMeasurement.swift
-
-Represents a amount and unit pairing. A `CookingMeasurement` has several key properties and functions for tranlating human-readable strings.
-
-#### Ratio.swift
-
-A defined relationship between volume and weight.
-
-#### Double+MiseEnPlace.swift
-
-An extension to `Double` with functions for determining value quality and converting one amount to another within the same `MeasurementSystemMethod`.
-
-#### Fraction.swift
-
-An enum with fraction values used within the `MiseEnPlace` framework.
-
-#### Intergral.swift
-
-An enum with common intergral values. This is primarily used for the iOS MeasurementInputView.
+## Usage
 
