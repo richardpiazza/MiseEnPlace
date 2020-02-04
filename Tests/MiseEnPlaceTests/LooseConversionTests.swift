@@ -49,9 +49,9 @@ class LooseConversionTests: XCTestCase {
         XCTAssertEqual(try measuredIngredient.amount(for: .cup), 16.0, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .fluidOunce), 128.0, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .tablespoon), 256.0, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 768.0, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .dash), 6144.0, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 12288.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 768.08, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .dash), 6144.61, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 12289.23, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .ounce), 128.0, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .pound), 8.0, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .milliliter), 3840.0, accuracy: 0.01)
@@ -176,7 +176,7 @@ class LooseConversionTests: XCTestCase {
         
         let quantification = try measuredIngredient.scale(by: Fraction.twoThirds.rawValue, measurementSystem: .metric, measurementMethod: .volume)
         
-        XCTAssertEqual(quantification.amount, 592.59, accuracy: 0.01)
+        XCTAssertEqual(quantification.amount, 592.53, accuracy: 0.01)
         XCTAssertEqual(quantification.unit, .milliliter)
     }
     
