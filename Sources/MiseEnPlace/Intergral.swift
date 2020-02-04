@@ -1,7 +1,7 @@
 import Foundation
 
 /// Enumeration of commonly used intergrals in cooking.
-public enum Integral: Int, CaseIterable {
+public enum Integral: Int, CaseIterable, CustomStringConvertible {
     case zero = 0
     case one = 1
     case two = 2
@@ -46,7 +46,7 @@ public enum Integral: Int, CaseIterable {
     
     public static let singleDigits: [Integral] = [.zero, .one, .two, .three, .four, .five, .six, .seven, .eight, .nine]
     
-    public var stringValue: String {
+    public var description: String {
         return "\(self.rawValue)"
     }
 }
