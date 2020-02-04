@@ -401,7 +401,7 @@ private extension Quantification {
         }
         
         let intergral = Int(decomposedAmount.0)
-        let fraction = Fraction(closestValue: decomposedAmount.1)
+        let fraction = Fraction(proximateValue: decomposedAmount.1)
         
         switch fraction {
         case .one:
@@ -418,9 +418,9 @@ private extension Quantification {
             }
         default:
             if intergral == 0 {
-                return "\(fraction.stringValue) \(unitName)"
+                return "\(fraction.description) \(unitName)"
             } else {
-                return "\(intergral)\(fraction.stringValue) \(unitName)"
+                return "\(intergral)\(fraction.description) \(unitName)"
             }
         }
     }

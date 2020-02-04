@@ -58,7 +58,7 @@ class DoubleTests: XCTestCase {
         value = 10.875
         XCTAssertEqual(value.fractionedString, "10⅞")
         
-        value = 10.9
+        value = 10.94
         XCTAssertEqual(value.fractionedString, "11")
         
         value = 0.875

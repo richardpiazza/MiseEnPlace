@@ -26,13 +26,16 @@ class LooseConversionTests: XCTestCase {
     
     private var measuredIngredient: TestMeasuredIngredient = TestMeasuredIngredient(ratio: .oneToOne)
     
+    private static var useLooseConversions: Bool = false
+    
     override func setUp() {
         super.setUp()
+        Self.useLooseConversions = Configuration.useLooseConversions
         Configuration.useLooseConversions = true
     }
     
     override func tearDown() {
-        Configuration.useLooseConversions = false
+        Configuration.useLooseConversions = Self.useLooseConversions
         super.tearDown()
     }
 

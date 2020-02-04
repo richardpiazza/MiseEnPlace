@@ -1,34 +1,97 @@
 import Foundation
 
 /// Enumeration of commonly used fractions in cooking.
-public enum Fraction: Double, CaseIterable {
+public enum Fraction: Double, CaseIterable, CustomStringConvertible {
+    /// 0⁄1
     case zero = 0.0
+    /// ⅟1000
     case oneThousandth = 0.001
+    /// ⅟16
     case oneSixteenth = 0.0625
+    /// ⅛
     case oneEighth = 0.125
-    case oneSixth = 0.166666
+    /// ⅙
+    case oneSixth = 0.1666
+    /// ¼
     case oneFourth = 0.25
-    case oneThird = 0.3333333
+    /// ⅓
+    case oneThird = 0.3333
+    /// ½
     case oneHalf = 0.5
+    /// ⅝
     case fiveEighths = 0.625
-    case twoThirds = 0.666666
+    /// ⅔
+    case twoThirds = 0.6666
+    /// ¾
     case threeFourths = 0.75
-    case sevenEights = 0.875
+    /// ⅞
+    case sevenEighths = 0.875
+    /// 1⁄1
     case one = 1.0
     
-    public static let commonFractions: [Fraction] = [.oneEighth, .oneFourth, .oneThird, .oneHalf, .twoThirds, .threeFourths]
-    public static let zeroBasedCommonFractions: [Fraction] = [.zero, .oneEighth, .oneFourth, .oneThird, .oneHalf, .twoThirds, .threeFourths]
-    public static let symbolFractions: [Fraction] = [.oneEighth, .oneSixth, .oneFourth, .oneThird, .oneHalf, .fiveEighths, .twoThirds, .threeFourths, .sevenEights]
-    public static let zeroBasedSymbolFractions: [Fraction] = [.zero, .oneEighth, .oneSixth, .oneFourth, .oneThird, .oneHalf, .fiveEighths, .twoThirds, .threeFourths, .sevenEights]
+    /// Fractions that are commonly used.
+    public static var commonFractions: [Fraction] {
+        return allCases.filter({ $0.isCommon })
+    }
     
-    public init(closestValue value: Double) {
+    /// Fractions that are representable by a unicode symbol.
+    public static var unicodeRepresentableFractions: [Fraction] {
+        return allCases.filter({ $0.isUnicodeRepresentable })
+    }
+    
+    /// Initialize a `Fraction` using the provided value allowing for a 0.001 tolerance.
+    public init?(approximateValue value: RawValue) {
         if let fraction = Fraction(rawValue: value) {
             self = fraction
             return
         }
         
+        for fraction in Fraction.allCases {
+            if fraction.isApproximatelyEqual(to: value) {
+                self = fraction
+                return
+            }
+        }
+        
+        return nil
+    }
+    
+    /// Initializes the `Fraction` using the closest matching value.
+    ///
+    /// The collection of cases is enumerated in reverse, so the largest possible match is set.
+    ///
+    /// There are some special conditions when using this initializer:
+    /// * Values > 7/8 (0.875) will always report as `.one`
+    /// * Values &lt; 1/8 (0.125) will always report as `.zero`
+    public init(proximateValue value: RawValue) {
+        if let fraction = Fraction(rawValue: value) {
+            self = fraction
+            return
+        }
+        
+        if let fraction = Fraction(approximateValue: value) {
+            self = fraction
+            return
+        }
+        
+        if value < Fraction.oneEighth.rawValue {
+            self = .zero
+            return
+        }
+        
+        if value > Fraction.sevenEighths.rawValue {
+            self = .one
+            return
+        }
+        
         for fraction in Fraction.allCases.reversed() {
-            if value >= fraction.stepDownThreshold {
+            guard let previous = fraction.previous else {
+                continue
+            }
+            
+            // half way to the 'previous' fraction
+            let threshold = fraction.rawValue - ((fraction.rawValue - previous.rawValue) / 2.0)
+            if value >= threshold {
                 self = fraction
                 return
             }
@@ -37,49 +100,10 @@ public enum Fraction: Double, CaseIterable {
         self = .zero
     }
     
-    public init?(commonValue value: Double) {
-        for fraction in Fraction.zeroBasedCommonFractions {
-            if fraction.rawValue == value {
-                self = fraction
-                return
-            }
-        }
-        
-        return nil
-    }
-    
-    public init?(symbolValue value: Double) {
-        for fraction in Fraction.zeroBasedSymbolFractions {
-            if fraction.rawValue == value {
-                self = fraction
-                return
-            }
-        }
-        
-        return nil
-    }
-    
-    /// The threshold at which the next smallest fraction should be used.
-    /// Values greater than 7/8 (0.875) should be considered 1.0 (.one).
-    /// Values less than 1/4 (0.25) should be considered 0.0 (.zero).
-    public var stepDownThreshold: Double {
-        switch self {
-        case .zero, .oneThousandth, .oneSixteenth, .oneEighth: return Fraction.oneEighth.rawValue
-        case .oneSixth: return 0.14583 // return Fraction.oneFourth.rawValue
-        case .oneFourth: return 0.208333
-        case .oneThird: return 0.291666
-        case .oneHalf: return 0.41666
-        case .fiveEighths: return 0.5625
-        case .twoThirds: return 0.645833
-        case .threeFourths: return 0.708333
-        case .sevenEights: return 0.8125
-        case .one: return Fraction.sevenEights.rawValue
-        }
-    }
-    
     /// The unicode symbol (or empty string) for known fraction values.
-    public var stringValue: String {
+    public var description: String {
         switch self {
+        case .zero, .one: return ""
         case .oneThousandth: return "\u{215F}1000"
         case .oneSixteenth: return "\u{215F}16"
         case .oneEighth: return "⅛"
@@ -90,8 +114,52 @@ public enum Fraction: Double, CaseIterable {
         case .fiveEighths: return "⅝"
         case .twoThirds: return "⅔"
         case .threeFourths: return "¾"
-        case .sevenEights: return "⅞"
-        default: return ""
+        case .sevenEighths: return "⅞"
         }
+    }
+    
+    /// Indicates if this `Fraction` is commonly used (in cooking)
+    public var isCommon: Bool {
+        switch self {
+        case .oneEighth, .oneFourth, .oneThird, .oneHalf, .twoThirds, .threeFourths:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    /// Indicates if this `Fraction` has a unicode symbol associated with it
+    public var isUnicodeRepresentable: Bool {
+        switch self {
+        case .oneEighth, .oneSixth, .oneFourth, .oneThird, .oneHalf, .fiveEighths, .twoThirds, .threeFourths, .sevenEighths:
+            return true
+        default:
+            return false
+        }
+    }
+}
+
+private extension Fraction {
+    /// The fraction at `allCases` index - 1.
+    var previous: Fraction? {
+        guard let index = Fraction.allCases.firstIndex(of: self), index > 0 else {
+            return nil
+        }
+        
+        return Fraction.allCases[index - 1]
+    }
+    
+    /// The fraction at `allCases` index + 1.
+    var next: Fraction? {
+        guard let index = Fraction.allCases.firstIndex(of: self), index < (Fraction.allCases.count - 1) else {
+            return nil
+        }
+        
+        return Fraction.allCases[index + 1]
+    }
+    
+    /// Compares the 'rawValue' to the provided value at a precision of 0.001
+    func isApproximatelyEqual(to: RawValue) -> Bool {
+        return abs(rawValue.distance(to: to)) <= Fraction.oneThousandth.rawValue
     }
 }

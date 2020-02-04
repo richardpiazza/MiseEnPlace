@@ -21,7 +21,7 @@ public extension Double {
         }
         
         let intergral = Int(decomposedAmount.0)
-        let fraction = Fraction(closestValue: decomposedAmount.1)
+        let fraction = Fraction(proximateValue: decomposedAmount.1)
         
         switch fraction {
         case .zero:
@@ -30,9 +30,9 @@ public extension Double {
             return "\(Int(intergral + 1))"
         default:
             if intergral == 0 {
-                return "\(fraction.stringValue)"
+                return "\(fraction.description)"
             } else {
-                return "\(intergral)\(fraction.stringValue)"
+                return "\(intergral)\(fraction.description)"
             }
         }
     }

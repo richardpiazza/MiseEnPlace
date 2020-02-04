@@ -9,6 +9,7 @@ public func allTests() -> [XCTestCaseEntry] {
         testCase(DoubleTests.allTests),
         testCase(EachMeasurementUnitTests.allTests),
         testCase(EqualRatioIngredientTests.allTests),
+        testCase(FractionTests.allTests),
         testCase(HighMassRatioIngredientTests.allTests),
         testCase(HighVolumeRatioIngredientTests.allTests),
         testCase(InterpreterTests.allTests),

@@ -28,7 +28,20 @@ class EqualRatioIngredientTests: XCTestCase {
     ]
     
     private var measuredIngredient: TestMeasuredIngredient = TestMeasuredIngredient(ratio: .oneToOne)
-
+    
+    private static var useLooseConversions: Bool = false
+    
+    override func setUp() {
+        super.setUp()
+        Self.useLooseConversions = Configuration.useLooseConversions
+        Configuration.useLooseConversions = false
+    }
+    
+    override func tearDown() {
+        Configuration.useLooseConversions = Self.useLooseConversions
+        super.tearDown()
+    }
+    
     func testMeasurementAmountForUSVolume() throws {
         measuredIngredient.amount = 1.0
         measuredIngredient.unit = .gallon
@@ -39,9 +52,9 @@ class EqualRatioIngredientTests: XCTestCase {
         XCTAssertEqual(try measuredIngredient.amount(for: .cup), 16.0, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .fluidOunce), 128.0, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .tablespoon), 256.0, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 768.0, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .dash), 6144.0, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 12288.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 768.08, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .dash), 6144.61, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 12289.23, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .ounce), 128.0, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .pound), 8.0, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .milliliter), 3785.41, accuracy: 0.01)
@@ -60,9 +73,9 @@ class EqualRatioIngredientTests: XCTestCase {
         XCTAssertEqual(try measuredIngredient.amount(for: .cup), 10.0, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .fluidOunce), 80.0, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .tablespoon), 160.0, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 480.0, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .dash), 3840.0, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 7680.0, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 480.05, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .dash), 3840.38, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 7680.76, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .ounce), 80.0, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .pound), 5.0, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .milliliter), 2365.88, accuracy: 0.01)
@@ -81,9 +94,9 @@ class EqualRatioIngredientTests: XCTestCase {
         XCTAssertEqual(try measuredIngredient.amount(for: .cup), 3.17, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .fluidOunce), 25.36, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .tablespoon), 50.72, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 152.16, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .dash), 1217.30, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 2434.61, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 152.18, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .dash), 1217.43, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 2434.85, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .ounce), 26.46, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .pound), 1.65, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .milliliter), 750.0, accuracy: 0.01)
@@ -102,9 +115,9 @@ class EqualRatioIngredientTests: XCTestCase {
         XCTAssertEqual(try measuredIngredient.amount(for: .cup), 10.57, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .fluidOunce), 84.54, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .tablespoon), 169.07, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 507.21, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .dash), 4057.68, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 8115.37, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 507.26, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .dash), 4058.09, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 8116.18, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .ounce), 88.18, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .pound), 5.51, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .milliliter), 2500.0, accuracy: 0.01)
@@ -229,7 +242,7 @@ class EqualRatioIngredientTests: XCTestCase {
         
         let quantification = try measuredIngredient.scale(by: Fraction.twoThirds.rawValue, measurementSystem: .metric, measurementMethod: .volume)
         
-        XCTAssertEqual(quantification.amount, 592.59, accuracy: 0.01)
+        XCTAssertEqual(quantification.amount, 592.53, accuracy: 0.01)
         XCTAssertEqual(quantification.unit, .milliliter)
     }
     
