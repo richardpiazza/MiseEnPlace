@@ -1,7 +1,7 @@
 import Foundation
 
 /// The relation between volume and weight
-public struct Ratio {
+public struct Ratio: CustomStringConvertible {
     
     /// A common/default ratio where volume is equivalent to weight
     public static let oneToOne: Ratio = Ratio(volume: 1.0, weight: 1.0)
@@ -22,6 +22,15 @@ public struct Ratio {
         self.weight = weight
     }
     
+    /// A string representation of this ratio in the format of **{volume}:{weight}**
+    ///
+    /// For Example: _1:1_.
+    public var description: String {
+        let v = significantDigitFormatter.string(for: volume) ?? String(describing: volume)
+        let w = significantDigitFormatter.string(for: weight) ?? String(describing: weight)
+        return String(format: "%@:%@", v, w)
+    }
+    
     /// Conversion factor to used when going from one `MeasurementMethod` to another `MeasurementMethod`.
     public func multiplier(converting from: MeasurementMethod, to: MeasurementMethod) -> Double {
         switch (from, to) {
@@ -32,32 +41,6 @@ public struct Ratio {
         default:
             return 1.0
         }
-    }
-    
-    fileprivate struct RatioIngredient: Ingredient {
-        var uuid: UUID = UUID()
-        var creationDate: Date = Date()
-        var modificationDate: Date = Date()
-        var name: String?
-        var commentary: String?
-        var classification: String?
-        var imagePath: String?
-        var volume: Double = 1.0
-        var weight: Double = 1.0
-        var amount: Double = 0.0
-        var unit: MeasurementUnit = .each
-    }
-    
-    fileprivate struct RatioMeasuredIngredient: FormulaElement {
-        var uuid: UUID = UUID()
-        var creationDate: Date = Date()
-        var modificationDate: Date = Date()
-        var sequence: Int = 0
-        var amount: Double = 0.0
-        var unit: MeasurementUnit = .each
-        var inverseRecipe: Recipe?
-        var ingredient: Ingredient? = RatioIngredient()
-        var recipe: Recipe?
     }
     
     public static func makeRatio(volume: Quantification, weight: Quantification) throws -> Ratio {
@@ -128,4 +111,37 @@ public struct Ratio {
         
         return Ratio(volume: ratioVolume, weight: ratioWeight)
     }
+}
+
+fileprivate var significantDigitFormatter: NumberFormatter = {
+    let formatter = NumberFormatter()
+    formatter.usesSignificantDigits = true
+    formatter.maximumSignificantDigits = 3
+    return formatter
+}()
+
+fileprivate struct RatioIngredient: Ingredient {
+    var uuid: UUID = UUID()
+    var creationDate: Date = Date()
+    var modificationDate: Date = Date()
+    var name: String?
+    var commentary: String?
+    var classification: String?
+    var imagePath: String?
+    var volume: Double = 1.0
+    var weight: Double = 1.0
+    var amount: Double = 0.0
+    var unit: MeasurementUnit = .each
+}
+
+fileprivate struct RatioMeasuredIngredient: FormulaElement {
+    var uuid: UUID = UUID()
+    var creationDate: Date = Date()
+    var modificationDate: Date = Date()
+    var sequence: Int = 0
+    var amount: Double = 0.0
+    var unit: MeasurementUnit = .each
+    var inverseRecipe: Recipe?
+    var ingredient: Ingredient? = RatioIngredient()
+    var recipe: Recipe?
 }
