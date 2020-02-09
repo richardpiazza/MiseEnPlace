@@ -91,7 +91,7 @@ public extension Quantification {
     ///
     /// - throws: Error.measurementAmount(), Error.measurementUnit(), Error.unhandledConversion
     ///
-    func normalizedMeasurement() throws -> Quantification {
+    func normalizedQuantification() throws -> Quantification {
         guard amount > 0.0 else {
             throw MiseEnPlaceError.measurementAmount(method: nil)
         }

@@ -108,6 +108,18 @@ public extension Recipe {
     var yieldTranslation: String {
         return "\(totalQuantification.componentsTranslation), \(yieldString)"
     }
+    
+    /// A combined string: Total Measurement amount, Yield
+    ///
+    /// The `totalQuantification` is first _normalized_ using the current `unit` `MeasurementSystemMethod`.
+    var yieldTranslationNormalized: String {
+        do {
+            let translation = try totalQuantification.normalizedQuantification().componentsTranslation
+            return "\(translation), \(yieldString)"
+        } catch {
+            return yieldTranslation
+        }
+    }
 }
 
 // MARK: - Formula

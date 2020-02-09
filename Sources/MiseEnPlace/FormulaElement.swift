@@ -96,7 +96,11 @@ public extension FormulaElement {
                 throw MiseEnPlaceError.quantifiableConversion
             }
             
-            return recipe.totalAmount(for: destinationUnit)
+            let measuredAmount = recipe.totalAmount(for: unit)
+            let percent = amount / measuredAmount
+            
+            let destinationAmount = recipe.totalAmount(for: destinationUnit)
+            return destinationAmount * percent
         }
         
         throw MiseEnPlaceError.unhandledConversion
@@ -148,11 +152,11 @@ public extension FormulaElement {
             let mm = measurementMethod ?? scaledQuantification.unit.measurementMethod
             
             guard let measurementSystemMethod = MeasurementSystemMethod.measurementSystemMethod(for: ms, measurementMethod: mm) else {
-                return try scaledQuantification.normalizedMeasurement()
+                return try scaledQuantification.normalizedQuantification()
             }
             
             let translatedQuantification = try scaledQuantification.quantification.requantify(in: measurementSystemMethod, ratio: ingredient.ratio)
-            return try translatedQuantification.normalizedMeasurement()
+            return try translatedQuantification.normalizedQuantification()
             
         } else if let recipe = self.recipe {
             
@@ -176,11 +180,11 @@ public extension FormulaElement {
             let mm = measurementMethod ?? scaledQuantification.unit.measurementMethod
             
             guard let measurementSystemMethod = MeasurementSystemMethod.measurementSystemMethod(for: ms, measurementMethod: mm) else {
-                return try scaledQuantification.normalizedMeasurement()
+                return try scaledQuantification.normalizedQuantification()
             }
             
             let translatedQuantification = try scaledQuantification.quantification.requantify(in: measurementSystemMethod, ratio: .oneToOne)
-            return try translatedQuantification.normalizedMeasurement()
+            return try translatedQuantification.normalizedQuantification()
         }
         
         throw MiseEnPlaceError.unhandledConversion
