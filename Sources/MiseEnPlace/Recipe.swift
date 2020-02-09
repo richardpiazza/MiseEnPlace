@@ -171,15 +171,21 @@ public extension Recipe {
     }
     
     /// Adjusts the sequencing of elements affected by a move operation.
-    mutating func moveFormulaElement(_ element: FormulaElement, fromIndex: Int, toIndex: Int) {
+    ///
+    /// - returns: A range of indices that have been affected by this operation
+    @discardableResult
+    mutating func moveFormulaElement(_ element: FormulaElement, fromIndex: Int, toIndex: Int) -> [Int] {
+        var indices: [Int] = []
+        
         guard fromIndex != toIndex else {
-            return
+            return indices
         }
         
         let elements = self.formula
         
         if toIndex < fromIndex {
             for i in toIndex..<fromIndex {
+                indices.append(i)
                 let formulaElement = elements[i]
                 let newSequence = i + 1
                 
@@ -187,6 +193,7 @@ public extension Recipe {
             }
         } else {
             for i in fromIndex.advanced(by: 1)...toIndex {
+                indices.append(i)
                 let formulaElement = elements[i]
                 let newSequence = i - 1
                 self.updateSequence(formulaElement, sequence: newSequence)
@@ -194,6 +201,9 @@ public extension Recipe {
         }
         
         self.updateSequence(element, sequence: toIndex)
+        indices.append(fromIndex)
+        
+        return indices
     }
 }
 
@@ -246,21 +256,28 @@ public extension Recipe {
     }
     
     /// Adjusts the sequencing of elements affected by a move operation.
-    mutating func moveProcedureElement(_ element: ProcedureElement, fromIndex: Int, toIndex: Int) {
+    ///
+    /// - returns: A range of indices that have been affected by this operation
+    @discardableResult
+    mutating func moveProcedureElement(_ element: ProcedureElement, fromIndex: Int, toIndex: Int) -> [Int] {
+        var indices: [Int] = []
+        
         guard fromIndex != toIndex else {
-            return
+            return indices
         }
         
         let elements = self.procedure
         
         if toIndex < fromIndex {
             for i in toIndex..<fromIndex {
+                indices.append(i)
                 let e = elements[i]
                 let newSequence = i + 1
                 self.updateSequence(e, sequence: newSequence)
             }
         } else {
             for i in fromIndex.advanced(by: 1)...toIndex {
+                indices.append(i)
                 let e = elements[i]
                 let newSequence = i - 1
                 self.updateSequence(e, sequence: newSequence)
@@ -268,6 +285,9 @@ public extension Recipe {
         }
         
         self.updateSequence(element, sequence: toIndex)
+        indices.append(fromIndex)
+        
+        return indices
     }
     
     /// A concatenation of all procedure element commentaries.
