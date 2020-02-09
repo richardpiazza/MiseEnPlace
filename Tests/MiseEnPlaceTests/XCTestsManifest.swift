@@ -16,6 +16,7 @@ public func allTests() -> [XCTestCaseEntry] {
         testCase(LooseConversionTests.allTests),
         testCase(MeasurementUnitTests.allTests),
         testCase(RatioTests.allTests),
+        testCase(RecipeTests.allTests),
         testCase(SignificantDigitTests.allTests),
     ]
 }

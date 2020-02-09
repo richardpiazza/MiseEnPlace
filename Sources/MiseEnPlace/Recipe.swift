@@ -115,42 +115,27 @@ public extension Recipe {
 public extension Recipe {
     /// An ordered list of formula elements (MeasuredIngredient/MeasuredRecipe).
     var formula: [FormulaElement] {
-        var formula = [FormulaElement]()
-        formula.append(contentsOf: self.formulaElements)
-        formula.sort { (element1, element2) -> Bool in
-            return element1.sequence < element2.sequence
-        }
-        
-        return formula
+        return formulaElements.sorted(by: { $0.sequence < $1.sequence })
     }
     
     /// Assigns the next sequence number to the formula element.
     mutating func insertFormulaElement(_ element: FormulaElement) {
-        let nextSequence = formula.count
         var formulaElement = element
-        formulaElement.sequence = nextSequence
-        self.formulaElements.append(formulaElement)
-    }
-    
-    internal func indexOfFormulaElement(_ formulaElement: FormulaElement) -> Int? {
-        for (idx, element) in self.formulaElements.enumerated() {
-            if element.uuid == formulaElement.uuid {
-                return idx
-            }
-        }
-        return nil
+        formulaElement.sequence = formula.count
+        
+        formulaElements.append(formulaElement)
     }
     
     internal mutating func updateSequence(_ element: FormulaElement, sequence: Int) {
         var formulaElement = element
         formulaElement.sequence = sequence
         
-        guard let index = indexOfFormulaElement(formulaElement) else {
+        guard let index = formulaElements.firstIndex(where: { $0.id == formulaElement.id }) else {
             return
         }
         
-        self.formulaElements.remove(at: index)
-        self.formulaElements.insert(formulaElement, at: index)
+        formulaElements.remove(at: index)
+        formulaElements.insert(formulaElement, at: index)
     }
     
     /// Adjusts the sequence numbers of all elements following the specified element.
@@ -165,8 +150,7 @@ public extension Recipe {
             }
             
             let newSequence = idx - 1
-            
-            self.updateSequence(element, sequence: newSequence)
+            updateSequence(element, sequence: newSequence)
         }
     }
     
@@ -189,18 +173,19 @@ public extension Recipe {
                 let formulaElement = elements[i]
                 let newSequence = i + 1
                 
-                self.updateSequence(formulaElement, sequence: newSequence)
+                updateSequence(formulaElement, sequence: newSequence)
             }
         } else {
             for i in fromIndex.advanced(by: 1)...toIndex {
                 indices.append(i)
                 let formulaElement = elements[i]
                 let newSequence = i - 1
-                self.updateSequence(formulaElement, sequence: newSequence)
+                
+                updateSequence(formulaElement, sequence: newSequence)
             }
         }
         
-        self.updateSequence(element, sequence: toIndex)
+        updateSequence(element, sequence: toIndex)
         indices.append(fromIndex)
         
         return indices
@@ -212,17 +197,13 @@ public extension Recipe {
 public extension Recipe {
     /// An ordered list of procedure elements.
     var procedure: [ProcedureElement] {
-        return procedureElements.sorted(by: { (element1, element2) -> Bool in
-            return element1.sequence < element2.sequence
-        })
+        return procedureElements.sorted(by: { $0.sequence < $1.sequence })
     }
     
     // Assigns the next sequence number to the formula element.
     mutating func insertProcedureElement(_ element: ProcedureElement) {
-        let nextSequence = procedure.count
-        
         var procedureElement = element
-        procedureElement.sequence = nextSequence
+        procedureElement.sequence = procedure.count
         
         self.procedureElements.append(procedureElement)
     }
@@ -235,8 +216,8 @@ public extension Recipe {
             return
         }
         
-        self.procedureElements.remove(at: index)
-        self.procedureElements.insert(e, at: index)
+        procedureElements.remove(at: index)
+        procedureElements.insert(e, at: index)
     }
     
     /// Adjusts the sequence numbers of all elements following the specified element.
@@ -251,7 +232,7 @@ public extension Recipe {
             }
             
             let newSequence = idx - 1
-            self.updateSequence(element, sequence: newSequence)
+            updateSequence(element, sequence: newSequence)
         }
     }
     
@@ -273,18 +254,20 @@ public extension Recipe {
                 indices.append(i)
                 let e = elements[i]
                 let newSequence = i + 1
-                self.updateSequence(e, sequence: newSequence)
+                
+                updateSequence(e, sequence: newSequence)
             }
         } else {
             for i in fromIndex.advanced(by: 1)...toIndex {
                 indices.append(i)
                 let e = elements[i]
                 let newSequence = i - 1
-                self.updateSequence(e, sequence: newSequence)
+                
+                updateSequence(e, sequence: newSequence)
             }
         }
         
-        self.updateSequence(element, sequence: toIndex)
+        updateSequence(element, sequence: toIndex)
         indices.append(fromIndex)
         
         return indices
@@ -302,12 +285,12 @@ public extension Recipe {
             if text == "" {
                 text.append(commentary)
             } else {
-                #if !canImport(ObjectiveC)
+                #if canImport(ObjectiveC)
+                text.append(String(format: "\n%@", commentary))
+                #else
                 commentary.withCString {
                     text.append(String(format: "\n%s", $0))
                 }
-                #else
-                text.append(String(format: "\n%@", commentary))
                 #endif
             }
         }

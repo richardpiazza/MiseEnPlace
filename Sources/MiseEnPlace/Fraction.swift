@@ -70,7 +70,12 @@ public enum Fraction: Double, CaseIterable, CustomStringConvertible {
         }
         
         if let fraction = Fraction(approximateValue: value) {
-            self = fraction
+            switch fraction {
+            case .zero, .oneThousandth, .oneSixteenth:
+                self = .zero
+            default:
+                self = fraction
+            }
             return
         }
         

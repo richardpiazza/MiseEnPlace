@@ -28,7 +28,24 @@ public struct Ratio: CustomStringConvertible {
     public var description: String {
         let v = significantDigitFormatter.string(for: volume) ?? String(describing: volume)
         let w = significantDigitFormatter.string(for: weight) ?? String(describing: weight)
+        #if canImport(ObjectiveC)
         return String(format: "%@:%@", v, w)
+        #else
+        var vC: CVarArg?
+        v.withCString {
+            vC = $0
+        }
+        var wC: CVarArg?
+        w.withCString {
+            wC = $0
+        }
+        
+        guard let cV = vC, let cW = wC else {
+            return "\(v):\(w)"
+        }
+        
+        return String(format: "%s:%s", volume, weight)
+        #endif
     }
     
     /// Conversion factor to used when going from one `MeasurementMethod` to another `MeasurementMethod`.

@@ -29,19 +29,19 @@ class EachMeasurementUnitTests: XCTestCase {
     }()
     
     private lazy var measuredEgg: TestMeasuredIngredient = {
-        let measuredIngredient = TestMeasuredIngredient()
+        var measuredIngredient = TestMeasuredIngredient()
         measuredIngredient.ingredient = egg
         return measuredIngredient
     }()
     
     private lazy var measuredEggWhite: TestMeasuredIngredient = {
-        let measuredIngredient = TestMeasuredIngredient()
+        var measuredIngredient = TestMeasuredIngredient()
         measuredIngredient.ingredient = eggWhite
         return measuredIngredient
     }()
     
     private lazy var measuredEggYolk: TestMeasuredIngredient = {
-        let measuredIngredient = TestMeasuredIngredient()
+        var measuredIngredient = TestMeasuredIngredient()
         measuredIngredient.ingredient = eggYolk
         return measuredIngredient
     }()
