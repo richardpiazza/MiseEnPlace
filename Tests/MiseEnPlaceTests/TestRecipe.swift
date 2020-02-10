@@ -106,6 +106,15 @@ extension TestRecipe {
         measuredSalt.unit = .ounce
         recipe.insertFormulaElement(measuredSalt)
         
+        let step1 = TestProcedureElement(commentary: "Bring all ingredients together in a mixer.")
+        recipe.insertProcedureElement(step1)
+        
+        let step2 = TestProcedureElement(commentary: "Ferment until doubled, approximately 1-2 hours.")
+        recipe.insertProcedureElement(step2)
+        
+        let step3 = TestProcedureElement(commentary: "Bake at 450℉ apx 20-22 minutes.")
+        recipe.insertProcedureElement(step3)
+        
         return recipe
     }
 }

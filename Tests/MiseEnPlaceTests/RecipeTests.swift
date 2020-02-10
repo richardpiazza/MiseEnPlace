@@ -8,7 +8,8 @@ class RecipeTests: XCTestCase {
         ("testTotalAmount", testTotalAmount),
         ("testYield", testYield),
         ("testPortion", testPortion),
-        ("testTranslatedFormula", testTranslatedFormula),
+        ("testFormula", testFormula),
+        ("testProcedure", testProcedure),
     ]
     
     private let italianBread = TestRecipe.italianBread
@@ -42,7 +43,7 @@ class RecipeTests: XCTestCase {
         XCTAssertEqual(poolishBaguette.portion.unit, .ounce)
     }
     
-    func testTranslatedFormula() throws {
+    func testFormula() throws {
         let formula = try poolishBaguette.scale(by: 1.875, measurementSystem: .metric, measurementMethod: .weight)
         XCTAssertEqual(formula.count, 5)
         
@@ -94,5 +95,29 @@ class RecipeTests: XCTestCase {
         XCTAssertEqual(salt.ingredient?.id, TestIngredient.salt.id)
         XCTAssertEqual(salt.quantification.amount, 18.0, accuracy: 1)
         XCTAssertEqual(salt.quantification.unit, .gram)
+    }
+    
+    func testProcedure() {
+        var recipe = poolishBaguette
+        
+        var procedure = recipe.procedure
+        XCTAssertEqual(procedure.count, 3)
+        XCTAssertEqual(procedure[0].sequence, 0)
+        XCTAssertTrue((procedure[0].commentary ?? "").lowercased().contains("mix"))
+        XCTAssertEqual(procedure[1].sequence, 1)
+        XCTAssertTrue((procedure[1].commentary ?? "").lowercased().contains("ferment"))
+        XCTAssertEqual(procedure[2].sequence, 2)
+        XCTAssertTrue((procedure[2].commentary ?? "").lowercased().contains("bake"))
+        
+        recipe.moveProcedureElement(procedure[2], fromIndex: 2, toIndex: 1)
+        
+        procedure = recipe.procedure
+        XCTAssertEqual(procedure.count, 3)
+        XCTAssertEqual(procedure[0].sequence, 0)
+        XCTAssertTrue((procedure[0].commentary ?? "").lowercased().contains("mix"))
+        XCTAssertEqual(procedure[1].sequence, 1)
+        XCTAssertTrue((procedure[1].commentary ?? "").lowercased().contains("bake"))
+        XCTAssertEqual(procedure[2].sequence, 2)
+        XCTAssertTrue((procedure[2].commentary ?? "").lowercased().contains("ferment"))
     }
 }
