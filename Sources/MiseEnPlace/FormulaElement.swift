@@ -173,7 +173,8 @@ public extension FormulaElement {
                 scaledQuantification = totalMeasurement
             } else {
                 let totalAmount = recipe.totalAmount(for: unit)
-                scaledQuantification = Quantification(amount: totalAmount * multiplier, unit: unit)
+                let percent = amount / totalAmount
+                scaledQuantification = Quantification(amount: (totalAmount * percent * multiplier), unit: unit)
             }
             
             let ms = measurementSystem ?? scaledQuantification.unit.measurementSystem

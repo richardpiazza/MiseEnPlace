@@ -72,7 +72,7 @@ class RecipeTests: XCTestCase {
         
         let poolish = formula[0]
         XCTAssertEqual(poolish.recipe?.id, TestRecipe.poolish.id)
-        XCTAssertEqual(poolish.quantification.amount, 370.0, accuracy: 0.1)
+        XCTAssertEqual(poolish.quantification.amount, 370.0, accuracy: 5)
         XCTAssertEqual(poolish.quantification.unit, .gram)
         
         let flour = formula[1]
