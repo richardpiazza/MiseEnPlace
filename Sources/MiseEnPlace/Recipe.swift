@@ -164,6 +164,8 @@ public extension Recipe {
             let newSequence = idx - 1
             updateSequence(element, sequence: newSequence)
         }
+        
+        formulaElements.remove(at: index)
     }
     
     /// Adjusts the sequencing of elements affected by a move operation.
@@ -217,7 +219,7 @@ public extension Recipe {
         var procedureElement = element
         procedureElement.sequence = procedure.count
         
-        self.procedureElements.append(procedureElement)
+        procedureElements.append(procedureElement)
     }
     
     internal mutating func updateSequence(_ element: ProcedureElement, sequence: Int) {
@@ -246,6 +248,8 @@ public extension Recipe {
             let newSequence = idx - 1
             updateSequence(element, sequence: newSequence)
         }
+        
+        procedureElements.remove(at: index)
     }
     
     /// Adjusts the sequencing of elements affected by a move operation.

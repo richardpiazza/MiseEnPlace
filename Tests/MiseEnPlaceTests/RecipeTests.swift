@@ -10,6 +10,7 @@ class RecipeTests: XCTestCase {
         ("testPortion", testPortion),
         ("testFormula", testFormula),
         ("testProcedure", testProcedure),
+        ("testScaling", testScaling),
     ]
     
     private let italianBread = TestRecipe.italianBread
@@ -43,33 +44,71 @@ class RecipeTests: XCTestCase {
         XCTAssertEqual(poolishBaguette.portion.unit, .ounce)
     }
     
-    func testFormula() throws {
-        let formula = try poolishBaguette.scale(by: 1.875, measurementSystem: .metric, measurementMethod: .weight)
-        XCTAssertEqual(formula.count, 5)
+    func testFormula() {
+        var recipe = poolishBaguette
         
-        // Debug
-        formula.forEach({
-            let name = $0.ingredient?.name ?? $0.recipe?.name ?? ""
-            let grams: Double
-            do {
-                grams = try $0.amount(for: .gram)
-            } catch {
-                print(error)
-                grams = 0.0
-            }
-            let ounces: Double
-            do {
-                ounces = try $0.amount(for: .ounce)
-            } catch {
-                print(error)
-                ounces = 0.0
-            }
-            let g = Quantification(amount: grams, unit: .gram).componentsTranslation
-            let oz = Quantification(amount: ounces, unit: .ounce).componentsTranslation
-            print("\(name)")
-            print("\t\(g) (\(grams)g)")
-            print("\t\(oz) (\(ounces)oz)")
-        })
+        var formula = recipe.formula
+        
+        XCTAssertEqual(formula.count, 5)
+        XCTAssertEqual(formula[0].sequence, 0)
+        XCTAssertEqual(formula[0].isMeasuredRecipe, true)
+        XCTAssertEqual(formula[0].name, "Poolish")
+        XCTAssertEqual(formula[1].sequence, 1)
+        XCTAssertEqual(formula[1].isMeasuredIngredient, true)
+        XCTAssertEqual(formula[1].name, "Flour")
+        XCTAssertEqual(formula[2].sequence, 2)
+        XCTAssertEqual(formula[2].isMeasuredIngredient, true)
+        XCTAssertEqual(formula[2].name, "Yeast")
+        XCTAssertEqual(formula[3].sequence, 3)
+        XCTAssertEqual(formula[3].isMeasuredIngredient, true)
+        XCTAssertEqual(formula[3].name, "Water")
+        XCTAssertEqual(formula[4].sequence, 4)
+        XCTAssertEqual(formula[4].isMeasuredIngredient, true)
+        XCTAssertEqual(formula[4].name, "Salt")
+        
+        let indices = recipe.moveFormulaElement(formula[2], fromIndex: 2, toIndex: 4)
+        XCTAssertEqual(indices.sorted(), [2, 3, 4])
+        
+        formula = recipe.formula
+        
+        let water = formula[3]
+        
+        recipe.removeFormulaElement(water)
+        formula = recipe.formula
+        
+        XCTAssertEqual(formula.count, 4)
+        XCTAssertFalse(formula.contains(where: { $0.name == "Water" }))
+    }
+    
+    func testProcedure() {
+        var recipe = poolishBaguette
+        
+        var procedure = recipe.procedure
+        XCTAssertEqual(procedure.count, 3)
+        XCTAssertEqual(procedure[0].sequence, 0)
+        XCTAssertTrue((procedure[0].commentary ?? "").lowercased().contains("mix"))
+        XCTAssertEqual(procedure[1].sequence, 1)
+        XCTAssertTrue((procedure[1].commentary ?? "").lowercased().contains("ferment"))
+        XCTAssertEqual(procedure[2].sequence, 2)
+        XCTAssertTrue((procedure[2].commentary ?? "").lowercased().contains("bake"))
+        
+        recipe.moveProcedureElement(procedure[2], fromIndex: 2, toIndex: 1)
+        
+        procedure = recipe.procedure
+        XCTAssertEqual(procedure.count, 3)
+        XCTAssertEqual(procedure[0].sequence, 0)
+        XCTAssertTrue((procedure[0].commentary ?? "").lowercased().contains("mix"))
+        XCTAssertEqual(procedure[1].sequence, 1)
+        XCTAssertTrue((procedure[1].commentary ?? "").lowercased().contains("bake"))
+        XCTAssertEqual(procedure[2].sequence, 2)
+        XCTAssertTrue((procedure[2].commentary ?? "").lowercased().contains("ferment"))
+    }
+    
+    func testScaling() throws {
+        let recipe = poolishBaguette
+        
+        let formula = try recipe.scale(by: 1.875, measurementSystem: .metric, measurementMethod: .weight)
+        XCTAssertEqual(formula.count, 5)
         
         let poolish = formula[0]
         XCTAssertEqual(poolish.recipe?.id, TestRecipe.poolish.id)
@@ -95,29 +134,5 @@ class RecipeTests: XCTestCase {
         XCTAssertEqual(salt.ingredient?.id, TestIngredient.salt.id)
         XCTAssertEqual(salt.quantification.amount, 18.0, accuracy: 1)
         XCTAssertEqual(salt.quantification.unit, .gram)
-    }
-    
-    func testProcedure() {
-        var recipe = poolishBaguette
-        
-        var procedure = recipe.procedure
-        XCTAssertEqual(procedure.count, 3)
-        XCTAssertEqual(procedure[0].sequence, 0)
-        XCTAssertTrue((procedure[0].commentary ?? "").lowercased().contains("mix"))
-        XCTAssertEqual(procedure[1].sequence, 1)
-        XCTAssertTrue((procedure[1].commentary ?? "").lowercased().contains("ferment"))
-        XCTAssertEqual(procedure[2].sequence, 2)
-        XCTAssertTrue((procedure[2].commentary ?? "").lowercased().contains("bake"))
-        
-        recipe.moveProcedureElement(procedure[2], fromIndex: 2, toIndex: 1)
-        
-        procedure = recipe.procedure
-        XCTAssertEqual(procedure.count, 3)
-        XCTAssertEqual(procedure[0].sequence, 0)
-        XCTAssertTrue((procedure[0].commentary ?? "").lowercased().contains("mix"))
-        XCTAssertEqual(procedure[1].sequence, 1)
-        XCTAssertTrue((procedure[1].commentary ?? "").lowercased().contains("bake"))
-        XCTAssertEqual(procedure[2].sequence, 2)
-        XCTAssertTrue((procedure[2].commentary ?? "").lowercased().contains("ferment"))
     }
 }

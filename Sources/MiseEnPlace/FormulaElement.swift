@@ -44,6 +44,21 @@ public protocol FormulaElement: Unique, Sequenced, Quantifiable {
 }
 
 public extension FormulaElement {
+    /// The name for the referenced `Ingredient` or `Recipe`
+    var name: String? {
+        return ingredient?.name ?? recipe?.name
+    }
+    
+    /// Indicates when this `FormulaElement` references an `Ingredient`
+    var isMeasuredIngredient: Bool {
+        return ingredient != nil
+    }
+    
+    /// Indicates when this `FormulaElement` references an `Recipe`
+    var isMeasuredRecipe: Bool {
+        return recipe != nil
+    }
+    
     /// Translates the measurement to a different unit. Neither the `unit` nor specified `destinationUnit` can be .asNeeded.
     ///
     /// - parameter destinationUnit: The unit to convert to.
