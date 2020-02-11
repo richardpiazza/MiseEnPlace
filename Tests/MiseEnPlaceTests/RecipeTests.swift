@@ -83,6 +83,13 @@ class RecipeTests: XCTestCase {
     func testProcedure() {
         var recipe = poolishBaguette
         
+        let summary = recipe.procedureSummary
+        XCTAssertEqual(summary, """
+        Bring all ingredients together in a mixer.
+        Ferment until doubled, approximately 1-2 hours.
+        Bake at 450℉ apx 20-22 minutes.
+        """)
+        
         var procedure = recipe.procedure
         XCTAssertEqual(procedure.count, 3)
         XCTAssertEqual(procedure[0].sequence, 0)

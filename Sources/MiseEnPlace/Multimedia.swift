@@ -20,22 +20,13 @@ public extension Multimedia {
             return nil
         }
         
-        return self.directoryURL.appendingPathComponent(path)
+        return imageDirectory.appendingPathComponent(path)
     }
     
     /// A reference to the directory where images for this `Multimedia` type
     /// can be found.
-    var directoryURL: URL {
-        var urls: [URL]
-        #if os(tvOS)
-        urls = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
-        #else
-        urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        #endif
-        
-        guard let url = urls.last else {
-            fatalError("Could not find url for storage directory.")
-        }
+    var imageDirectory: URL {
+        let url = FileManager.default.supportDirectory
         
         var pathURL: URL
         switch type(of: self) {
@@ -68,7 +59,7 @@ public extension Multimedia {
         }
         
         let filename = url.lastPathComponent
-        let localURL = self.directoryURL.appendingPathComponent(filename)
+        let localURL = imageDirectory.appendingPathComponent(filename)
         
         do {
             try FileManager.default.copyItem(at: url, to: localURL)
@@ -80,7 +71,7 @@ public extension Multimedia {
     }
     
     mutating func writeImage(_ data: Data, name: String = UUID().uuidString, ext: String = "png") {
-        let url = self.directoryURL.appendingPathComponent(name).appendingPathExtension(ext)
+        let url = imageDirectory.appendingPathComponent(name).appendingPathExtension(ext)
         
         do {
             try data.write(to: url, options: .atomic)
@@ -101,5 +92,28 @@ public extension Multimedia {
                 print(error)
             }
         }
+    }
+}
+
+internal extension FileManager {
+    var supportDirectory: URL {
+        let directory: URL
+        
+        do {
+            #if os(Linux)
+            directory = try url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            #elseif os(Windows)
+            directory = try url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            #elseif os(tvOS)
+            // The 'Application Support' directory is not available on tvOS.
+            directory = try url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            #else
+            directory = try url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            #endif
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+        
+        return directory.appendingPathComponent("MiseEnPlace")
     }
 }
