@@ -366,6 +366,10 @@ private extension Quantification {
     func metricTranslation(abbreviated: Bool) -> String {
         let unitName = unit.name(abbreviated: abbreviated)
         
+        guard !amount.isNaN else {
+            return "Nan \(unitName)"
+        }
+        
         let decomposedAmount = modf(amount)
         if decomposedAmount.0 < 10.0 {
             if decomposedAmount.1 == 0.0 {
@@ -394,6 +398,10 @@ private extension Quantification {
     
     func fractionTranslation(abbreviated: Bool) -> String {
         let unitName = unit.name(abbreviated: abbreviated)
+        
+        guard !amount.isNaN else {
+            return "Nan \(unitName)"
+        }
         
         let decomposedAmount = modf(amount)
         guard decomposedAmount.1 > 0.0 else {
