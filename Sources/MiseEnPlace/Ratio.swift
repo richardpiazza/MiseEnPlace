@@ -47,9 +47,9 @@ public struct Ratio: CustomStringConvertible {
     public func multiplier(converting from: MeasurementMethod, to: MeasurementMethod) -> Double {
         switch (from, to) {
         case (.volume, .weight):
-            return volume / weight
-        case (.weight, .volume):
             return weight / volume
+        case (.weight, .volume):
+            return volume / weight
         default:
             return 1.0
         }

@@ -42,31 +42,31 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 768.08, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .dash), 6144.61, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 12289.23, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .ounce), 145.92, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .pound), 9.12, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .ounce), 112.281, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pound), 7.018, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .milliliter), 3785.41, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .liter), 3.79, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .gram), 4136.76, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .kilogram), 4.14, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .gram), 3183.104, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .kilogram), 3.183, accuracy: 0.01)
     }
     
     func testMeasurementAmountForUSMass() throws {
         measuredIngredient.amount = 5.0
         measuredIngredient.unit = .pound
         
-        XCTAssertEqual(try measuredIngredient.amount(for: .gallon), 0.55, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .quart), 2.19, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .pint), 4.39, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .cup), 8.77, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .fluidOunce), 70.18, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .tablespoon), 140.35, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 421.09, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .dash), 3368.76, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 6737.52, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .gallon), 0.712, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .quart), 2.849, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pint), 5.69, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .cup), 11.39, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .fluidOunce), 91.19, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .tablespoon), 182.39, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 547.255, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .dash), 4378.038, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 8756.076, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .ounce), 80.0, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .pound), 5.0, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .milliliter), 2075.33, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .liter), 2.08, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .milliliter), 2697.106, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .liter), 2.697, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .gram), 2267.96, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .kilogram), 2.27, accuracy: 0.01)
     }
@@ -84,31 +84,31 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 152.18, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .dash), 1217.43, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 2434.85, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .ounce), 30.16, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .pound), 1.88, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .ounce), 23.207, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pound), 1.45, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .milliliter), 750.0, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .liter), 0.75, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .gram), 854.99, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .kilogram), 0.85, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .gram), 657.895, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .kilogram), 0.658, accuracy: 0.01)
     }
     
     func testMeasurementAmountForMetricMass() {
         measuredIngredient.amount = 2.5
         measuredIngredient.unit = .kilogram
         
-        XCTAssertEqual(try measuredIngredient.amount(for: .gallon), 0.58, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .quart), 2.32, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .pint), 4.63, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .cup), 9.27, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .fluidOunce), 74.15, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .tablespoon), 148.31, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 444.97, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .dash), 3559.73, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 7119.45, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .gallon), 0.753, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .quart), 3.012, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pint), 6.023, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .cup), 12.046, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .fluidOunce), 96.369, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .tablespoon), 192.739, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .teaspoon), 578.277, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .dash), 4626.22, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .pinch), 9252.44, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .ounce), 88.18, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .pound), 5.51, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .milliliter), 2192.98, accuracy: 0.01)
-        XCTAssertEqual(try measuredIngredient.amount(for: .liter), 2.19, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .milliliter), 2849.99, accuracy: 0.01)
+        XCTAssertEqual(try measuredIngredient.amount(for: .liter), 2.849, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .gram), 2500.0, accuracy: 0.01)
         XCTAssertEqual(try measuredIngredient.amount(for: .kilogram), 2.5, accuracy: 0.01)
     }
@@ -129,7 +129,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         
         let quantification = try measuredIngredient.scale(by: 1.25, measurementSystem: .us, measurementMethod: .volume)
         
-        XCTAssertEqual(quantification.amount, 1.09, accuracy: 0.01)
+        XCTAssertEqual(quantification.amount, 1.425, accuracy: 0.01)
         XCTAssertEqual(quantification.unit, .cup)
     }
     
@@ -149,7 +149,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         
         let quantification = try measuredIngredient.scale(by: 2.0, measurementSystem: .metric, measurementMethod: .volume)
         
-        XCTAssertEqual(quantification.amount, 207.53, accuracy: 0.01)
+        XCTAssertEqual(quantification.amount, 269.711, accuracy: 0.01)
         XCTAssertEqual(quantification.unit, .milliliter)
     }
     
@@ -159,7 +159,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         
         let quantification = try measuredIngredient.scale(by: 3.5, measurementSystem: .us, measurementMethod: .weight)
         
-        XCTAssertEqual(quantification.amount, 7.98, accuracy: 0.01)
+        XCTAssertEqual(quantification.amount, 6.14, accuracy: 0.01)
         XCTAssertEqual(quantification.unit, .ounce)
     }
     
@@ -179,7 +179,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         
         let quantification = try measuredIngredient.scale(by: 1.75, measurementSystem: .metric, measurementMethod: .weight)
         
-        XCTAssertEqual(quantification.amount, 7.24, accuracy: 0.01)
+        XCTAssertEqual(quantification.amount, 5.57, accuracy: 0.01)
         XCTAssertEqual(quantification.unit, .kilogram)
     }
     
@@ -189,7 +189,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         
         let quantification = try measuredIngredient.scale(by: 3.0, measurementSystem: .metric, measurementMethod: .volume)
         
-        XCTAssertEqual(quantification.amount, 101.17, accuracy: 0.01)
+        XCTAssertEqual(quantification.amount, 131.484, accuracy: 0.01)
         XCTAssertEqual(quantification.unit, .milliliter)
     }
     
@@ -209,7 +209,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         
         let quantification = try measuredIngredient.scale(by: 1.0, measurementSystem: .us, measurementMethod: .volume)
         
-        XCTAssertEqual(quantification.amount, 1.56, accuracy: 0.01)
+        XCTAssertEqual(quantification.amount, 2.024, accuracy: 0.01)
         XCTAssertEqual(quantification.unit, .quart)
     }
     
@@ -229,7 +229,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         
         let quantification = try measuredIngredient.scale(by: Fraction.twoThirds.rawValue, measurementSystem: .metric, measurementMethod: .volume)
         
-        XCTAssertEqual(quantification.amount, 519.77, accuracy: 0.01)
+        XCTAssertEqual(quantification.amount, 675.487, accuracy: 0.01)
         XCTAssertEqual(quantification.unit, .milliliter)
     }
     
@@ -239,7 +239,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         
         let quantification = try measuredIngredient.scale(by: 1.01, measurementSystem: .us, measurementMethod: .weight)
         
-        XCTAssertEqual(quantification.amount, 5.28, accuracy: 0.01)
+        XCTAssertEqual(quantification.amount, 4.06, accuracy: 0.01)
         XCTAssertEqual(quantification.unit, .ounce)
     }
     
@@ -259,7 +259,7 @@ class HighVolumeRatioIngredientTests: XCTestCase {
         
         let quantification = try measuredIngredient.scale(by: 1.0, measurementSystem: .metric, measurementMethod: .weight)
         
-        XCTAssertEqual(quantification.amount, 51.3, accuracy: 0.01)
+        XCTAssertEqual(quantification.amount, 39.474, accuracy: 0.01)
         XCTAssertEqual(quantification.unit, .kilogram)
     }
     
