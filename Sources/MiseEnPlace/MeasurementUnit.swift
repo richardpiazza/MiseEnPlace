@@ -8,12 +8,7 @@ import Foundation
 /// - note: The rawValue is comprised of [`MeasurementSystem`][`MeasurementMethod`][##Unique]
 public enum MeasurementUnit: Int, CaseIterable {
     // numericQuantity
-    /// A specialized condition in which no unit should be used
-    case noUnit = -1
-    /// A specialized condition in which there is no quantifiable measurement
-    case asNeeded = 0
-    /// A specialized condition in which there is a quantifiable measurement associated with the concept of _each_ item.
-    case each = 1
+    case noUnit = 0
     
     // usVolume
     case pinch = 1100
@@ -45,7 +40,7 @@ public enum MeasurementUnit: Int, CaseIterable {
     /// Provides an array of `MeasurementUnit` enums that correspond to the provided `MeasurementSystemMethod` enum
     public static func measurementUnits(forMeasurementSystemMethod measurementSystemMethod: MeasurementSystemMethod) -> [MeasurementUnit] {
         switch measurementSystemMethod {
-        case .numericQuantity: return [.asNeeded, .each]
+        case .numericQuantity: return [.noUnit]
         case .usVolume: return [.pinch, .dash, .teaspoon, .tablespoon, .fluidOunce, .cup, .pint, .quart, .gallon]
         case .usWeight: return [.ounce, .pound]
         case .metricVolume: return [.milliliter, .liter]
@@ -55,7 +50,7 @@ public enum MeasurementUnit: Int, CaseIterable {
     
     public static func measurementUnits(forMeasurementMethod measurementMethod: MeasurementMethod) -> [MeasurementUnit] {
         switch measurementMethod {
-        case .quantity: return [.asNeeded, .each]
+        case .quantity: return [.noUnit]
         case .volume: return [.pinch, .dash, .teaspoon, .tablespoon, .fluidOunce, .cup, .pint, .quart, .gallon, .milliliter, .liter]
         case .weight: return [.ounce, .pound, .gram, .kilogram]
         }
@@ -71,7 +66,7 @@ public enum MeasurementUnit: Int, CaseIterable {
         
         switch stringValue {
         case "Quantity":
-            self = .each
+            self = .noUnit
         case "FluidOunce":
             self = .fluidOunce
         case "Mililitre":
@@ -88,9 +83,9 @@ public enum MeasurementUnit: Int, CaseIterable {
     public init?(legacyRawValue: Int) {
         switch legacyRawValue {
         case 9000:
-            self = .asNeeded
+            self = .noUnit
         case 9001:
-            self = .each
+            self = .noUnit
         default:
             if let legacy = MeasurementUnit(rawValue: legacyRawValue) {
                 self = legacy
@@ -104,9 +99,7 @@ public enum MeasurementUnit: Int, CaseIterable {
 extension MeasurementUnit: CustomStringConvertible {
     public var description: String {
         switch self {
-        case .noUnit: return "No Unit"
-        case .asNeeded: return "As Needed"
-        case .each: return "Each"
+        case .noUnit: return ""
         case .pinch: return "Pinch"
         case .dash: return "Dash"
         case .teaspoon: return "Teaspoon"
@@ -134,9 +127,7 @@ extension MeasurementUnit {
     
     public var abbreviation: String {
         switch self {
-        case .noUnit: return "-"
-        case .asNeeded: return "…"
-        case .each: return "№"
+        case .noUnit: return ""
         case .pinch: return "pn"
         case .dash: return "ds"
         case .teaspoon: return "tsp"
@@ -161,7 +152,7 @@ extension MeasurementUnit {
     
     public var measurementSystem: MeasurementSystem {
         switch self {
-        case .noUnit, .asNeeded, .each:
+        case .noUnit:
             return .numeric
         case .pinch, .dash, .teaspoon, .tablespoon, .fluidOunce, .cup, .pint, .quart, .gallon, .ounce, .pound:
             return .us
@@ -172,7 +163,7 @@ extension MeasurementUnit {
     
     public var measurementMethod: MeasurementMethod {
         switch self {
-        case .noUnit, .asNeeded, .each:
+        case .noUnit:
             return .quantity
         case .pinch, .dash, .teaspoon, .tablespoon, .fluidOunce, .cup, .pint, .quart, .gallon, .milliliter, .liter:
             return .volume
@@ -183,7 +174,7 @@ extension MeasurementUnit {
     
     public var measurementSystemMethod: MeasurementSystemMethod {
         switch self {
-        case .noUnit, .asNeeded, .each:
+        case .noUnit:
             return .numericQuantity
         case .pinch, .dash, .teaspoon, .tablespoon, .fluidOunce, .cup, .pint, .quart, .gallon:
             return .usVolume
@@ -309,7 +300,7 @@ extension MeasurementUnit {
     
     public var isQuantifiable: Bool {
         switch self {
-        case .noUnit, .asNeeded, .each:
+        case .noUnit:
             return false
         default:
             return true

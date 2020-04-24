@@ -80,12 +80,6 @@ public extension Recipe {
         let total = self.totalAmount(for: self.unit)
         return Quantification(amount: total, unit: self.unit)
     }
-    
-    /// The total mass of this formula in the portions unit.
-    @available(*, deprecated, renamed: "totalQuantification")
-    var totalMeasurement: Quantification {
-        return totalQuantification
-    }
 }
 
 // MARK: - Yield

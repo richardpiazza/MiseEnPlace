@@ -11,15 +11,6 @@ class AsNeededTests: XCTestCase {
     private var measuredIngredient: TestMeasuredIngredient = TestMeasuredIngredient(ratio: Ratio(volume: 1.0, weight: 1.0))
     
     func testFormulaElementScaleBy() {
-        measuredIngredient.unit = .asNeeded
-        
-        XCTAssertThrowsError(try measuredIngredient.scale(by: 1.0, measurementSystem: .us, measurementMethod: .volume)) { (error) in
-            guard case MiseEnPlaceError.asNeededConversion = error else {
-                XCTFail("Expected MisEnPlaceError.asNeededConversion")
-                return
-            }
-        }
-        
         measuredIngredient.unit = .ounce
         measuredIngredient.amount = -1
         

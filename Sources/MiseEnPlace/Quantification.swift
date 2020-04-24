@@ -10,10 +10,10 @@ import Foundation
 /// var unit: MeasurementUnit { get set }
 /// ```
 ///
-public struct Quantification: Quantifiable, Equatable {
+public struct Quantification: Quantifiable {
     
     public var amount: Double = 0.0
-    public var unit: MeasurementUnit = .each
+    public var unit: MeasurementUnit = .noUnit
     
     public init() {
     }
@@ -27,7 +27,9 @@ public struct Quantification: Quantifiable, Equatable {
         self.amount = quantifiable.amount
         self.unit = quantifiable.unit
     }
-    
+}
+
+extension Quantification: Equatable {
     public static func == (lhs: Quantification, rhs: Quantification) -> Bool {
         guard lhs.amount == rhs.amount else {
             return false
@@ -41,10 +43,19 @@ public struct Quantification: Quantifiable, Equatable {
     }
 }
 
+extension Quantification: CustomStringConvertible {
+    public var description: String {
+        return translation(abbreviated: Configuration.abbreviateTranslations)
+    }
+}
+
 public extension Quantification {
     /// A representation usable for when a `Quantification` must be expressed, but the intended outcome
     /// is to express the implicit lack-of-quantification.
-    static let notQuantified: Quantification = .init(amount: -1.0, unit: .noUnit)
+    static let notQuantified: Quantification = .init(amount: 0.0, unit: .noUnit)
+    
+    /// A representation when no-specific amount can be defined.
+    static let asNeeded: Quantification = .init(amount: -1.0, unit: .noUnit)
     
     /// A measurement typical of a 'small' portion size
     static var small: Quantification {
@@ -118,7 +129,7 @@ public extension Quantification {
     /// Returns this `Measurement` in terms of the current `MeasurementUnit` and
     /// the next smallest `MeasurementUnit` if needed.
     var components: [Quantification] {
-        guard unit != .asNeeded && unit != .each else {
+        guard unit != .noUnit else {
             return [self]
         }
         
@@ -155,16 +166,27 @@ public extension Quantification {
     }
     
     /// Returns a "human-readable" form of this `Measurement`.
+    @available(*, deprecated, renamed: "description")
     var translation: String {
-        return translation(abbreviated: Configuration.abbreviateTranslations)
+        return description
     }
     
     /// Returns a "human-readable" form of this `Measurement` with the option to
     /// force abbreviations.
     func translation(abbreviated: Bool) -> String {
+        if self == .notQuantified {
+            return ""
+        } else if self == .asNeeded {
+            return "As Needed"
+        }
+        
         switch unit {
-        case .asNeeded:
-            return unit.name(abbreviated: abbreviated)
+        case .noUnit:
+            if Configuration.locale.usesMetricSystem {
+                return metricTranslation(abbreviated: abbreviated)
+            } else {
+                return fractionTranslation(abbreviated: abbreviated)
+            }
         case .gram, .kilogram, .milliliter, .liter:
             return metricTranslation(abbreviated: abbreviated)
         default:
@@ -180,7 +202,7 @@ public extension Quantification {
     /// Returns a "human-readable" form of the componentized `Measurement` with the
     /// option to force abbreviations.
     func componentsTranslation(abbreviated: Bool) -> String {
-        guard unit != .asNeeded && unit != .each else {
+        guard unit != .noUnit else {
             return translation(abbreviated: abbreviated)
         }
         
@@ -215,6 +237,14 @@ public extension Quantification {
         let unitName = " \(firstUnit.name(abbreviated: abbreviated))"
         
         return interpretation.replacingOccurrencesExceptLast(unitName, with: "")
+    }
+    
+    func with(amount: Double) -> Quantification {
+        return Quantification(amount: amount, unit: unit)
+    }
+    
+    func with(unit: MeasurementUnit) -> Quantification {
+        return Quantification(amount: amount, unit: unit)
     }
 }
 
@@ -368,72 +398,86 @@ private extension Quantification {
     }
     
     func metricTranslation(abbreviated: Bool) -> String {
-        let unitName = unit.name(abbreviated: abbreviated)
-        
         guard !amount.isNaN else {
-            return "Nan \(unitName)"
+            return "NaN"
         }
+        
+        let amountValue: String
         
         let decomposedAmount = modf(amount)
         if decomposedAmount.0 < 10.0 {
             if decomposedAmount.1 == 0.0 {
-                return "\(Int(amount)) \(unitName)"
+                amountValue = "\(Int(amount))"
             } else {
-                guard let singleDecimal = Configuration.singleDecimalFormatter.string(from: NSNumber(value: amount)) else {
-                    return "\(amount) \(unitName)"
+                if let singleDecimal = Configuration.singleDecimalFormatter.string(from: NSNumber(value: amount)) {
+                    amountValue = "\(singleDecimal)"
+                } else {
+                    amountValue = "\(amount)"
                 }
-                
-                return "\(singleDecimal) \(unitName)"
             }
         } else if decomposedAmount.0 < 100.0 {
             if unit.shouldRoundWhenTranslated {
-                return "\(Int(round(amount))) \(unitName)"
+                amountValue = "\(Int(round(amount)))"
             } else {
-                return "\(Int(amount)) \(unitName)"
+                amountValue = "\(Int(amount))"
             }
         } else {
             if unit.shouldRoundWhenTranslated {
-                return "\(Int(round(amount / 5) * 5)) \(unitName)"
+                amountValue = "\(Int(round(amount / 5) * 5))"
             } else {
-                return "\(Int(amount)) \(unitName)"
+                amountValue = "\(Int(amount))"
             }
+        }
+        
+        switch unit{
+        case .noUnit:
+            return amountValue
+        default:
+            return "\(amountValue) \(unit.name(abbreviated: abbreviated))"
         }
     }
     
     func fractionTranslation(abbreviated: Bool) -> String {
-        let unitName = unit.name(abbreviated: abbreviated)
-        
         guard !amount.isNaN else {
-            return "Nan \(unitName)"
+            return "NaN"
         }
+        
+        let amountValue: String
         
         let decomposedAmount = modf(amount)
-        guard decomposedAmount.1 > 0.0 else {
-            return "\(Int(amount)) \(unitName)"
+        if decomposedAmount.1 == 0.0 {
+            amountValue = "\(Int(amount))"
+        } else {
+            let intergral = Int(decomposedAmount.0)
+            let fraction = Fraction(proximateValue: decomposedAmount.1)
+            
+            switch fraction {
+            case .one:
+                amountValue = "\(Int(intergral + 1))"
+            case .zero:
+                if intergral == 0 {
+                    if let significantAmount = Configuration.significantDigitFormatter.string(from: NSNumber(value: amount)) {
+                        amountValue = "\(significantAmount)"
+                    } else {
+                        amountValue = "\(amount)"
+                    }
+                } else {
+                    amountValue = "\(intergral)"
+                }
+            default:
+                if intergral == 0 {
+                    amountValue = "\(fraction.description)"
+                } else {
+                    amountValue = "\(intergral)\(fraction.description)"
+                }
+            }
         }
         
-        let intergral = Int(decomposedAmount.0)
-        let fraction = Fraction(proximateValue: decomposedAmount.1)
-        
-        switch fraction {
-        case .one:
-            return "\(Int(intergral + 1)) \(unitName)"
-        case .zero:
-            if intergral == 0 {
-                guard let significantAmount = Configuration.significantDigitFormatter.string(from: NSNumber(value: amount)) else {
-                    return "\(amount) \(unitName)"
-                }
-                
-                return "\(significantAmount) \(unitName)"
-            } else {
-                return "\(intergral) \(unitName)"
-            }
+        switch unit{
+        case .noUnit:
+            return amountValue
         default:
-            if intergral == 0 {
-                return "\(fraction.description) \(unitName)"
-            } else {
-                return "\(intergral)\(fraction.description) \(unitName)"
-            }
+            return "\(amountValue) \(unit.name(abbreviated: abbreviated))"
         }
     }
 }

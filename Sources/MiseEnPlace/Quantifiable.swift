@@ -1,8 +1,5 @@
 import Foundation
 
-@available(*, deprecated, renamed: "Quantifiable")
-public typealias Measure = Quantifiable
-
 /// Needed parameters in order to represent a `Measurement`.
 ///
 /// ## Requied Conformance
@@ -23,10 +20,5 @@ public protocol Quantifiable {
 public extension Quantifiable {
     var quantification: Quantification {
         return Quantification(amount: amount, unit: unit)
-    }
-    
-    @available(*, deprecated, renamed: "quantification")
-    var measurement: Quantification {
-        return quantification
     }
 }

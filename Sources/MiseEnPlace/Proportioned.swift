@@ -23,30 +23,4 @@ public extension Proportioned {
     var ratio: Ratio {
         return Ratio(volume: volume, weight: weight)
     }
-    
-    /// Multiplier value to use when converting from `fromMethod` to `toMethod`
-    @available(*, deprecated, message: "Use `Ratio.multipler(converting:to:)`")
-    func multiplier(from fromMethod: MeasurementMethod, to toMethod: MeasurementMethod) -> Double {
-        switch (fromMethod, toMethod) {
-        case (.volume, .weight):
-            return volume / weight
-        case (.weight, .volume):
-            return weight / volume
-        default:
-            return 1.0
-        }
-    }
-    
-    /// Multiplier to use when converting measurements within the context of s singal `Quantifiable` element.
-    @available(*, deprecated, message: "Use `Ratio.multipler(converting:to:)`")
-    func multiplier(for method: MeasurementMethod) -> Double {
-        switch method {
-        case .volume:
-            return weight / volume
-        case .weight:
-            return volume / weight
-        default:
-            return 1.0
-        }
-    }
 }

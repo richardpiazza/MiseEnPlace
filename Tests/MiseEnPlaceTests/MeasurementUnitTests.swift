@@ -16,21 +16,20 @@ class MeasurementUnitTests: XCTestCase {
     
     func testAllMeasurementUnits() {
         let units = MeasurementUnit.allCases
-        XCTAssertEqual(units.count, 18)
-        XCTAssertEqual(units[5], .teaspoon)
-        XCTAssertEqual(units[14], .milliliter)
+        XCTAssertEqual(units.count, 16)
+        XCTAssertEqual(units[3], .teaspoon)
+        XCTAssertEqual(units[12], .milliliter)
     }
     
     func testQuantifiableMeasurementUnits() {
         let units = MeasurementUnit.quantifiableMeasurementUnits
         XCTAssertEqual(units.count, 15)
-        XCTAssertFalse(units.contains(.asNeeded))
-        XCTAssertFalse(units.contains(.each))
+        XCTAssertFalse(units.contains(.noUnit))
     }
     
     func testMeasurementUnitsForSystemMethod() {
         var units = MeasurementUnit.measurementUnits(forMeasurementSystemMethod: .numericQuantity)
-        XCTAssertEqual(units.count, 2)
+        XCTAssertEqual(units.count, 1)
         units = MeasurementUnit.measurementUnits(forMeasurementSystemMethod: .usVolume)
         XCTAssertEqual(units.count, 9)
         units = MeasurementUnit.measurementUnits(forMeasurementSystemMethod: .usWeight)
@@ -43,7 +42,7 @@ class MeasurementUnitTests: XCTestCase {
     
     func testMeasurementUnitsForMeasurementMethod() {
         var units = MeasurementUnit.measurementUnits(forMeasurementMethod: .quantity)
-        XCTAssertEqual(units.count, 2)
+        XCTAssertEqual(units.count, 1)
         units = MeasurementUnit.measurementUnits(forMeasurementMethod: .volume)
         XCTAssertEqual(units.count, 11)
         XCTAssertEqual(units[2], .teaspoon)
@@ -56,9 +55,7 @@ class MeasurementUnitTests: XCTestCase {
     
     func testRawValueInit() {
         var unit = MeasurementUnit(rawValue: 0)
-        XCTAssertEqual(unit, .asNeeded)
-        unit = MeasurementUnit(rawValue: 1)
-        XCTAssertEqual(unit, .each)
+        XCTAssertEqual(unit, .noUnit)
         unit = MeasurementUnit(rawValue: 1100)
         XCTAssertEqual(unit, .pinch)
         unit = MeasurementUnit(rawValue: 1101)
@@ -89,15 +86,11 @@ class MeasurementUnitTests: XCTestCase {
         XCTAssertEqual(unit, .gram)
         unit = MeasurementUnit(rawValue: 2201)
         XCTAssertEqual(unit, .kilogram)
-        unit = MeasurementUnit(rawValue: -1)
-        XCTAssertEqual(unit, .noUnit)
     }
     
     func testStringValueInit() {
-        var unit = MeasurementUnit(stringValue: "As Needed")
-        XCTAssertEqual(unit, .asNeeded)
-        unit = MeasurementUnit(stringValue: "Each")
-        XCTAssertEqual(unit, .each)
+        var unit = MeasurementUnit(stringValue: "")
+        XCTAssertEqual(unit, .noUnit)
         unit = MeasurementUnit(stringValue: "Pinch")
         XCTAssertEqual(unit, .pinch)
         unit = MeasurementUnit(stringValue: "Dash")
@@ -129,22 +122,18 @@ class MeasurementUnitTests: XCTestCase {
         unit = MeasurementUnit(stringValue: "Kilogram")
         XCTAssertEqual(unit, .kilogram)
         unit = MeasurementUnit(stringValue: "Quantity")
-        XCTAssertEqual(unit, .each)
+        XCTAssertEqual(unit, .noUnit)
         unit = MeasurementUnit(stringValue: "FluidOunce")
         XCTAssertEqual(unit, .fluidOunce)
         unit = MeasurementUnit(stringValue: "Mililitre")
         XCTAssertEqual(unit, .milliliter)
         unit = MeasurementUnit(stringValue: "Litre")
         XCTAssertEqual(unit, .liter)
-        unit = MeasurementUnit(stringValue: "")
-        XCTAssertEqual(unit, nil)
     }
     
     func testLegacyRawValueInit() {
         var unit = MeasurementUnit(legacyRawValue: 0)
-        XCTAssertEqual(unit, .asNeeded)
-        unit = MeasurementUnit(legacyRawValue: 1)
-        XCTAssertEqual(unit, .each)
+        XCTAssertEqual(unit, .noUnit)
         unit = MeasurementUnit(legacyRawValue: 1100)
         XCTAssertEqual(unit, .pinch)
         unit = MeasurementUnit(legacyRawValue: 1101)
@@ -176,10 +165,8 @@ class MeasurementUnitTests: XCTestCase {
         unit = MeasurementUnit(legacyRawValue: 2201)
         XCTAssertEqual(unit, .kilogram)
         unit = MeasurementUnit(legacyRawValue: 9000)
-        XCTAssertEqual(unit, .asNeeded)
+        XCTAssertEqual(unit, .noUnit)
         unit = MeasurementUnit(legacyRawValue: 9001)
-        XCTAssertEqual(unit, .each)
-        unit = MeasurementUnit(legacyRawValue: -1)
         XCTAssertEqual(unit, .noUnit)
     }
 }

@@ -70,16 +70,4 @@ public struct Configuration {
     
     /// The method by which cross `MeasurementSystemMethod` conversions are performed. The default is `.methodThanSystem`.
     public static var conversionOrder: ConversionOrder = .methodThanSystem
-    
-    /// A measurement typical of a 'small' portion size
-    @available(*, deprecated, renamed: "Quantification.small")
-    public static var smallMeasurement: Quantification {
-        return Quantification.small
-    }
-
-    /// A measurement typical of a 'large' portion size
-    @available(*, deprecated, renamed: "Quantification.large")
-    public static var largeMeasurement: Quantification {
-        return Quantification.large
-    }
 }

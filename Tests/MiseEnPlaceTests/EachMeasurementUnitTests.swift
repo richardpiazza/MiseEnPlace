@@ -48,17 +48,17 @@ class EachMeasurementUnitTests: XCTestCase {
     
     func testEgg() throws {
         measuredEgg.amount = 4
-        measuredEgg.unit = .each
+        measuredEgg.unit = .noUnit
         
         var interpretation = measuredEgg.quantification.componentsTranslation
-        XCTAssertEqual(interpretation, "4 Each")
+        XCTAssertEqual(interpretation, "4")
         
         var scaleMeasure = try measuredEgg.scale(by: 2.0, measurementSystem: .numeric, measurementMethod: .quantity)
         XCTAssertEqual(scaleMeasure.amount, 8)
-        XCTAssertEqual(scaleMeasure.unit, .each)
+        XCTAssertEqual(scaleMeasure.unit, .noUnit)
         
         interpretation = scaleMeasure.componentsTranslation
-        XCTAssertEqual(interpretation, "8 Each")
+        XCTAssertEqual(interpretation, "8")
         
         scaleMeasure = try measuredEgg.scale(by: 1.0, measurementSystem: .metric, measurementMethod: .weight)
         XCTAssertEqual(scaleMeasure.amount, 200)
@@ -72,7 +72,7 @@ class EachMeasurementUnitTests: XCTestCase {
         
         scaleMeasure = try measuredEgg.scale(by: 1.0, measurementSystem: .numeric, measurementMethod: .quantity)
         XCTAssertEqual(scaleMeasure.amount, 4)
-        XCTAssertEqual(scaleMeasure.unit, .each)
+        XCTAssertEqual(scaleMeasure.unit, .noUnit)
     }
     
     func testEggWhite() throws {
@@ -84,19 +84,19 @@ class EachMeasurementUnitTests: XCTestCase {
         
         let scaleMeasure = try measuredEggWhite.scale(by: 1.0, measurementSystem: .numeric, measurementMethod: .quantity)
         XCTAssertEqual(scaleMeasure.amount, 9.07, accuracy: 0.01)
-        XCTAssertEqual(scaleMeasure.unit, .each)
+        XCTAssertEqual(scaleMeasure.unit, .noUnit)
     }
     
     func testEggYolk() throws {
         measuredEggYolk.amount = 4.0
-        measuredEggYolk.unit = .each
+        measuredEggYolk.unit = .noUnit
         
         let interpretation = measuredEggYolk.quantification.componentsTranslation
-        XCTAssertEqual(interpretation, "4 Each")
+        XCTAssertEqual(interpretation, "4")
         
         var scaleMeasure = try measuredEggYolk.scale(by: 3.0, measurementSystem: nil, measurementMethod: nil)
         XCTAssertEqual(scaleMeasure.amount, 12)
-        XCTAssertEqual(scaleMeasure.unit, .each)
+        XCTAssertEqual(scaleMeasure.unit, .noUnit)
         
         scaleMeasure = try measuredEggYolk.scale(by: 3.0, measurementSystem: .metric, measurementMethod: .weight)
         XCTAssertEqual(scaleMeasure.amount, 100)

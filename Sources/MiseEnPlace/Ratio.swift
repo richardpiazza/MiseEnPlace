@@ -100,29 +100,6 @@ public struct Ratio: CustomStringConvertible {
         
         return Ratio(volume: ratioVolume, weight: ratioWeight)
     }
-    
-    @available(*, deprecated, message: "Use `makeRatio(volume:weight:)`.")
-    public static func makeRatio(volumeConvertable: Convertable, weightConvertable: Convertable) -> Ratio {
-        let volume = volumeConvertable.amount(for: .fluidOunce)
-        let weight = weightConvertable.amount(for: .ounce)
-        
-        guard volume != 0.0 && weight != 0.0 else {
-            return Ratio(volume: volume, weight: weight)
-        }
-        
-        var ratioVolume = volume
-        var ratioWeight = weight
-        
-        if volume >= weight {
-            ratioVolume = ratioVolume / ratioWeight
-            ratioWeight = ratioWeight / ratioWeight
-        } else {
-            ratioWeight = ratioWeight / ratioVolume
-            ratioVolume = ratioVolume / ratioVolume
-        }
-        
-        return Ratio(volume: ratioVolume, weight: ratioWeight)
-    }
 }
 
 fileprivate var significantDigitFormatter: NumberFormatter = {
@@ -143,7 +120,7 @@ fileprivate struct RatioIngredient: Ingredient {
     var volume: Double = 1.0
     var weight: Double = 1.0
     var amount: Double = 0.0
-    var unit: MeasurementUnit = .each
+    var unit: MeasurementUnit = .noUnit
 }
 
 fileprivate struct RatioMeasuredIngredient: FormulaElement {
@@ -152,7 +129,7 @@ fileprivate struct RatioMeasuredIngredient: FormulaElement {
     var modificationDate: Date = Date()
     var sequence: Int = 0
     var amount: Double = 0.0
-    var unit: MeasurementUnit = .each
+    var unit: MeasurementUnit = .noUnit
     var inverseRecipe: Recipe?
     var ingredient: Ingredient? = RatioIngredient()
     var recipe: Recipe?

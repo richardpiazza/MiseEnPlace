@@ -59,26 +59,24 @@ public extension FormulaElement {
         return recipe != nil
     }
     
-    /// Translates the measurement to a different unit. Neither the `unit` nor specified `destinationUnit` can be .asNeeded.
+    /// Translates the measurement to a different unit.
+    ///
+    /// If attempting to convert from/to a '.noUnit' `MeasurementUnit`, and error will be thrown.
     ///
     /// - parameter destinationUnit: The unit to convert to.
     /// - throws: `MiseEnPlaceError`
     func amount(for destinationUnit: MeasurementUnit) throws -> Double {
-        guard unit != .asNeeded else {
-            throw MiseEnPlaceError.asNeededConversion
+        guard unit != .noUnit else {
+            throw MiseEnPlaceError.unhandledConversion
+        }
+        
+        guard destinationUnit != .noUnit else {
+            throw MiseEnPlaceError.unhandledConversion
         }
         
         if let ingredient = self.ingredient {
-            guard destinationUnit != .asNeeded else {
-                throw MiseEnPlaceError.asNeededConversion
-            }
-            
             guard amount > 0.0 else {
                 throw MiseEnPlaceError.measurementAmount(method: nil)
-            }
-            
-            if (unit == .each || destinationUnit == .each) && !ingredient.quantification.unit.isQuantifiable {
-                throw MiseEnPlaceError.quantifiableConversion
             }
             
             switch (unit.measurementSystemMethod, destinationUnit.measurementSystemMethod) {
@@ -99,16 +97,8 @@ public extension FormulaElement {
                 return try quantification.amount(for: destinationUnit, ratio: ingredient.ratio)
             }
         } else if let recipe = self.recipe {
-            guard unit != .asNeeded else {
-                throw MiseEnPlaceError.asNeededConversion
-            }
-            
             guard amount > 0.0 else {
                 throw MiseEnPlaceError.measurementAmount(method: nil)
-            }
-            
-            if (unit == .each || destinationUnit == .each) && !recipe.quantification.unit.isQuantifiable {
-                throw MiseEnPlaceError.quantifiableConversion
             }
             
             let measuredAmount = recipe.totalAmount(for: unit)
@@ -128,12 +118,16 @@ public extension FormulaElement {
     /// - parameter measurementMethod:
     /// - throws: `MiseEnPlaceError`
     func scale(by multiplier: Double, measurementSystem: MeasurementSystem? = nil, measurementMethod: MeasurementMethod? = nil) throws -> Quantification {
-        guard unit != .asNeeded else {
-            throw MiseEnPlaceError.asNeededConversion
+        if quantification == .notQuantified || quantification == .asNeeded {
+            return quantification
         }
         
         guard !amount.isNaN && amount > 0.0 else {
             throw MiseEnPlaceError.nanZeroConversion
+        }
+        
+        if unit == .noUnit && measurementSystem == nil && measurementMethod == nil {
+            return quantification.with(amount: amount * multiplier)
         }
         
         if let ingredient = self.ingredient {
@@ -141,7 +135,7 @@ public extension FormulaElement {
             let scaledQuantification: Quantification
             
             switch (unit, measurementSystem, measurementMethod) {
-            case (_, .none, .none), (.each, .numeric, .quantity):
+            case (_, .none, .none), (.noUnit, .numeric, .quantity):
                 return Quantification(amount: amount * multiplier, unit: unit)
             case (_, .numeric, .quantity):
                 guard ingredient.unit.isQuantifiable else {
@@ -150,8 +144,8 @@ public extension FormulaElement {
                 
                 let eachUnitTotalAmount = try amount(for: ingredient.eachQuantification.unit)
                 let scaledEachTotalAmount = eachUnitTotalAmount / ingredient.eachQuantification.amount
-                return Quantification(amount: scaledEachTotalAmount, unit: .each)
-            case (.each, _, _):
+                return Quantification(amount: scaledEachTotalAmount, unit: .noUnit)
+            case (.noUnit, _, _):
                 guard ingredient.unit.isQuantifiable else {
                     throw MiseEnPlaceError.quantifiableConversion
                 }
@@ -177,7 +171,7 @@ public extension FormulaElement {
             
             let scaledQuantification: Quantification
             
-            if unit == .each {
+            if unit == .noUnit {
                 guard recipe.unit.isQuantifiable else {
                     throw MiseEnPlaceError.quantifiableConversion
                 }

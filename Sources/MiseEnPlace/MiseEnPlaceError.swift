@@ -1,7 +1,8 @@
 import Foundation
 
 public enum MiseEnPlaceError: Error, LocalizedError {
-    case asNeededConversion
+    case quantifiactionNotQuantified
+    case quantifiactionAsNeeded
     case quantifiableConversion
     case nanZeroConversion
     case unhandledConversion
@@ -10,7 +11,8 @@ public enum MiseEnPlaceError: Error, LocalizedError {
     
     public var errorDescription: String? {
         switch self {
-        case .asNeededConversion: return "Conversion to/from MeasurementUnit .asNeeded is not supported."
+        case .quantifiactionNotQuantified: return "A `Quantification` is specified as 'not-quantified'."
+        case .quantifiactionAsNeeded: return "A `Quantification` is specified as 'as-needed'."
         case .quantifiableConversion: return "The specified ingredient has an invalid 'each' measurement."
         case .nanZeroConversion: return "The conversion amount is NaN (Not a Number) or Zero."
         case .unhandledConversion: return "Conversion is not supported at this time."
