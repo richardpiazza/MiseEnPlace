@@ -67,11 +67,8 @@ public extension Recipe {
         
         let elements = self.formula
         for element in elements {
-            do {
-                let a = try element.amount(for: unit)
-                amount += a
-            } catch {
-                print(error)
+            if let value = try? element.amount(for: unit) {
+                amount += value
             }
         }
         

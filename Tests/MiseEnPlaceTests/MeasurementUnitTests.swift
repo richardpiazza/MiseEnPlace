@@ -16,9 +16,9 @@ class MeasurementUnitTests: XCTestCase {
     
     func testAllMeasurementUnits() {
         let units = MeasurementUnit.allCases
-        XCTAssertEqual(units.count, 17)
-        XCTAssertEqual(units[4], .teaspoon)
-        XCTAssertEqual(units[13], .milliliter)
+        XCTAssertEqual(units.count, 18)
+        XCTAssertEqual(units[5], .teaspoon)
+        XCTAssertEqual(units[14], .milliliter)
     }
     
     func testQuantifiableMeasurementUnits() {
@@ -90,7 +90,7 @@ class MeasurementUnitTests: XCTestCase {
         unit = MeasurementUnit(rawValue: 2201)
         XCTAssertEqual(unit, .kilogram)
         unit = MeasurementUnit(rawValue: -1)
-        XCTAssertEqual(unit, nil)
+        XCTAssertEqual(unit, .noUnit)
     }
     
     func testStringValueInit() {
@@ -180,6 +180,6 @@ class MeasurementUnitTests: XCTestCase {
         unit = MeasurementUnit(legacyRawValue: 9001)
         XCTAssertEqual(unit, .each)
         unit = MeasurementUnit(legacyRawValue: -1)
-        XCTAssertEqual(unit, nil)
+        XCTAssertEqual(unit, .noUnit)
     }
 }

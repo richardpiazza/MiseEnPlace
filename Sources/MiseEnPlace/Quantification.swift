@@ -42,6 +42,10 @@ public struct Quantification: Quantifiable, Equatable {
 }
 
 public extension Quantification {
+    /// A representation usable for when a `Quantification` must be expressed, but the intended outcome
+    /// is to express the implicit lack-of-quantification.
+    static let notQuantified: Quantification = .init(amount: -1.0, unit: .noUnit)
+    
     /// A measurement typical of a 'small' portion size
     static var small: Quantification {
         return Configuration.locale.usesMetricSystem ? Quantification(amount: 100.0, unit: .gram) : Quantification(amount: 1.0, unit: .ounce)
