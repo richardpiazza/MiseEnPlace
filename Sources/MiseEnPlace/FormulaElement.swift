@@ -122,7 +122,7 @@ public extension FormulaElement {
             return quantification
         }
         
-        guard !amount.isNaN && amount > 0.0 else {
+        guard (!amount.isNaN && !amount.isInfinite) && amount > 0.0 else {
             throw MiseEnPlaceError.nanZeroConversion
         }
         

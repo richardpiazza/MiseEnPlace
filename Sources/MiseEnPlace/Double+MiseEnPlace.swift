@@ -10,7 +10,7 @@ public extension Double {
     /// An interpreted representation of the value, composed of the
     /// intergral and fraction as needed.
     var fractionedString: String {
-        guard self.isNaN == false else {
+        guard self.isNaN == false && self.isInfinite == false else {
             return "0"
         }
         

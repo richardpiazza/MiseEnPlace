@@ -77,7 +77,7 @@ public extension Quantification {
     /// - parameter ratio: A multipler used to convert between measurement systems & methods.
     /// - throws: `MiseEnPlaceError`
     func amount(for destinationUnit: MeasurementUnit, ratio: Ratio? = nil) throws -> Double {
-        guard !amount.isNaN && amount > 0.0 else {
+        guard (!amount.isNaN && !amount.isInfinite) && amount > 0.0 else {
             throw MiseEnPlaceError.nanZeroConversion
         }
         
@@ -354,7 +354,7 @@ private extension Quantification {
     /// - parameter unit: The `MeasurementUnit` to convert to.
     /// - throws: `MiseEnPlaceError`
     func convertAmount(to destinationUnit: MeasurementUnit) throws -> Double {
-        guard !amount.isNaN && amount > 0.0 else {
+        guard (!amount.isNaN && !amount.isInfinite) && amount > 0.0 else {
             throw MiseEnPlaceError.nanZeroConversion
         }
         
@@ -398,8 +398,8 @@ private extension Quantification {
     }
     
     func metricTranslation(abbreviated: Bool) -> String {
-        guard !amount.isNaN else {
-            return "NaN"
+        guard (!amount.isNaN && !amount.isInfinite) else {
+            return "?"
         }
         
         let amountValue: String
@@ -438,8 +438,8 @@ private extension Quantification {
     }
     
     func fractionTranslation(abbreviated: Bool) -> String {
-        guard !amount.isNaN else {
-            return "NaN"
+        guard (!amount.isNaN && !amount.isInfinite) else {
+            return "?"
         }
         
         let amountValue: String
