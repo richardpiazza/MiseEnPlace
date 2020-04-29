@@ -3,6 +3,7 @@
 </p>
 
 <p align="center">
+    <img src="https://github.com/richardpiazza/MiseEnPlace/workflows/Swift/badge.svg" />
     <img src="https://img.shields.io/badge/Swift-5.1-orange.svg" />
     <a href="https://swift.org/package-manager">
         <img src="https://img.shields.io/badge/swiftpm-compatible-brightgreen.svg?style=flat" alt="Swift Package Manager" />
