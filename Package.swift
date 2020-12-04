@@ -11,13 +11,21 @@ let package = Package(
         .watchOS(.v4),
     ],
     products: [
-        .library(name: "MiseEnPlace", targets: ["MiseEnPlace"])
+        .library(
+            name: "MiseEnPlace",
+            targets: ["MiseEnPlace"]
+        )
     ],
     dependencies: [
     ],
     targets: [
-        .target(name: "MiseEnPlace"),
-        .testTarget(name: "MiseEnPlaceTests", dependencies: ["MiseEnPlace"]),
+        .target(
+            name: "MiseEnPlace"
+        ),
+        .testTarget(
+            name: "MiseEnPlaceTests",
+            dependencies: ["MiseEnPlace"]
+        ),
     ],
-    swiftLanguageVersions: [.v4, .v4_2, .v5]
+    swiftLanguageVersions: [.v5]
 )
