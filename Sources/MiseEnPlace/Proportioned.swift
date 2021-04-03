@@ -4,7 +4,7 @@ import Foundation
 /// given object. One value should always be equal to 1.0 with the
 /// other value being less than, equal to, or greater than 1.0.
 ///
-/// ## Requied Conformance
+/// ## Required Conformance
 ///
 /// ```swift
 /// // The proportional volume.

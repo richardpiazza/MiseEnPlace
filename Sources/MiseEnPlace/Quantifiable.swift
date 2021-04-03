@@ -2,7 +2,7 @@ import Foundation
 
 /// Needed parameters in order to represent a `Measurement`.
 ///
-/// ## Requied Conformance
+/// ## Required Conformance
 ///
 /// ```swift
 /// // The numerical value of the measurement.

@@ -43,7 +43,7 @@ public struct Ratio: CustomStringConvertible {
         #endif
     }
     
-    /// Conversion factor to used when going from one `MeasurementMethod` to another `MeasurementMethod`.
+    /// Conversion factor used when going from one `MeasurementMethod` to another `MeasurementMethod`.
     public func multiplier(converting from: MeasurementMethod, to: MeasurementMethod) -> Double {
         switch (from, to) {
         case (.volume, .weight):

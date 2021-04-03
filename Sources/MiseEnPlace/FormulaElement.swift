@@ -4,7 +4,7 @@ import Foundation
 /// Could also be thought of as a 'MeasuredIngredient' or 'MeasuredRecipe'
 /// Either the `ingredient` or `recipe` variable should be assigned.
 ///
-/// ## Requied Conformance
+/// ## Required Conformance
 ///
 /// ```swift
 /// // The `Recipe` that uses this as part of it's `formulaElements`.

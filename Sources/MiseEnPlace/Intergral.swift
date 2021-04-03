@@ -1,6 +1,6 @@
 import Foundation
 
-/// Enumeration of commonly used intergrals in cooking.
+/// Enumeration of commonly used integrals in cooking.
 public enum Integral: Int, CaseIterable, CustomStringConvertible {
     case zero = 0
     case one = 1
@@ -22,8 +22,8 @@ public enum Integral: Int, CaseIterable, CustomStringConvertible {
     case twentyFive = 25
     case thirty = 30
     case thirtyFive = 35
-    case fourty = 40
-    case fourtyFive = 45
+    case forty = 40
+    case fortyFive = 45
     case fifty = 50
     case sixty = 60
     case seventy = 70
@@ -49,4 +49,12 @@ public enum Integral: Int, CaseIterable, CustomStringConvertible {
     public var description: String {
         return "\(self.rawValue)"
     }
+}
+
+public extension Integral {
+    @available(*, deprecated, renamed: "forty")
+    static var fourty: Self { .forty }
+    
+    @available(*, deprecated, renamed: "fortyFive")
+    static var fourtyFive: Self { .fortyFive }
 }

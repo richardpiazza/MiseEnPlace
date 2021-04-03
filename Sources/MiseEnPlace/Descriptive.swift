@@ -5,7 +5,7 @@ import Foundation
 /// Although all of the properties are `Optional<String>`, best practices are to provide values for each;
 /// with `name` provided at a minimum.
 ///
-/// ## Requied Conformance
+/// ## Required Conformance
 ///
 /// ```swift
 /// /// The common, short, human-understandable text.

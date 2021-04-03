@@ -2,7 +2,7 @@ import Foundation
 
 /// Used to ordering elements when represented in un-ordered collections
 ///
-/// ## Requied Conformance
+/// ## Required Conformance
 ///
 /// ```swift
 /// // The order of the element

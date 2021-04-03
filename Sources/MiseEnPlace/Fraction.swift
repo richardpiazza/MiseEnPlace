@@ -61,8 +61,8 @@ public enum Fraction: Double, CaseIterable, CustomStringConvertible {
     /// The collection of cases is enumerated in reverse, so the largest possible match is set.
     ///
     /// There are some special conditions when using this initializer:
-    /// * Values > 7/8 (0.875) will always report as `.one`
-    /// * Values &lt; 1/8 (0.125) will always report as `.zero`
+    /// * Values greater than 7/8 (0.875) will always report as `.one`
+    /// * Values less than 1/8 (0.125) will always report as `.zero`
     public init(proximateValue value: RawValue) {
         if let fraction = Fraction(rawValue: value) {
             self = fraction
