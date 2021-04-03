@@ -4,7 +4,7 @@ import Foundation
 ///
 /// Beyond just supplying a unique identifier, creation and modification dates aid in comparison.
 ///
-/// ## Requied Conformance
+/// ## Required Conformance
 ///
 /// ```swift
 /// /// A unique identifier in the UUID format
@@ -36,7 +36,7 @@ public protocol Unique {
 }
 
 public extension Unique {
-    /// Provideds conformance to the `Identifiable` protocol.
+    /// Provides conformance to the `Identifiable` protocol.
     var id: UUID {
         return uuid
     }

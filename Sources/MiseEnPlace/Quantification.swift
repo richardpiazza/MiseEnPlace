@@ -74,7 +74,7 @@ public extension Quantification {
     /// This is a recursive algorithm
     ///
     /// - parameter unit: The `MeasurementUnit` to convert to.
-    /// - parameter ratio: A multipler used to convert between measurement systems & methods.
+    /// - parameter ratio: A multiplier used to convert between measurement systems & methods.
     /// - throws: `MiseEnPlaceError`
     func amount(for destinationUnit: MeasurementUnit, ratio: Ratio? = nil) throws -> Double {
         guard (!amount.isNaN && !amount.isInfinite) && amount > 0.0 else {
@@ -249,9 +249,9 @@ public extension Quantification {
 }
 
 internal extension Quantification {
-    /// Re-quantifies this `Quantification` in terms of another `MeasurementSytemMethod`.
+    /// Re-quantifies this `Quantification` in terms of another `MeasurementSystemMethod`.
     ///
-    /// Recursive algorithm. The output from the requantification may not be in the final unit desired. See `convertAmount(to:)` for more infromation.
+    /// Recursive algorithm. The output from the requantification may not be in the final unit desired. See `convertAmount(to:)` for more information.
     ///
     /// - parameter destinationMeasurementSystemMethod: The output `MeasurementSystemMethod`
     /// - parameter ratio: Ratio used during measurement method calculations (i.e. weight > volume / volume > weight)
@@ -448,27 +448,27 @@ private extension Quantification {
         if decomposedAmount.1 == 0.0 {
             amountValue = "\(Int(amount))"
         } else {
-            let intergral = Int(decomposedAmount.0)
+            let integral = Int(decomposedAmount.0)
             let fraction = Fraction(proximateValue: decomposedAmount.1)
             
             switch fraction {
             case .one:
-                amountValue = "\(Int(intergral + 1))"
+                amountValue = "\(Int(integral + 1))"
             case .zero:
-                if intergral == 0 {
+                if integral == 0 {
                     if let significantAmount = Configuration.significantDigitFormatter.string(from: NSNumber(value: amount)) {
                         amountValue = "\(significantAmount)"
                     } else {
                         amountValue = "\(amount)"
                     }
                 } else {
-                    amountValue = "\(intergral)"
+                    amountValue = "\(integral)"
                 }
             default:
-                if intergral == 0 {
+                if integral == 0 {
                     amountValue = "\(fraction.description)"
                 } else {
-                    amountValue = "\(intergral)\(fraction.description)"
+                    amountValue = "\(integral)\(fraction.description)"
                 }
             }
         }

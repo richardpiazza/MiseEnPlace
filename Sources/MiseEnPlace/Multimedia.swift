@@ -2,7 +2,7 @@ import Foundation
 
 /// Parameter and helper methods for managing a single image representation of an object.
 ///
-/// ## Requied Conformance
+/// ## Required Conformance
 ///
 /// ```swift
 /// // A localized platform path to the image data.

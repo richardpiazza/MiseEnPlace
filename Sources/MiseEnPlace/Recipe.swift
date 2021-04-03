@@ -4,7 +4,7 @@ import Foundation
 /// A `Recipe` is one of the primary protocols for interacting with an
 /// object graph utilizing the `MiseEnPlace` framework.
 ///
-/// ## Requied Conformance
+/// ## Required Conformance
 ///
 /// ```swift
 /// // References to the elements that make up this `Recipe`s formula.

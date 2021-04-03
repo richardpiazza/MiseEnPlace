@@ -1,18 +1,18 @@
 import Foundation
 
-/// _MiseEnPlace_ Congifuration Variables
+/// _MiseEnPlace_ Configuration Variables
 public struct Configuration {
     
     /// Ways in which `MeasurementSystemMethod` conversions can take place
     public enum ConversionOrder {
-        /// `MeasurementMethod` than `MeasurementSystem`.
+        /// `MeasurementMethod` then `MeasurementSystem`.
         ///
         /// In the example converting from 'cup' to 'kilograms':
         /// * amount as US Volume
         /// * amount as US Weight
         /// * amount as Metric Weight
         case methodThanSystem
-        /// `MeasurementSystem` than `MeasurementMethod`.
+        /// `MeasurementSystem` then `MeasurementMethod`.
         ///
         /// In the example converting from 'cup' to 'kilograms':
         /// * amount as US Volume

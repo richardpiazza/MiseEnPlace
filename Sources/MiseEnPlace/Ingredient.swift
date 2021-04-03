@@ -58,7 +58,7 @@ import Foundation
 ///     var imagePath: String?
 ///     var volume: Double = 1.0
 ///     var weight: Double = 1.0
-///     var amout: Double = 1.0
+///     var amount: Double = 1.0
 ///     var unit: MeasurementUnit = .gallon
 /// }
 /// ```

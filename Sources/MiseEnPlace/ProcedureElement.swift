@@ -1,8 +1,8 @@
 import Foundation
 
-/// A preperation step for a `Recipe`
+/// A preparation step for a `Recipe`
 ///
-/// ## Requied Conformance
+/// ## Required Conformance
 ///
 /// ```swift
 /// // The `Recipe` that uses this as part of it's `procedureElements`.
