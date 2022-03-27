@@ -3,15 +3,7 @@ import XCTest
 @testable import MiseEnPlace
 
 class InterpreterTests: XCTestCase {
-
-    static var allTests = [
-        ("testMetricMass", testMetricMass),
-        ("testMetricVolume", testMetricVolume),
-        ("testUSMass", testUSMass),
-        ("testUSVolume", testUSVolume),
-        ("testEdgeConditions", testEdgeConditions),
-    ]
-
+    
     func testMetricMass() {
         let smallGramMass = Quantification(amount: 7.542, unit: .gram)
         let smallGramMassInterpretation = smallGramMass.componentsTranslation

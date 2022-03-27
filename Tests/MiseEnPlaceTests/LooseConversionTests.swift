@@ -4,26 +4,6 @@ import XCTest
 
 class LooseConversionTests: XCTestCase {
     
-    static var allTests = [
-        ("testEqualRatioMeasurementAmountFor", testEqualRatioMeasurementAmountFor),
-        ("testEqualRatioScaleUSMassToUSMass", testEqualRatioScaleUSMassToUSMass),
-        ("testEqualRatioScaleUSMassToUSVolume", testEqualRatioScaleUSMassToUSVolume),
-        ("testEqualRatioScaleUSMassToMetricMass", testEqualRatioScaleUSMassToMetricMass),
-        ("testEqualRatioScaleUSMassToMetricVolume", testEqualRatioScaleUSMassToMetricVolume),
-        ("testEqualRatioScaleUSVolumeToUSMass", testEqualRatioScaleUSVolumeToUSMass),
-        ("testEqualRatioScaleUSVolumeToUSVolume", testEqualRatioScaleUSVolumeToUSVolume),
-        ("testEqualRatioScaleUSVolumeToMetricMass", testEqualRatioScaleUSVolumeToMetricMass),
-        ("testEqualRatioScaleUSVolumeToMetricVolume", testEqualRatioScaleUSVolumeToMetricVolume),
-        ("testEqualRatioScaleMetricMassToUSMass", testEqualRatioScaleMetricMassToUSMass),
-        ("testEqualRatioScaleMetricMassToUSVolume", testEqualRatioScaleMetricMassToUSVolume),
-        ("testEqualRatioScaleMetricMassToMetricMass", testEqualRatioScaleMetricMassToMetricMass),
-        ("testEqualRatioScaleMetricMassToMetricVolume", testEqualRatioScaleMetricMassToMetricVolume),
-        ("testEqualRatioScaleMetricVolumeToUSMass", testEqualRatioScaleMetricVolumeToUSMass),
-        ("testEqualRatioScaleMetricVolumeToUSVolume", testEqualRatioScaleMetricVolumeToUSVolume),
-        ("testEqualRatioScaleMetricVolumeToMetricMass", testEqualRatioScaleMetricVolumeToMetricMass),
-        ("testEqualRatioScaleMetricVolumeToMetricVolume", testEqualRatioScaleMetricVolumeToMetricVolume),
-    ]
-    
     private var measuredIngredient: TestMeasuredIngredient = TestMeasuredIngredient(ratio: .oneToOne)
     
     private static var useLooseConversions: Bool = false

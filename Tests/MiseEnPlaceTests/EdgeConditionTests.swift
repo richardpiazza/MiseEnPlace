@@ -5,10 +5,6 @@ import XCTest
 /// Tests created in response to conditions during implementations
 class EdgeConditionTests: XCTestCase {
     
-    static var allTests = [
-        ("testHighVolumeRatioConversion", testHighVolumeRatioConversion),
-    ]
-    
     func testHighVolumeRatioConversion() throws {
         var ingredient = TestIngredient()
         ingredient.volume = 2.143

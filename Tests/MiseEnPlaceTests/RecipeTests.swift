@@ -4,15 +4,6 @@ import XCTest
 
 class RecipeTests: XCTestCase {
     
-    static var allTests = [
-        ("testTotalAmount", testTotalAmount),
-        ("testYield", testYield),
-        ("testPortion", testPortion),
-        ("testFormula", testFormula),
-        ("testProcedure", testProcedure),
-        ("testScaling", testScaling),
-    ]
-    
     private let italianBread = TestRecipe.italianBread
     private let poolishBaguette = TestRecipe.poolishBaguette
     

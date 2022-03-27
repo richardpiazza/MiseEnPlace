@@ -4,11 +4,6 @@ import XCTest
 
 class DoubleTests: XCTestCase {
     
-    static var allTests = [
-        ("testRounded", testRounded),
-        ("testFractionedString", testFractionedString),
-    ]
-    
     func testRounded() {
         XCTAssertEqual(10.5678.rounded(to: 0), 11.0)
         XCTAssertEqual(10.5678.rounded(to: 1), 10.6)

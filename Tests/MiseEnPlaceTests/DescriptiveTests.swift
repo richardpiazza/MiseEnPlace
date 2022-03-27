@@ -4,11 +4,6 @@ import XCTest
 
 class DescriptiveTests: XCTestCase {
     
-    static var allTests = [
-        ("testProperties", testProperties),
-        ("testCharacterIndex", testCharacterIndex),
-    ]
-    
     private var entity: Entity = Entity()
     
     func testProperties() {

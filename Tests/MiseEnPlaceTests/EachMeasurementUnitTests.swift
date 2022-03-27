@@ -4,12 +4,6 @@ import XCTest
 
 class EachMeasurementUnitTests: XCTestCase {
     
-    static var allTests = [
-        ("testEgg", testEgg),
-        ("testEggWhite", testEggWhite),
-        ("testEggYolk", testEggYolk),
-    ]
-    
     private lazy var egg: TestIngredient = {
         var ingredient = TestIngredient()
         ingredient.eachQuantification = Quantification(amount: 50, unit: .gram)

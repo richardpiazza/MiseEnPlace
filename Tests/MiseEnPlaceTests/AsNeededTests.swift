@@ -4,10 +4,6 @@ import XCTest
 
 class AsNeededTests: XCTestCase {
     
-    static var allTests = [
-        ("testFormulaElementScaleBy", testFormulaElementScaleBy),
-    ]
-    
     private var measuredIngredient: TestMeasuredIngredient = TestMeasuredIngredient(ratio: Ratio(volume: 1.0, weight: 1.0))
     
     func testFormulaElementScaleBy() {

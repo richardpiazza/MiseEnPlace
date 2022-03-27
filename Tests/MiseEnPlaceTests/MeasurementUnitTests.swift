@@ -4,16 +4,6 @@ import XCTest
 
 class MeasurementUnitTests: XCTestCase {
     
-    static var allTests = [
-        ("testAllMeasurementUnits", testAllMeasurementUnits),
-        ("testQuantifiableMeasurementUnits", testQuantifiableMeasurementUnits),
-        ("testMeasurementUnitsForSystemMethod", testMeasurementUnitsForSystemMethod),
-        ("testMeasurementUnitsForMeasurementMethod", testMeasurementUnitsForMeasurementMethod),
-        ("testRawValueInit", testRawValueInit),
-        ("testStringValueInit", testStringValueInit),
-        ("testLegacyRawValueInit", testLegacyRawValueInit),
-    ]
-    
     func testAllMeasurementUnits() {
         let units = MeasurementUnit.allCases
         XCTAssertEqual(units.count, 16)
