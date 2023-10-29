@@ -1,22 +1,21 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.7
 
 import PackageDescription
 
 let package = Package(
     name: "MiseEnPlace",
     platforms: [
-        .macOS(.v10_13),
-        .iOS(.v11),
-        .tvOS(.v11),
-        .watchOS(.v4),
+        .macOS(.v12),
+        .macCatalyst(.v15),
+        .iOS(.v15),
+        .tvOS(.v15),
+        .watchOS(.v8),
     ],
     products: [
         .library(
             name: "MiseEnPlace",
             targets: ["MiseEnPlace"]
         )
-    ],
-    dependencies: [
     ],
     targets: [
         .target(

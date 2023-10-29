@@ -131,6 +131,5 @@ fileprivate struct RatioMeasuredIngredient: FormulaElement {
     var amount: Double = 0.0
     var unit: MeasurementUnit = .noUnit
     var inverseRecipe: Recipe?
-    var ingredient: Ingredient? = RatioIngredient()
-    var recipe: Recipe?
+    var measured: Measured = .ingredient(RatioIngredient())
 }

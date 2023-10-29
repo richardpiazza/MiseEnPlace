@@ -2,8 +2,7 @@ import Foundation
 
 /// Represents any raw material/ingredient used in cooking.
 ///
-/// A `Ingredient` is one of the primary protocols for interacting with an
-/// object graph utilizing the `MiseEnPlace` framework.
+/// A `Ingredient` is one of the primary protocols for interacting with an object graph utilizing the **MiseEnPlace** framework.
 ///
 /// ## Required Conformance
 ///

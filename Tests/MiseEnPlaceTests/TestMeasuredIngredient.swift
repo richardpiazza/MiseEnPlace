@@ -8,20 +8,23 @@ struct TestMeasuredIngredient: FormulaElement {
     var sequence: Int = 0
     var amount: Double = 1.0
     var unit: MeasurementUnit = .ounce
-    var ingredient: Ingredient? = TestIngredient()
-    var recipe: Recipe?
     var inverseRecipe: Recipe?
+    var measured: Measured = .ingredient(TestIngredient())
     
     init() {
     }
     
     init(ratio: Ratio) {
-        ingredient?.volume = ratio.volume
-        ingredient?.weight = ratio.weight
+        var ingredient = TestIngredient()
+        ingredient.volume = ratio.volume
+        ingredient.weight = ratio.weight
+        measured = .ingredient(ingredient)
     }
     
     init(inverseRecipe: Recipe, ingredient: Ingredient? = nil) {
         self.inverseRecipe = inverseRecipe
-        self.ingredient = ingredient ?? TestIngredient()
+        if let ingredient = ingredient {
+            measured = .ingredient(ingredient)
+        }
     }
 }

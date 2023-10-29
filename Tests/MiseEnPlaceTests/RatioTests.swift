@@ -4,13 +4,6 @@ import XCTest
 
 class RatioTests: XCTestCase {
     
-    static var allTests = [
-        ("testOneToOneRatio", testOneToOneRatio),
-        ("testOneToTwoRatio", testOneToTwoRatio),
-        ("testTwoToOneRatio", testTwoToOneRatio),
-        ("testMakeRatioErrors", testMakeRatioErrors),
-    ]
-    
     private var volume: Quantification = Quantification()
     private var weight: Quantification = Quantification()
     

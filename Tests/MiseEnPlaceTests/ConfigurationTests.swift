@@ -4,18 +4,6 @@ import XCTest
 
 class ConfigurationTests: XCTestCase {
     
-    static var allTests = [
-        ("testLocale", testLocale),
-        ("testAbbreviateTranslations", testAbbreviateTranslations),
-        ("testUseLooseConversions", testUseLooseConversions),
-        ("testFluidOunceMilliliter", testFluidOunceMilliliter),
-        ("testOunceGram", testOunceGram),
-        ("testSmallMeasurement", testSmallMeasurement),
-        ("testLargeMeasurement", testLargeMeasurement),
-        ("testSingleDecimalFormatter", testSingleDecimalFormatter),
-        ("testSignificantDigitFormatter", testSignificantDigitFormatter),
-    ]
-    
     let us = Locale(identifier: "en_US")
     let gb = Locale(identifier: "en_GB")
     

@@ -1,8 +1,6 @@
 import Foundation
 
 /// A measurement as it relates to an `Ingredient` or `Recipe`.
-/// Could also be thought of as a 'MeasuredIngredient' or 'MeasuredRecipe'
-/// Either the `ingredient` or `recipe` variable should be assigned.
 ///
 /// ## Required Conformance
 ///
@@ -10,11 +8,8 @@ import Foundation
 /// // The `Recipe` that uses this as part of it's `formulaElements`.
 /// var inverseRecipe: Recipe? { get set }
 ///
-/// // The `Ingredient` this measurement relates to.
-/// var ingredient: Ingredient? { get set }
-///
-/// // The `Recipe` this measurement relates to.
-/// var recipe: Recipe? { get set }
+/// // The `Ingredient` or `Recipe` to which this measurement relates.
+/// var measured: Measured { get set }
 /// ```
 ///
 /// ## Protocol Conformance
@@ -39,25 +34,57 @@ import Foundation
 ///
 public protocol FormulaElement: Unique, Sequenced, Quantifiable {
     var inverseRecipe: Recipe? { get set }
-    var ingredient: Ingredient? { get set }
-    var recipe: Recipe? { get set }
+    var measured: Measured { get set }
+}
+
+public extension FormulaElement {
+    @available(*, deprecated, renamed: "measured")
+    var ingredient: Ingredient? {
+        get {
+            if case let .ingredient(value) = measured {
+                return value
+            } else {
+                return nil
+            }
+        }
+        set {
+            if let value = newValue {
+                measured = .ingredient(value)
+            }
+        }
+    }
+    
+    @available(*, deprecated, renamed: "measured")
+    var recipe: Recipe? {
+        get {
+            if case let .recipe(value) = measured {
+                return value
+            } else {
+                return nil
+            }
+        }
+        set {
+            if let value = newValue {
+                measured = .recipe(value)
+            }
+        }
+    }
 }
 
 public extension FormulaElement {
     /// The name for the referenced `Ingredient` or `Recipe`
     var name: String? {
-        return ingredient?.name ?? recipe?.name
+        switch measured {
+        case .ingredient(let ingredient): return ingredient.name
+        case .recipe(let recipe): return recipe.name
+        }
     }
     
     /// Indicates when this `FormulaElement` references an `Ingredient`
-    var isMeasuredIngredient: Bool {
-        return ingredient != nil
-    }
+    var isMeasuredIngredient: Bool { measured.ingredient != nil }
     
     /// Indicates when this `FormulaElement` references an `Recipe`
-    var isMeasuredRecipe: Bool {
-        return recipe != nil
-    }
+    var isMeasuredRecipe: Bool { measured.recipe != nil }
     
     /// Translates the measurement to a different unit.
     ///
@@ -74,11 +101,12 @@ public extension FormulaElement {
             throw MiseEnPlaceError.unhandledConversion
         }
         
-        if let ingredient = self.ingredient {
-            guard amount > 0.0 else {
-                throw MiseEnPlaceError.measurementAmount(method: nil)
-            }
-            
+        guard amount > 0.0 else {
+            throw MiseEnPlaceError.measurementAmount(method: nil)
+        }
+        
+        switch measured {
+        case .ingredient(let ingredient):
             switch (unit.measurementSystemMethod, destinationUnit.measurementSystemMethod) {
             case (.numericQuantity, .numericQuantity):
                 return amount
@@ -96,19 +124,13 @@ public extension FormulaElement {
             default:
                 return try quantification.amount(for: destinationUnit, ratio: ingredient.ratio)
             }
-        } else if let recipe = self.recipe {
-            guard amount > 0.0 else {
-                throw MiseEnPlaceError.measurementAmount(method: nil)
-            }
-            
+        case .recipe(let recipe):
             let measuredAmount = recipe.totalAmount(for: unit)
             let percent = amount / measuredAmount
             
             let destinationAmount = recipe.totalAmount(for: destinationUnit)
             return destinationAmount * percent
         }
-        
-        throw MiseEnPlaceError.unhandledConversion
     }
     
     /// Scales the 'measured' amount of either the `ingredient` or `recipe`.
@@ -130,8 +152,8 @@ public extension FormulaElement {
             return quantification.with(amount: amount * multiplier)
         }
         
-        if let ingredient = self.ingredient {
-            
+        switch measured {
+        case .ingredient(let ingredient):
             let scaledQuantification: Quantification
             
             switch (unit, measurementSystem, measurementMethod) {
@@ -166,9 +188,7 @@ public extension FormulaElement {
             
             let translatedQuantification = try scaledQuantification.quantification.requantify(in: measurementSystemMethod, ratio: ingredient.ratio)
             return try translatedQuantification.normalizedQuantification()
-            
-        } else if let recipe = self.recipe {
-            
+        case .recipe(let recipe):
             let scaledQuantification: Quantification
             
             if unit == .noUnit {
@@ -196,7 +216,5 @@ public extension FormulaElement {
             let translatedQuantification = try scaledQuantification.quantification.requantify(in: measurementSystemMethod, ratio: .oneToOne)
             return try translatedQuantification.normalizedQuantification()
         }
-        
-        throw MiseEnPlaceError.unhandledConversion
     }
 }

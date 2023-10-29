@@ -4,14 +4,6 @@ import XCTest
 
 class SignificantDigitTests: XCTestCase {
     
-    static var allTests = [
-        ("testCup", testCup),
-        ("testPint", testPint),
-        ("testQuart", testQuart),
-        ("testGallon", testGallon),
-        ("testPound", testPound),
-    ]
-    
     func testCup() {
         let measurement = Quantification(amount: 0.0951019406578092, unit: .cup)
         XCTAssertEqual(measurement.description, "0.095 Cup")

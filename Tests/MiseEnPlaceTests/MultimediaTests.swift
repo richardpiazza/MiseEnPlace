@@ -4,10 +4,6 @@ import XCTest
 
 class MultimediaTests: XCTestCase {
     
-    static var allTests = [
-        ("testImageURL", testImageURL),
-    ]
-    
     func testImageURL() {
         var ingredient = TestIngredient()
         ingredient.uuid = UUID(uuidString: "a0ee42e5-c0d1-4720-a919-57acbd8dafc0")!

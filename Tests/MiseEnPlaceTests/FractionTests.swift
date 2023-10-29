@@ -4,15 +4,6 @@ import XCTest
 
 class FractionTests: XCTestCase {
     
-    static var allTests = [
-        ("testRawValue", testRawValue),
-        ("testApproximateValue", testApproximateValue),
-        ("testProximateValue", testProximateValue),
-        ("testDescription", testDescription),
-        ("testIsCommon", testIsCommon),
-        ("testIsUnicodeRepresentable", testIsUnicodeRepresentable),
-    ]
-    
     func testRawValue() {
         XCTAssertEqual(Fraction(rawValue: 0.0), .zero)
         XCTAssertEqual(Fraction(rawValue: 0.001), .oneThousandth)

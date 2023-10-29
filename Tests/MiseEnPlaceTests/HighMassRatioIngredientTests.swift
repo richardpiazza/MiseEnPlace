@@ -4,29 +4,6 @@ import XCTest
 
 class HighMassRatioIngredientTests: XCTestCase {
     
-    static var allTests = [
-        ("testMeasurementAmountForUSVolume", testMeasurementAmountForUSVolume),
-        ("testMeasurementAmountForUSMass", testMeasurementAmountForUSMass),
-        ("testMeasurementAmountForMetricVolume", testMeasurementAmountForMetricVolume),
-        ("testMeasurementAmountForMetricMass", testMeasurementAmountForMetricMass),
-        ("testScaleUSMassToUSMass", testScaleUSMassToUSMass),
-        ("testScaleUSMassToUSVolume", testScaleUSMassToUSVolume),
-        ("testScaleUSMassToMetricMass", testScaleUSMassToMetricMass),
-        ("testScaleUSMassToMetricVolume", testScaleUSMassToMetricVolume),
-        ("testScaleUSVolumeToUSMass", testScaleUSVolumeToUSMass),
-        ("testScaleUSVolumeToUSVolume", testScaleUSVolumeToUSVolume),
-        ("testScaleUSVolumeToMetricMass", testScaleUSVolumeToMetricMass),
-        ("testScaleUSVolumeToMetricVolume", testScaleUSVolumeToMetricVolume),
-        ("testScaleMetricMassToUSMass", testScaleMetricMassToUSMass),
-        ("testScaleMetricMassToUSVolume", testScaleMetricMassToUSVolume),
-        ("testScaleMetricMassToMetricMass", testScaleMetricMassToMetricMass),
-        ("testScaleMetricMassToMetricVolume", testScaleMetricMassToMetricVolume),
-        ("testScaleMetricVolumeToUSMass", testScaleMetricVolumeToUSMass),
-        ("testScaleMetricVolumeToUSVolume", testScaleMetricVolumeToUSVolume),
-        ("testScaleMetricVolumeToMetricMass", testScaleMetricVolumeToMetricMass),
-        ("testScaleMetricVolumeToMetricVolume", testScaleMetricVolumeToMetricVolume),
-    ]
-    
     private var measuredIngredient: TestMeasuredIngredient = TestMeasuredIngredient(ratio: Ratio(volume: 1.0, weight: 1.42))
 
     func testMeasurementAmountForUSVolume() throws {

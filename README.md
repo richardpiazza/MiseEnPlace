@@ -4,10 +4,7 @@
 
 <p align="center">
   <img src="https://github.com/richardpiazza/MiseEnPlace/workflows/Swift/badge.svg?branch=main" />
-  <img src="https://img.shields.io/badge/Swift-5.1-orange.svg" />
-  <a href="https://twitter.com/richardpiazza">
-    <img src="https://img.shields.io/badge/twitter-@richardpiazza-blue.svg?style=flat" alt="Twitter: @richardpiazza" />
-  </a>
+  <img src="https://img.shields.io/badge/Swift-5.9-orange.svg" />
 </p>
 
 <p align="center">A framework for converting and interpreting common measurements used in cooking.</p>
