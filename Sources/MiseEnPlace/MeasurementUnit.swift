@@ -78,7 +78,7 @@ public enum MeasurementUnit: Int, CaseIterable {
         }
     }
     
-    /// The raw values for quantity measurements changes from v4.0 to v4.1.
+    /// The raw values for quantity measurements changed from v4.0 to v4.1.
     /// Use this initializer when using 4.0 values.
     public init?(legacyRawValue: Int) {
         switch legacyRawValue {

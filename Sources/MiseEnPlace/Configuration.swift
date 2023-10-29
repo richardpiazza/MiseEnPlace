@@ -1,6 +1,6 @@
 import Foundation
 
-/// _MiseEnPlace_ Configuration Variables
+/// **MiseEnPlace** Configuration Variables
 public struct Configuration {
     
     /// Ways in which `MeasurementSystemMethod` conversions can take place

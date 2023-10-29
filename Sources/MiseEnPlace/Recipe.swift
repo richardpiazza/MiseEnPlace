@@ -1,8 +1,8 @@
 import Foundation
 
 /// Represents a compilation of `Ingredient`s or other `Recipe`s.
-/// A `Recipe` is one of the primary protocols for interacting with an
-/// object graph utilizing the `MiseEnPlace` framework.
+///
+/// A `Recipe` is one of the primary protocols for interacting with an object graph utilizing the **MiseEnPlace** framework.
 ///
 /// ## Required Conformance
 ///

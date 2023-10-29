@@ -1,8 +1,6 @@
 import Foundation
 
 /// A measurement as it relates to an `Ingredient` or `Recipe`.
-/// Could also be thought of as a 'MeasuredIngredient' or 'MeasuredRecipe'
-/// Either the `ingredient` or `recipe` variable should be assigned.
 ///
 /// ## Required Conformance
 ///

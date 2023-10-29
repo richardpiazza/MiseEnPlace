@@ -1,3 +1,4 @@
+/// Limited subset of _any_ item that can be _measured_ (quantified amount)
 public enum Measured {
     case ingredient(Ingredient)
     case recipe(Recipe)
