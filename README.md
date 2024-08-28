@@ -2,12 +2,10 @@
     <img src="Resources/MiseEnPlace.png" width="1000" max-width="90%" alt="MiseEnPlace" />
 </p>
 
-<p align="center">
-  <img src="https://github.com/richardpiazza/MiseEnPlace/workflows/Swift/badge.svg?branch=main" />
-  <img src="https://img.shields.io/badge/Swift-5.9-orange.svg" />
-</p>
-
 <p align="center">A framework for converting and interpreting common measurements used in cooking.</p>
+
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Frichardpiazza%2FMiseEnPlace%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/richardpiazza/MiseEnPlace)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Frichardpiazza%2FMiseEnPlace%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/richardpiazza/MiseEnPlace)
 
 ## Installation
 
@@ -17,7 +15,7 @@
 let package = Package(
     ...
     dependencies: [
-        .package(url: "https://github.com/richardpiazza/MiseEnPlace.git", .upToNextMinor(from: "5.0.0"))
+        .package(url: "https://github.com/richardpiazza/MiseEnPlace.git", .upToNextMajor(from: "6.0.0"))
     ],
     ...
 )

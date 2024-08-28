@@ -59,12 +59,12 @@ public extension Quantification {
     
     /// A measurement typical of a 'small' portion size
     static var small: Quantification {
-        return Configuration.locale.usesMetricSystem ? Quantification(amount: 100.0, unit: .gram) : Quantification(amount: 1.0, unit: .ounce)
+        Configuration.metricPreferred ? Quantification(amount: 100.0, unit: .gram) : Quantification(amount: 1.0, unit: .ounce)
     }
 
     /// A measurement typical of a 'large' portion size
     static var large: Quantification {
-        return Configuration.locale.usesMetricSystem ? Quantification(amount: 1.0, unit: .kilogram) : Quantification(amount: 1.0, unit: .pound)
+        Configuration.metricPreferred ? Quantification(amount: 1.0, unit: .kilogram) : Quantification(amount: 1.0, unit: .pound)
     }
 }
 
@@ -182,7 +182,7 @@ public extension Quantification {
         
         switch unit {
         case .noUnit:
-            if Configuration.locale.usesMetricSystem {
+            if Configuration.metricPreferred {
                 return metricTranslation(abbreviated: abbreviated)
             } else {
                 return fractionTranslation(abbreviated: abbreviated)

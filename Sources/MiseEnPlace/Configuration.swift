@@ -52,6 +52,14 @@ public struct Configuration {
         }
     }
     
+    public static var metricPreferred: Bool {
+        if #available(macOS 13.0, iOS 16.0, tvOS 16.0, watchOS 9.0, *) {
+            return locale.measurementSystem != .us
+        } else {
+            return locale.usesMetricSystem
+        }
+    }
+    
     /// Changes the default behavior of the `Quantification` translation functions.
     public static var abbreviateTranslations: Bool = false
     
