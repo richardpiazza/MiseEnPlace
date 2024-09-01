@@ -1,7 +1,7 @@
 import Foundation
 
 /// The relation between volume and weight
-public struct Ratio: CustomStringConvertible {
+public struct Ratio: Equatable, CustomStringConvertible {
     
     /// A common/default ratio where volume is equivalent to weight
     public static let oneToOne: Ratio = Ratio(volume: 1.0, weight: 1.0)
@@ -10,14 +10,13 @@ public struct Ratio: CustomStringConvertible {
     /// A common/default ratio where weight is twice the measurement in volume
     public static let oneToTwo: Ratio = Ratio(volume: 1.0, weight: 2.0)
     
-    public var volume: Double = 1.0
-    public var weight: Double = 1.0
+    public var volume: Double
+    public var weight: Double
     
-    public init() {
-        
-    }
-    
-    public init(volume: Double, weight: Double) {
+    public init(
+        volume: Double = 1.0,
+        weight: Double = 1.0
+    ) {
         self.volume = volume
         self.weight = weight
     }
@@ -72,16 +71,28 @@ public struct Ratio: CustomStringConvertible {
             throw MiseEnPlaceError.measurementUnit(method: .weight)
         }
         
-        var volumeMeasuredIngredient = RatioMeasuredIngredient()
+        var volumeMeasuredIngredient = AnyFormulaElement(
+            measured: .ingredient(AnyIngredient())
+        )
         volumeMeasuredIngredient.amount = volume.amount
         volumeMeasuredIngredient.unit = volume.unit
         
-        var weightMeasuredIngredient = RatioMeasuredIngredient()
+        var weightMeasuredIngredient = AnyFormulaElement(
+            measured: .ingredient(AnyIngredient())
+        )
         weightMeasuredIngredient.amount = weight.amount
         weightMeasuredIngredient.unit = weight.unit
         
-        let volumeAmount = try volumeMeasuredIngredient.amount(for: .fluidOunce)
-        let weightAmount = try weightMeasuredIngredient.amount(for: .ounce)
+        let volumeAmount: Double
+        let weightAmount: Double
+        
+        if Configuration.metricPreferred {
+            volumeAmount = try volumeMeasuredIngredient.amount(for: .milliliter)
+            weightAmount = try weightMeasuredIngredient.amount(for: .gram)
+        } else {
+            volumeAmount = try volumeMeasuredIngredient.amount(for: .fluidOunce)
+            weightAmount = try weightMeasuredIngredient.amount(for: .ounce)
+        }
         
         guard volumeAmount != 0.0 && weightAmount != 0.0 else {
             throw MiseEnPlaceError.unhandledConversion
@@ -108,28 +119,3 @@ fileprivate var significantDigitFormatter: NumberFormatter = {
     formatter.maximumSignificantDigits = 3
     return formatter
 }()
-
-fileprivate struct RatioIngredient: Ingredient {
-    var uuid: UUID = UUID()
-    var creationDate: Date = Date()
-    var modificationDate: Date = Date()
-    var name: String?
-    var commentary: String?
-    var classification: String?
-    var imagePath: String?
-    var volume: Double = 1.0
-    var weight: Double = 1.0
-    var amount: Double = 0.0
-    var unit: MeasurementUnit = .noUnit
-}
-
-fileprivate struct RatioMeasuredIngredient: FormulaElement {
-    var uuid: UUID = UUID()
-    var creationDate: Date = Date()
-    var modificationDate: Date = Date()
-    var sequence: Int = 0
-    var amount: Double = 0.0
-    var unit: MeasurementUnit = .noUnit
-    var inverseRecipe: Recipe?
-    var measured: Measured = .ingredient(RatioIngredient())
-}

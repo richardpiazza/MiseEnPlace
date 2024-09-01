@@ -6,7 +6,7 @@ import Foundation
 /// the unit belongs. All of the logic for how and when to convert to other units and amounts is contained within.
 ///
 /// - note: The rawValue is comprised of [`MeasurementSystem`][`MeasurementMethod`][##Unique]
-public enum MeasurementUnit: Int, CaseIterable {
+public enum MeasurementUnit: Int, Equatable, CaseIterable {
     // numericQuantity
     case noUnit = 0
     

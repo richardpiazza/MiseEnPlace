@@ -10,15 +10,15 @@ import Foundation
 /// var unit: MeasurementUnit { get set }
 /// ```
 ///
-public struct Quantification: Quantifiable {
+public struct Quantification: Quantifiable, Equatable, CustomStringConvertible {
     
-    public var amount: Double = 0.0
-    public var unit: MeasurementUnit = .noUnit
+    public var amount: Double
+    public var unit: MeasurementUnit
     
-    public init() {
-    }
-    
-    public init(amount: Double, unit: MeasurementUnit) {
+    public init(
+        amount: Double = 0.0,
+        unit: MeasurementUnit = .noUnit
+    ) {
         self.amount = amount
         self.unit = unit
     }
@@ -27,23 +27,7 @@ public struct Quantification: Quantifiable {
         self.amount = quantifiable.amount
         self.unit = quantifiable.unit
     }
-}
-
-extension Quantification: Equatable {
-    public static func == (lhs: Quantification, rhs: Quantification) -> Bool {
-        guard lhs.amount == rhs.amount else {
-            return false
-        }
-        
-        guard lhs.unit == rhs.unit else {
-            return false
-        }
-        
-        return true
-    }
-}
-
-extension Quantification: CustomStringConvertible {
+    
     public var description: String {
         return translation(abbreviated: Configuration.abbreviateTranslations)
     }
@@ -65,6 +49,15 @@ public extension Quantification {
     /// A measurement typical of a 'large' portion size
     static var large: Quantification {
         Configuration.metricPreferred ? Quantification(amount: 1.0, unit: .kilogram) : Quantification(amount: 1.0, unit: .pound)
+    }
+    
+    /// A measurement pair the represents a '1:1' ratio of volume to weight.
+    static var equalRatio: (volume: Quantification, weight: Quantification) {
+        if Configuration.metricPreferred {
+            return (Quantification(amount: 1.0, unit: .liter), Quantification(amount: 1000.0, unit: .gram))
+        } else {
+            return (Quantification(amount: 1.0, unit: .cup), Quantification(amount: 8.0, unit: .ounce))
+        }
     }
 }
 
