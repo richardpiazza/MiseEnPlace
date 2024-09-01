@@ -88,7 +88,7 @@ public extension FormulaElement {
     
     /// Translates the measurement to a different unit.
     ///
-    /// If attempting to convert from/to a '.noUnit' `MeasurementUnit`, and error will be thrown.
+    /// > warning : Attempting to convert from or to `MeasurementUnit.noUnit` will throw an error.
     ///
     /// - parameter destinationUnit: The unit to convert to.
     /// - throws: `MiseEnPlaceError`
