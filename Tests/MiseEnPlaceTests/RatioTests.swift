@@ -15,8 +15,8 @@ class RatioTests: XCTestCase {
         
         let ratio = try Ratio.makeRatio(volume: volume, weight: weight)
         
-        XCTAssertTrue(ratio.volume == 1)
-        XCTAssertTrue(ratio.weight == 1)
+        XCTAssertEqual(ratio.volume, 1)
+        XCTAssertEqual(ratio.weight, 1)
     }
     
     func testOneToTwoRatio() throws {
@@ -27,8 +27,8 @@ class RatioTests: XCTestCase {
         
         let ratio = try Ratio.makeRatio(volume: volume, weight: weight)
         
-        XCTAssertTrue(ratio.volume == 1)
-        XCTAssertTrue(ratio.weight == 2)
+        XCTAssertEqual(ratio.volume, 1)
+        XCTAssertEqual(ratio.weight, 2)
     }
     
     func testTwoToOneRatio() throws {
@@ -39,8 +39,8 @@ class RatioTests: XCTestCase {
         
         let ratio = try Ratio.makeRatio(volume: volume, weight: weight)
         
-        XCTAssertTrue(ratio.volume == 2)
-        XCTAssertTrue(ratio.weight == 1)
+        XCTAssertEqual(ratio.volume, 2)
+        XCTAssertEqual(ratio.weight, 1)
     }
     
     func testMakeRatioErrors() throws {
