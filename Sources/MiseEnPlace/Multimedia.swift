@@ -11,15 +11,18 @@ import Foundation
 ///
 public protocol Multimedia {
     var imagePath: String? { get set }
+    @available(*, deprecated, message: "`MediaManager` should be used to persist `Multimedia`.")
     var fileManager: FileManager { get }
 }
 
 public extension Multimedia {
+    @available(*, deprecated, message: "`MediaManager` should be used to persist `Multimedia`.")
     var fileManager: FileManager {
         return .default
     }
     
     /// A File URL representation of the `imagePath`.
+    @available(*, deprecated, renamed: "MediaManager.imageURL(for:)")
     var imageURL: URL? {
         guard let path = self.imagePath else {
             return nil
@@ -30,25 +33,30 @@ public extension Multimedia {
     
     /// A reference to the directory where images for this `Multimedia` type
     /// can be found.
+    @available(*, deprecated, renamed: "MediaManager.imageDirectory(for:)")
     var imageDirectory: URL {
         return fileManager.imageDirectory(for: self)
     }
     
     /// Creates a local copy of asset at the supplied URL.
+    @available(*, deprecated, renamed: "MediaManager.imagePath(for:copyingImageAtURL:)")
     mutating func copyImage(atURL url: URL) {
         self.imagePath = fileManager.imagePath(for: self, copyingImageAtURL: url)
     }
     
+    @available(*, deprecated, renamed: "MediaManager.imagePath(for:writingData:name:ext:)")
     mutating func writeImage(_ data: Data, name: String = UUID().uuidString, ext: String = "png") {
         imagePath = fileManager.imagePath(for: self, writingData: data, name: name, ext: ext)
     }
     
+    @available(*, deprecated, renamed: "MediaManager.removeImage(for:)")
     mutating func removeImage() {
         self.imagePath = nil
         fileManager.removeImage(for: self)
     }
 }
 
+@available(*, deprecated, message: "`MediaManager` should be used to persist `Multimedia`.")
 internal extension FileManager {
     var supportDirectory: URL {
         let directory: URL
@@ -72,6 +80,7 @@ internal extension FileManager {
     }
 }
 
+@available(*, deprecated, message: "`MediaManager` should be used to persist `Multimedia`.")
 public extension FileManager {
     /// A reference to the directory where images for this `Multimedia` type
     /// can be found.

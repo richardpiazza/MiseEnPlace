@@ -4,7 +4,7 @@ import XCTest
 
 class MultimediaTests: XCTestCase {
     
-    func testImageURL() {
+    func testImageURL() async throws {
         var ingredient = TestIngredient()
         ingredient.uuid = UUID(uuidString: "a0ee42e5-c0d1-4720-a919-57acbd8dafc0")!
         
@@ -16,15 +16,21 @@ class MultimediaTests: XCTestCase {
             return
         }
         
-        ingredient.writeImage(data, name: ingredient.uuid.uuidString)
+        let path = try MediaManager.shared.imagePath(for: ingredient, writingData: data, name: ingredient.uuid.uuidString)
+        ingredient.imagePath = path
         
-        XCTAssertNotNil(ingredient.imagePath)
+        let url = try XCTUnwrap(MediaManager.shared.imageURL(for: ingredient))
         
-        ingredient.removeImage()
+        _ = try Data(contentsOf: url)
         
-        XCTAssertNil(ingredient.imagePath)
+        try MediaManager.shared.removeImage(for: ingredient)
+        
+        do {
+            _ = try Data(contentsOf: url)
+            XCTFail("File shouldn't exist")
+        } catch {
+        }
     }
-    
 }
 
 fileprivate let imageData: [String] = [
