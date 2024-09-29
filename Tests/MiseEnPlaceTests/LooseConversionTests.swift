@@ -4,7 +4,14 @@ import XCTest
 
 class LooseConversionTests: XCTestCase {
     
-    private var measuredIngredient: TestMeasuredIngredient = TestMeasuredIngredient(ratio: .oneToOne)
+    private var measuredIngredient: FormulaElement = AnyFormulaElement(
+        measured: .ingredient(
+            AnyIngredient(
+                volume: 1.0,
+                weight: 1.0
+            )
+        )
+    )
     
     private static var useLooseConversions: Bool = false
     

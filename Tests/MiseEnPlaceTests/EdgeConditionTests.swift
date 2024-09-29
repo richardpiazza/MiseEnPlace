@@ -6,12 +6,11 @@ import XCTest
 class EdgeConditionTests: XCTestCase {
     
     func testHighVolumeRatioConversion() throws {
-        var ingredient = TestIngredient()
+        var ingredient = AnyIngredient()
         ingredient.volume = 2.143
         ingredient.weight = 1.0
         
-        var measuredIngredient = TestMeasuredIngredient()
-        measuredIngredient.measured = .ingredient(ingredient)
+        var measuredIngredient = AnyFormulaElement(measured: .ingredient(ingredient))
         measuredIngredient.amount = 1.0
         measuredIngredient.unit = .pint
         
