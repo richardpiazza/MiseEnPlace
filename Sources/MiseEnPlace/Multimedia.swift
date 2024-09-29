@@ -9,7 +9,10 @@ import Foundation
 /// var imagePath: String? { get set }
 /// ```
 ///
+/// > note `imageData` & `imagePath` may be deprecated in **MiseEnPlace 6.0** in favor of
+///   a `[Media]` collection allowing for multiple pieces of media.
 public protocol Multimedia {
+    var imageData: Data? { get set }
     var imagePath: String? { get set }
     @available(*, deprecated, message: "`MediaManager` should be used to persist `Multimedia`.")
     var fileManager: FileManager { get }
