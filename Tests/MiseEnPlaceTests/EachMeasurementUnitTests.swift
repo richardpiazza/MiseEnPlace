@@ -4,39 +4,36 @@ import XCTest
 
 class EachMeasurementUnitTests: XCTestCase {
     
-    private lazy var egg: TestIngredient = {
-        var ingredient = TestIngredient()
+    private lazy var egg: Ingredient = {
+        var ingredient = AnyIngredient()
         ingredient.eachQuantification = Quantification(amount: 50, unit: .gram)
         return ingredient
     }()
     
-    private lazy var eggWhite: TestIngredient = {
-        var ingredient = TestIngredient()
+    private lazy var eggWhite: Ingredient = {
+        var ingredient = AnyIngredient()
         ingredient.eachQuantification = Quantification(amount: 25, unit: .gram)
         return ingredient
     }()
     
-    private lazy var eggYolk: TestIngredient = {
-        var ingredient = TestIngredient()
+    private lazy var eggYolk: Ingredient = {
+        var ingredient = AnyIngredient()
         ingredient.eachQuantification = Quantification(amount: 25, unit: .gram)
         return ingredient
     }()
     
-    private lazy var measuredEgg: TestMeasuredIngredient = {
-        var measuredIngredient = TestMeasuredIngredient()
-        measuredIngredient.measured = .ingredient(egg)
+    private lazy var measuredEgg: FormulaElement = {
+        var measuredIngredient = AnyFormulaElement(measured: .ingredient(egg))
         return measuredIngredient
     }()
     
-    private lazy var measuredEggWhite: TestMeasuredIngredient = {
-        var measuredIngredient = TestMeasuredIngredient()
-        measuredIngredient.measured = .ingredient(eggWhite)
+    private lazy var measuredEggWhite: FormulaElement = {
+        var measuredIngredient = AnyFormulaElement(measured: .ingredient(eggWhite))
         return measuredIngredient
     }()
     
-    private lazy var measuredEggYolk: TestMeasuredIngredient = {
-        var measuredIngredient = TestMeasuredIngredient()
-        measuredIngredient.measured = .ingredient(eggYolk)
+    private lazy var measuredEggYolk: FormulaElement = {
+        var measuredIngredient = AnyFormulaElement(measured: .ingredient(eggYolk))
         return measuredIngredient
     }()
     

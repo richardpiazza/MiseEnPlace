@@ -4,8 +4,8 @@ import XCTest
 
 class RecipeTests: XCTestCase {
     
-    private let italianBread = TestRecipe.italianBread
-    private let poolishBaguette = TestRecipe.poolishBaguette
+    private let italianBread = AnyRecipe.italianBread
+    private let poolishBaguette = AnyRecipe.poolishBaguette
     
     func testTotalAmount() {
         XCTAssertEqual(italianBread.totalAmount(for: .gram), 2811.0, accuracy: 0.1)
@@ -109,27 +109,27 @@ class RecipeTests: XCTestCase {
         XCTAssertEqual(formula.count, 5)
         
         let poolish = formula[0]
-        XCTAssertEqual(poolish.measured.recipe?.id, TestRecipe.poolish.id)
+        XCTAssertEqual(poolish.measured.recipe?.id, AnyRecipe.poolish.id)
         XCTAssertEqual(poolish.quantification.amount, 370.0, accuracy: 5)
         XCTAssertEqual(poolish.quantification.unit, .gram)
         
         let flour = formula[1]
-        XCTAssertEqual(flour.measured.ingredient?.id, TestIngredient.flour.id)
+        XCTAssertEqual(flour.measured.ingredient?.id, AnyIngredient.flour.id)
         XCTAssertEqual(flour.quantification.amount, 895.0, accuracy: 10)
         XCTAssertEqual(flour.quantification.unit, .gram)
         
         let yeast = formula[2]
-        XCTAssertEqual(yeast.measured.ingredient?.id, TestIngredient.yeast.id)
+        XCTAssertEqual(yeast.measured.ingredient?.id, AnyIngredient.yeast.id)
         XCTAssertEqual(yeast.quantification.amount, 42.0, accuracy: 1)
         XCTAssertEqual(yeast.quantification.unit, .gram)
         
         let water = formula[3]
-        XCTAssertEqual(water.measured.ingredient?.id, TestIngredient.water.id)
+        XCTAssertEqual(water.measured.ingredient?.id, AnyIngredient.water.id)
         XCTAssertEqual(water.quantification.amount, 525.0, accuracy: 10)
         XCTAssertEqual(water.quantification.unit, .gram)
         
         let salt = formula[4]
-        XCTAssertEqual(salt.measured.ingredient?.id, TestIngredient.salt.id)
+        XCTAssertEqual(salt.measured.ingredient?.id, AnyIngredient.salt.id)
         XCTAssertEqual(salt.quantification.amount, 18.0, accuracy: 1)
         XCTAssertEqual(salt.quantification.unit, .gram)
     }

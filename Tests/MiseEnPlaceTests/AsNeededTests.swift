@@ -4,7 +4,9 @@ import XCTest
 
 class AsNeededTests: XCTestCase {
     
-    private var measuredIngredient: TestMeasuredIngredient = TestMeasuredIngredient(ratio: Ratio(volume: 1.0, weight: 1.0))
+    private var measuredIngredient: FormulaElement = AnyFormulaElement(
+        measured: .ingredient(AnyIngredient(volume: 1.0, weight: 1.0))
+    )
     
     func testFormulaElementScaleBy() {
         measuredIngredient.unit = .ounce

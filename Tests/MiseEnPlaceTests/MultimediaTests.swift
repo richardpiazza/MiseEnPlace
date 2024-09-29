@@ -5,7 +5,7 @@ import XCTest
 class MultimediaTests: XCTestCase {
     
     func testImageURL() async throws {
-        var ingredient = TestIngredient()
+        var ingredient = AnyIngredient()
         ingredient.uuid = UUID(uuidString: "a0ee42e5-c0d1-4720-a919-57acbd8dafc0")!
         
         XCTAssertNil(ingredient.imagePath)

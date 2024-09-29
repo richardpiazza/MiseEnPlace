@@ -4,7 +4,14 @@ import XCTest
 
 class HighMassRatioIngredientTests: XCTestCase {
     
-    private var measuredIngredient: TestMeasuredIngredient = TestMeasuredIngredient(ratio: Ratio(volume: 1.0, weight: 1.42))
+    private var measuredIngredient: FormulaElement = AnyFormulaElement(
+        measured: .ingredient(
+            AnyIngredient(
+                volume: 1.0,
+                weight: 1.42
+            )
+        )
+    )
 
     func testMeasurementAmountForUSVolume() throws {
         measuredIngredient.amount = 1.0
