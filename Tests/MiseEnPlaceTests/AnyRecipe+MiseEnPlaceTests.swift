@@ -42,7 +42,8 @@ extension AnyRecipe {
         procedureElements: [
             AnyProcedureElement.poolishBaguetteStep1,
             AnyProcedureElement.poolishBaguetteStep2,
-            AnyProcedureElement.poolishBaguetteStep3
+            AnyProcedureElement.poolishBaguetteStep3,
+            AnyProcedureElement.poolishBaguetteStep4
         ]
     )
 }
