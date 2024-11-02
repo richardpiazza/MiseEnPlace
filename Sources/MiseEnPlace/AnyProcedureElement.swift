@@ -8,6 +8,7 @@ public struct AnyProcedureElement: ProcedureElement {
     public var commentary: String?
     public var classification: String?
     public var sequence: Int
+    public var imageData: Data?
     public var imagePath: String?
     public var inverseRecipe: Recipe?
     
@@ -19,6 +20,7 @@ public struct AnyProcedureElement: ProcedureElement {
         commentary: String? = nil,
         classification: String? = nil,
         sequence: Int = 0,
+        imageData: Data? = nil,
         imagePath: String? = nil,
         inverseRecipe: Recipe? = nil
     ) {
@@ -29,6 +31,7 @@ public struct AnyProcedureElement: ProcedureElement {
         self.commentary = commentary
         self.classification = classification
         self.sequence = sequence
+        self.imageData = imageData
         self.imagePath = imagePath
         self.inverseRecipe = inverseRecipe
     }
@@ -41,6 +44,7 @@ public struct AnyProcedureElement: ProcedureElement {
         self.commentary = procedureElement.commentary
         self.classification = procedureElement.classification
         self.sequence = procedureElement.sequence
+        self.imageData = procedureElement.imageData
         self.imagePath = procedureElement.imagePath
         self.inverseRecipe = procedureElement.inverseRecipe.map { AnyRecipe($0) }
     }

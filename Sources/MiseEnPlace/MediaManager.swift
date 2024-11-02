@@ -88,6 +88,15 @@ public struct MediaManager {
         return imageDirectory.appendingPathComponent(imagePath)
     }
     
+    /// Bytes representing the multimedia.
+    public func data(for multimedia: any Multimedia) throws -> Data? {
+        guard let url = try imageURL(for: multimedia) else {
+            return nil
+        }
+        
+        return try Data(contentsOf: url)
+    }
+    
     /// Remove a local image for a specific `Multimedia` item.
     public func removeImage(for multimedia: Multimedia) throws {
         guard let url = try imageURL(for: multimedia) else {

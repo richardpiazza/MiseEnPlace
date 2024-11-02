@@ -7,6 +7,7 @@ public struct AnyRecipe: Recipe {
     public var name: String?
     public var commentary: String?
     public var classification: String?
+    public var imageData: Data?
     public var imagePath: String?
     public var amount: Double
     public var unit: MeasurementUnit
@@ -20,6 +21,7 @@ public struct AnyRecipe: Recipe {
         name: String? = nil,
         commentary: String? = nil,
         classification: String? = nil,
+        imageData: Data? = nil,
         imagePath: String? = nil,
         amount: Double = 1.0,
         unit: MeasurementUnit = .noUnit,
@@ -32,6 +34,7 @@ public struct AnyRecipe: Recipe {
         self.name = name
         self.commentary = commentary
         self.classification = classification
+        self.imageData = imageData
         self.imagePath = imagePath
         self.amount = amount
         self.unit = unit
@@ -46,6 +49,7 @@ public struct AnyRecipe: Recipe {
         self.name = recipe.name
         self.commentary = recipe.commentary
         self.classification = recipe.classification
+        self.imageData = recipe.imageData
         self.imagePath = recipe.imagePath
         self.amount = recipe.amount
         self.unit = recipe.unit
