@@ -34,11 +34,12 @@ public struct Quantification: Quantifiable, Equatable, CustomStringConvertible {
 }
 
 public extension Quantification {
-    /// A representation usable for when a `Quantification` must be expressed, but the intended outcome
-    /// is to express the implicit lack-of-quantification.
+    /// A representation usable for when a `Quantification` must be expressed,
+    /// but the intent is to express the implicit lack-of-quantification.
     static let notQuantified: Quantification = .init(amount: 0.0, unit: .noUnit)
     
-    /// A representation when no-specific amount can be defined.
+    /// A representation usable for when a `Quantification` must be expressed,
+    /// but the amount is explicitly un-quantifiable.
     static let asNeeded: Quantification = .init(amount: -1.0, unit: .noUnit)
     
     /// A measurement typical of a 'small' portion size
