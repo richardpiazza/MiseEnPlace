@@ -32,6 +32,7 @@ import Foundation
 ///
 /// _Multimedia_
 /// ```swift
+/// var imageData: Data? { get set }
 /// var imagePath: String? { get set }
 /// ```
 ///

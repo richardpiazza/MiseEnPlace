@@ -29,7 +29,7 @@ public struct Quantification: Quantifiable, Equatable, CustomStringConvertible {
     }
     
     public var description: String {
-        return translation(abbreviated: Configuration.abbreviateTranslations)
+        translation(abbreviated: Configuration.abbreviateTranslations)
     }
 }
 
@@ -245,7 +245,7 @@ public extension Quantification {
 internal extension Quantification {
     /// Re-quantifies this `Quantification` in terms of another `MeasurementSystemMethod`.
     ///
-    /// Recursive algorithm. The output from the requantification may not be in the final unit desired. See `convertAmount(to:)` for more information.
+    /// Recursive algorithm. The output from the re-quantification may not be in the final unit desired. See `convertAmount(to:)` for more information.
     ///
     /// - parameter destinationMeasurementSystemMethod: The output `MeasurementSystemMethod`
     /// - parameter ratio: Ratio used during measurement method calculations (i.e. weight > volume / volume > weight)

@@ -32,6 +32,7 @@ import Foundation
 ///
 /// `Multimedia`
 /// ```swift
+/// var imageData: Data? { get set }
 /// var imagePath: String? { get set }
 /// ```
 ///
@@ -54,7 +55,12 @@ public protocol Recipe: Unique, Descriptive, Multimedia, Quantifiable {
 
 public extension Recipe {
     var portion: Quantification {
-        return Quantification(amount: amount, unit: unit)
+        get {
+            quantification
+        }
+        set(newValue) {
+            quantification = newValue
+        }
     }
 }
 
