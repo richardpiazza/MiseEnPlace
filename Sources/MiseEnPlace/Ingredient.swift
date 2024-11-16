@@ -26,6 +26,7 @@ import Foundation
 ///
 /// _Multimedia_
 /// ```swift
+/// var imageData: Data? { get set }
 /// var imagePath: String? { get set }
 /// ```
 ///
@@ -71,11 +72,10 @@ public extension Ingredient {
     /// For example: 1 egg ≅ 50 grams
     var eachQuantification: Quantification {
         get {
-            return Quantification(amount: amount, unit: unit)
+            quantification
         }
-        set {
-            amount = newValue.amount
-            unit = newValue.unit
+        set(newValue) {
+            quantification = newValue
         }
     }
 }

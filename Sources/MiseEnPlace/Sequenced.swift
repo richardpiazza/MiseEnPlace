@@ -10,6 +10,6 @@ import Foundation
 /// ```
 ///
 public protocol Sequenced {
-    // The order of the element
+    /// The order of the element
     var sequence: Int { get set }
 }

@@ -21,6 +21,6 @@ public protocol Proportioned {
 
 public extension Proportioned {
     var ratio: Ratio {
-        return Ratio(volume: volume, weight: weight)
+        Ratio(volume: volume, weight: weight)
     }
 }

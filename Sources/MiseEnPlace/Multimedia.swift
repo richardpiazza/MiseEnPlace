@@ -5,6 +5,8 @@ import Foundation
 /// ## Required Conformance
 ///
 /// ```swift
+/// /// The binary representation of the media (image) file.
+/// var imageData: Data? { get set }
 /// // A localized platform path to the image data.
 /// var imagePath: String? { get set }
 /// ```

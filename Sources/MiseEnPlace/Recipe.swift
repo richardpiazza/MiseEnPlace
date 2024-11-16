@@ -32,6 +32,7 @@ import Foundation
 ///
 /// `Multimedia`
 /// ```swift
+/// var imageData: Data? { get set }
 /// var imagePath: String? { get set }
 /// ```
 ///
@@ -54,7 +55,12 @@ public protocol Recipe: Unique, Descriptive, Multimedia, Quantifiable {
 
 public extension Recipe {
     var portion: Quantification {
-        return Quantification(amount: amount, unit: unit)
+        get {
+            quantification
+        }
+        set(newValue) {
+            quantification = newValue
+        }
     }
 }
 
@@ -110,199 +116,6 @@ public extension Recipe {
         } catch {
             return yieldTranslation
         }
-    }
-}
-
-// MARK: - Formula
-
-public extension Recipe {
-    /// An ordered list of formula elements (MeasuredIngredient/MeasuredRecipe).
-    var formula: [FormulaElement] {
-        return formulaElements.sorted(by: { $0.sequence < $1.sequence })
-    }
-    
-    /// Assigns the next sequence number to the formula element.
-    mutating func insertFormulaElement(_ element: FormulaElement) {
-        var formulaElement = element
-        formulaElement.sequence = formula.count
-        
-        formulaElements.append(formulaElement)
-    }
-    
-    internal mutating func updateSequence(_ element: FormulaElement, sequence: Int) {
-        var formulaElement = element
-        formulaElement.sequence = sequence
-        
-        guard let index = formulaElements.firstIndex(where: { $0.id == formulaElement.id }) else {
-            return
-        }
-        
-        formulaElements.remove(at: index)
-        formulaElements.insert(formulaElement, at: index)
-    }
-    
-    /// Adjusts the sequence numbers of all elements following the specified element.
-    mutating func removeFormulaElement(_ element: FormulaElement) {
-        guard let index = formula.firstIndex(where: { $0.uuid == element.uuid }) else {
-            return
-        }
-        
-        for (idx, element) in formula.enumerated() {
-            guard idx > index else {
-                continue
-            }
-            
-            let newSequence = idx - 1
-            updateSequence(element, sequence: newSequence)
-        }
-        
-        formulaElements.remove(at: index)
-    }
-    
-    /// Adjusts the sequencing of elements affected by a move operation.
-    ///
-    /// - returns: A range of indices that have been affected by this operation
-    @discardableResult
-    mutating func moveFormulaElement(_ element: FormulaElement, fromIndex: Int, toIndex: Int) -> [Int] {
-        var indices: [Int] = []
-        
-        guard fromIndex != toIndex else {
-            return indices
-        }
-        
-        let elements = self.formula
-        
-        if toIndex < fromIndex {
-            for i in toIndex..<fromIndex {
-                indices.append(i)
-                let formulaElement = elements[i]
-                let newSequence = i + 1
-                
-                updateSequence(formulaElement, sequence: newSequence)
-            }
-        } else {
-            for i in fromIndex.advanced(by: 1)...toIndex {
-                indices.append(i)
-                let formulaElement = elements[i]
-                let newSequence = i - 1
-                
-                updateSequence(formulaElement, sequence: newSequence)
-            }
-        }
-        
-        updateSequence(element, sequence: toIndex)
-        indices.append(fromIndex)
-        
-        return indices
-    }
-}
-
-// MARK: - Procedure
-
-public extension Recipe {
-    /// An ordered list of procedure elements.
-    var procedure: [ProcedureElement] {
-        return procedureElements.sorted(by: { $0.sequence < $1.sequence })
-    }
-    
-    // Assigns the next sequence number to the formula element.
-    mutating func insertProcedureElement(_ element: ProcedureElement) {
-        var procedureElement = element
-        procedureElement.sequence = procedure.count
-        
-        procedureElements.append(procedureElement)
-    }
-    
-    internal mutating func updateSequence(_ element: ProcedureElement, sequence: Int) {
-        var e = element
-        e.sequence = sequence
-        
-        guard let index = procedureElements.firstIndex(where: { $0.uuid == element.uuid }) else {
-            return
-        }
-        
-        procedureElements.remove(at: index)
-        procedureElements.insert(e, at: index)
-    }
-    
-    /// Adjusts the sequence numbers of all elements following the specified element.
-    mutating func removeProcedureElement(_ element: ProcedureElement) {
-        guard let index = procedure.firstIndex(where: { $0.uuid == element.uuid }) else {
-            return
-        }
-        
-        for (idx, element) in procedure.enumerated() {
-            guard idx > index else {
-                continue
-            }
-            
-            let newSequence = idx - 1
-            updateSequence(element, sequence: newSequence)
-        }
-        
-        procedureElements.remove(at: index)
-    }
-    
-    /// Adjusts the sequencing of elements affected by a move operation.
-    ///
-    /// - returns: A range of indices that have been affected by this operation
-    @discardableResult
-    mutating func moveProcedureElement(_ element: ProcedureElement, fromIndex: Int, toIndex: Int) -> [Int] {
-        var indices: [Int] = []
-        
-        guard fromIndex != toIndex else {
-            return indices
-        }
-        
-        let elements = self.procedure
-        
-        if toIndex < fromIndex {
-            for i in toIndex..<fromIndex {
-                indices.append(i)
-                let e = elements[i]
-                let newSequence = i + 1
-                
-                updateSequence(e, sequence: newSequence)
-            }
-        } else {
-            for i in fromIndex.advanced(by: 1)...toIndex {
-                indices.append(i)
-                let e = elements[i]
-                let newSequence = i - 1
-                
-                updateSequence(e, sequence: newSequence)
-            }
-        }
-        
-        updateSequence(element, sequence: toIndex)
-        indices.append(fromIndex)
-        
-        return indices
-    }
-    
-    /// A concatenation of all procedure element commentaries.
-    var procedureSummary: String {
-        var text: String = ""
-        
-        let elements = self.procedureElements
-        for element in elements {
-            guard let commentary = element.commentary else {
-                continue
-            }
-            if text == "" {
-                text.append(commentary)
-            } else {
-                #if canImport(ObjectiveC)
-                text.append(String(format: "\n%@", commentary))
-                #else
-                commentary.withCString {
-                    text.append(String(format: "\n%s", $0))
-                }
-                #endif
-            }
-        }
-        
-        return text
     }
 }
 

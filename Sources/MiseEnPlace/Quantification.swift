@@ -29,16 +29,17 @@ public struct Quantification: Quantifiable, Equatable, CustomStringConvertible {
     }
     
     public var description: String {
-        return translation(abbreviated: Configuration.abbreviateTranslations)
+        translation(abbreviated: Configuration.abbreviateTranslations)
     }
 }
 
 public extension Quantification {
-    /// A representation usable for when a `Quantification` must be expressed, but the intended outcome
-    /// is to express the implicit lack-of-quantification.
+    /// A representation usable for when a `Quantification` must be expressed,
+    /// but the intent is to express the implicit lack-of-quantification.
     static let notQuantified: Quantification = .init(amount: 0.0, unit: .noUnit)
     
-    /// A representation when no-specific amount can be defined.
+    /// A representation usable for when a `Quantification` must be expressed,
+    /// but the amount is explicitly un-quantifiable.
     static let asNeeded: Quantification = .init(amount: -1.0, unit: .noUnit)
     
     /// A measurement typical of a 'small' portion size
@@ -244,7 +245,7 @@ public extension Quantification {
 internal extension Quantification {
     /// Re-quantifies this `Quantification` in terms of another `MeasurementSystemMethod`.
     ///
-    /// Recursive algorithm. The output from the requantification may not be in the final unit desired. See `convertAmount(to:)` for more information.
+    /// Recursive algorithm. The output from the re-quantification may not be in the final unit desired. See `convertAmount(to:)` for more information.
     ///
     /// - parameter destinationMeasurementSystemMethod: The output `MeasurementSystemMethod`
     /// - parameter ratio: Ratio used during measurement method calculations (i.e. weight > volume / volume > weight)

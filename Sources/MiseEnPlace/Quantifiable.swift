@@ -19,6 +19,12 @@ public protocol Quantifiable {
 
 public extension Quantifiable {
     var quantification: Quantification {
-        return Quantification(amount: amount, unit: unit)
+        get {
+            Quantification(amount: amount, unit: unit)
+        }
+        set(newValue) {
+            amount = newValue.amount
+            unit = newValue.unit
+        }
     }
 }
