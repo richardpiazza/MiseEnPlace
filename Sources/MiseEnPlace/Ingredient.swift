@@ -19,9 +19,9 @@ import Foundation
 ///
 /// _Descriptive_
 /// ```swift
-/// var name: String? { get set }
-/// var commentary: String? { get set }
-/// var classification: String? { get set }
+/// var name: String { get set }
+/// var commentary: String { get set }
+/// var classification: String { get set }
 /// ```
 ///
 /// _Multimedia_
@@ -52,9 +52,9 @@ import Foundation
 ///     var uuid: UUID = UUID()
 ///     var creationDate: Date = Date()
 ///     var modificationDate: Date = Date()
-///     var name: String? = "Whole Milk"
-///     var commentary: String? = "The mammary lactations from a bovine."
-///     var classification: String? = "Dairy, Milk, Cow, Whole/Full Fat"
+///     var name: String = "Whole Milk"
+///     var commentary: String = "The mammary lactations from a bovine."
+///     var classification: String = "Dairy, Milk, Cow, Whole/Full Fat"
 ///     var imagePath: String?
 ///     var volume: Double = 1.0
 ///     var weight: Double = 1.0

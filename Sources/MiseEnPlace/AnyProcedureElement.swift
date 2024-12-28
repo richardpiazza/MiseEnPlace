@@ -4,9 +4,9 @@ public struct AnyProcedureElement: ProcedureElement {
     public var uuid: UUID
     public var creationDate: Date
     public var modificationDate: Date
-    public var name: String?
-    public var commentary: String?
-    public var classification: String?
+    public var name: String
+    public var commentary: String
+    public var classification: String
     public var sequence: Int
     public var imageData: Data?
     public var imagePath: String?
@@ -16,9 +16,9 @@ public struct AnyProcedureElement: ProcedureElement {
         uuid: UUID = UUID(),
         creationDate: Date = Date(),
         modificationDate: Date = Date(),
-        name: String? = nil,
-        commentary: String? = nil,
-        classification: String? = nil,
+        name: String = "",
+        commentary: String = "",
+        classification: String = "",
         sequence: Int = 0,
         imageData: Data? = nil,
         imagePath: String? = nil,

@@ -212,7 +212,8 @@ public extension Recipe {
         
         let elements = self.procedureElements
         for element in elements {
-            guard let commentary = element.commentary else {
+            let commentary = element.commentary
+            guard !commentary.isEmpty else {
                 continue
             }
             if text == "" {

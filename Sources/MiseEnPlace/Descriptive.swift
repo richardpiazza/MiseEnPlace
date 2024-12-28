@@ -9,13 +9,13 @@ import Foundation
 ///
 /// ```swift
 /// /// The common, short, human-understandable text.
-/// var name: String? { get set }
+/// var name: String { get set }
 ///
 /// /// The expanded description i.e. 'notes'
-/// var commentary: String? { get set }
+/// var commentary: String { get set }
 ///
 /// /// The scientific or structured identity of the item.
-/// var classification: String? { get set }
+/// var classification: String { get set }
 /// ```
 ///
 /// ## Example
@@ -29,17 +29,18 @@ import Foundation
 /// ```
 public protocol Descriptive {
     // The common, short, human-understandable text.
-    var name: String? { get set }
+    var name: String { get set }
     // The expanded description i.e. 'notes'
-    var commentary: String? { get set }
+    var commentary: String { get set }
     // The scientific or structured identity of the item.
-    var classification: String? { get set }
+    var classification: String { get set }
 }
 
 public extension Descriptive {
     /// Returns the first character from `name` or "" (empty string).
+    @available(*, deprecated)
     var indexCharacter: String {
-        guard let name = self.name, name.count > 0 else {
+        guard name.count > 0 else {
             return ""
         }
         
