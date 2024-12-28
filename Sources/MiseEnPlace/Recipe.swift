@@ -25,9 +25,9 @@ import Foundation
 ///
 /// `Descriptive`
 /// ```swift
-/// var name: String? { get set }
-/// var commentary: String? { get set }
-/// var classification: String? { get set }
+/// var name: String { get set }
+/// var commentary: String { get set }
+/// var classification: String { get set }
 /// ```
 ///
 /// `Multimedia`

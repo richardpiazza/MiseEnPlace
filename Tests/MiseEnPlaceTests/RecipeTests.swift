@@ -168,13 +168,13 @@ class RecipeTests: XCTestCase {
         let procedure = recipe.procedure
         XCTAssertEqual(procedure.count, 4)
         XCTAssertEqual(procedure[0].sequence, 0)
-        XCTAssertTrue((procedure[0].commentary ?? "").lowercased().contains("mix"))
+        XCTAssertTrue((procedure[0].commentary).lowercased().contains("mix"))
         XCTAssertEqual(procedure[1].sequence, 1)
-        XCTAssertTrue((procedure[1].commentary ?? "").lowercased().contains("ferment"))
+        XCTAssertTrue((procedure[1].commentary).lowercased().contains("ferment"))
         XCTAssertEqual(procedure[2].sequence, 2)
-        XCTAssertTrue((procedure[2].commentary ?? "").lowercased().contains("bake"))
+        XCTAssertTrue((procedure[2].commentary).lowercased().contains("bake"))
         XCTAssertEqual(procedure[3].sequence, 3)
-        XCTAssertTrue((procedure[3].commentary ?? "").lowercased().contains("enjoy"))
+        XCTAssertTrue((procedure[3].commentary).lowercased().contains("enjoy"))
     }
     
     @available(*, deprecated)
@@ -187,13 +187,13 @@ class RecipeTests: XCTestCase {
         procedure = recipe.procedure
         XCTAssertEqual(procedure.count, 4)
         XCTAssertEqual(procedure[0].sequence, 0)
-        XCTAssertTrue((procedure[0].commentary ?? "").lowercased().contains("mix"))
+        XCTAssertTrue((procedure[0].commentary).lowercased().contains("mix"))
         XCTAssertEqual(procedure[1].sequence, 1)
-        XCTAssertTrue((procedure[1].commentary ?? "").lowercased().contains("bake"))
+        XCTAssertTrue((procedure[1].commentary).lowercased().contains("bake"))
         XCTAssertEqual(procedure[2].sequence, 2)
-        XCTAssertTrue((procedure[2].commentary ?? "").lowercased().contains("ferment"))
+        XCTAssertTrue((procedure[2].commentary).lowercased().contains("ferment"))
         XCTAssertEqual(procedure[3].sequence, 3)
-        XCTAssertTrue((procedure[3].commentary ?? "").lowercased().contains("enjoy"))
+        XCTAssertTrue((procedure[3].commentary).lowercased().contains("enjoy"))
     }
     
     func testAppendProcedureElement() {

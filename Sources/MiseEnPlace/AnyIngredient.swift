@@ -4,9 +4,9 @@ public struct AnyIngredient: Ingredient {
     public var uuid: UUID
     public var creationDate: Date
     public var modificationDate: Date
-    public var name: String?
-    public var commentary: String?
-    public var classification: String?
+    public var name: String
+    public var commentary: String
+    public var classification: String
     public var imageData: Data?
     public var imagePath: String?
     public var volume: Double
@@ -18,9 +18,9 @@ public struct AnyIngredient: Ingredient {
         uuid: UUID = UUID(),
         creationDate: Date = Date(),
         modificationDate: Date = Date(), 
-        name: String? = nil,
-        commentary: String? = nil,
-        classification: String? = nil,
+        name: String = "",
+        commentary: String = "",
+        classification: String = "",
         imageData: Data? = nil,
         imagePath: String? = nil,
         volume: Double = 1.0,

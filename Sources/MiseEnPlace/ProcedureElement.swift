@@ -20,9 +20,9 @@ import Foundation
 ///
 /// _Descriptive_
 /// ```swift
-/// var name: String? { get set }
-/// var commentary: String? { get set }
-/// var classification: String? { get set }
+/// var name: String { get set }
+/// var commentary: String { get set }
+/// var classification: String { get set }
 /// ```
 ///
 /// _Sequenced_
