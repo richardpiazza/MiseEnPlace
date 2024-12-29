@@ -1,5 +1,3 @@
-import Foundation
-
 /// Parameters that describe and categorize an object.
 ///
 /// Although all of the properties are `Optional<String>`, best practices are to provide values for each;
@@ -22,17 +20,17 @@ import Foundation
 ///
 /// ```swift
 /// struct FoodStuff: Descriptive {
-///     var name: String? = "Whole Milk"
-///     var commentary: String? = "The mammary lactations from a bovine."
-///     var classification: String? = "Dairy, Milk, Cow, Whole/Full Fat"
+///     var name: String = "Whole Milk"
+///     var commentary: String = "The mammary lactations from a bovine."
+///     var classification: String = "Dairy, Milk, Cow, Whole/Full Fat"
 /// }
 /// ```
 public protocol Descriptive {
-    // The common, short, human-understandable text.
+    /// The common, short, human-understandable text.
     var name: String { get set }
-    // The expanded description i.e. 'notes'
+    /// The expanded description i.e. 'notes'
     var commentary: String { get set }
-    // The scientific or structured identity of the item.
+    /// The scientific or structured identity of the item.
     var classification: String { get set }
 }
 

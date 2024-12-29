@@ -7,14 +7,16 @@ import Foundation
 /// ```swift
 /// /// The binary representation of the media (image) file.
 /// var imageData: Data? { get set }
-/// // A localized platform path to the image data.
+/// /// A localized platform path to the image data.
 /// var imagePath: String? { get set }
 /// ```
 ///
 /// > note `imageData` & `imagePath` may be deprecated in **MiseEnPlace 6.0** in favor of
 ///   a `[Media]` collection allowing for multiple pieces of media.
 public protocol Multimedia {
+    /// The binary representation of the media (image) file.
     var imageData: Data? { get set }
+    /// A localized platform path to the image data.
     var imagePath: String? { get set }
     @available(*, deprecated, message: "`MediaManager` should be used to persist `Multimedia`.")
     var fileManager: FileManager { get }

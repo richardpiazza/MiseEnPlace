@@ -53,7 +53,7 @@ public extension Recipe {
             }
             
             for (index, element) in procedureElements.enumerated() {
-                if let sequence = modifiedProcedure.first(where:  { $0.id == element.id })?.sequence {
+                if let sequence = modifiedProcedure.first(where:  { $0.uuid == element.uuid })?.sequence {
                     if element.sequence != sequence {
                         procedureElements[index].sequence = sequence
                         modifiedElements.append(procedureElements[index])
@@ -80,7 +80,7 @@ public extension Recipe {
             }
             
             for (index, element) in procedureElements.enumerated() {
-                if let sequence = modifiedProcedure.first(where:  { $0.id == element.id })?.sequence {
+                if let sequence = modifiedProcedure.first(where:  { $0.uuid == element.uuid })?.sequence {
                     if element.sequence != sequence {
                         procedureElements[index].sequence = sequence
                         modifiedElements.append(procedureElements[index])
@@ -110,7 +110,7 @@ public extension Recipe {
         for index in at.reversed() {
             let element = modifiedProcedure.remove(at: index)
             removedElements.insert(element, at: 0)
-            if let formulaIndex = procedureElements.firstIndex(where: { $0.id == element.id }) {
+            if let formulaIndex = procedureElements.firstIndex(where: { $0.uuid == element.uuid }) {
                 procedureElements.remove(at: formulaIndex)
             }
         }
@@ -120,7 +120,7 @@ public extension Recipe {
         }
         
         for (index, element) in procedureElements.enumerated() {
-            if let sequence = modifiedProcedure.first(where:  { $0.id == element.id })?.sequence {
+            if let sequence = modifiedProcedure.first(where:  { $0.uuid == element.uuid })?.sequence {
                 if element.sequence != sequence {
                     procedureElements[index].sequence = sequence
                     modifiedElements.append(procedureElements[index])

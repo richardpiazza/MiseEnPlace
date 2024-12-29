@@ -37,6 +37,7 @@ public protocol Unique {
 
 public extension Unique {
     /// Provides conformance to the `Identifiable` protocol.
+    @available(*, deprecated)
     var id: UUID {
         return uuid
     }

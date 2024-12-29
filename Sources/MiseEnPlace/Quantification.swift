@@ -1,16 +1,7 @@
 import Foundation
 
 /// An amount and unit pairing.
-///
-/// ## Protocol Conformance
-///
-/// `Quantifiable`
-/// ```swift
-/// var amount: Double { get set }
-/// var unit: MeasurementUnit { get set }
-/// ```
-///
-public struct Quantification: Quantifiable, Equatable, CustomStringConvertible {
+public struct Quantification: Equatable, CustomStringConvertible {
     
     public var amount: Double
     public var unit: MeasurementUnit
@@ -23,6 +14,12 @@ public struct Quantification: Quantifiable, Equatable, CustomStringConvertible {
         self.unit = unit
     }
     
+    public init(_ quantifiable: Quantifiable) {
+        self.amount = quantifiable.amount
+        self.unit = quantifiable.unit
+    }
+    
+    @available(*, deprecated, renamed: "init(_:)")
     public init(quantifiable: Quantifiable) {
         self.amount = quantifiable.amount
         self.unit = quantifiable.unit

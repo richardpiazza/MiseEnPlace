@@ -1,5 +1,6 @@
 import Foundation
 
+/// A generic `Recipe`.
 public struct AnyRecipe: Recipe {
     public var uuid: UUID
     public var creationDate: Date
@@ -56,4 +57,8 @@ public struct AnyRecipe: Recipe {
         self.formulaElements = recipe.formulaElements.map { AnyFormulaElement($0) }
         self.procedureElements = recipe.procedureElements.map { AnyProcedureElement($0) }
     }
+}
+
+extension AnyRecipe: Identifiable {
+    public var id: UUID { uuid }
 }

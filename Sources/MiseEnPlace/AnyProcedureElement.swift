@@ -1,5 +1,6 @@
 import Foundation
 
+/// A generic `ProcedureElement`.
 public struct AnyProcedureElement: ProcedureElement {
     public var uuid: UUID
     public var creationDate: Date
@@ -53,4 +54,8 @@ public struct AnyProcedureElement: ProcedureElement {
             self.inverseRecipe = procedureElement.inverseRecipe.map { AnyRecipe($0) }
         }
     }
+}
+
+extension AnyProcedureElement: Identifiable {
+    public var id: UUID { uuid }
 }

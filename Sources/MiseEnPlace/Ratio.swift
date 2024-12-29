@@ -21,6 +21,11 @@ public struct Ratio: Equatable, CustomStringConvertible {
         self.weight = weight
     }
     
+    public init(_ proportioned: Proportioned) {
+        self.volume = proportioned.volume
+        self.weight = proportioned.weight
+    }
+    
     /// A string representation of this ratio in the format of **{volume}:{weight}**
     ///
     /// For Example: _1:1_.

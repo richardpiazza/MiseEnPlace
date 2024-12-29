@@ -7,15 +7,17 @@ import Foundation
 /// ## Required Conformance
 ///
 /// ```swift
-/// // The proportional volume.
+/// /// The proportional volume.
 /// var volume: Double { get set }
 ///
-/// // The proportional weight.
+/// /// The proportional weight.
 /// var weight: Double { get set }
 /// ```
 ///
 public protocol Proportioned {
+    /// The proportional volume.
     var volume: Double { get set }
+    /// The proportional weight.
     var weight: Double { get set }
 }
 
