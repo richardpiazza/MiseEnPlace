@@ -5,15 +5,17 @@ import Foundation
 /// ## Required Conformance
 ///
 /// ```swift
-/// // The numerical value of the measurement.
+/// /// The numerical value of the measurement.
 /// var amount: Double? { get set }
 ///
-/// // The unit of which the amount is representative.
+/// /// The unit of which the amount is representative.
 /// var unit: MeasurementUnit? { get set }
 /// ```
 ///
 public protocol Quantifiable {
+    /// The numerical value of the measurement.
     var amount: Double { get set }
+    /// The unit of which the amount is representative.
     var unit: MeasurementUnit { get set }
 }
 

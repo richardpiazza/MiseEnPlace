@@ -5,10 +5,10 @@ import Foundation
 /// ## Required Conformance
 ///
 /// ```swift
-/// // The `Recipe` that uses this as part of it's `formulaElements`.
+/// /// The `Recipe` that uses this element as part of it's `formulaElements`.
 /// var inverseRecipe: Recipe? { get set }
 ///
-/// // The `Ingredient` or `Recipe` to which this measurement relates.
+/// /// The `Ingredient` or `Recipe` to which this measurement relates.
 /// var measured: Measured { get set }
 /// ```
 ///
@@ -33,7 +33,9 @@ import Foundation
 /// ```
 ///
 public protocol FormulaElement: Unique, Sequenced, Quantifiable {
+    /// The `Recipe` that uses this element as part of it's `formulaElements`.
     var inverseRecipe: Recipe? { get set }
+    /// The `Ingredient` or `Recipe` to which this measurement relates.
     var measured: Measured { get set }
 }
 
@@ -186,7 +188,7 @@ public extension FormulaElement {
                 return try scaledQuantification.normalizedQuantification()
             }
             
-            let translatedQuantification = try scaledQuantification.quantification.requantify(in: measurementSystemMethod, ratio: ingredient.ratio)
+            let translatedQuantification = try scaledQuantification.requantify(in: measurementSystemMethod, ratio: ingredient.ratio)
             return try translatedQuantification.normalizedQuantification()
         case .recipe(let recipe):
             let scaledQuantification: Quantification
@@ -213,7 +215,7 @@ public extension FormulaElement {
                 return try scaledQuantification.normalizedQuantification()
             }
             
-            let translatedQuantification = try scaledQuantification.quantification.requantify(in: measurementSystemMethod, ratio: .oneToOne)
+            let translatedQuantification = try scaledQuantification.requantify(in: measurementSystemMethod, ratio: .oneToOne)
             return try translatedQuantification.normalizedQuantification()
         }
     }

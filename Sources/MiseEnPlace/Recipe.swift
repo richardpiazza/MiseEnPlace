@@ -7,10 +7,10 @@ import Foundation
 /// ## Required Conformance
 ///
 /// ```swift
-/// // References to the elements that make up this `Recipe`s formula.
+/// /// References to the elements that make up this `Recipe`s formula.
 /// var formulaElements: [FormulaElement] { get set }
 ///
-/// // References to the elements that make up this `Recipe`s procedure.
+/// /// References to the elements that make up this `Recipe`s procedure.
 /// var procedureElements: [ProcedureElement] { get set }
 /// ```
 ///
@@ -49,18 +49,17 @@ import Foundation
 /// portion of this `Recipe`?
 ///
 public protocol Recipe: Unique, Descriptive, Multimedia, Quantifiable {
+    /// References to the elements that make up this `Recipe`s formula.
     var formulaElements: [FormulaElement] { get set }
+    /// References to the elements that make up this `Recipe`s procedure.
     var procedureElements: [ProcedureElement] { get set }
 }
 
 public extension Recipe {
+    /// The equivalent `Quantification` that represents one (1) portion of this `Recipe`.
     var portion: Quantification {
-        get {
-            quantification
-        }
-        set(newValue) {
-            quantification = newValue
-        }
+        get { quantification }
+        set(newValue) { quantification = newValue }
     }
 }
 
@@ -93,17 +92,17 @@ public extension Recipe {
 public extension Recipe {
     /// Calculates the total number of portions (yield).
     var yield: Double {
-        return totalQuantification.amount / amount
+        totalQuantification.amount / amount
     }
     
     /// A 'Fractioned String' output of the `yield`.
     var yieldString: String {
-        return "\(yield.fractionedString) portions"
+        "\(yield.fractionedString) portions"
     }
     
     /// A combined string: Total Measurement amount, Yield
     var yieldTranslation: String {
-        return "\(totalQuantification.componentsTranslation), \(yieldString)"
+        "\(totalQuantification.componentsTranslation), \(yieldString)"
     }
     
     /// A combined string: Total Measurement amount, Yield
@@ -122,7 +121,11 @@ public extension Recipe {
 // MARK: - Scaling
 
 public extension Recipe {
-    func scale(by multiplier: Double, measurementSystem: MeasurementSystem? = nil, measurementMethod: MeasurementMethod? = nil) throws -> [FormulaElement] {
+    func scale(
+        by multiplier: Double,
+        measurementSystem: MeasurementSystem? = nil,
+        measurementMethod: MeasurementMethod? = nil
+    ) throws -> [FormulaElement] {
         let elements = self.formula
         
         if multiplier == 1.0 && measurementSystem == nil && measurementMethod == nil {
@@ -144,7 +147,10 @@ public extension Recipe {
         return formulaElements
     }
     
-    func scale(by multiplier: Double, measurementSystemMethod: MeasurementSystemMethod) throws -> [FormulaElement] {
+    func scale(
+        by multiplier: Double,
+        measurementSystemMethod: MeasurementSystemMethod
+    ) throws -> [FormulaElement] {
         switch measurementSystemMethod {
         case .numericQuantity:
             return try self.scale(by: multiplier, measurementSystem: .numeric, measurementMethod: .quantity)

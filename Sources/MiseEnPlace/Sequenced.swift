@@ -5,7 +5,7 @@ import Foundation
 /// ## Required Conformance
 ///
 /// ```swift
-/// // The order of the element
+/// /// The order of the element
 /// var sequence: Int { get set }
 /// ```
 ///

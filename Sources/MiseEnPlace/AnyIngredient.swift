@@ -1,5 +1,6 @@
 import Foundation
 
+/// A generic `Ingredient`.
 public struct AnyIngredient: Ingredient {
     public var uuid: UUID
     public var creationDate: Date
@@ -56,4 +57,8 @@ public struct AnyIngredient: Ingredient {
         self.amount = ingredient.amount
         self.unit = ingredient.unit
     }
+}
+
+extension AnyIngredient: Identifiable {
+    public var id: UUID { uuid }
 }

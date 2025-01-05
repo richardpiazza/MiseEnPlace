@@ -69,7 +69,9 @@ public protocol Ingredient: Unique, Descriptive, Multimedia, Proportioned, Quant
 public extension Ingredient {
     /// `Quantification` that represents to which one (1) of this item is approximately equivalent.
     ///
-    /// For example: 1 egg ≅ 50 grams
+    /// For example:
+    /// * 1 egg ≅ 50 grams
+    /// * 1 egg yolk ≅ 25 grams
     var eachQuantification: Quantification {
         get {
             quantification

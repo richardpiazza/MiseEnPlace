@@ -5,7 +5,7 @@ import Foundation
 /// ## Required Conformance
 ///
 /// ```swift
-/// // The `Recipe` that uses this as part of it's `procedureElements`.
+/// /// The `Recipe` that uses this element as part of it's `procedureElements`.
 /// var inverseRecipe: Recipe? { get set }
 /// ```
 ///
@@ -37,5 +37,6 @@ import Foundation
 /// ```
 ///
 public protocol ProcedureElement: Unique, Descriptive, Sequenced, Multimedia {
+    /// The `Recipe` that uses this element as part of it's `procedureElements`.
     var inverseRecipe: Recipe? { get set }
 }

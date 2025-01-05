@@ -6,18 +6,18 @@ public enum Measured {
 
 public extension Measured {
     var ingredient: Ingredient? {
-        if case let .ingredient(value) = self {
-            return value
+        guard case let .ingredient(value) = self else {
+            return nil
         }
         
-        return nil
+        return value
     }
     
     var recipe: Recipe? {
-        if case let .recipe(value) = self {
-            return value
+        guard case let .recipe(value) = self else {
+            return nil
         }
         
-        return nil
+        return value
     }
 }

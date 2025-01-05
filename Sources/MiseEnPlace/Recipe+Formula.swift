@@ -1,7 +1,7 @@
 import Foundation
 
 public extension Recipe {
-    /// An ordered list of formula elements (MeasuredIngredient/MeasuredRecipe).
+    /// An ordered list of formula elements ('Measured Ingredient'/'Measured Recipe').
     var formula: [FormulaElement] {
         return formulaElements.sorted(by: { $0.sequence < $1.sequence })
     }
@@ -53,7 +53,7 @@ public extension Recipe {
             }
             
             for (index, element) in formulaElements.enumerated() {
-                if let sequence = modifiedFormula.first(where:  { $0.id == element.id })?.sequence {
+                if let sequence = modifiedFormula.first(where:  { $0.uuid == element.uuid })?.sequence {
                     if element.sequence != sequence {
                         formulaElements[index].sequence = sequence
                         modifiedElements.append(formulaElements[index])
@@ -80,7 +80,7 @@ public extension Recipe {
             }
             
             for (index, element) in formulaElements.enumerated() {
-                if let sequence = modifiedFormula.first(where:  { $0.id == element.id })?.sequence {
+                if let sequence = modifiedFormula.first(where:  { $0.uuid == element.uuid })?.sequence {
                     if element.sequence != sequence {
                         formulaElements[index].sequence = sequence
                         modifiedElements.append(formulaElements[index])
@@ -110,7 +110,7 @@ public extension Recipe {
         for index in at.reversed() {
             let element = modifiedFormula.remove(at: index)
             removedElements.insert(element, at: 0)
-            if let formulaIndex = formulaElements.firstIndex(where: { $0.id == element.id }) {
+            if let formulaIndex = formulaElements.firstIndex(where: { $0.uuid == element.uuid }) {
                 formulaElements.remove(at: formulaIndex)
             }
         }
@@ -120,7 +120,7 @@ public extension Recipe {
         }
         
         for (index, element) in formulaElements.enumerated() {
-            if let sequence = modifiedFormula.first(where:  { $0.id == element.id })?.sequence {
+            if let sequence = modifiedFormula.first(where:  { $0.uuid == element.uuid })?.sequence {
                 if element.sequence != sequence {
                     formulaElements[index].sequence = sequence
                     modifiedElements.append(formulaElements[index])
@@ -136,7 +136,7 @@ public extension Recipe {
         var formulaElement = element
         formulaElement.sequence = sequence
         
-        guard let index = formulaElements.firstIndex(where: { $0.id == formulaElement.id }) else {
+        guard let index = formulaElements.firstIndex(where: { $0.uuid == formulaElement.uuid }) else {
             return
         }
         

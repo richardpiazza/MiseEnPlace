@@ -1,5 +1,6 @@
 import Foundation
 
+/// A generic `FormulaElement`.
 public struct AnyFormulaElement: FormulaElement {
     public var uuid: UUID
     public var creationDate: Date
@@ -45,4 +46,8 @@ public struct AnyFormulaElement: FormulaElement {
             self.inverseRecipe = formulaElement.inverseRecipe.map { AnyRecipe($0) }
         }
     }
+}
+
+extension AnyFormulaElement: Identifiable {
+    public var id: UUID { uuid }
 }
