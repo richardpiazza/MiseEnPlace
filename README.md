@@ -14,34 +14,56 @@
 The framework consists of several protocols that define specific types and behaviors.
 
 *Component Protocols*:
-* [`Descriptive`](Sources/MiseEnPlace/Descriptive.swift):
-* [`Multimedia`](Sources/MiseEnPlace/Multimedia.swift):
-* [`Proportioned`](Sources/MiseEnPlace/Proportioned.swift):
-* [`Quantifiable`](Sources/MiseEnPlace/Quantifiable.swift):
-* [`Sequenced`](Sources/MiseEnPlace/Sequenced.swift):
-* [`Unique`](Sources/MiseEnPlace/Unique.swift):
+* [`Descriptive`](Sources/MiseEnPlace/Descriptive.swift): Properties that describe and categorize an element.
+* [`Multimedia`](Sources/MiseEnPlace/Multimedia.swift): Protocol for interactive with element images.
+* [`Proportioned`](Sources/MiseEnPlace/Proportioned.swift): Parameters that indicate a volume-to-weight ratio.
+* [`Quantifiable`](Sources/MiseEnPlace/Quantifiable.swift): Parameters that indicate a 'measurement'.
+* [`Sequenced`](Sources/MiseEnPlace/Sequenced.swift): Properties that describe the order of elements.
+* [`Unique`](Sources/MiseEnPlace/Unique.swift): The properties needed to determine uniqueness of elements.
 
 *Collective Protocols*:
 * [`Ingredient`](Sources/MiseEnPlace/Ingredient.swift): Represents any raw material/ingredient
-* [`FormulaElement`](Sources/MiseEnPlace/FormulaElement.swift):
-* [`ProcedureElement`](Sources/MiseEnPlace/ProcedureElement.swift):
-* [`Recipe`](Sources/MiseEnPlace/Recipe.swift): 
+* [`FormulaElement`](Sources/MiseEnPlace/FormulaElement.swift): A measurement of some `Ingredient` or `Recipe`.
+* [`ProcedureElement`](Sources/MiseEnPlace/ProcedureElement.swift): A step in the preparation of a `Recipe`.
+* [`Recipe`](Sources/MiseEnPlace/Recipe.swift): A compilation of measurements and procedures.
 
 ### Enumerations
 
-* [`Fraction`](Sources/MiseEnPlace/Fraction.swift):
-* [`Integral`](Sources/MiseEnPlace/Integral.swift):
-* [`MeasurementMethod`](Sources/MiseEnPlace/MeasurementMethod.swift):
-* [`MeasurementSystem`](Sources/MiseEnPlace/MeasurementSystem.swift):
-* [`MeasurementSystemMethod`](Sources/MiseEnPlace/MeasurementSystemMethod.swift):
+* [`Fraction`](Sources/MiseEnPlace/Fraction.swift): Commonly used fractions (¼, ½, ⅔, etc.)
+* [`Integral`](Sources/MiseEnPlace/Integral.swift): Commonly used integrals for quick entry.
+* [`MeasurementMethod`](Sources/MiseEnPlace/MeasurementMethod.swift): Representation of the _ways_ in which something can be measured.
+* [`MeasurementSystem`](Sources/MiseEnPlace/MeasurementSystem.swift): The _types_ of systems used to measure (US, Metric)
+* [`MeasurementSystemMethod`](Sources/MiseEnPlace/MeasurementSystemMethod.swift): Combined representation of a measurement 'system' and 'method'.
 
 ### Ingredient Ratios
 
-🔎…
+Understanding the volume-to-weight ratio of `Ingredient`s is the key to scaling and transforming acurately.
+Water, for instance, has a `1:1` ratio, meaning that 1 Ounce (or gram) is equal to 1 Fluid Ounce (or milliliter).
+Whereas All Purpose (Plain) Flour takes up more volume than it weighs; a ratio of `1.882:1`.
+
+This ratio allows for the transofmration of any measurement of an ingredient into another system.
+Tablespoons, Cups, and Pounds can be converted into Grams or Milliliters (or the other way around).  
 
 ### Scaling Formulas
 
-🔎…
+A formula is the collection of measured Ingredients (or other Recipes) for a specific Recipe.
+A simple Italian Bread has the formula:
+* 1.8 kg AP/Plain Flour
+* 28 g Active Dry Yeast
+* 28 g Salt
+* 955 mL Water
+
+The elements about can produce 1 large loaf or two small loaves weighing a total of 702.5 Grams.
+But, what if you wanted 5 small loaves? This is where _scaling_ a `Recipe` comes in.
+
+```swift
+let recipe: Recipe
+let scaledFormula: [FormulaElement] = recipe.scale(by: 2.5)
+// 4.5 kg Flour
+// 70 g Yeast
+// 70 g Salt
+// 2388 mL Water
+```
 
 ## Installation
 
@@ -49,11 +71,11 @@ The framework consists of several protocols that define specific types and behav
 
 ```swift
 let package = Package(
-...
+    …
     dependencies: [
         .package(url: "https://github.com/richardpiazza/MiseEnPlace.git", .upToNextMajor(from: "6.0.0"))
     ],
-    ...
+    …
 )
 ```
 
