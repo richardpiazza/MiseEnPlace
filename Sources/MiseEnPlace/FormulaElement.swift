@@ -175,7 +175,8 @@ public extension FormulaElement {
                 }
 
                 let quantifiableMeasurement = ingredient.quantification
-                scaledQuantification = Quantification(amount: quantifiableMeasurement.amount * amount, unit: quantifiableMeasurement.unit)
+                let quantifiableAmount = quantifiableMeasurement.amount * amount
+                scaledQuantification = Quantification(amount: quantifiableAmount * multiplier, unit: quantifiableMeasurement.unit)
             default:
                 let totalAmount = try amount(for: unit)
                 scaledQuantification = Quantification(amount: totalAmount * multiplier, unit: unit)
