@@ -16,7 +16,7 @@ let package = Package(
         .library(
             name: "MiseEnPlace",
             targets: ["MiseEnPlace"]
-        )
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.55.0"),
