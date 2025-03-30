@@ -45,17 +45,27 @@ class EachMeasurementUnitTests: XCTestCase {
         XCTAssertEqual(interpretation, "4")
 
         var scaleMeasure = try measuredEgg.scale(by: 2.0, measurementSystem: .numeric, measurementMethod: .quantity)
+        interpretation = scaleMeasure.componentsTranslation
         XCTAssertEqual(scaleMeasure.amount, 8)
         XCTAssertEqual(scaleMeasure.unit, .noUnit)
-
-        interpretation = scaleMeasure.componentsTranslation
         XCTAssertEqual(interpretation, "8")
 
-        scaleMeasure = try measuredEgg.scale(by: 1.0, measurementSystem: .metric, measurementMethod: .weight)
-        XCTAssertEqual(scaleMeasure.amount, 200)
+        scaleMeasure = try measuredEgg.scale(by: 2.0, measurementSystem: .numeric, measurementMethod: .weight)
+        XCTAssertEqual(scaleMeasure.amount, 400)
         XCTAssertEqual(scaleMeasure.unit, .gram)
 
+        scaleMeasure = try measuredEgg.scale(by: 2.0, measurementSystem: .metric, measurementMethod: .weight)
+        XCTAssertEqual(scaleMeasure.amount, 400)
+        XCTAssertEqual(scaleMeasure.unit, .gram)
+
+        scaleMeasure = try measuredEgg.scale(by: 2.43, measurementSystem: .us, measurementMethod: .volume)
+        XCTAssertEqual(scaleMeasure.amount, 1.02, accuracy: 0.01)
+        XCTAssertEqual(scaleMeasure.unit, .pint)
+
+        scaleMeasure = try measuredEgg.scale(by: 1.0, measurementSystem: .metric, measurementMethod: .weight)
         interpretation = scaleMeasure.componentsTranslation
+        XCTAssertEqual(scaleMeasure.amount, 200)
+        XCTAssertEqual(scaleMeasure.unit, .gram)
         XCTAssertEqual(interpretation, "200 Gram")
 
         measuredEgg.amount = 200
@@ -90,7 +100,7 @@ class EachMeasurementUnitTests: XCTestCase {
         XCTAssertEqual(scaleMeasure.unit, .noUnit)
 
         scaleMeasure = try measuredEggYolk.scale(by: 3.0, measurementSystem: .metric, measurementMethod: .weight)
-        XCTAssertEqual(scaleMeasure.amount, 100)
+        XCTAssertEqual(scaleMeasure.amount, 300)
         XCTAssertEqual(scaleMeasure.unit, .gram)
     }
 }
