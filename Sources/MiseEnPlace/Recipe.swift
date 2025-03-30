@@ -69,21 +69,21 @@ public extension Recipe {
     /// Calculates the total mass for this formula in a give unit.
     func totalAmount(for unit: MeasurementUnit) -> Double {
         var amount: Double = 0.0
-        
-        let elements = self.formula
+
+        let elements = formula
         for element in elements {
             if let value = try? element.amount(for: unit) {
                 amount += value
             }
         }
-        
+
         return amount
     }
-    
+
     /// The total mass of this formula in the portions unit.
     var totalQuantification: Quantification {
-        let total = self.totalAmount(for: self.unit)
-        return Quantification(amount: total, unit: self.unit)
+        let total = totalAmount(for: unit)
+        return Quantification(amount: total, unit: unit)
     }
 }
 
@@ -94,17 +94,17 @@ public extension Recipe {
     var yield: Double {
         totalQuantification.amount / amount
     }
-    
+
     /// A 'Fractioned String' output of the `yield`.
     var yieldString: String {
         "\(yield.fractionedString) portions"
     }
-    
+
     /// A combined string: Total Measurement amount, Yield
     var yieldTranslation: String {
         "\(totalQuantification.componentsTranslation), \(yieldString)"
     }
-    
+
     /// A combined string: Total Measurement amount, Yield
     ///
     /// The `totalQuantification` is first _normalized_ using the current `unit` `MeasurementSystemMethod`.
@@ -126,42 +126,42 @@ public extension Recipe {
         measurementSystem: MeasurementSystem? = nil,
         measurementMethod: MeasurementMethod? = nil
     ) throws -> [FormulaElement] {
-        let elements = self.formula
-        
-        if multiplier == 1.0 && measurementSystem == nil && measurementMethod == nil {
+        let elements = formula
+
+        if multiplier == 1.0, measurementSystem == nil, measurementMethod == nil {
             return elements
-        } else if multiplier == 1.0 && measurementSystem == self.unit.measurementSystem && measurementMethod == self.unit.measurementMethod {
+        } else if multiplier == 1.0, measurementSystem == unit.measurementSystem, measurementMethod == unit.measurementMethod {
             return elements
         }
-        
+
         var formulaElements = [FormulaElement]()
-        
-        try elements.forEach { (element) in
+
+        try elements.forEach { element in
             let measurement = try element.scale(by: multiplier, measurementSystem: measurementSystem, measurementMethod: measurementMethod)
             var formulaElement = element
             formulaElement.amount = measurement.amount
             formulaElement.unit = measurement.unit
             formulaElements.append(formulaElement)
         }
-        
+
         return formulaElements
     }
-    
+
     func scale(
         by multiplier: Double,
         measurementSystemMethod: MeasurementSystemMethod
     ) throws -> [FormulaElement] {
         switch measurementSystemMethod {
         case .numericQuantity:
-            return try self.scale(by: multiplier, measurementSystem: .numeric, measurementMethod: .quantity)
+            try scale(by: multiplier, measurementSystem: .numeric, measurementMethod: .quantity)
         case .usVolume:
-            return try self.scale(by: multiplier, measurementSystem: .us, measurementMethod: .volume)
+            try scale(by: multiplier, measurementSystem: .us, measurementMethod: .volume)
         case .usWeight:
-            return try self.scale(by: multiplier, measurementSystem: .us, measurementMethod: .weight)
+            try scale(by: multiplier, measurementSystem: .us, measurementMethod: .weight)
         case .metricVolume:
-            return try self.scale(by: multiplier, measurementSystem: .metric, measurementMethod: .volume)
+            try scale(by: multiplier, measurementSystem: .metric, measurementMethod: .volume)
         case .metricWeight:
-            return try self.scale(by: multiplier, measurementSystem: .metric, measurementMethod: .weight)
+            try scale(by: multiplier, measurementSystem: .metric, measurementMethod: .weight)
         }
     }
 }

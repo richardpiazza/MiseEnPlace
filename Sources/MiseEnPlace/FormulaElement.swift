@@ -44,9 +44,9 @@ public extension FormulaElement {
     var ingredient: Ingredient? {
         get {
             if case let .ingredient(value) = measured {
-                return value
+                value
             } else {
-                return nil
+                nil
             }
         }
         set {
@@ -55,14 +55,14 @@ public extension FormulaElement {
             }
         }
     }
-    
+
     @available(*, deprecated, renamed: "measured")
     var recipe: Recipe? {
         get {
             if case let .recipe(value) = measured {
-                return value
+                value
             } else {
-                return nil
+                nil
             }
         }
         set {
@@ -77,17 +77,17 @@ public extension FormulaElement {
     /// The name for the referenced `Ingredient` or `Recipe`
     var name: String? {
         switch measured {
-        case .ingredient(let ingredient): return ingredient.name
-        case .recipe(let recipe): return recipe.name
+        case .ingredient(let ingredient): ingredient.name
+        case .recipe(let recipe): recipe.name
         }
     }
-    
+
     /// Indicates when this `FormulaElement` references an `Ingredient`
     var isMeasuredIngredient: Bool { measured.ingredient != nil }
-    
+
     /// Indicates when this `FormulaElement` references an `Recipe`
     var isMeasuredRecipe: Bool { measured.recipe != nil }
-    
+
     /// Translates the measurement to a different unit.
     ///
     /// > warning : Attempting to convert from or to `MeasurementUnit.noUnit` will throw an error.
@@ -98,15 +98,15 @@ public extension FormulaElement {
         guard unit != .noUnit else {
             throw MiseEnPlaceError.unhandledConversion
         }
-        
+
         guard destinationUnit != .noUnit else {
             throw MiseEnPlaceError.unhandledConversion
         }
-        
+
         guard amount > 0.0 else {
             throw MiseEnPlaceError.measurementAmount(method: nil)
         }
-        
+
         switch measured {
         case .ingredient(let ingredient):
             switch (unit.measurementSystemMethod, destinationUnit.measurementSystemMethod) {
@@ -129,12 +129,12 @@ public extension FormulaElement {
         case .recipe(let recipe):
             let measuredAmount = recipe.totalAmount(for: unit)
             let percent = amount / measuredAmount
-            
+
             let destinationAmount = recipe.totalAmount(for: destinationUnit)
             return destinationAmount * percent
         }
     }
-    
+
     /// Scales the 'measured' amount of either the `ingredient` or `recipe`.
     ///
     /// - parameter multiplier:
@@ -145,19 +145,19 @@ public extension FormulaElement {
         if quantification == .notQuantified || quantification == .asNeeded {
             return quantification
         }
-        
-        guard (!amount.isNaN && !amount.isInfinite) && amount > 0.0 else {
+
+        guard !amount.isNaN, !amount.isInfinite, amount > 0.0 else {
             throw MiseEnPlaceError.nanZeroConversion
         }
-        
-        if unit == .noUnit && measurementSystem == nil && measurementMethod == nil {
+
+        if unit == .noUnit, measurementSystem == nil, measurementMethod == nil {
             return quantification.with(amount: amount * multiplier)
         }
-        
+
         switch measured {
         case .ingredient(let ingredient):
             let scaledQuantification: Quantification
-            
+
             switch (unit, measurementSystem, measurementMethod) {
             case (_, .none, .none), (.noUnit, .numeric, .quantity):
                 return Quantification(amount: amount * multiplier, unit: unit)
@@ -165,7 +165,7 @@ public extension FormulaElement {
                 guard ingredient.unit.isQuantifiable else {
                     throw MiseEnPlaceError.quantifiableConversion
                 }
-                
+
                 let eachUnitTotalAmount = try amount(for: ingredient.eachQuantification.unit)
                 let scaledEachTotalAmount = eachUnitTotalAmount / ingredient.eachQuantification.amount
                 return Quantification(amount: scaledEachTotalAmount, unit: .noUnit)
@@ -173,48 +173,48 @@ public extension FormulaElement {
                 guard ingredient.unit.isQuantifiable else {
                     throw MiseEnPlaceError.quantifiableConversion
                 }
-                
+
                 let quantifiableMeasurement = ingredient.quantification
                 scaledQuantification = Quantification(amount: quantifiableMeasurement.amount * amount, unit: quantifiableMeasurement.unit)
             default:
                 let totalAmount = try amount(for: unit)
                 scaledQuantification = Quantification(amount: totalAmount * multiplier, unit: unit)
             }
-            
+
             let ms = measurementSystem ?? scaledQuantification.unit.measurementSystem
             let mm = measurementMethod ?? scaledQuantification.unit.measurementMethod
-            
+
             guard let measurementSystemMethod = MeasurementSystemMethod.measurementSystemMethod(for: ms, measurementMethod: mm) else {
                 return try scaledQuantification.normalizedQuantification()
             }
-            
+
             let translatedQuantification = try scaledQuantification.requantify(in: measurementSystemMethod, ratio: ingredient.ratio)
             return try translatedQuantification.normalizedQuantification()
         case .recipe(let recipe):
             let scaledQuantification: Quantification
-            
+
             if unit == .noUnit {
                 guard recipe.unit.isQuantifiable else {
                     throw MiseEnPlaceError.quantifiableConversion
                 }
-                
+
                 var totalMeasurement = recipe.totalQuantification
                 totalMeasurement.amount = totalMeasurement.amount * multiplier
-                
+
                 scaledQuantification = totalMeasurement
             } else {
                 let totalAmount = recipe.totalAmount(for: unit)
                 let percent = amount / totalAmount
-                scaledQuantification = Quantification(amount: (totalAmount * percent * multiplier), unit: unit)
+                scaledQuantification = Quantification(amount: totalAmount * percent * multiplier, unit: unit)
             }
-            
+
             let ms = measurementSystem ?? scaledQuantification.unit.measurementSystem
             let mm = measurementMethod ?? scaledQuantification.unit.measurementMethod
-            
+
             guard let measurementSystemMethod = MeasurementSystemMethod.measurementSystemMethod(for: ms, measurementMethod: mm) else {
                 return try scaledQuantification.normalizedQuantification()
             }
-            
+
             let translatedQuantification = try scaledQuantification.requantify(in: measurementSystemMethod, ratio: .oneToOne)
             return try translatedQuantification.normalizedQuantification()
         }

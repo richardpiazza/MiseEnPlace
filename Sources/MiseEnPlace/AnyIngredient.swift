@@ -14,11 +14,11 @@ public struct AnyIngredient: Ingredient {
     public var weight: Double
     public var amount: Double
     public var unit: MeasurementUnit
-    
+
     public init(
         uuid: UUID = UUID(),
         creationDate: Date = Date(),
-        modificationDate: Date = Date(), 
+        modificationDate: Date = Date(),
         name: String = "",
         commentary: String = "",
         classification: String = "",
@@ -42,20 +42,20 @@ public struct AnyIngredient: Ingredient {
         self.amount = amount
         self.unit = unit
     }
-    
+
     public init(_ ingredient: Ingredient) {
-        self.uuid = ingredient.uuid
-        self.creationDate = ingredient.creationDate
-        self.modificationDate = ingredient.modificationDate
-        self.name = ingredient.name
-        self.commentary = ingredient.commentary
-        self.classification = ingredient.classification
-        self.imageData = ingredient.imageData
-        self.imagePath = ingredient.imagePath
-        self.volume = ingredient.volume
-        self.weight = ingredient.weight
-        self.amount = ingredient.amount
-        self.unit = ingredient.unit
+        uuid = ingredient.uuid
+        creationDate = ingredient.creationDate
+        modificationDate = ingredient.modificationDate
+        name = ingredient.name
+        commentary = ingredient.commentary
+        classification = ingredient.classification
+        imageData = ingredient.imageData
+        imagePath = ingredient.imagePath
+        volume = ingredient.volume
+        weight = ingredient.weight
+        amount = ingredient.amount
+        unit = ingredient.unit
     }
 }
 

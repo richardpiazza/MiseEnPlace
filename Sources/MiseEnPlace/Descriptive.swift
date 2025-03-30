@@ -41,8 +41,8 @@ public extension Descriptive {
         guard name.count > 0 else {
             return ""
         }
-        
-        let range = name.startIndex..<name.index(name.startIndex, offsetBy: 1)
+
+        let range = name.startIndex ..< name.index(name.startIndex, offsetBy: 1)
         return name[range].uppercased()
     }
 }

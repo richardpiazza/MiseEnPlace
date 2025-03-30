@@ -12,7 +12,7 @@ public struct AnyProcedureElement: ProcedureElement {
     public var imageData: Data?
     public var imagePath: String?
     public var inverseRecipe: Recipe?
-    
+
     public init(
         uuid: UUID = UUID(),
         creationDate: Date = Date(),
@@ -36,22 +36,22 @@ public struct AnyProcedureElement: ProcedureElement {
         self.imagePath = imagePath
         self.inverseRecipe = inverseRecipe
     }
-    
+
     public init(
         _ procedureElement: ProcedureElement,
         mapInverse: Bool = false
     ) {
-        self.uuid = procedureElement.uuid
-        self.creationDate = procedureElement.creationDate
-        self.modificationDate = procedureElement.modificationDate
-        self.name = procedureElement.name
-        self.commentary = procedureElement.commentary
-        self.classification = procedureElement.classification
-        self.sequence = procedureElement.sequence
-        self.imageData = procedureElement.imageData
-        self.imagePath = procedureElement.imagePath
+        uuid = procedureElement.uuid
+        creationDate = procedureElement.creationDate
+        modificationDate = procedureElement.modificationDate
+        name = procedureElement.name
+        commentary = procedureElement.commentary
+        classification = procedureElement.classification
+        sequence = procedureElement.sequence
+        imageData = procedureElement.imageData
+        imagePath = procedureElement.imagePath
         if mapInverse {
-            self.inverseRecipe = procedureElement.inverseRecipe.map { AnyRecipe($0) }
+            inverseRecipe = procedureElement.inverseRecipe.map { AnyRecipe($0) }
         }
     }
 }

@@ -10,7 +10,7 @@ public struct AnyFormulaElement: FormulaElement {
     public var unit: MeasurementUnit
     public var measured: Measured
     public var inverseRecipe: Recipe?
-    
+
     public init(
         uuid: UUID = UUID(),
         creationDate: Date = Date(),
@@ -30,20 +30,20 @@ public struct AnyFormulaElement: FormulaElement {
         self.measured = measured
         self.inverseRecipe = inverseRecipe
     }
-    
+
     public init(
         _ formulaElement: FormulaElement,
         mapInverse: Bool = false
     ) {
-        self.uuid = formulaElement.uuid
-        self.creationDate = formulaElement.creationDate
-        self.modificationDate = formulaElement.modificationDate
-        self.sequence = formulaElement.sequence
-        self.amount = formulaElement.amount
-        self.unit = formulaElement.unit
-        self.measured = formulaElement.measured
+        uuid = formulaElement.uuid
+        creationDate = formulaElement.creationDate
+        modificationDate = formulaElement.modificationDate
+        sequence = formulaElement.sequence
+        amount = formulaElement.amount
+        unit = formulaElement.unit
+        measured = formulaElement.measured
         if mapInverse {
-            self.inverseRecipe = formulaElement.inverseRecipe.map { AnyRecipe($0) }
+            inverseRecipe = formulaElement.inverseRecipe.map { AnyRecipe($0) }
         }
     }
 }

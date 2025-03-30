@@ -14,7 +14,7 @@ public struct AnyRecipe: Recipe {
     public var unit: MeasurementUnit
     public var formulaElements: [FormulaElement]
     public var procedureElements: [ProcedureElement]
-    
+
     public init(
         uuid: UUID = UUID(),
         creationDate: Date = Date(),
@@ -42,20 +42,20 @@ public struct AnyRecipe: Recipe {
         self.formulaElements = formulaElements
         self.procedureElements = procedureElements
     }
-    
+
     public init(_ recipe: Recipe) {
-        self.uuid = recipe.uuid
-        self.creationDate = recipe.creationDate
-        self.modificationDate = recipe.modificationDate
-        self.name = recipe.name
-        self.commentary = recipe.commentary
-        self.classification = recipe.classification
-        self.imageData = recipe.imageData
-        self.imagePath = recipe.imagePath
-        self.amount = recipe.amount
-        self.unit = recipe.unit
-        self.formulaElements = recipe.formulaElements.map { AnyFormulaElement($0) }
-        self.procedureElements = recipe.procedureElements.map { AnyProcedureElement($0) }
+        uuid = recipe.uuid
+        creationDate = recipe.creationDate
+        modificationDate = recipe.modificationDate
+        name = recipe.name
+        commentary = recipe.commentary
+        classification = recipe.classification
+        imageData = recipe.imageData
+        imagePath = recipe.imagePath
+        amount = recipe.amount
+        unit = recipe.unit
+        formulaElements = recipe.formulaElements.map { AnyFormulaElement($0) }
+        procedureElements = recipe.procedureElements.map { AnyProcedureElement($0) }
     }
 }
 
