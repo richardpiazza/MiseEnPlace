@@ -6,7 +6,7 @@ public extension Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor
     }
-    
+
     /// A representation of the instance in terms of a _whole_ number and `Fraction`.
     ///
     /// For example:
@@ -17,23 +17,23 @@ public extension Double {
         guard !isNaN else {
             return (0, nil)
         }
-        
+
         guard !isInfinite else {
             return (0, nil)
         }
-        
+
         let decomposedAmount = modf(self)
         let whole = Int(decomposedAmount.0)
-        
+
         guard decomposedAmount.1 > 0.0 else {
             return (whole, nil)
         }
-        
+
         let fraction = Fraction(proximateValue: decomposedAmount.1)
-        
+
         return (whole, fraction)
     }
-    
+
     /// An interpreted representation of the value, composed of the integral and fraction as needed.
     var fractionedString: String {
         let components = floatingPoint()

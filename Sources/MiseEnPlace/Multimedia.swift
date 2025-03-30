@@ -25,49 +25,49 @@ public protocol Multimedia {
 public extension Multimedia {
     @available(*, deprecated, message: "`MediaManager` should be used to persist `Multimedia`.")
     var fileManager: FileManager {
-        return .default
+        .default
     }
-    
+
     /// A File URL representation of the `imagePath`.
     @available(*, deprecated, renamed: "MediaManager.imageURL(for:)")
     var imageURL: URL? {
-        guard let path = self.imagePath else {
+        guard let path = imagePath else {
             return nil
         }
-        
+
         return imageDirectory.appendingPathComponent(path)
     }
-    
+
     /// A reference to the directory where images for this `Multimedia` type
     /// can be found.
     @available(*, deprecated, renamed: "MediaManager.imageDirectory(for:)")
     var imageDirectory: URL {
-        return fileManager.imageDirectory(for: self)
+        fileManager.imageDirectory(for: self)
     }
-    
+
     /// Creates a local copy of asset at the supplied URL.
     @available(*, deprecated, renamed: "MediaManager.imagePath(for:copyingImageAtURL:)")
     mutating func copyImage(atURL url: URL) {
-        self.imagePath = fileManager.imagePath(for: self, copyingImageAtURL: url)
+        imagePath = fileManager.imagePath(for: self, copyingImageAtURL: url)
     }
-    
+
     @available(*, deprecated, renamed: "MediaManager.imagePath(for:writingData:name:ext:)")
     mutating func writeImage(_ data: Data, name: String = UUID().uuidString, ext: String = "png") {
         imagePath = fileManager.imagePath(for: self, writingData: data, name: name, ext: ext)
     }
-    
+
     @available(*, deprecated, renamed: "MediaManager.removeImage(for:)")
     mutating func removeImage() {
-        self.imagePath = nil
+        imagePath = nil
         fileManager.removeImage(for: self)
     }
 }
 
 @available(*, deprecated, message: "`MediaManager` should be used to persist `Multimedia`.")
-internal extension FileManager {
+extension FileManager {
     var supportDirectory: URL {
         let directory: URL
-        
+
         do {
             #if os(Linux)
             directory = try url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -82,7 +82,7 @@ internal extension FileManager {
         } catch {
             fatalError(error.localizedDescription)
         }
-        
+
         return directory.appendingPathComponent("MiseEnPlace")
     }
 }
@@ -92,19 +92,17 @@ public extension FileManager {
     /// A reference to the directory where images for this `Multimedia` type
     /// can be found.
     func imageDirectory(for multimedia: Multimedia) -> URL {
-        var pathURL: URL
-        
-        switch type(of: self) {
+        let pathURL: URL = switch type(of: self) {
         case is Ingredient.Type:
-            pathURL = supportDirectory.appendingPathComponent("Images/Ingredient")
+            supportDirectory.appendingPathComponent("Images/Ingredient")
         case is Recipe.Type:
-            pathURL = supportDirectory.appendingPathComponent("Images/Recipe")
+            supportDirectory.appendingPathComponent("Images/Recipe")
         case is ProcedureElement.Type:
-            pathURL = supportDirectory.appendingPathComponent("Images/ProcedureElement")
+            supportDirectory.appendingPathComponent("Images/ProcedureElement")
         default:
-            pathURL = supportDirectory.appendingPathComponent("Images/Other")
+            supportDirectory.appendingPathComponent("Images/Other")
         }
-        
+
         if !fileExists(atPath: pathURL.path) {
             do {
                 try createDirectory(at: pathURL, withIntermediateDirectories: true, attributes: nil)
@@ -112,19 +110,19 @@ public extension FileManager {
                 print(error)
             }
         }
-        
+
         return pathURL
     }
-    
+
     func imagePath(for multimedia: Multimedia, copyingImageAtURL url: URL) -> String? {
         guard fileExists(atPath: url.path) else {
             print("No File Found at path: '\(url.path)'")
             return nil
         }
-        
+
         let filename = url.lastPathComponent
         let localURL = imageDirectory(for: multimedia).appendingPathComponent(filename)
-        
+
         do {
             try copyItem(at: url, to: localURL)
             return filename
@@ -133,10 +131,10 @@ public extension FileManager {
             return nil
         }
     }
-    
+
     func imagePath(for multimedia: Multimedia, writingData data: Data, name: String = UUID().uuidString, ext: String = "png") -> String? {
         let url = imageDirectory(for: multimedia).appendingPathComponent(name).appendingPathExtension(ext)
-        
+
         do {
             try data.write(to: url, options: .atomic)
             return url.lastPathComponent
@@ -145,12 +143,12 @@ public extension FileManager {
             return nil
         }
     }
-    
+
     func removeImage(for multimedia: Multimedia) {
         guard let url = multimedia.imageURL else {
             return
         }
-        
+
         do {
             try removeItem(atPath: url.path)
         } catch {

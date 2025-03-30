@@ -43,18 +43,18 @@ public enum Integral: Int, CaseIterable, CustomStringConvertible {
     case sevenFifty = 750
     case eightHundred = 800
     case nineHundred = 900
-    
+
     public static let singleDigits: [Integral] = [.zero, .one, .two, .three, .four, .five, .six, .seven, .eight, .nine]
-    
+
     public var description: String {
-        return "\(self.rawValue)"
+        "\(rawValue)"
     }
 }
 
 public extension Integral {
     @available(*, deprecated, renamed: "forty")
     static var fourty: Self { .forty }
-    
+
     @available(*, deprecated, renamed: "fortyFive")
     static var fourtyFive: Self { .fortyFive }
 }

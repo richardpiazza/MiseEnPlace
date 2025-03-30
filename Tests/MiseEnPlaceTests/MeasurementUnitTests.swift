@@ -1,22 +1,22 @@
 import Foundation
-import XCTest
 @testable import MiseEnPlace
+import XCTest
 
 class MeasurementUnitTests: XCTestCase {
-    
+
     func testAllMeasurementUnits() {
         let units = MeasurementUnit.allCases
         XCTAssertEqual(units.count, 16)
         XCTAssertEqual(units[3], .teaspoon)
         XCTAssertEqual(units[12], .milliliter)
     }
-    
+
     func testQuantifiableMeasurementUnits() {
         let units = MeasurementUnit.quantifiableMeasurementUnits
         XCTAssertEqual(units.count, 15)
         XCTAssertFalse(units.contains(.noUnit))
     }
-    
+
     func testMeasurementUnitsForSystemMethod() {
         var units = MeasurementUnit.measurementUnits(forMeasurementSystemMethod: .numericQuantity)
         XCTAssertEqual(units.count, 1)
@@ -29,7 +29,7 @@ class MeasurementUnitTests: XCTestCase {
         units = MeasurementUnit.measurementUnits(forMeasurementSystemMethod: .metricWeight)
         XCTAssertEqual(units.count, 2)
     }
-    
+
     func testMeasurementUnitsForMeasurementMethod() {
         var units = MeasurementUnit.measurementUnits(forMeasurementMethod: .quantity)
         XCTAssertEqual(units.count, 1)
@@ -42,7 +42,7 @@ class MeasurementUnitTests: XCTestCase {
         XCTAssertEqual(units[0], .ounce)
         XCTAssertEqual(units[3], .kilogram)
     }
-    
+
     func testRawValueInit() {
         var unit = MeasurementUnit(rawValue: 0)
         XCTAssertEqual(unit, .noUnit)
@@ -77,7 +77,7 @@ class MeasurementUnitTests: XCTestCase {
         unit = MeasurementUnit(rawValue: 2201)
         XCTAssertEqual(unit, .kilogram)
     }
-    
+
     func testStringValueInit() {
         var unit = MeasurementUnit(stringValue: "")
         XCTAssertEqual(unit, .noUnit)
@@ -120,7 +120,7 @@ class MeasurementUnitTests: XCTestCase {
         unit = MeasurementUnit(stringValue: "Litre")
         XCTAssertEqual(unit, .liter)
     }
-    
+
     func testLegacyRawValueInit() {
         var unit = MeasurementUnit(legacyRawValue: 0)
         XCTAssertEqual(unit, .noUnit)

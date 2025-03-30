@@ -9,15 +9,15 @@ public extension Measured {
         guard case let .ingredient(value) = self else {
             return nil
         }
-        
+
         return value
     }
-    
+
     var recipe: Recipe? {
         guard case let .recipe(value) = self else {
             return nil
         }
-        
+
         return value
     }
 }

@@ -1,19 +1,19 @@
 import Foundation
-import XCTest
 @testable import MiseEnPlace
+import XCTest
 
 /// Tests created in response to conditions during implementations
 class EdgeConditionTests: XCTestCase {
-    
+
     func testHighVolumeRatioConversion() throws {
         var ingredient = AnyIngredient()
         ingredient.volume = 2.143
         ingredient.weight = 1.0
-        
+
         var measuredIngredient = AnyFormulaElement(measured: .ingredient(ingredient))
         measuredIngredient.amount = 1.0
         measuredIngredient.unit = .pint
-        
+
         let pinch = try measuredIngredient.amount(for: .pinch)
         let dash = try measuredIngredient.amount(for: .dash)
         let teaspoon = try measuredIngredient.amount(for: .teaspoon)
@@ -29,7 +29,7 @@ class EdgeConditionTests: XCTestCase {
         let liter = try measuredIngredient.amount(for: .liter)
         let gram = try measuredIngredient.amount(for: .gram)
         let kilogram = try measuredIngredient.amount(for: .kilogram)
-        
+
         XCTAssertEqual(pinch, 1536.154, accuracy: 0.01)
         XCTAssertEqual(dash, 768.077, accuracy: 0.01)
         XCTAssertEqual(teaspoon, 96, accuracy: 0.01)
@@ -45,7 +45,7 @@ class EdgeConditionTests: XCTestCase {
         XCTAssertEqual(liter, 0.473, accuracy: 0.01)
         XCTAssertEqual(gram, 211.662, accuracy: 0.01)
         XCTAssertEqual(kilogram, 0.212, accuracy: 0.01)
-        
+
         XCTAssertEqual(Quantification(amount: pinch, unit: .pinch).description, "1536⅙ Pinch")
         XCTAssertEqual(Quantification(amount: dash, unit: .dash).description, "768 Dash")
         XCTAssertEqual(Quantification(amount: teaspoon, unit: .teaspoon).description, "96 Teaspoon")

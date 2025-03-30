@@ -11,10 +11,10 @@ extension AnyRecipe {
             AnyFormulaElement.italianBreadFlour,
             AnyFormulaElement.italianBreadSalt,
             AnyFormulaElement.italianBreadYeast,
-            AnyFormulaElement.italianBreadWater
+            AnyFormulaElement.italianBreadWater,
         ]
     )
-    
+
     static let poolish: Recipe = AnyRecipe(
         uuid: UUID(uuidString: "8a3a1075-767e-4f58-95ec-acccfc2489dd")!,
         name: "Poolish",
@@ -23,10 +23,10 @@ extension AnyRecipe {
         formulaElements: [
             AnyFormulaElement.poolishWater,
             AnyFormulaElement.poolishYeast,
-            AnyFormulaElement.poolishFlour
+            AnyFormulaElement.poolishFlour,
         ]
     )
-    
+
     static let poolishBaguette: Recipe = AnyRecipe(
         uuid: UUID(uuidString: "3cba80c5-d695-4f8b-be53-646c9c053d8b")!,
         name: "Poolish Baguette",
@@ -37,13 +37,13 @@ extension AnyRecipe {
             AnyFormulaElement.poolishBaguetteFlour,
             AnyFormulaElement.poolishBaguetteYeast,
             AnyFormulaElement.poolishBaguetteWater,
-            AnyFormulaElement.poolishBaguetteSalt
+            AnyFormulaElement.poolishBaguetteSalt,
         ],
         procedureElements: [
             AnyProcedureElement.poolishBaguetteStep1,
             AnyProcedureElement.poolishBaguetteStep2,
             AnyProcedureElement.poolishBaguetteStep3,
-            AnyProcedureElement.poolishBaguetteStep4
+            AnyProcedureElement.poolishBaguetteStep4,
         ]
     )
 }

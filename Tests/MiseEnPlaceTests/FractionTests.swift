@@ -1,9 +1,9 @@
 import Foundation
-import XCTest
 @testable import MiseEnPlace
+import XCTest
 
 class FractionTests: XCTestCase {
-    
+
     func testRawValue() {
         XCTAssertEqual(Fraction(rawValue: 0.0), .zero)
         XCTAssertEqual(Fraction(rawValue: 0.001), .oneThousandth)
@@ -19,7 +19,7 @@ class FractionTests: XCTestCase {
         XCTAssertEqual(Fraction(rawValue: 0.875), .sevenEighths)
         XCTAssertEqual(Fraction(rawValue: 1.0), .one)
     }
-    
+
     func testApproximateValue() {
         XCTAssertEqual(Fraction(approximateValue: 0.0), .zero)
         XCTAssertEqual(Fraction(approximateValue: 0.001), .oneThousandth)
@@ -35,7 +35,7 @@ class FractionTests: XCTestCase {
         XCTAssertEqual(Fraction(approximateValue: 0.875), .sevenEighths)
         XCTAssertEqual(Fraction(approximateValue: 1.0), .one)
     }
-    
+
     func testProximateValue() {
         XCTAssertEqual(Fraction(proximateValue: 0.0), .zero)
         XCTAssertEqual(Fraction(proximateValue: 0.001), .oneThousandth)
@@ -50,7 +50,7 @@ class FractionTests: XCTestCase {
         XCTAssertEqual(Fraction(proximateValue: 0.75), .threeFourths)
         XCTAssertEqual(Fraction(proximateValue: 0.875), .sevenEighths)
         XCTAssertEqual(Fraction(proximateValue: 1.0), .one)
-        
+
         XCTAssertEqual(Fraction(proximateValue: 0.0), .zero)
         XCTAssertEqual(Fraction(proximateValue: 0.0005), .zero)
         XCTAssertEqual(Fraction(proximateValue: 0.032), .zero)
@@ -65,7 +65,7 @@ class FractionTests: XCTestCase {
         XCTAssertEqual(Fraction(proximateValue: 0.8125), .sevenEighths)
         XCTAssertEqual(Fraction(proximateValue: 0.876), .one)
     }
-    
+
     func testDescription() {
         XCTAssertEqual(Fraction.zero.description, "")
         XCTAssertEqual(Fraction.oneThousandth.description, "⅟1000")
@@ -81,7 +81,7 @@ class FractionTests: XCTestCase {
         XCTAssertEqual(Fraction.sevenEighths.description, "⅞")
         XCTAssertEqual(Fraction.one.description, "")
     }
-    
+
     func testIsCommon() {
         XCTAssertEqual(Fraction.zero.isCommon, false)
         XCTAssertEqual(Fraction.oneThousandth.isCommon, false)
@@ -97,7 +97,7 @@ class FractionTests: XCTestCase {
         XCTAssertEqual(Fraction.sevenEighths.isCommon, false)
         XCTAssertEqual(Fraction.one.isCommon, false)
     }
-    
+
     func testIsUnicodeRepresentable() {
         XCTAssertEqual(Fraction.zero.isUnicodeRepresentable, false)
         XCTAssertEqual(Fraction.oneThousandth.isUnicodeRepresentable, false)

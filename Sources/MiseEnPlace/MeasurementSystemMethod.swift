@@ -1,6 +1,6 @@
 import Foundation
 
-/// The `MeasurementSystemMethod` represents the ways `MeasurementMethod`s and 
+/// The `MeasurementSystemMethod` represents the ways `MeasurementMethod`s and
 /// `MeasurementSystem`s can be combined.
 public enum MeasurementSystemMethod: Int {
     case numericQuantity = 00
@@ -8,21 +8,21 @@ public enum MeasurementSystemMethod: Int {
     case usWeight = 12
     case metricVolume = 21
     case metricWeight = 22
-    
+
     public static func measurementSystemMethod(for measurementSystem: MeasurementSystem, measurementMethod: MeasurementMethod) -> MeasurementSystemMethod? {
         switch (measurementSystem, measurementMethod) {
         case (.numeric, .quantity):
-            return .numericQuantity
+            .numericQuantity
         case (.us, .volume):
-            return .usVolume
+            .usVolume
         case (.us, .weight):
-            return .usWeight
+            .usWeight
         case (.metric, .volume):
-            return .metricVolume
+            .metricVolume
         case (.metric, .weight):
-            return .metricWeight
+            .metricWeight
         default:
-            return nil
+            nil
         }
     }
 }

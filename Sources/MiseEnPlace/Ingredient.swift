@@ -62,9 +62,7 @@ import Foundation
 ///     var unit: MeasurementUnit = .gallon
 /// }
 /// ```
-public protocol Ingredient: Unique, Descriptive, Multimedia, Proportioned, Quantifiable {
-    
-}
+public protocol Ingredient: Unique, Descriptive, Multimedia, Proportioned, Quantifiable {}
 
 public extension Ingredient {
     /// `Quantification` that represents to which one (1) of this item is approximately equivalent.
