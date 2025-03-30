@@ -53,11 +53,11 @@ class EachMeasurementUnitTests: XCTestCase {
         scaleMeasure = try measuredEgg.scale(by: 2.0, measurementSystem: .numeric, measurementMethod: .weight)
         XCTAssertEqual(scaleMeasure.amount, 400)
         XCTAssertEqual(scaleMeasure.unit, .gram)
-        
+
         scaleMeasure = try measuredEgg.scale(by: 2.0, measurementSystem: .metric, measurementMethod: .weight)
         XCTAssertEqual(scaleMeasure.amount, 400)
         XCTAssertEqual(scaleMeasure.unit, .gram)
-        
+
         scaleMeasure = try measuredEgg.scale(by: 2.43, measurementSystem: .us, measurementMethod: .volume)
         XCTAssertEqual(scaleMeasure.amount, 1.02, accuracy: 0.01)
         XCTAssertEqual(scaleMeasure.unit, .pint)
